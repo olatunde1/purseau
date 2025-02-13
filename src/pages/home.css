@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
+
+/* Base Styles */
+.wrap {
+    background-image: url(../assets/images/unleashBackground.png);
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  width: 100%; /* Full width of the parent container */
+  height: 100vh; /* Full viewport height */
+  min-height: 300px; /* Minimum height for smaller screens */
+  display: flex;
+
+}
+
+.container2 {
+  max-width: 1200px; /* Limit container width */
+  padding: 0 24px; /* Add padding for smaller screens */
+  display: flex;
+  flex-direction: column; /* Stack items vertically by default */
+  gap: 24px; /* Spacing between items */
+  margin-left: 120px;
+}
+
+.unleash {
+  font-family: 'Playfair';
+  font-size: 64px;
+  line-height: 80px;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 0; /* Remove default margin */
+}
+
+.discover {
+  font-family: 'Lato';
+  font-size: 20px;
+  line-height: 36px;
+  color: #a7a7a7;
+  font-weight: 600;
+  margin: 0; /* Remove default margin */
+}
+
+.explore {
+  background-color: #E94E30;
+  width: 200px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Add spacing between text and icon */
+  font-family: 'Lato';
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.explore:hover {
+  background-color: #d84327; /* Darker shade on hover */
+}
+
+/* Grid Layout for Large Screens */
+@media (min-width: 1024px) {
+  
+  .unleash {
+    padding-top: 166px;
+    grid-column: 1 / -1; /* Span across both columns */
+    grid-row: 1 / 2; /* Place in the first row */
+  }
+
+  .discover {
+    grid-column: 1 / 2; /* Place in the first column */
+    grid-row: 2 / 3; /* Place in the second row */
+  }
+
+  .explore {
+    grid-column: 2 / 3; /* Place in the second column */
+    grid-row: 2 / 3; /* Place in the second row */
+    justify-self: start; /* Align button to the start of the column */
+  }
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1024px) {
+    .wrap {
+      align-items: center; /* Center content vertically */
+      justify-content: center; /* Center content horizontally */
+    
+    }
+  .unleash {
+    font-size: 48px; /* Reduce font size for tablets */
+    line-height: 64px;
+  }
+
+  .discover {
+    font-size: 18px; /* Reduce font size for tablets */
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+    .container2 {
+        margin-left: 0px;
+    }
+  .unleash {
+    font-size: 36px; /* Reduce font size for smaller tablets */
+    line-height: 48px;
+  }
+
+  .discover {
+    font-size: 16px; /* Reduce font size for smaller tablets */
+    line-height: 24px;
+  }
+
+  .explore {
+    width: 180px; /* Reduce button width */
+    height: 48px; /* Reduce button height */
+  }
+  .wrap {
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+  
+  }
+}
+
+@media (max-width: 480px) {
+    .container2 {
+        margin-left: 0px;
+        align-items: center; /* Center content vertically */
+        justify-content: center; /* Center content horizontally */
+      }
+  .unleash {
+    font-size: 28px; /* Reduce font size for mobile devices */
+    line-height: 36px;
+  }
+
+  .discover {
+    font-size: 14px; /* Reduce font size for mobile devices */
+    line-height: 20px;
+  }
+
+  .explore {
+    width: 160px; /* Reduce button width */
+    height: 40px; /* Reduce button height */
+    font-size: 14px; /* Reduce font size for mobile devices */
+  }
+  .wrap {
+    text-align: center;
+    height: 100vh; /* Full viewport height */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+  
+  }
+}
