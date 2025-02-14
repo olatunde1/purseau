@@ -13,6 +13,9 @@ import Icon1 from '../assets/images/icon1.png'
 import Icon2 from '../assets/images/icon2.png'
 import Icon3 from '../assets/images/icon3.png'
 import Icon4 from '../assets/images/icon4.png'
+import newArrival from '../assets/images/newArrival.png'
+import bestSeller from '../assets/images/best sellers.png'
+import trending from '../assets/images/trending.png'
 
 import './home.css';
 
@@ -60,23 +63,42 @@ const Home = () => {
     
     <div className="notification-list">
       
-        {notifications.map((notification, index) => (
-          <Card key={index} className="mb-4">
-            <CardHeader>
-            <img src={notification.image} alt={notification.title} className="notification-image" />
-            </CardHeader>
-            <CardContent>
-              <p className='notification-title'>{notification.title}</p>
-            </CardContent>
-            <CardFooter>
-             <p className='notification-description'>{notification.description}</p> 
-            </CardFooter>
-          </Card>
-        ))}
+      {notifications.map((notification, index) => (
+        <Card key={index} className="mb-4">
+          <CardHeader>
+          <img src={notification.image} alt={notification.title} className="notification-image" />
+          </CardHeader>
+          <CardContent>
+            <p className='notification-title'>{notification.title}</p>
+          </CardContent>
+          <CardFooter>
+            <p className='notification-description'>{notification.description}</p> 
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+
+
+  <div className="container">
+    <div className="arrival">
+    <div className="newArrivalWrap">
+      <img src={newArrival} alt="New Arrival" className='newArrival'/>
+      <div className="overlay">
+          <h2 className="overlay-title">New Arrivals</h2>
+          <p className="overlay-text">Your Wardrobe Deserves Something New - Shop now to grab our latest arrivals</p>
+          <button className="overlay-button">Shop Now</button>
       </div>
+      </div>
+    <div className="trendBestSells">
+      <img src={trending} alt="Trending Cloth" className='trendingCloth' />
+      <img src={bestSeller} alt="Best Selling Cloths" className='bestSellingCloth' />
+    </div>
+    </div>
+  </div>
+    
 
       
-      
+
 
 
   </>
