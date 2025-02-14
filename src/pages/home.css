@@ -61,6 +61,73 @@
   background-color: #d84327; /* Darker shade on hover */
 }
 
+
+.discover{
+    text-align: center;
+}
+
+/* Notification List Container */
+.notification-list {
+ 
+    justify-content: center; /* Center content horizontally */
+    display: flex; /* Use Flexbox */
+    gap: 24px; /* Add spacing between cards */
+    justify-content: center; /* Center cards horizontally */
+    text-align: center;
+    max-width: 1200px; /* Limit the maximum width */
+    margin: 0 auto; /* Center the container */
+    padding: 0 24px; /* Add padding for smaller screens */
+  }
+  
+  /* Individual Card Styling */
+  .notification-list .mb-4 {
+    border: none !important;
+    flex: 1 1 calc(25% - 24px); /* Four cards per row with spacing */
+    width: 900px;
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+  
+  /* Notification Image */
+  .notification-image {
+    margin: 0 auto;
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Adjust the size as needed */
+    margin-bottom: 16px; /* Add spacing below the image */
+  }
+
+  .notification-title{
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 18px;
+    width: 250px;
+  }
+
+  .notification-description{
+    font-family: 'Lato';
+    font-weight: 300;
+    font-size: 14px;
+    width: 250px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .notification-list .mb-4 {
+      flex: 1 1 calc(50% - 24px); /* Two cards per row on tablets */
+      max-width: calc(50% - 2ite4px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .notification-list .mb-4 {
+      flex: 1 1 100%; /* One card per row on mobile */
+      max-width: 100%;
+    }
+  }
+
+
+
+
+
 /* Grid Layout for Large Screens */
 @media (min-width: 1024px) {
   
