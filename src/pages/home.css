@@ -235,9 +235,19 @@
     font-family: 'Playfair';
     font-weight: bold;
     padding-top: 80px;
+    opacity: 100%;
+  }
+
+  .browse-favorites{
+    padding-bottom: 60px;
+    font-family: 'Lato';
+    font-size: 16px;
+    color: #878787;
+    opacity: 100%;
   }
 
   .explore-by-categories-images{
+    background-color: #FFE4DA;
     display: flex;
     flex-direction: row;
     justify-content: center;

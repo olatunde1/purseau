@@ -121,7 +121,7 @@ const Home = () => {
     <div className=" container3">
       <div className="explore-by-categories">
         <h1 className='explore-text'>Explore By Categories</h1>
-        <p>Browse you favorites by categories</p>
+        <p className='browse-favorites'>Browse you favorites by categories</p>
       </div>
       <div className="explore-by-categories-images">
           <img src={Cloth} alt="" />
