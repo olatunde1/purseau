@@ -62,8 +62,23 @@
 }
 
 
-.discover{
+.discovery{
     text-align: center;
+    padding-bottom: 60px;
+}
+.discovery h1{
+    font-family: 'Playfair';
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: auto;
+    padding-top: 80px;
+
+}
+.discovery p{
+    font-family: 'Lato';
+    font-size: 16px;
+    font-weight: 300;
 }
 
 /* Notification List Container */
@@ -118,6 +133,7 @@
   }
   
   @media (max-width: 768px) {
+    
     .notification-list .mb-4 {
       flex: 1 1 100%; /* One card per row on mobile */
       max-width: 100%;

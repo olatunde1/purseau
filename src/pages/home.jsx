@@ -53,7 +53,7 @@ const Home = () => {
       </div>
   </div>
 
-    <div className="discover">
+    <div className="discovery">
       <h1>Discover What Sets Us Apart</h1>
       <p>We provide you with the best customer experience</p>
     </div>
@@ -74,6 +74,11 @@ const Home = () => {
           </Card>
         ))}
       </div>
+
+      
+      
+
+
   </>
   
   
