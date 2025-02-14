@@ -222,6 +222,33 @@
     background: #ff4500; /* Darker orange on hover */
   }
 
+
+  .container3{
+    display: grid;
+    text-align: center;
+    
+  }
+
+ 
+  .explore-text{
+    font-size: 36px;
+    font-family: 'Playfair';
+    font-weight: bold;
+    padding-top: 80px;
+  }
+
+  .explore-by-categories-images{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .explore-by-categories-images img{
+    border-radius: 8px;
+  }
+
   
   @media (max-width: 480px) {
     .overlay {

@@ -16,6 +16,13 @@ import Icon4 from '../assets/images/icon4.png'
 import newArrival from '../assets/images/newArrival.png'
 import bestSeller from '../assets/images/best sellers.png'
 import trending from '../assets/images/trending.png'
+import Cloth from '../assets/images/clothCategory.png'
+import Bags from '../assets/images/bagCategory.png'
+import Shoes from '../assets/images/shoeCategory.png'
+import Jewelry from '../assets/images/necklaceCategory.png'
+import Hat from '../assets/images/hatCategory.png'
+import Brush from '../assets/images/faceBrushCategory.png'
+
 
 import './home.css';
 
@@ -111,12 +118,18 @@ const Home = () => {
   </div>
     
   <section>
-    <div className="container">
+    <div className=" container3">
       <div className="explore-by-categories">
-        <h1>Explore By Categories</h1>
+        <h1 className='explore-text'>Explore By Categories</h1>
         <p>Browse you favorites by categories</p>
       </div>
       <div className="explore-by-categories-images">
+          <img src={Cloth} alt="" />
+          <img src={Bags} alt="" />
+          <img src={Shoes} alt="" />
+          <img src={Jewelry} alt="" />
+          <img src={Hat} alt="" />
+          <img src={Brush} alt="" />
 
       </div>
     </div>
