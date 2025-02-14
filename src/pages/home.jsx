@@ -85,18 +85,42 @@ const Home = () => {
       <img src={newArrival} alt="New Arrival" className='newArrival'/>
       <div className="overlay">
           <h2 className="overlay-title">New Arrivals</h2>
-          <p className="overlay-text">Your Wardrobe Deserves Something New - Shop now to grab our latest arrivals</p>
-          <button className="overlay-button">Shop Now</button>
+          <p className="overlay-text">Your Wardrobe Deserves Something New - Shop now <br /> to grab our latest arrivals</p>
+          <Button className="overlay-button">Shop Now <SlArrowRight /></Button>
       </div>
       </div>
     <div className="trendBestSells">
-      <img src={trending} alt="Trending Cloth" className='trendingCloth' />
-      <img src={bestSeller} alt="Best Selling Cloths" className='bestSellingCloth' />
+      <div className="trendingClothWrap">
+        <img src={trending} alt="Trending Cloth" className='trendingCloth' />
+        <div className="overlayTrending">
+            <h2 className="overlayTrending-title">Trending Now</h2>
+            <p className="overlay-text">Discover the latest trending picks that define chic & <br /> confidence</p>
+            <Button className="overlay-button">Explore <SlArrowRight /></Button>
+        </div>
+      </div>
+      <div className="bestSellingWrap">
+        <img src={bestSeller} alt="Best Selling Cloths" className='bestSellingCloth' />
+        <div className="overlayTrending">
+              <h2 className="overlayTrending-title">Best Sellers</h2>
+              <p className="overlay-text">YTried, Tested & Loved – Our Top Picks Fashion Hits <br /> You’ll Love Forever</p>
+              <Button className="overlay-button">Discover <SlArrowRight /></Button>
+        </div>
+      </div>
     </div>
     </div>
   </div>
     
+  <section>
+    <div className="container">
+      <div className="explore-by-categories">
+        <h1>Explore By Categories</h1>
+        <p>Browse you favorites by categories</p>
+      </div>
+      <div className="explore-by-categories-images">
 
+      </div>
+    </div>
+  </section>
       
 
 
