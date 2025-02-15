@@ -1,4 +1,5 @@
 /* Existing CSS (unchanged) */
+
 .container {
   color: #000;
   display: flex;
@@ -12,7 +13,9 @@
   margin: 0 auto;
 }
 
-
+.header-wrap{
+  background-color: #ffffff;
+}
 
 .LogoImage {
   width: 107.5px;

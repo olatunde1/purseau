@@ -11,8 +11,9 @@ import { TiUserOutline } from 'react-icons/ti';
 
 
 const Header = () => {
-  return (
-    <div className="container">
+  return <>
+  <div className="header-wrap">
+  <div className="container">
       {/* Logo Section */}
       <img src={Logo} alt="Logo" className="LogoImage" />
 
@@ -37,8 +38,12 @@ const Header = () => {
       </div>
     </div>
     
+  </div>
+   
     
-  );
+  </>
+    
+  
 };
 
 export default Header;

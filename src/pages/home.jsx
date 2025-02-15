@@ -22,7 +22,8 @@ import Shoes from '../assets/images/shoeCategory.png'
 import Jewelry from '../assets/images/necklaceCategory.png'
 import Hat from '../assets/images/hatCategory.png'
 import Brush from '../assets/images/faceBrushCategory.png'
-// import productType from '../components/productType'
+import ProductDisplay from '../components/ProductDisplay'
+import SpecialOffer from '@/components/SpecialOffer';
 
 
 import './home.css';
@@ -144,25 +145,17 @@ const Home = () => {
       <h1 className='explore-text'>Our Top Selling Products</h1>
       <p className='browse-favorites'>In a laoreet purus. Integer turpis quam, laoreet id orci nec, <br /> ultrices lacinia nunc. Aliquam erat vo</p>
     </div>
-    {/* <div className="select-category">
-        <div className="select-category-button">
-          <Button>Clothes</Button>
-          <Button>Bags</Button>
-          <Button>Shoes</Button>
-          <Button>Jewelries</Button>
-          <Button>Accessories</Button>
-          <Button>Beauty</Button>
-        </div>
-        <productType />
-    </div> */}
-
-  
+   
    </div>
-    
-
   </section>
-      
+ 
+    <div>
+      <ProductDisplay />
+    </div>
 
+      <div className='special-offer'>
+        <SpecialOffer />
+      </div>
 
 
   </>

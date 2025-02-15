@@ -81,6 +81,11 @@
     font-weight: 300;
 }
 
+.special-offer{
+    background-image: url(../assets/images/special-offer.png);
+    height: 418px;
+}
+
 /* Notification List Container */
 .notification-list {
  
