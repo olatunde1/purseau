@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './header'
 import Footer from './footer'
 import Navbar from './navbar'
+import ProductType from '../components/productType'
 import { Outlet } from 'react-router-dom'
 
 const layout = () => {
@@ -9,6 +10,7 @@ const layout = () => {
     <Header />
     <Navbar />
     <Outlet />
+    <ProductType/>
     <Footer />
   </>
 }
