@@ -83,7 +83,16 @@
 
 .special-offer{
     background-image: url(../assets/images/special-offer.png);
-    height: 418px;
+    background-color: #f0f0f0; /* Fallback color */
+    /* height: 418px; */
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.timer{
+    background-color: #00000017;
+    color:#FFFDF7;
+    border: none;
 }
 
 /* Notification List Container */
@@ -340,7 +349,49 @@
         font-size: 12px;
     }
 
-    
+    .get-offer{
+        margin-top: 24px;
+        background-color: #E94E30;
+        width: 200px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; /* Add spacing between text and icon */
+        font-family: 'Lato';
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth hover effect */
+    }
+
+    .get-offer:hover{
+        background-color: #d84327;
+    }
+
+    .special-offer{
+        padding-top: 60px;
+        padding-left: 120px;
+        
+    }
+
+    .special-offer h2{
+        font-family: 'Playfair';
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 48px;
+        color: #FFFDF7;
+    }
+
+    .special-offer p{
+        font-family: 'Lato';
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19.2px;
+        color: #FFFDF7;
+    }
 
   @media (max-width: 480px) {
     .explore-by-categories-images {

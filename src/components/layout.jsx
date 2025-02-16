@@ -11,7 +11,7 @@ const layout = () => {
     <Navbar />
     <Outlet />
     {/* <ProductType/> */}
-    <Footer />
+    {/* <Footer /> */}
   </>
 }
 
