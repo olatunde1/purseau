@@ -24,6 +24,7 @@ import Hat from '../assets/images/hatCategory.png'
 import Brush from '../assets/images/faceBrushCategory.png'
 import ProductDisplay from '../components/ProductDisplay'
 import SpecialOffer from '@/components/SpecialOffer';
+import Brand from '@/components/Brand'
 
 
 import './home.css';
@@ -153,9 +154,13 @@ const Home = () => {
       <ProductDisplay />
     </div>
 
-      <div className='special-offer'>
-        <SpecialOffer />
-      </div>
+    <div className='special-offer'>
+      <SpecialOffer />
+    </div>
+
+    <div className="text-center text-2xl font-bold my-8">
+      <Brand />
+    </div>
 
 
   </>

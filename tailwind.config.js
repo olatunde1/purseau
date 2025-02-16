@@ -4,6 +4,15 @@ export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+		animation: {
+			marquee: "marquee 20s linear infinite",
+		  },
+		  keyframes: {
+			marquee: {
+			  "0%": { transform: "translateX(100%)" }, // Start with logos offscreen to the right
+			  "100%": { transform: "translateX(-100%)" }, // End with logos offscreen to the left
+			},
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

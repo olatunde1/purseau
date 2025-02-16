@@ -95,6 +95,18 @@
     border: none;
 }
 
+.special-offer-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 418px;
+}
+
+.specialPicture{
+    width: 533px;
+    height: 26rem;
+}
+
 /* Notification List Container */
 .notification-list {
  
@@ -371,8 +383,8 @@
         background-color: #d84327;
     }
 
-    .special-offer{
-        padding-top: 60px;
+    .special-offer-count-timer{
+        padding-top: 82px;
         padding-left: 120px;
         
     }
@@ -393,7 +405,13 @@
         color: #FFFDF7;
     }
 
+  
   @media (max-width: 480px) {
+
+    .special-offer-page{
+        display: grid;
+        
+    }
     .explore-by-categories-images {
         max-width: 100%; /* Ensure the container takes the full width */
         height: auto; /* Allow height to adjust based on content */
