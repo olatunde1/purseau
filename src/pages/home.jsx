@@ -23,8 +23,9 @@ import Jewelry from '../assets/images/necklaceCategory.png'
 import Hat from '../assets/images/hatCategory.png'
 import Brush from '../assets/images/faceBrushCategory.png'
 import ProductDisplay from '../components/ProductDisplay'
-import SpecialOffer from '@/components/SpecialOffer';
+import SpecialOffer from '@/components/SpecialOffer'
 import Brand from '@/components/Brand'
+import Blog from '../components/Blog'
 
 
 import './home.css';
@@ -158,8 +159,12 @@ const Home = () => {
       <SpecialOffer />
     </div>
 
-    <div className="text-center text-2xl font-bold my-8">
+    <div className="text-center">
       <Brand />
+    </div>
+
+    <div className="blog text-center">
+      <Blog />
     </div>
 
 
