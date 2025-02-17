@@ -26,6 +26,8 @@ import ProductDisplay from '../components/ProductDisplay'
 import SpecialOffer from '@/components/SpecialOffer'
 import Brand from '@/components/Brand'
 import Blog from '../components/Blog'
+import { Footer } from '@/components/Footer'
+import {StayLoop} from '@/components/StayLoop'
 
 
 import './home.css';
@@ -165,6 +167,14 @@ const Home = () => {
 
     <div className="blog text-center">
       <Blog />
+    </div>
+
+    <div className="stay-loop">
+      <StayLoop />
+    </div>
+    
+    <div className="footer-details">
+      <Footer />
     </div>
 
 

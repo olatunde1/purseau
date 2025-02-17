@@ -36,7 +36,7 @@ const CardCarousel = () => {
               <Card className="shadow-lg overflow-hidden">
                 <img src={item.image} alt={item.title} className="blog-images" />
                 <CardContent className="p-4 blog-card-details ">
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <h3 className="blog-card-title">{item.title}</h3>
                   <p className="text-gray-600">{item.description}</p>
                   <a href="#" className="text-black-600 underline text-sm mt-2 inline-block">
                    Read More
