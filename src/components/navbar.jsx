@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -19,54 +20,70 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white shadow-md w-full navBar pt-2 pb-4">
-      <div className="container mx-auto px-4 py-3 flex justify-center items-center relative"> {/* Center the NavigationMenu */}
+      <div className="container mx-auto px-4 py-3 flex justify-center items-center relative">
         {/* Desktop Menu */}
-        <div className="hidden md:flex justify-center w-full"> {/* Ensure full width and center content */}
+        <div className="hidden md:flex justify-center w-full">
           <NavigationMenu>
-            <NavigationMenuList className="flex items-center gap-4"> {/* Center items horizontally */}
+            <NavigationMenuList className="flex items-center gap-4">
               {/* Home */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="px-4 py-2 text-black-800 hover:text-gray-900">
-                  Home
+                <NavigationMenuLink asChild>
+                  <Link to="/home" className="px-4 py-2 text-black-800 hover:text-gray-900">
+                    Home
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Shop with Submenu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
-                  Shop
+                <Link to="/shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Shop
+                    </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Action
+                  <NavigationMenuLink asChild>
+                    <Link to="/shop/action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Action
+                    </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Another Action
+                  <NavigationMenuLink asChild>
+                    <Link to="/shop/another-action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Another Action
+                    </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Something Else
+                  <NavigationMenuLink asChild>
+                    <Link to="/shop/something-else" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Something Else
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               {/* About Us */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="px-4 py-2 text-gray-700 hover:text-dark-900">
-                  About Us
+                <NavigationMenuLink asChild>
+                  <Link to="/about" className="px-4 py-2 text-gray-700 hover:text-dark-900">
+                    About Us
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Contact Us */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="px-4 py-2 text-gray-700 hover:text-gray-900">
-                  Contact Us
+                <NavigationMenuLink asChild>
+                  <Link to="/contact" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                    Contact Us
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Blog */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="px-4 py-2 text-gray-700 hover:text-gray-900">
-                  Blog
+                <NavigationMenuLink asChild>
+                  <Link to="/blog" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                    Blog
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -76,7 +93,7 @@ const Navbar = () => {
         {/* Mobile Menu Toggler */}
         <Button
           variant="ghost"
-          className="md:hidden p-2 absolute right-4" 
+          className="md:hidden p-2 absolute right-4"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
@@ -88,11 +105,13 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <NavigationMenu orientation="vertical">
-            <NavigationMenuList className="flex flex-col items-center space-y-2 p-4"> {/* Center items vertically */}
+            <NavigationMenuList className="flex flex-col items-center space-y-2 p-4">
               {/* Home */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Home
+                <NavigationMenuLink asChild>
+                  <Link to="/src/pages/home.jsx" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    Home
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
@@ -102,36 +121,48 @@ const Navbar = () => {
                   Shop
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Action
+                  <NavigationMenuLink asChild>
+                    <Link to="/src/pages/Shop.jsx" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Action
+                    </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Another Action
+                  {/* <NavigationMenuLink asChild>
+                    <Link to="/shop/another-action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Another Action
+                    </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    Something Else
-                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="/shop/something-else" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Something Else
+                    </Link>
+                  </NavigationMenuLink> */}
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
               {/* About Us */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  About Us
+                <NavigationMenuLink asChild>
+                  <Link to="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    About Us
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Contact Us */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Contact Us
+                <NavigationMenuLink asChild>
+                  <Link to="/contact" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    Contact Us
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               {/* Blog */}
               <NavigationMenuItem>
-                <NavigationMenuLink href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Blog
+                <NavigationMenuLink asChild>
+                  <Link to="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    Blog
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>

@@ -4,10 +4,10 @@ import { SlArrowRight } from "react-icons/sl";
 import {
   Card,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
+  // CardTitle,
 } from "@/components/ui/card"
 import Icon1 from '../assets/images/icon1.png'
 import Icon2 from '../assets/images/icon2.png'
@@ -16,18 +16,13 @@ import Icon4 from '../assets/images/icon4.png'
 import newArrival from '../assets/images/newArrival.png'
 import bestSeller from '../assets/images/best sellers.png'
 import trending from '../assets/images/trending.png'
-import Cloth from '../assets/images/clothCategory.png'
-import Bags from '../assets/images/bagCategory.png'
-import Shoes from '../assets/images/shoeCategory.png'
-import Jewelry from '../assets/images/necklaceCategory.png'
-import Hat from '../assets/images/hatCategory.png'
-import Brush from '../assets/images/faceBrushCategory.png'
 import ProductDisplay from '../components/ProductDisplay'
 import SpecialOffer from '@/components/SpecialOffer'
 import Brand from '@/components/Brand'
 import Blog from '../components/Blog'
 import { Footer } from '@/components/Footer'
 import {StayLoop} from '@/components/StayLoop'
+import Explore from '../components/ExploreCategories'
 
 
 import './home.css';
@@ -125,23 +120,9 @@ const Home = () => {
     </div>
   </div>
     
-  <section>
-    <div className=" container">
-      <div className="explore-by-categories">
-        <h1 className='explore-text'>Explore By Categories</h1>
-        <p className='browse-favorites'>Browse you favorites by categories</p>
-      </div>
-      <div className="explore-by-categories-images">
-          <img src={Cloth} alt="" />
-          <img src={Bags} alt="" />
-          <img src={Shoes} alt="" />
-          <img src={Jewelry} alt="" />
-          <img src={Hat} alt="" />
-          <img src={Brush} alt="" />
-
-      </div>
-    </div>
-  </section>
+  <div className="exp">
+    <Explore />
+  </div>
 
   <section>
    <div className="container">

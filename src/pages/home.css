@@ -272,7 +272,9 @@
   }
 
   .explore-by-categories-images{
-    max-width: 1200px;
+   
+    max-width: 100%;
+    width: 1200px;
     height: 242px;
     background-color: #FFE4DA;
     display: flex;
@@ -282,13 +284,22 @@
     gap: 16px;
     padding-left: 20px;
     padding-right: 20px;
+    
+    
   }
 
   .explore-by-categories-images img{
     border-radius: 8px;
-    max-width: 180px;
+    width: 180px;
+    height: 190px;
+    
   }
 
+  .explore-wrapper{
+    
+    margin-left: 120px;
+    margin-right: 120px;
+  }
   .select-category-button {
     /* margin-bottom: 20px; */
     font-family: 'Lato';
@@ -576,6 +587,38 @@
   }
 
 
+/* SHOP PAGE */
+
+.shop {
+    background-image: url(../assets/images/shop-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    border-radius: 16px;
+    width: 100%; /* Use full width */
+    max-width: 1200px; /* Limit maximum width */
+    height: 300px;
+    color: #fff;
+    margin: 99px auto 0; /* Center horizontally and add top margin */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
+  
+  .shop h1 {
+    font-family: 'Playfair', serif; /* Fallback font */
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+  }
+  
+  .shop p {
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Adjust as needed */
+  }
+
+  
   @media (max-width: 480px) {
 
     .email-input{
@@ -614,6 +657,7 @@
     }
     .explore-by-categories-images {
         max-width: 100%; /* Ensure the container takes the full width */
+        width: 1200px;
         height: auto; /* Allow height to adjust based on content */
         background-color: #FFE4DA;
         display: grid;
@@ -622,6 +666,7 @@
         align-items: center;
         gap: 16px;
         padding: 20px; /* Combine padding-left and padding-right */
+        margin-left: 120px;
     }
 
     .explore-by-categories-images img {

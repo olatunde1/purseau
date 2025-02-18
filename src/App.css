@@ -1,16 +1,18 @@
 /* Existing CSS (unchanged) */
 
 .container {
-  color: #000;
+  color: #000; /* Text color */
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 24px;
-  padding: 0 24px;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-direction: row; /* Default layout direction */
+  flex-wrap: wrap; /* Allow wrapping of items */
+  gap: 24px; /* Consistent spacing between items */
+  padding: 0 24px; /* Horizontal padding */
+  justify-content: space-between; /* Distribute space between items */
+  align-items: center; /* Vertically center items */
+  max-width: 1200px; /* Maximum width of the container */
+  width: 100%; /* Ensure it takes full width up to max-width */
+  margin: 0 auto; /* Center the container horizontally */
+  box-sizing: border-box; /* Include padding in width calculations */
 }
 
 .header-wrap{
