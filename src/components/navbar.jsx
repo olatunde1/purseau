@@ -28,7 +28,7 @@ const Navbar = () => {
               {/* Home */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/home" className="px-4 py-2 text-black-800 hover:text-gray-900">
+                  <Link to="/Home" className="px-4 py-2 text-black-800 hover:text-gray-900">
                     Home
                   </Link>
                 </NavigationMenuLink>
@@ -37,23 +37,23 @@ const Navbar = () => {
               {/* Shop with Submenu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
-                <Link to="/shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Shop
                     </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
                   <NavigationMenuLink asChild>
-                    <Link to="/shop/action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Action
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link to="/shop/another-action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Another Action
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <Link to="/shop/something-else" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Something Else
                     </Link>
                   </NavigationMenuLink>
@@ -101,7 +101,12 @@ const Navbar = () => {
         </Button>
       </div>
 
+
+
       {/* Mobile Menu */}
+
+
+
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
           <NavigationMenu orientation="vertical">
