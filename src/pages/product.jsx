@@ -14,6 +14,7 @@ import AllProduct from "../components/AllProduct"
 import Pagination from "../components/Pagination"
 import { StayLoop } from "@/components/StayLoop";
 import RecentlyViewed from "@/components/RecentlyViewed";
+import { CiSearch } from 'react-icons/ci';
 
 // Import necessary icons or use Unicode stars
 const StarIcon = () => <span>⭐</span>; // Unicode star icon
@@ -136,9 +137,10 @@ const ProductCategorySidebar = () => {
             </AccordionTrigger>
             {/* Search Input */}
         <div className="mb-6">
+          
           <Input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search"
             className="w-full"
           />
         </div>
@@ -276,7 +278,7 @@ const ProductCategorySidebar = () => {
   <div className="recently-viewed">
     <RecentlyViewed />
   </div>
-  
+
   <div className="stay-loop">
     <StayLoop />
   </div>

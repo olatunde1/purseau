@@ -24,14 +24,14 @@ const ProductsPage = () => {
     <div className="p-6 flex">
       {/* Products Section */}
       <div className="our-products">
-        <h1 className="text-3xl font-bold mb-4">Our Products</h1>
+        <h1 className="font-bold mb-4 our-product-text">Our Products</h1>
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
             Showing {products.length} of {AllProductList.length} results
           </p>
           <Select onValueChange={handleSortChange}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder="Sort By" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="price_asc">Price: Low to High</SelectItem>
@@ -63,7 +63,7 @@ const ProductsPage = () => {
                 <CardDescription className="mt-2">{product.description}</CardDescription>
               </CardContent>
               <CardFooter className="p-4 flex justify-between items-center">
-                <span className="text-lg font-semibold">${product.price.toFixed(2)}</span>
+                <span className="text-lg font-semibold">₦{product.price.toFixed(2)}</span>
                 <span className="text-sm text-red-600">{product.discount}</span>
               </CardFooter>
             </Card>

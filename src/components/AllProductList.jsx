@@ -30,7 +30,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 5,
     description: "Nicole & Doris Fashion ",
-    price: 129.99,
+    price: 28000,
     discount: "15% off",
   },
   {
@@ -39,7 +39,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 3,
     description: "Nicole & Doris Fashion ",
-    price: 79.99,
+    price: 28000,
     discount: "10% off",
   },
   {
@@ -48,7 +48,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 4,
     description: "This is a description for Product 4.",
-    price: 149.99,
+    price: 28000,
     discount: "25% off",
   },
   {
@@ -57,7 +57,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -66,7 +66,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -75,7 +75,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -84,7 +84,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -93,7 +93,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -102,7 +102,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -111,7 +111,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -120,7 +120,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -129,7 +129,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -138,7 +138,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
   {
@@ -147,7 +147,7 @@ const allProductList = [
     title: "Nicole & Doris Fashion ",
     rating: 2,
     description: "This is a description for Product 5.",
-    price: 59.99,
+    price: 28000,
     discount: "5% off",
   },
 ];

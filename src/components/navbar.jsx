@@ -37,24 +37,44 @@ const Navbar = () => {
               {/* Shop with Submenu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
-                <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <Link to="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Shop
                     </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
                   <NavigationMenuLink asChild>
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Action
+                    <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      All Product
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="/Cloth" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Cloth
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Another Action
+                      Bags
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Something Else
+                      Shoes
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Jewelries
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Accessories
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                      Beauty
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuContent>

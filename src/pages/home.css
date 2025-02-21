@@ -273,20 +273,47 @@
 
   .explore-by-categories-images{
    
-    max-width: 100%;
+    /* max-width: 100%; */
     width: 1200px;
     height: 242px;
     background-color: #FFE4DA;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
     
     
   }
+
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .image-container img {
+    width: 180px !important;
+    display: block;
+    /* width: 100%; Adjust the width as needed */
+    height: 202px !important;
+  }
+
+  .overlay-text {
+    position: absolute;
+    bottom: 10px; /* Position the text at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    font-family: "Playfair";
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
 
   .explore-by-categories-images img{
     border-radius: 8px;
@@ -691,8 +718,9 @@
     background-color: #FFE4DA;
   }
 
-  .recently-view{
-    /* width: 1200px; */
+  .recently-viewed-button{
+    padding-left: 120px;
+   padding-right: 120px;
   }
   .pagination-page{
     margin-left: 120px;
@@ -702,6 +730,11 @@
   .recently-viewed-card{
     margin-left: 120px;
     margin-right: 120px;
+  }
+
+  .our-product-text{
+    font-family: "Playfair";
+    font-size: 39px;
   }
 
   @media (max-width: 480px) {
@@ -761,6 +794,8 @@
         display: block; /* Change to block to avoid grid conflicts */
         object-fit: cover; /* Ensure the image covers the area without distortion */
     }
+
+    
 }
   
   @media (max-width: 480px) {

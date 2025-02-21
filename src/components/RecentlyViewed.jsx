@@ -14,7 +14,7 @@ const recentlyViewedItems = [
     title: "Product 1",
     rating: 4,
     description: "This is a description for Product 1.",
-    price: 99.99,
+    price: 28000,
     discount: "20% off",
   },
   {
@@ -23,7 +23,7 @@ const recentlyViewedItems = [
     title: "Product 2",
     rating: 5,
     description: "This is a description for Product 2.",
-    price: 129.99,
+    price: 28000,
     discount: "15% off",
   },
   {
@@ -32,7 +32,7 @@ const recentlyViewedItems = [
     title: "Product 3",
     rating: 3,
     description: "This is a description for Product 3.",
-    price: 79.99,
+    price: 28000,
     discount: "10% off",
   },
   {
@@ -41,7 +41,7 @@ const recentlyViewedItems = [
     title: "Product 4",
     rating: 4,
     description: "This is a description for Product 4.",
-    price: 89.99,
+    price: 28000,
     discount: "5% off",
   },
 ];
@@ -50,7 +50,7 @@ const RecentlyViewed = () => {
   return (
     <div className="flex flex-col items-center p-4 recently-view">
       {/* Header Section */}
-      <div className="w-full flex justify-between items-center max-w-4xl mb-4">
+      <div className="w-full flex justify-between items-center mb-4 recently-viewed-button">
         <h2 className="text-lg font-semibold">Recently Viewed</h2>
         <Button variant="link" className="text-blue-500 flex items-center">
           See All <span className="ml-1">→</span>
@@ -81,7 +81,7 @@ const RecentlyViewed = () => {
               <CardDescription className="mt-2">{item.description}</CardDescription>
             </CardContent>
             <CardFooter className="p-4 flex justify-between items-center">
-              <span className="text-lg font-semibold">${item.price.toFixed(2)}</span>
+              <span className="text-lg font-semibold">₦{item.price.toFixed(2)}</span>
               <span className="text-sm text-red-600">{item.discount}</span>
             </CardFooter>
           </Card>
