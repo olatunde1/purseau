@@ -323,9 +323,7 @@
   }
 
   .explore-wrapper{
-    
-    margin-left: 120px;
-    margin-right: 120px;
+      justify-items: center;
   }
   .select-category-button {
     /* margin-bottom: 20px; */
@@ -735,6 +733,26 @@
   .our-product-text{
     font-family: "Playfair";
     font-size: 39px;
+  }
+
+  /* NAVIGATION MENU LINK WITH ICON */
+
+  .navigation-menu-link{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .navigation-menu-link-icon{
+    margin-right: 12px;
+    margin-top: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navigation-submenu{
+    padding: 16px;
+    width: 178px !important;
+
   }
 
   @media (max-width: 480px) {

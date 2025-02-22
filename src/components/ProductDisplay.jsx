@@ -487,7 +487,7 @@ export default function ProductDisplay() {
   const products = productsByCategory[selectedCategory];
 
   return (
-    <div className="products-container mx-auto p-4">
+    <div className="container mx-auto p-4">
       {/* Category Buttons */}
       <div className="select-category">
         <div className="select-category-button flex flex-wrap gap-2">

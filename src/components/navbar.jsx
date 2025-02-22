@@ -10,6 +10,15 @@ import {
 } from "@/components/ui/navigation-menu"; // Import shadcn/ui components
 import { Button } from "@/components/ui/button"; // Import Button component
 import { Menu, X } from "lucide-react"; // Icons for mobile menu toggler
+import Shoes from '../assets/images/shoes-icon.png'
+import Clothes from '../assets/images/dress-icon.png'
+import Jewelries from '../assets/images/jewelries.png'
+import Accessories from '../assets/images/accessories-icon.png'
+import Beauty from '../assets/images/beauty-icon.png'
+import Bags from '../assets/images/bags-icon.png'
+import { GiPoloShirt } from "react-icons/gi";
+import { TbShoppingBagSearch } from "react-icons/tb";
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
@@ -41,43 +50,46 @@ const Navbar = () => {
                       Shop
                     </Link>
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
+
+                <NavigationMenuContent className="bg-white shadow-lg rounded-lg navigation-submenu">
                   <NavigationMenuLink asChild>
                     <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       All Product
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
+                 
                     <Link to="/Cloth" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Cloth
+                    <img src={Clothes} alt="" srcset="" className="navigation-menu-link-icon" /> Cloth
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Bags
+                    <img src={Bags} alt="" srcset="" className="navigation-menu-link-icon" /> Bags
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Shoes
+                    <img src={Shoes} alt="" srcset="" className="navigation-menu-link-icon" /> Shoes
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Jewelries
+                    <img src={Jewelries} alt="" srcset="" className="navigation-menu-link-icon" /> Jewelries
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Accessories
+                    <img src={Accessories} alt="" srcset="" className="navigation-menu-link-icon" />Accessories
                     </Link>
                   </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
+                  <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Beauty
+                    <img src={Beauty} alt="" srcset="" className="navigation-menu-link-icon" /> Beauty
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuContent>
+
               </NavigationMenuItem>
 
               {/* About Us */}

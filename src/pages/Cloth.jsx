@@ -1,15 +1,17 @@
 import React from 'react'
-import SubMenu from '../components/SubMenu'
+import SubMenuCloth from '../components/SubMenuCloth'
 import { Footer } from '@/components/footer'
 import Explore from '../components/ExploreCategories'
+import RecentlyViewed from '@/components/RecentlyViewed'
 
 
 
 
 const Cloth = () => {
   return <>
-      <SubMenu />
+      <SubMenuCloth />
       <Explore />
+      <RecentlyViewed />
       <Footer />
   </>
 
