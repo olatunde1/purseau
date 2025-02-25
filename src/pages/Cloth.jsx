@@ -7,12 +7,16 @@ import RecentlyViewed from '@/components/RecentlyViewed'
 
 
 
+
+
 const Cloth = () => {
   return <>
+
       <SubMenuCloth />
       <Explore />
       <RecentlyViewed />
       <Footer />
+      
   </>
 
 }
