@@ -55,7 +55,6 @@ const Home = () => {
   ];
 
   return <>
-  
   <div className="wrap">
       <div className="container2">
         <h1 className="unleash">Unleash Your Feminine <br /> Style with Purseau.</h1>

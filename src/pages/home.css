@@ -713,7 +713,7 @@
    padding-right: 8px;
   }
 
-  .recently-viewed{
+  .recently-view{
     background-color: #FFE4DA;
   }
 
@@ -722,6 +722,8 @@
    padding-right: 120px;
   }
   .pagination-page{
+    padding-top: 80px;
+    padding-bottom: 80px;
     margin-left: 120px;
     margin-right: 120px;
   }
@@ -754,6 +756,10 @@
     padding: 16px;
     width: 178px !important;
 
+  }
+
+  .top-pick{
+    margin-bottom: 80px;
   }
 
   @media (max-width: 480px) {

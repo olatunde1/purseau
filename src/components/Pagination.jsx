@@ -12,7 +12,7 @@ const Pagination = ({ totalPages }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full p-4">
+    <div className=" container flex justify-between items-center w-full p-4 mx-auto pagination-page ">
       {/* Pagination Controls - Left Aligned */}
       <div className="flex space-x-2">
         {/* Previous Button */}

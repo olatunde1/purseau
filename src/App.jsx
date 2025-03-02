@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Cloth from './pages/Cloth'
+import Bags from './pages/Bags'
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path='/' element={<Layout />}>
           <Route path='/Home' index element={<Home />} /> {/* Default route */}
           <Route path='Shop' element={<Shop />} />
-          <Route path='/Product' element={<Product />} />
+          {/* <Route path='/Product' element={<Product />} /> */}
           <Route path='/Cloth' element={<Cloth />} />
+          <Route path='/Bags' element={<Bags />} />
         </Route>
       </Routes>
     </BrowserRouter>

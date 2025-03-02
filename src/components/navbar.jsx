@@ -46,25 +46,26 @@ const Navbar = () => {
               {/* Shop with Submenu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
-                <Link to="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       Shop
                     </Link>
                 </NavigationMenuTrigger>
 
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg navigation-submenu">
-                  <NavigationMenuLink asChild>
+
+                  {/* <NavigationMenuLink asChild>
                     <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       All Product
                     </Link>
-                  </NavigationMenuLink>
+                  </NavigationMenuLink> */}
+
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                 
                     <Link to="/Cloth" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                     <img src={Clothes} alt="" srcset="" className="navigation-menu-link-icon" /> Cloth
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link to="/Bags" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                     <img src={Bags} alt="" srcset="" className="navigation-menu-link-icon" /> Bags
                     </Link>
                   </NavigationMenuLink>
@@ -121,6 +122,8 @@ const Navbar = () => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
+
+
 
         {/* Mobile Menu Toggler */}
         <Button

@@ -1,5 +1,5 @@
 import React from 'react'
-import SubMenuCloth from '../components/SubMenuCloth'
+import SubMenuBags from '../components/SubMenuBags'
 import { Footer } from '@/components/footer'
 import Explore from '../components/ExploreCategories'
 import RecentlyViewed from '@/components/RecentlyViewed'
@@ -14,10 +14,10 @@ import { StayLoop } from '@/components/StayLoop'
 
 
 
-const Cloth = () => {
+const Bags = () => {
   return <>
 
-      <SubMenuCloth />
+      <SubMenuBags/>
       <Explore />
       <TopPicks />
       <ProductCloth />
@@ -31,4 +31,4 @@ const Cloth = () => {
 
 }
 
-export default Cloth
+export default Bags

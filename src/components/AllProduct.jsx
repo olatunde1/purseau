@@ -5,12 +5,16 @@ import { Star } from "lucide-react";
 
 const CATEGORIES = ["Clothes", "Bags", "Shoes", "Jewelry", "Accessories", "Beauty"];
 const BRANDS = ["Nike", "Adidas", "Gucci", "Louis Vuitton", "Zara", "H&M"];
+const COLORS = ["Red", "Blue", "Green", "Black", "White", "Yellow"];
+const SIZES = ["XS", "S", "M", "L", "XL", "XXL"]; // Add sizes for filtering
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null); // Single category selection
   const [selectedBrand, setSelectedBrand] = useState(null); // Single brand selection
+  const [selectedColors, setSelectedColors] = useState([]); // Multiple color selection
+  const [selectedSizes, setSelectedSizes] = useState([]); // Multiple size selection
   const [sortBy, setSortBy] = useState("");
   const [brandSearch, setBrandSearch] = useState("");
   const [priceRange, setPriceRange] = useState(1000);
@@ -31,6 +35,8 @@ const ProductsPage = () => {
           discount: product.discount || "10% off",
           category: CATEGORIES[index % CATEGORIES.length],
           brand: BRANDS[index % BRANDS.length],
+          color: COLORS[index % COLORS.length], // Add a color property to products
+          size: SIZES[index % SIZES.length], // Add a size property to products
         }));
         setProducts(categorizedProducts);
         setFilteredProducts(categorizedProducts);
@@ -44,8 +50,8 @@ const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    filterProducts(selectedCategory, selectedBrand, priceRange);
-  }, [selectedCategory, selectedBrand, priceRange, products]);
+    filterProducts(selectedCategory, selectedBrand, selectedColors, selectedSizes, priceRange);
+  }, [selectedCategory, selectedBrand, selectedColors, selectedSizes, priceRange, products]);
 
   const handleCategoryChange = (category) => {
     setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
@@ -55,13 +61,39 @@ const ProductsPage = () => {
     setSelectedBrand((prevBrand) => (prevBrand === brand ? null : brand));
   };
 
-  const filterProducts = (category, brand, price) => {
+  const handleColorChange = (color) => {
+    let updatedColors = [...selectedColors];
+    if (updatedColors.includes(color)) {
+      updatedColors = updatedColors.filter((c) => c !== color); // Unselect color
+    } else {
+      updatedColors.push(color); // Select color
+    }
+    setSelectedColors(updatedColors);
+  };
+
+  const handleSizeChange = (size) => {
+    let updatedSizes = [...selectedSizes];
+    if (updatedSizes.includes(size)) {
+      updatedSizes = updatedSizes.filter((s) => s !== size); // Unselect size
+    } else {
+      updatedSizes.push(size); // Select size
+    }
+    setSelectedSizes(updatedSizes);
+  };
+
+  const filterProducts = (category, brand, colors, sizes, price) => {
     let filtered = products;
     if (category) {
       filtered = filtered.filter((product) => product.category === category);
     }
     if (brand) {
       filtered = filtered.filter((product) => product.brand === brand);
+    }
+    if (colors.length > 0) {
+      filtered = filtered.filter((product) => colors.includes(product.color));
+    }
+    if (sizes.length > 0) {
+      filtered = filtered.filter((product) => sizes.includes(product.size));
     }
     filtered = filtered.filter((product) => product.price <= price);
     setFilteredProducts(filtered);
@@ -96,7 +128,39 @@ const ProductsPage = () => {
             <label htmlFor={category}>{category}</label>
           </div>
         ))}
-        
+
+        {/* Color Filter */}
+        <h2 className="font-bold mt-4 mb-3">Color</h2>
+        {COLORS.map((color) => (
+          <div key={color} className="mb-2">
+            <input
+              type="checkbox"
+              id={color}
+              className="mr-2"
+              checked={selectedColors.includes(color)}
+              onChange={() => handleColorChange(color)}
+              aria-label={`Select ${color}`}
+            />
+            <label htmlFor={color}>{color}</label>
+          </div>
+        ))}
+
+        {/* Size Filter */}
+        <h2 className="font-bold mt-4 mb-3">Size</h2>
+        {SIZES.map((size) => (
+          <div key={size} className="mb-2">
+            <input
+              type="checkbox"
+              id={size}
+              className="mr-2"
+              checked={selectedSizes.includes(size)}
+              onChange={() => handleSizeChange(size)}
+              aria-label={`Select ${size}`}
+            />
+            <label htmlFor={size}>{size}</label>
+          </div>
+        ))}
+
         <h2 className="font-bold mt-4 mb-3">Brand</h2>
         <input
           type="text"

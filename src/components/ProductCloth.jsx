@@ -30,11 +30,12 @@ const ProductsPage = () => {
   const [isRatingOpen, setIsRatingOpen] = useState(true);
   const [isBrandOpen, setIsBrandOpen] = useState(true);
   const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(true);
-
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products/")
+    // Fetch only the "Clothes" category from the API
+    fetch("https://fakestoreapi.com/products/category/women's clothing")
       .then((res) => res.json())
       .then((data) => {
+        // Transform the products to include additional properties
         const categorizedProducts = data.map((product, index) => ({
           id: product.id,
           image: product.image,
@@ -42,14 +43,12 @@ const ProductsPage = () => {
           rating: Math.round(product.rating.rate), // Round the rating to the nearest integer
           description: product.description,
           price: product.price,
-          discount: product.discount || "10% off",
-          category: CATEGORIES[index % CATEGORIES.length],
-          brand: BRANDS[index % BRANDS.length],
-          color: COLORS[index % COLORS.length], // Add a color property to products
-          size: SIZES[index % SIZES.length], // Add a size property to products
+          discount: product.discount || "10% off", // Fallback for missing discount
+          brand: BRANDS[index % BRANDS.length], // Use index to assign a brand
+          color: COLORS[index % COLORS.length], // Use index to assign a color
+          size: SIZES[index % SIZES.length], // Use index to assign a size
         }));
         setProducts(categorizedProducts);
-        setFilteredProducts(categorizedProducts);
         setLoading(false);
       })
       .catch((error) => {
@@ -318,7 +317,7 @@ const ProductsPage = () => {
 
       {/* Products Section */}
       <div className="w-3/4">
-        <h1 className="font-bold mb-4">Our Products</h1>
+        <h1 className="font-bold mb-4">Clothes</h1>
         <div className="flex justify-between items-center mb-6">
           <p className="text-gray-600">
             Showing {filteredProducts.length} of {products.length} results
@@ -365,8 +364,6 @@ const ProductsPage = () => {
     </div>
     </div>
   </>
-    
-  
 };
 
 export default ProductsPage;
