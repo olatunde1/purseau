@@ -6,6 +6,7 @@ import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Cloth from './pages/Cloth'
 import Bags from './pages/Bags'
+import AboutUs from './pages/AboutUs'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           {/* <Route path='/Product' element={<Product />} /> */}
           <Route path='/Cloth' element={<Cloth />} />
           <Route path='/Bags' element={<Bags />} />
+          <Route path='/AboutUs' element={<AboutUs />} />
         </Route>
       </Routes>
     </BrowserRouter>
