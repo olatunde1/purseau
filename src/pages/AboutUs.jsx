@@ -8,6 +8,11 @@ import OurVision from '../assets/images/our-vision-image.png'
 import Retail from '../assets/images/retail.png'
 import Wholesale from '../assets/images/wholesale.png'
 import DropShipping from '../assets/images/dropshipping.png'
+import TheBeginning from '../assets/images/the-beginning.png'
+import GrowthInnovation from '../assets/images/growth-innovation.png'
+import Today from '../assets/images/today.png'
+import { StayLoop } from '@/components/StayLoop';
+import { Footer } from '@/components/Footer';
 
 
 
@@ -84,6 +89,48 @@ export default function AboutUs() {
     </div>
     </div>
 
-  </>
+    {/* OUR STORY SECTION */}
+
+    <div className="our-story">
+    <div className="our-story-text text-center">
+        <h1>Our Story</h1>
+        <p>Discover what motivates us</p>
+    </div>
+
+    <p className="our-story-description">
+        From humble beginnings to a global fashion destination, Purseu has grown by empowering women through timeless, high-quality designs. Today, we continue to innovate while staying true to our commitment to style, sustainability, and individuality.
+    </p>
+
+    <div className="story-card-container">
+        <div className="story-card">
+            <img src={TheBeginning} alt="The-Beginning" className="card-image" />
+            <div className="card-content">
+                <h2>The Beginning</h2>
+                <p>
+                Purseu started with a simple vision: to empower women through fashion. From day one, we focused on creating stylish, high-quality pieces that inspire confidence and individuality.
+                </p>
+            </div>
+        </div>
+        <div className="story-card2">
+            <img src={GrowthInnovation} alt="2010" className="card-image" />
+            <div className="card-content">
+                <h2>Growth and Innovation</h2>
+                <p>Over the years, we’ve expanded our collections, embraced sustainable practices, and adopted cutting-edge technology to enhance the shopping experience. Innovation has been at the heart of everything we do.</p>
+            </div>
+        </div>
+        <div className="story-card3">
+            <img src={Today} alt="2023" className="card-image" />
+            <div className="card-content">
+                <h2>Today</h2>
+                <p>Today, Purseau stands as a trusted destination for women’s fashion, offering timeless styles and trend-forward pieces to customers around the world. We continue to evolve, with our commitment.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<StayLoop />
+<Footer />
+
+</>
    
 }
