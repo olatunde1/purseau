@@ -4,11 +4,13 @@ import Header from './header'
 import Navbar from './navbar'
 // import ProductType from './ProductDisplay'
 import { Outlet } from 'react-router-dom'
+// import Home from '@/pages/Home'
 
 const layout = () => {
   return <>
     <Header />
     <Navbar />
+    {/* <Home /> */}
     <Outlet />
     {/* <Footer /> */}
   </>

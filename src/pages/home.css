@@ -793,6 +793,147 @@
     margin-bottom: 80px;
   }
 
+  .vision{
+    /* padding-left: 120px; */
+    
+  }
+
+ .our-vision-icons p{
+  text-align: center;
+  }
+
+
+  .our-vision-icons img{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+
+/* our services section */
+/* Base Styles */
+.our-services {
+  background-image: url(../assets/images/our-services.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 60px;
+  text-align: center;
+  color: #fff;
+}
+
+.our-services-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-family: 'Playfair';
+  font-weight: bold;
+}
+
+.our-services-text p {
+  font-size: 1rem;
+  font-family: 'Lato';
+  /* color: #666; */
+}
+
+.product-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 30px;
+  margin-left: 120px;
+  margin-right: 120px;
+}
+
+.service-item {
+  flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
+  max-width: 100%;
+  display: flex;
+  align-items: center; /* Align icon and text vertically */
+  text-align: left; /* Align text to the left */
+  padding: 20px;
+  /* border: 1px solid #ddd; */
+  border-radius: 10px;
+  /* background-color: #f9f9f9; */
+}
+
+.service-item img {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px; /* Add space between icon and text */
+}
+
+.service-item-text h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: 'Lato';
+  font-weight: 900;
+}
+
+.service-item-text p {
+  font-size: 1rem;
+  font-family: 'Lato';
+  font-size: 14px;
+  /* color: #555; */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .our-services-text h1 {
+      font-size: 2rem;
+  }
+
+  .our-services-text p {
+      font-size: 1rem;
+  }
+
+  .service-item {
+      flex: 1 1 100%; /* Full width on smaller screens */
+      margin-bottom: 20px;
+  }
+
+  .service-item img {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px; /* Adjust spacing for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .our-services-text h1 {
+      font-size: 1.8rem;
+  }
+
+  .our-services-text p {
+      font-size: 0.9rem;
+  }
+
+  .service-item {
+      flex-direction: column; /* Stack icon and text vertically on very small screens */
+      align-items: center;
+      text-align: center;
+  }
+
+  .service-item img {
+      width: 60px;
+      height: 60px;
+      margin-right: 0; /* Remove margin for vertical alignment */
+      margin-bottom: 15px; /* Add space below the icon */
+  }
+
+  .service-item-text h1 {
+      font-size: 1.2rem;
+  }
+
+  .service-item-text p {
+      font-size: 0.9rem;
+  }
+}
+
+
+
+
+
   @media (max-width: 480px) {
 
     .email-input{
