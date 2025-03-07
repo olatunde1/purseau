@@ -21,10 +21,10 @@ export default function AboutUs() {
     <div className='about-us'>
             <h1>About Us</h1>
             <p>Everything you need to know about us</p>
-        </div>
+    </div>
 
    
-        <Card className="mx-auto p-4 md:p-8 lg:p-12 bg-card">
+        <Card className="mx-auto p-4 md:p-8 ml-[120px] lg:p-12 bg-card">
     <div className="flex flex-col md:flex-row items-center justify-between">
         {/* Left Side - Text */}
         <div className="md:w-1/2 text-center md:text-left">
