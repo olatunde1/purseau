@@ -105,7 +105,7 @@ const Navbar = () => {
               {/* Contact Us */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/contact" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                  <Link to="/Contact" className="px-4 py-2 text-gray-700 hover:text-gray-900">
                     Contact Us
                   </Link>
                 </NavigationMenuLink>
