@@ -1,5 +1,4 @@
 import React from 'react'
-import SubMenuBags from '../components/SubMenuBags'
 import { Footer } from '@/components/footer'
 import Explore from '../components/ExploreCategories'
 import RecentlyViewed from '@/components/RecentlyViewed'
@@ -15,9 +14,9 @@ import { StayLoop } from '@/components/StayLoop'
 
 
 const Bags = () => {
-  return <>
-
-      <SubMenuBags/>
+  return (
+    <>
+      <SubMenu category={"bags"} />
       <Explore />
       <TopPicks />
       <ProductCloth />
@@ -26,8 +25,8 @@ const Bags = () => {
       <RecentlyViewed />
       <StayLoop />
       <Footer />
-
-  </>
+    </>
+  );
 
 }
 

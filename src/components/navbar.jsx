@@ -10,15 +10,14 @@ import {
 } from "@/components/ui/navigation-menu"; // Import shadcn/ui components
 import { Button } from "@/components/ui/button"; // Import Button component
 import { Menu, X } from "lucide-react"; // Icons for mobile menu toggler
-import Shoes from '../assets/images/shoes-icon.png'
-import Clothes from '../assets/images/dress-icon.png'
-import Jewelries from '../assets/images/jewelries.png'
-import Accessories from '../assets/images/accessories-icon.png'
-import Beauty from '../assets/images/beauty-icon.png'
-import Bags from '../assets/images/bags-icon.png'
+import Shoes from "../assets/images/shoes-icon.png";
+import Clothes from "../assets/images/dress-icon.png";
+import Jewelries from "../assets/images/jewelries.png";
+import Accessories from "../assets/images/accessories-icon.png";
+import Beauty from "../assets/images/beauty-icon.png";
+import Bags from "../assets/images/bags-icon.png";
 import { GiPoloShirt } from "react-icons/gi";
 import { TbShoppingBagSearch } from "react-icons/tb";
-
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
@@ -37,7 +36,10 @@ const Navbar = () => {
               {/* Home */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/Home" className="px-4 py-2 text-black-800 hover:text-gray-900">
+                  <Link
+                    to="/Home"
+                    className="px-4 py-2 text-black-800 hover:text-gray-900"
+                  >
                     Home
                   </Link>
                 </NavigationMenuLink>
@@ -46,13 +48,15 @@ const Navbar = () => {
               {/* Shop with Submenu */}
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
-                <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Shop
-                    </Link>
+                  <Link
+                    to="/shop"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Shop
+                  </Link>
                 </NavigationMenuTrigger>
 
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg navigation-submenu">
-
                   {/* <NavigationMenuLink asChild>
                     <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                       All Product
@@ -60,43 +64,99 @@ const Navbar = () => {
                   </NavigationMenuLink> */}
 
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/Cloth" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Clothes} alt="" srcset="" className="navigation-menu-link-icon" /> Cloth
+                    <Link
+                      to="/shop?category=cloth"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Clothes}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />{" "}
+                      Cloth
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/Bags" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Bags} alt="" srcset="" className="navigation-menu-link-icon" /> Bags
+                    <Link
+                      to="/shop?category=bags"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Bags}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />{" "}
+                      Bags
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Shoes} alt="" srcset="" className="navigation-menu-link-icon" /> Shoes
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Shoes}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />{" "}
+                      Shoes
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Jewelries} alt="" srcset="" className="navigation-menu-link-icon" /> Jewelries
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Jewelries}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />{" "}
+                      Jewelries
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Accessories} alt="" srcset="" className="navigation-menu-link-icon" />Accessories
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Accessories}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />
+                      Accessories
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                    <img src={Beauty} alt="" srcset="" className="navigation-menu-link-icon" /> Beauty
+                    <Link
+                      to="/"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      <img
+                        src={Beauty}
+                        alt=""
+                        srcset=""
+                        className="navigation-menu-link-icon"
+                      />{" "}
+                      Beauty
                     </Link>
                   </NavigationMenuLink>
                 </NavigationMenuContent>
-
               </NavigationMenuItem>
 
               {/* About Us */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/AboutUs" className="px-4 py-2 text-gray-700 hover:text-dark-900">
+                  <Link
+                    to="/AboutUs"
+                    className="px-4 py-2 text-gray-700 hover:text-dark-900"
+                  >
                     About Us
                   </Link>
                 </NavigationMenuLink>
@@ -105,7 +165,10 @@ const Navbar = () => {
               {/* Contact Us */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/Contact" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                  <Link
+                    to="/Contact"
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900"
+                  >
                     Contact Us
                   </Link>
                 </NavigationMenuLink>
@@ -114,7 +177,10 @@ const Navbar = () => {
               {/* Blog */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/blog" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                  <Link
+                    to="/blog"
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900"
+                  >
                     Blog
                   </Link>
                 </NavigationMenuLink>
@@ -123,8 +189,6 @@ const Navbar = () => {
           </NavigationMenu>
         </div>
 
-
-
         {/* Mobile Menu Toggler */}
         <Button
           variant="ghost"
@@ -132,15 +196,15 @@ const Navbar = () => {
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
-          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {isMobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
         </Button>
       </div>
 
-
-
       {/* Mobile Menu */}
-
-
 
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg">
@@ -149,7 +213,10 @@ const Navbar = () => {
               {/* Home */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/src/pages/home.jsx" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <Link
+                    to="/src/pages/home.jsx"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
                     Home
                   </Link>
                 </NavigationMenuLink>
@@ -162,7 +229,10 @@ const Navbar = () => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
                   <NavigationMenuLink asChild>
-                    <Link to="/src/pages/Shop.jsx" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link
+                      to="/src/pages/Shop.jsx"
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
                       Action
                     </Link>
                   </NavigationMenuLink>
@@ -182,7 +252,10 @@ const Navbar = () => {
               {/* About Us */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <Link
+                    to="/about"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
                     About Us
                   </Link>
                 </NavigationMenuLink>
@@ -191,7 +264,10 @@ const Navbar = () => {
               {/* Contact Us */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/contact" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <Link
+                    to="/contact"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
                     Contact Us
                   </Link>
                 </NavigationMenuLink>
@@ -200,7 +276,10 @@ const Navbar = () => {
               {/* Blog */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                  <Link
+                    to="/blog"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
                     Blog
                   </Link>
                 </NavigationMenuLink>
