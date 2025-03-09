@@ -8,6 +8,8 @@ import Cloth from './pages/Cloth'
 import Bags from './pages/Bags'
 import AboutUs from './pages/AboutUs'
 import Contact from './pages/Contact'
+import BlogDetails from './pages/BlogDetails'
+import SignUp from './components/Auth/SignUp'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path='/Bags' element={<Bags />} />
           <Route path='/AboutUs' element={<AboutUs />} />
           <Route path='/Contact' element={<Contact />}/>
+          <Route path='/BlogDetails' element={<BlogDetails/>}/>
+          <Route path='/SignUp' element={<SignUp/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

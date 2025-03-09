@@ -160,6 +160,96 @@ const ProductsPage = () => {
           )}
         </div>
 
+         {/* Brand Section */}
+         <div className="mb-4">
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => setIsBrandOpen(!isBrandOpen)}
+          >
+            <h2 className="font-bold">Brand</h2>
+            {isBrandOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </div>
+          {isBrandOpen && (
+            <div className="mt-2">
+              <input
+                type="text"
+                className="w-full p-2 mb-3 border rounded"
+                placeholder="Search brand"
+                value={brandSearch}
+                onChange={(e) => setBrandSearch(e.target.value)}
+                aria-label="Search brand"
+              />
+              {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
+                <div key={brand} className="mb-2">
+                  <input
+                    type="checkbox"
+                    id={brand}
+                    className="mr-2"
+                    checked={selectedBrand === brand}
+                    onChange={() => handleBrandChange(brand)}
+                    aria-label={`Select ${brand}`}
+                  />
+                  <label htmlFor={brand}>{brand}</label>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        
+        {/* Price Range Section */}
+        <div className="mb-4">
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => setIsPriceRangeOpen(!isPriceRangeOpen)}
+          >
+            <h2 className="font-bold">Price Range</h2>
+            {isPriceRangeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </div>
+          {isPriceRangeOpen && (
+            <div className="mt-2">
+              <input
+                type="range"
+                min="0"
+                max="5000"
+                value={priceRange}
+                onChange={(e) => setPriceRange(Number(e.target.value))}
+                className="w-full"
+                aria-label="Price range slider"
+              />
+              <p className="text-gray-600">Up to ₦{priceRange}</p>
+            </div>
+          )}
+        </div>
+
+          {/* Size Section */}
+        <div className="mb-4">
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => setIsSizeOpen(!isSizeOpen)}
+          >
+            <h2 className="font-bold">Size</h2>
+            {isSizeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </div>
+          {isSizeOpen && (
+            <div className="mt-2">
+              {SIZES.map((size) => (
+                <div key={size} className="mb-2">
+                  <input
+                    type="checkbox"
+                    id={size}
+                    className="mr-2"
+                    checked={selectedSizes.includes(size)}
+                    onChange={() => handleSizeChange(size)}
+                    aria-label={`Select ${size}`}
+                  />
+                  <label htmlFor={size}>{size}</label>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* Color Section */}
         <div className="mb-4">
           <div
@@ -188,34 +278,7 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* Size Section */}
-        <div className="mb-4">
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsSizeOpen(!isSizeOpen)}
-          >
-            <h2 className="font-bold">Size</h2>
-            {isSizeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </div>
-          {isSizeOpen && (
-            <div className="mt-2">
-              {SIZES.map((size) => (
-                <div key={size} className="mb-2">
-                  <input
-                    type="checkbox"
-                    id={size}
-                    className="mr-2"
-                    checked={selectedSizes.includes(size)}
-                    onChange={() => handleSizeChange(size)}
-                    aria-label={`Select ${size}`}
-                  />
-                  <label htmlFor={size}>{size}</label>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
+      
         {/* Rating Section */}
         <div className="mb-4">
           <div
@@ -254,66 +317,7 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* Brand Section */}
-        <div className="mb-4">
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsBrandOpen(!isBrandOpen)}
-          >
-            <h2 className="font-bold">Brand</h2>
-            {isBrandOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </div>
-          {isBrandOpen && (
-            <div className="mt-2">
-              <input
-                type="text"
-                className="w-full p-2 mb-3 border rounded"
-                placeholder="Search brand"
-                value={brandSearch}
-                onChange={(e) => setBrandSearch(e.target.value)}
-                aria-label="Search brand"
-              />
-              {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
-                <div key={brand} className="mb-2">
-                  <input
-                    type="checkbox"
-                    id={brand}
-                    className="mr-2"
-                    checked={selectedBrand === brand}
-                    onChange={() => handleBrandChange(brand)}
-                    aria-label={`Select ${brand}`}
-                  />
-                  <label htmlFor={brand}>{brand}</label>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Price Range Section */}
-        <div className="mb-4">
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsPriceRangeOpen(!isPriceRangeOpen)}
-          >
-            <h2 className="font-bold">Price Range</h2>
-            {isPriceRangeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </div>
-          {isPriceRangeOpen && (
-            <div className="mt-2">
-              <input
-                type="range"
-                min="0"
-                max="5000"
-                value={priceRange}
-                onChange={(e) => setPriceRange(Number(e.target.value))}
-                className="w-full"
-                aria-label="Price range slider"
-              />
-              <p className="text-gray-600">Up to ₦{priceRange}</p>
-            </div>
-          )}
-        </div>
+     
       </div>
 
       {/* Products Section */}

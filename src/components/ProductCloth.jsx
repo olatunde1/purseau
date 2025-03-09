@@ -159,33 +159,67 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* Color Section */}
-        <div className="mb-4">
+         {/* Brand Section */}
+         <div className="mb-4">
           <div
             className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsColorOpen(!isColorOpen)}
+            onClick={() => setIsBrandOpen(!isBrandOpen)}
           >
-            <h2 className="font-bold">Color</h2>
-            {isColorOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+            <h2 className="font-bold">Brand</h2>
+            {isBrandOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </div>
-          {isColorOpen && (
+          {isBrandOpen && (
             <div className="mt-2">
-              {COLORS.map((color) => (
-                <div key={color} className="mb-2">
+              <input
+                type="text"
+                className="w-full p-2 mb-3 border rounded"
+                placeholder="Search brand"
+                value={brandSearch}
+                onChange={(e) => setBrandSearch(e.target.value)}
+                aria-label="Search brand"
+              />
+              {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
+                <div key={brand} className="mb-2">
                   <input
                     type="checkbox"
-                    id={color}
+                    id={brand}
                     className="mr-2"
-                    checked={selectedColors.includes(color)}
-                    onChange={() => handleColorChange(color)}
-                    aria-label={`Select ${color}`}
+                    checked={selectedBrand === brand}
+                    onChange={() => handleBrandChange(brand)}
+                    aria-label={`Select ${brand}`}
                   />
-                  <label htmlFor={color}>{color}</label>
+                  <label htmlFor={brand}>{brand}</label>
                 </div>
               ))}
             </div>
           )}
         </div>
+
+          {/* Price Range Section */}
+          <div className="mb-4">
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => setIsPriceRangeOpen(!isPriceRangeOpen)}
+          >
+            <h2 className="font-bold">Price Range</h2>
+            {isPriceRangeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </div>
+          {isPriceRangeOpen && (
+            <div className="mt-2">
+              <input
+                type="range"
+                min="0"
+                max="5000"
+                value={priceRange}
+                onChange={(e) => setPriceRange(Number(e.target.value))}
+                className="w-full"
+                aria-label="Price range slider"
+              />
+              <p className="text-gray-600">Up to ₦{priceRange}</p>
+            </div>
+          )}
+        </div>
+
 
         {/* Size Section */}
         <div className="mb-4">
@@ -215,8 +249,37 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* Rating Section */}
+
+        {/* Color Section */}
         <div className="mb-4">
+          <div
+            className="flex justify-between items-center cursor-pointer"
+            onClick={() => setIsColorOpen(!isColorOpen)}
+          >
+            <h2 className="font-bold">Color</h2>
+            {isColorOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+          </div>
+          {isColorOpen && (
+            <div className="mt-2">
+              {COLORS.map((color) => (
+                <div key={color} className="mb-2">
+                  <input
+                    type="checkbox"
+                    id={color}
+                    className="mr-2"
+                    checked={selectedColors.includes(color)}
+                    onChange={() => handleColorChange(color)}
+                    aria-label={`Select ${color}`}
+                  />
+                  <label htmlFor={color}>{color}</label>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+          {/* Rating Section */}
+          <div className="mb-4">
           <div
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsRatingOpen(!isRatingOpen)}
@@ -253,67 +316,8 @@ const ProductsPage = () => {
           )}
         </div>
 
-        {/* Brand Section */}
-        <div className="mb-4">
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsBrandOpen(!isBrandOpen)}
-          >
-            <h2 className="font-bold">Brand</h2>
-            {isBrandOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </div>
-          {isBrandOpen && (
-            <div className="mt-2">
-              <input
-                type="text"
-                className="w-full p-2 mb-3 border rounded"
-                placeholder="Search brand"
-                value={brandSearch}
-                onChange={(e) => setBrandSearch(e.target.value)}
-                aria-label="Search brand"
-              />
-              {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
-                <div key={brand} className="mb-2">
-                  <input
-                    type="checkbox"
-                    id={brand}
-                    className="mr-2"
-                    checked={selectedBrand === brand}
-                    onChange={() => handleBrandChange(brand)}
-                    aria-label={`Select ${brand}`}
-                  />
-                  <label htmlFor={brand}>{brand}</label>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Price Range Section */}
-        <div className="mb-4">
-          <div
-            className="flex justify-between items-center cursor-pointer"
-            onClick={() => setIsPriceRangeOpen(!isPriceRangeOpen)}
-          >
-            <h2 className="font-bold">Price Range</h2>
-            {isPriceRangeOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </div>
-          {isPriceRangeOpen && (
-            <div className="mt-2">
-              <input
-                type="range"
-                min="0"
-                max="5000"
-                value={priceRange}
-                onChange={(e) => setPriceRange(Number(e.target.value))}
-                className="w-full"
-                aria-label="Price range slider"
-              />
-              <p className="text-gray-600">Up to ₦{priceRange}</p>
-            </div>
-          )}
-        </div>
       </div>
+
 
       {/* Products Section */}
       <div className="w-3/4">
