@@ -9,24 +9,40 @@ import { StayLoop } from "@/components/StayLoop";
 import { useSearchParams } from "react-router-dom";
 import useGetProducts from "@/hooks/api/queries/useGetProducts";
 import GeneralLoader from "@/components/general/GeneralLoader";
+import ProductSection from "@/components/products/ProductSection";
+import { useProductStore } from "@/store/productStore";
 
 const shop = () => {
   const [searchParams] = useSearchParams();
-  const category = searchParams.get("category");
+  const categoryName = searchParams.get("category");
 
-  console.log(category, "category");
+  console.log(categoryName, "categoryName");
 
-  const { data: Allproducts, isPending } = useGetProducts();
+  const { brand, colors, sizes, rating, maxPrice, searchQuery, sortBy } =
+    useProductStore();
 
-  console.log(Allproducts);
+  const params = Object.fromEntries(
+    Object.entries({
+      category: categoryName,
+    }).filter(([_, value]) => value !== undefined && value !== null)
+  );
+
+  const { data: Allproducts, isPending, error } = useGetProducts(params);
+
+  const ProductData = Allproducts?.data?.result ?? [];
+
+  console.log(ProductData);
 
   if (isPending) {
     return <GeneralLoader />;
   }
+
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <>
-      <SubMenu category={category} />
+      <SubMenu category={categoryName} />
       <Explore />
+      <ProductSection ProductData={ProductData} />
       <Product />
       <Pagination />
       <RecentlyViewed />
