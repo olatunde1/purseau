@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+* {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-padding-top: 250px;
+}
+
 /* ... */
 
 @layer base {

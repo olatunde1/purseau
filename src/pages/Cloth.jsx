@@ -1,5 +1,4 @@
 import React from 'react'
-import SubMenuCloth from '../components/SubMenuCloth'
 import { Footer } from '@/components/footer'
 import Explore from '../components/ExploreCategories'
 import RecentlyViewed from '@/components/RecentlyViewed'
@@ -15,9 +14,9 @@ import { StayLoop } from '@/components/StayLoop'
 
 
 const Cloth = () => {
-  return <>
-
-      <SubMenuCloth />
+  return (
+    <>
+      <SubMenu category={"cloth"} />
       <Explore />
       <TopPicks />
       <ProductCloth />
@@ -26,8 +25,8 @@ const Cloth = () => {
       <RecentlyViewed />
       <StayLoop />
       <Footer />
-
-  </>
+    </>
+  );
 
 }
 

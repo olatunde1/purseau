@@ -759,6 +759,7 @@
   width: 100%;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 16px;
   background-color: #F2F2F7;
   resize: vertical; /* Allow vertical resizing */
 }
