@@ -18,12 +18,25 @@ const shop = () => {
 
   console.log(categoryName, "categoryName");
 
-  const { brand, colors, sizes, rating, maxPrice, searchQuery, sortBy } =
-    useProductStore();
+  const {
+    category,
+    brand,
+    colors,
+    sizes,
+    rating,
+    maxPrice,
+    searchQuery,
+    sortBy,
+  } = useProductStore();
 
   const params = Object.fromEntries(
     Object.entries({
-      category: categoryName,
+      category: categoryName || category,
+      availableColors: colors.length > 0 ? colors.join(",") : null,
+      brand,
+      reviewRating: rating,
+      maxPrice: maxPrice,
+      size: sizes.length > 0 ? sizes.join(",") : null,
     }).filter(([_, value]) => value !== undefined && value !== null)
   );
 

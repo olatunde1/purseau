@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterSection from "./FilterSection";
 import CheckboxFilter from "./CheckBoxFilter";
 import { useProductStore } from "@/store/productStore";
@@ -45,6 +45,18 @@ const FilterSidebar = () => {
   const filteredBrands = BRANDS.filter((b) =>
     b.toLowerCase().includes(brandSearch.toLowerCase())
   );
+
+  const [tempMaxPrice, setTempMaxPrice] = useState(maxPrice);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setMaxPrice(tempMaxPrice);
+    }, 2000);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [tempMaxPrice]);
 
   return (
     <div className="w-full p-4 border-r">
@@ -131,12 +143,12 @@ const FilterSidebar = () => {
             type="range"
             min="0"
             max="5000"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(Number(e.target.value))}
+            value={tempMaxPrice}
+            onChange={(e) => setTempMaxPrice(Number(e.target.value))}
             className="w-full"
             aria-label="Price range slider"
           />
-          <p className="text-gray-600">Up to ₦{maxPrice}</p>
+          <p className="text-gray-600">Up to ₦{tempMaxPrice}</p>
         </div>
       </FilterSection>
     </div>
