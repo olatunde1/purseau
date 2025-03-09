@@ -47,14 +47,22 @@ const Navbar = () => {
 
               {/* Shop with Submenu */}
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900">
+              <NavigationMenuLink asChild>
                   <Link
+                    to="/shop"
+                    className="px-4 py-2 text-black-800 hover:text-gray-900"
+                  >
+                    Shop
+                  </Link>
+                </NavigationMenuLink>
+                <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900 " />
+                  {/* <Link
                     to="/shop"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
                     Shop
-                  </Link>
-                </NavigationMenuTrigger>
+                  </Link> */}
+                {/* </NavigationMenuTrigger> */}
 
                 <NavigationMenuContent className="bg-white shadow-lg rounded-lg navigation-submenu">
                   {/* <NavigationMenuLink asChild>

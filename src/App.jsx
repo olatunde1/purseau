@@ -15,7 +15,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/Home" index element={<Home />} /> {/* Default route */}
+        <Route path="/home" index element={<Home />} /> {/* Default route */}
         <Route path="shop" element={<Shop />} />
         {/* <Route path='/Product' element={<Product />} /> */}
         {/* <Route path="/Cloth" element={<Cloth />} /> */}
