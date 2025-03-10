@@ -1,7 +1,6 @@
 import React from "react";
 import SubMenu from "../components/SubMenu";
 import { Footer } from "@/components/footer";
-import Product from "./Product";
 import Explore from "../components/ExploreCategories";
 import Pagination from "@/components/Pagination";
 import RecentlyViewed from "@/components/RecentlyViewed";
@@ -11,6 +10,7 @@ import useGetProducts from "@/hooks/api/queries/useGetProducts";
 import GeneralLoader from "@/components/general/GeneralLoader";
 import ProductSection from "@/components/products/ProductSection";
 import { useProductStore } from "@/store/productStore";
+import ProductsPage from "./product";
 
 const shop = () => {
   const [searchParams] = useSearchParams();
@@ -56,7 +56,7 @@ const shop = () => {
       <SubMenu category={categoryName} />
       <Explore />
       <ProductSection ProductData={ProductData} />
-      <Product />
+      <ProductsPage />
       <Pagination />
       <RecentlyViewed />
       <StayLoop />

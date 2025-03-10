@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Footer } from "@/components/Footer";
 import { StayLoop } from "@/components/StayLoop";
 import Map from "../assets/images/map.png";
 import { SlSocialInstagram } from "react-icons/sl";
@@ -7,6 +6,7 @@ import { FaSquareTwitter, FaFacebook } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import useContactUs from "@/hooks/api/mutation/contact/useContactUs";
 import { toast } from "sonner";
+import { Footer } from "@/components/footer";
 
 const Contact = () => {
   const { mutate, isPending } = useContactUs();
@@ -161,7 +161,7 @@ const Contact = () => {
       </div>
 
       <StayLoop />
-      <Footer />
+      <Footer/>
     </>
   );
 };
