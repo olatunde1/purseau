@@ -18,7 +18,7 @@ import ProductDisplay from '../components/ProductDisplay'
 import SpecialOffer from '@/components/SpecialOffer'
 import Brand from '@/components/Brand'
 import Blog from '../components/Blog'
-import { Footer } from '@/components/Footer'
+import { Footer } from '@/components/footer'
 import {StayLoop} from '@/components/StayLoop'
 import Explore from '../components/ExploreCategories'
 import './home.css';
