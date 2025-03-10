@@ -37,7 +37,7 @@ const Navbar = () => {
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="/Home"
+                    to="/"
                     className="px-4 py-2 text-black-800 hover:text-gray-900"
                   >
                     Home
