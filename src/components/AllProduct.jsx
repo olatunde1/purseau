@@ -129,6 +129,31 @@ const ProductsPage = () => {
           </div>
         ))}
 
+
+        <h2 className="font-bold mt-4 mb-3">Brand</h2>
+          <input
+            type="text"
+            className="w-full p-2 mb-3 border rounded"
+            placeholder="Search brand"
+            value={brandSearch}
+            onChange={(e) => setBrandSearch(e.target.value)}
+            aria-label="Search brand"
+          />
+          {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
+            <div key={brand} className="mb-2">
+              <input
+                type="checkbox"
+                id={brand}
+                className="mr-2"
+                checked={selectedBrand === brand}
+                onChange={() => handleBrandChange(brand)}
+                aria-label={`Select ${brand}`}
+              />
+              <label htmlFor={brand}>{brand}</label>
+            </div>
+        ))}
+
+
         {/* Color Filter */}
         <h2 className="font-bold mt-4 mb-3">Color</h2>
         {COLORS.map((color) => (
@@ -161,29 +186,7 @@ const ProductsPage = () => {
           </div>
         ))}
 
-        <h2 className="font-bold mt-4 mb-3">Brand</h2>
-        <input
-          type="text"
-          className="w-full p-2 mb-3 border rounded"
-          placeholder="Search brand"
-          value={brandSearch}
-          onChange={(e) => setBrandSearch(e.target.value)}
-          aria-label="Search brand"
-        />
-        {BRANDS.filter((brand) => brand.toLowerCase().includes(brandSearch.toLowerCase())).map((brand) => (
-          <div key={brand} className="mb-2">
-            <input
-              type="checkbox"
-              id={brand}
-              className="mr-2"
-              checked={selectedBrand === brand}
-              onChange={() => handleBrandChange(brand)}
-              aria-label={`Select ${brand}`}
-            />
-            <label htmlFor={brand}>{brand}</label>
-          </div>
-        ))}
-
+       
         {/* Price Range Slider */}
         <h2 className="font-bold mt-4 mb-3">Price Range</h2>
         <input
@@ -197,6 +200,10 @@ const ProductsPage = () => {
         />
         <p className="text-gray-600">Up to ₦{priceRange}</p>
       </div>
+
+
+
+
 
       {/* Products Section */}
       <div className="w-3/4">

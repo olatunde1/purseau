@@ -33,7 +33,7 @@ const Header = () => {
           <BsHeart className="heart" />
           <img src={Stroke} alt="" className="stroke2" />
           <TiUserOutline className="user" />
-          <p>Account</p>
+         <p>Account </p>
         </div>
       </div>
     </div>
