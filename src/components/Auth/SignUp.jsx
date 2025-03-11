@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from '../../assets/images/login-logo.png'
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
+import VerifyEmail from "./VerifyEmail";
 
 export default function SignUp() {
+
   return (
     <div className="sign-up-wrapper pt-2 pb-8">
       <div className="signup-container flex flex-col items-center justify-center bg-gray-50 px-4 sign-up ">
@@ -34,13 +37,19 @@ export default function SignUp() {
             type="text"
             placeholder="Enter your email address"
             className="signup-input w-full mt-1  focus:ring mb-4 bg-gray-200"
+            onInvalid={(e) => e.target.setCustomValidity("Please enter a valid email or phone number.")}
+            onInput={(e) => e.target.setCustomValidity("")}
+            required
           />
         </div>
 
         {/* Continue button */}
-        <Button className="signup-button w-full transition-all duration-200">
-          Continue
-        </Button>
+        <Link to="/VerifyEmail">
+          <Button className="signup-button w-full transition-all duration-200">
+            Continue
+          </Button>
+        </Link>
+       
 
         {/* Terms and conditions */}
         <p className="signup-terms text-xs text-gray-500 text-center pb-[40px]">
