@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
 import Home from "./pages/home";
+import VerifyEmail from "./components/Auth/VerifyEmail";
+import CreatePassword from "./components/Auth/CreatePassword";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path="/BlogDetails" element={<BlogDetails />} />
       </Route>
       <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/VerifyEmail" element={<VerifyEmail />} />
+      <Route path="/CreatePassword" element={<CreatePassword />} />
     </Routes>
   );
 }
