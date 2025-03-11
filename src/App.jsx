@@ -8,6 +8,7 @@ import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
 import Home from "./pages/home";
 
+
 function App() {
   return (
     <Routes>
@@ -17,8 +18,8 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/BlogDetails" element={<BlogDetails />} />
-        <Route path="/SignUp" element={<SignUp />} />
       </Route>
+      <Route path="/SignUp" element={<SignUp />} />
     </Routes>
   );
 }

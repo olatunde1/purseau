@@ -9,10 +9,6 @@ import OurFeaturedCollection from '../components/OurFeaturedCollection'
 import { StayLoop } from '@/components/StayLoop'
 
 
-
-
-
-
 const Bags = () => {
   return (
     <>
