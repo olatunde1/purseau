@@ -8,6 +8,7 @@ input:focus{
   outline: none;
 }
 
+
 /* Base Styles */
 .wrap {
     background-image: url(../assets/images/unleashBackground.png);
@@ -1670,6 +1671,179 @@ input:focus{
 .login-button-reset-successful:hover{
   background-color:#E94E30 ;
 }
+
+
+/* ************************************************i M A G E **** S E A R C H ****** M O D A L******************* */
+
+/* Container for the modal */
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px !important;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+
+}
+
+.upload-image{
+  margin: 0 auto;
+  margin-bottom: 24px;
+}
+
+.choose-image{
+  background-color: #E94E30;
+  color: #fff;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 12px;
+
+  outline: none;
+}
+
+.choose-image:hover{
+  background-color: #a01f08;
+  color: #fff;
+}
+
+.file-type{
+  font-family: 'Lato';
+  font-size: 14px !important;
+}
+
+.drag-drop{
+  font-family: 'Lato';
+  color: #1b1b1b !important;
+  font-size: 16px !important;
+}
+
+/* Header styling */
+.dialog-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-title {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Lato';
+  line-height: 24px;
+  color: #1b1b1b;
+}
+
+/* Drop zone styling */
+.drop-zone {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #FFF4F0;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  max-width: 570px;
+  width: 100%;
+ 
+}
+
+.drop-zone:hover {
+  border-color: #9ca3af;
+}
+
+.drop-zone p {
+  margin: 0;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.drop-zone p.text-sm {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+/* File input styling */
+.file-input {
+  display: none;
+}
+
+/* Button styling */
+.upload-button {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #d84327;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #a01f08;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Selected file styling */
+.selected-file {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .dialog-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  .drop-zone {
+    padding: 1.5rem;
+  }
+
+  .dialog-title {
+    font-size: 1.25rem;
+  }
+
+  .drop-zone p {
+    font-size: 0.875rem;
+  }
+
+  .drop-zone p.text-sm {
+    font-size: 0.75rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
