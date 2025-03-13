@@ -121,7 +121,7 @@ export default function CreatePassword() {
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"} // Toggle password visibility
-                placeholder="Enter your password"
+                placeholder="Create password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="password-input w-full mt-1 focus:ring mb-4 bg-gray-200"
@@ -176,7 +176,7 @@ export default function CreatePassword() {
               <Input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"} // Toggle confirm password visibility
-                placeholder="Confirm your password"
+                placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className="confirm-password-input w-full mt-1 focus:ring mb-4 bg-gray-200"

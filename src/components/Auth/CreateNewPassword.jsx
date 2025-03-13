@@ -38,7 +38,7 @@ export default function CreateNewPassword() {
     // Add logic to create password (e.g., API call)
 
     // Navigate to PersonalDetails page
-    navigate("/PersonalDetails");
+    navigate("/PasswordResetSuccessful");
   };
 
   // Handle email edit
@@ -86,13 +86,13 @@ export default function CreateNewPassword() {
           {/* Create Password Input */}
           <div className="password-input-group">
             <label htmlFor="password" className="text-gray-700 font-medium">
-              Create Password *
+              Create New Password *
             </label>
             <div className="relative">
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"} // Toggle password visibility
-                placeholder="Enter your password"
+                placeholder="Create password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="password-input w-full mt-1 focus:ring mb-4 bg-gray-200"
@@ -141,13 +141,13 @@ export default function CreateNewPassword() {
           {/* Confirm Password Input */}
           <div className="confirm-password-input-group">
             <label htmlFor="confirmPassword" className="text-gray-700 font-medium">
-              Confirm Password *
+              Confirm New Password *
             </label>
             <div className="relative">
               <Input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"} // Toggle confirm password visibility
-                placeholder="Confirm your password"
+                placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className="confirm-password-input w-full mt-1 focus:ring mb-4 bg-gray-200"
@@ -176,7 +176,7 @@ export default function CreateNewPassword() {
           {/* Continue Button */}
           <Button
             onClick={handleSubmit}
-            className="create-password-button w-full transition-all duration-200 py-8"
+            className="create-password-button w-full transition-all duration-200 py-6"
             disabled={!hasMinLength || !hasUpperCase || !hasNumber || password !== confirmPassword}
           >
             Continue

@@ -80,11 +80,11 @@ export default function Login() {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 focus:ring bg-gray-300 py-8 mb-4 input-text-caption"
+              className="w-full mt-1 focus:ring bg-gray-300 py-6 mb-4 input-text-caption"
             />
             <button
               type="button"
-              className="absolute right-3 top-3 text-gray-500"
+              className="absolute right-3 top-4 text-gray-500"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FiEyeOff /> : <FiEye />}
