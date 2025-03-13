@@ -93,7 +93,7 @@ export default function VerifyPhoneNumber() {
           ))}
         </div>
 
-        <Button onClick={verifyOtp} className="verify-otp-button w-full max-w-md transition-all duration-200">
+        <Button onClick={verifyOtp} className="verify-otp-button w-full max-w-md transition-all duration-200 py-8">
           Submit
         </Button>
 
@@ -104,7 +104,7 @@ export default function VerifyPhoneNumber() {
         </p>
 
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px] flex items-center justify-center gap-2 cursor-pointer" onClick={handleResendOtp}>
-          <GrRefresh className="text-gray-600" />
+          <GrRefresh className="text-[#E94E30]" />
           Resend SMS
         </p>
       </div>

@@ -4,15 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FiEye, FiEyeOff, FiEdit } from "react-icons/fi";
-
+import HandWave from '../../assets/images/hand-wave.png'
+import { MdOutlineWavingHand } from "react-icons/md";
 
 export default function Login() {
   const [email, setEmail] = useState("user@example.com"); // Registered email
   const [isEditing, setIsEditing] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEmailEdit = () => setIsEditing(true);
   const handleEmailSave = () => setIsEditing(false);
@@ -26,10 +28,13 @@ export default function Login() {
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-          Welcome Back
-        </h1>
-        <p className="text-gray-600 text-center mb-6">
+        <div className="flex items-center">
+          <h1 className="welcome-back text-gray-900 mb-2 text-center items-center">
+            Welcome back👋
+          </h1>
+          {/* <img src={HandWave} alt="" /> */}
+        </div>
+        <p className="login-back-text text-center">
          Login back into your Purseau account.
         </p>
 
@@ -41,7 +46,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1 focus:ring bg-gray-200"
+              className="w-full mt-1 focus:ring bg-gray-300 py-8 input-text-email"
               disabled={!isEditing}
             />
             {isEditing ? (
@@ -65,8 +70,8 @@ export default function Login() {
 
         {/* Password Input */}
         <div className="w-full mb-4">
-          <Label htmlFor="password" className="text-gray-700 font-medium">
-            Password
+          <Label htmlFor="password" className=" login-password-text">
+            Password*
           </Label>
           <div className="relative">
             <Input
@@ -75,7 +80,7 @@ export default function Login() {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 focus:ring bg-gray-200"
+              className="w-full mt-1 focus:ring bg-gray-300 py-8 mb-4 input-text-caption"
             />
             <button
               type="button"
@@ -88,15 +93,18 @@ export default function Login() {
         </div>
 
         {/* Login Button */}
-        <Button className="w-full bg-[#d84327] text-white py-2 rounded-lg">
-          Login
+        <Button className="w-full bg-[#d84327] text-white py-8 rounded-lg login-continue-button">
+          Continue
         </Button>
 
         {/* Forgot Password */}
-        <p className="text-sm text-gray-500 text-center pt-4">
-          <a href="#" className="text-[#d84327] hover:underline">
-            Forgot Password?
-          </a>
+        <p className="text-sm text-gray-500 text-center pt-8">
+          <Link
+            to="/ForgotPassword" // Navigate to the Forgot Password page
+            className="text-[#E94E30] hover:underline font-[Lato] text-[16px] text-500"
+          >
+            Forgot your Password?
+          </Link>
         </p>
       </div>
     </div>
