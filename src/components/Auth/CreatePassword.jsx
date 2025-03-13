@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from '../../assets/images/login-logo.png';
 import { FiEdit, FiEye, FiEyeOff, FiCheckCircle } from "react-icons/fi"; // Icons
 
 export default function CreatePassword() {
+  const navigate = useNavigate(); // Initialize useNavigate
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
@@ -34,6 +36,9 @@ export default function CreatePassword() {
     setError("");
     console.log("Password created successfully for email:", email);
     // Add logic to create password (e.g., API call)
+
+    // Navigate to PersonalDetails page
+    navigate("/PersonalDetails");
   };
 
   // Handle email edit

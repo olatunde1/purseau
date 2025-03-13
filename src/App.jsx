@@ -9,6 +9,11 @@ import SignUp from "./components/Auth/SignUp";
 import Home from "./pages/home";
 import VerifyEmail from "./components/Auth/VerifyEmail";
 import CreatePassword from "./components/Auth/CreatePassword";
+import PersonalDetails from "./components/Auth/PersonalDetails";
+import VerifyPhoneNumber from "./components/Auth/VerifyPhoneNumber";
+import LoginPage from "./components/Auth/Login";
+import ForgotPassword from "./components/Auth/ForgotPassword";
+import CreateNewPassword from "./components/Auth/CreateNewPassword";
 
 
 function App() {
@@ -24,6 +29,13 @@ function App() {
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/VerifyEmail" element={<VerifyEmail />} />
       <Route path="/CreatePassword" element={<CreatePassword />} />
+      <Route path="/PersonalDetails" element={<PersonalDetails/>} />
+      <Route path="/VerifyPhoneNumber" element={<VerifyPhoneNumber/>} />
+      <Route path="/Login" element={<LoginPage/>} />
+      <Route path="/ForgotPassword" element={<ForgotPassword/>} />
+      <Route path="/CreateNewPassword" element={<CreateNewPassword/>} />
+
+
     </Routes>
   );
 }
