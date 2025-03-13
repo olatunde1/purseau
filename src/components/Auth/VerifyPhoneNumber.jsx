@@ -36,7 +36,7 @@ export default function VerifyPhoneNumber() {
     if (enteredOtp === generatedOtp) {
       setMessage("Phone number verified successfully!");
       setTimeout(() => {
-        navigate("/Login"); // Redirect to next step
+        navigate("/AccountCreatedSuccessful"); // Redirect to next step
       }, 2000);
     } else {
       setMessage("Invalid OTP. Please try again.");
@@ -93,7 +93,7 @@ export default function VerifyPhoneNumber() {
           ))}
         </div>
 
-        <Button onClick={verifyOtp} className="verify-otp-button w-full max-w-md transition-all duration-200 py-8">
+        <Button onClick={verifyOtp} className="verify-otp-button w-full max-w-md transition-all duration-200 py-6">
           Submit
         </Button>
 

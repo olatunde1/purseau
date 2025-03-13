@@ -14,6 +14,8 @@ import VerifyPhoneNumber from "./components/Auth/VerifyPhoneNumber";
 import LoginPage from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import CreateNewPassword from "./components/Auth/CreateNewPassword";
+import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
+import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
       <Route path="/Login" element={<LoginPage/>} />
       <Route path="/ForgotPassword" element={<ForgotPassword/>} />
       <Route path="/CreateNewPassword" element={<CreateNewPassword/>} />
+      <Route path="/PasswordResetsuccessful" element={<PasswordResetSuccessful/>} />
+      <Route path="/AccountCreatedSuccessful" element={<AccountCreatedSuccessful/>} />
 
 
     </Routes>
