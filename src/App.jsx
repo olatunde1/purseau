@@ -16,6 +16,10 @@ import ForgotPassword from "./components/Auth/ForgotPassword";
 import CreateNewPassword from "./components/Auth/CreateNewPassword";
 import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
 import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
+import SearchResults from "./pages/SearchResults";
+import UserAccount from "./components/Auth/UserAccount";
+import EditUserAddress from "./components/Auth/EditUserAddress";
+import MyOrders from "./components/Auth/MyOrders";
 
 
 function App() {
@@ -27,6 +31,12 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/BlogDetails" element={<BlogDetails />} />
+        <Route path="/search-result" element={<SearchResults/>} />
+        <Route path="/user-account" element={<UserAccount/>} />
+        <Route path="/edit-user-address" element={<EditUserAddress/>} />
+        <Route path="/my-order" element={<MyOrders/>} />
+
+
       </Route>
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/VerifyEmail" element={<VerifyEmail />} />

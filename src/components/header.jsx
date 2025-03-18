@@ -16,6 +16,7 @@ import ImageSearchModal from '@/pages/ImageSearch';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
     <>
@@ -33,7 +34,10 @@ const Header = () => {
             <CiImageOn className="imageSearch cursor-pointer" onClick={() => setOpen(true)} />
             
             <img src={Stroke} alt="Open Image Search" className="stroke cursor-pointer" />
-            <Button className="searchButton">Search</Button>
+            <Link to="/search-result">
+              <Button className="searchButton">Search</Button>
+            </Link>
+
           </div>
 
           {/* Login and Icons Section */}
@@ -44,24 +48,32 @@ const Header = () => {
               <img src={Stroke} alt="" className="stroke2" />
               <TiUserOutline className="user" />
 
-              <Popover>
-                <PopoverTrigger className='flex'>
+              <Popover onOpenChange={setIsPopoverOpen}>
+                <PopoverTrigger className='flex items-center gap-1'>
                   <p>Account</p>
-                  <IoIosArrowDown />
+                  <IoIosArrowDown
+                    className={`account-arrow transition-transform duration-200 ${isPopoverOpen ? "rotate-180" : "rotate-0"}`}
+                  />
                 </PopoverTrigger>
-                <PopoverContent className="w-48 p-4">
+                <PopoverContent className="w-48 p-4 text-left">
                   <div className="flex flex-col space-y-2">
-                    <Button variant="ghost" className="w-full">
-                      <TiUserOutline className="user" /> My Account
+                    <Link to="/user-account">
+                      <Button variant="ghost" className="w-full justify-start">
+                        <TiUserOutline className="mr-2" /> My Account
+                      </Button>
+                    </Link>
+                    <Button variant="ghost" className="w-full justify-start">
+                    <TbBorderAll className="mr-2" /> Orders
                     </Button>
-                    <Button variant="ghost" className="w-full">
-                      <BsHeart className="heart" /> Orders
+                    <Button variant="ghost" className="w-full justify-start">
+                       <BsHeart className="mr-2" />  Wishlist
                     </Button>
-                    <Button variant="ghost" className="w-full">
-                      <TbBorderAll /> Wishlist
-                    </Button>
+                    
+                    {/* Breakline before Login button */}
+                    <hr className="my-2" />
+                    
                     <Link to="/SignUp">
-                      <Button>Login</Button>
+                      <Button className="w-full mt-4 bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white">Login</Button>
                     </Link>
                   </div>
                 </PopoverContent>

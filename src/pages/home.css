@@ -1827,16 +1827,63 @@ input:focus{
 
 
 
+/*********************** Account overview sidebar **************************/
+.container-sidebar{
+  margin-top: 60px;
+  padding-top: 0px;
+  margin-bottom: 27.75rem;
+  
+
+}
 
 
+.sidebar-link-first{
+  padding-left: 44px;
+  padding-right: 83px ;
+  padding-top: 19.5px;
+  padding-bottom: 19.5px;
+  font-family: 'Lato';
+  font-size: 16px;
+}
 
+.sidebar-link-first:hover{
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background-color: #D1D1D6;
+  font-weight: 700;
+}
 
+.sidebar-link{
+  padding-left: 44px;
+  padding-right: 83px ;
+  padding-top: 19.5px;
+  padding-bottom: 19.5px;
+  font-family: 'Lato';
+  font-size: 16px;
+}
 
+.sidebar-link:hover{
+  background-color: #D1D1D6;
+  font-weight: 700;
+}
 
+.personal-information-sidebar{
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
 
+.main-content{
+  width: 500px !important;
+  max-width: 100%;
+}
 
+.track-order{
+   margin-top: 161px !important;
+}
 
-
+.save-edit-address{
+  margin-top: 80px !important;
+}
 
 
 

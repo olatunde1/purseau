@@ -6,6 +6,7 @@ import Brand4 from '../assets/images/brand4.png'
 import Brand5 from '../assets/images/brand5.png'
 import Brand6 from '../assets/images/brand6.png'
 
+
 const logos = [
   Brand1,
   Brand2,
