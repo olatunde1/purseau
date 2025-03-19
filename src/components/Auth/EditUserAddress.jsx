@@ -105,13 +105,16 @@ const EditUserAddress = () => {
           <div className="grid grid-cols-1 gap-6">
             {/* Breadcrumb with Back Arrow */}
             <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                className="p-0 hover:bg-transparent"
-                onClick={() => setActiveSection("accountOverview")}
-              >
-                <IoChevronBackSharp className="w-5 h-5 text-gray-700" />
-              </Button>
+              <Link to="/user-account">
+                <Button
+                  variant="ghost"
+                  className="p-0 hover:bg-transparent"
+                  onClick={() => setActiveSection("accountOverview")}
+                >
+                  <IoChevronBackSharp className="w-5 h-5 text-gray-700" />
+                </Button>
+              </Link>
+              
               <span className="text-gray-700">Edit Address</span>
             </div>
 
