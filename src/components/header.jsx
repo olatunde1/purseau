@@ -1,79 +1,94 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import Stroke from '../assets/images/stroke.png';
 import Logo from '../assets/images/logo.png';
-import { CiSearch } from 'react-icons/ci';
-import { CiImageOn } from 'react-icons/ci';
+import { CiSearch, CiImageOn } from 'react-icons/ci';
 import { PiShoppingCartSimpleLight } from 'react-icons/pi';
 import { BsHeart } from 'react-icons/bs';
 import { TiUserOutline } from 'react-icons/ti';
 import { IoIosArrowDown } from "react-icons/io";
 import { TbBorderAll } from "react-icons/tb";
 import { Link } from 'react-router-dom';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-
-
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Dialog } from "@/components/ui/dialog";
+import ImageSearchModal from '@/pages/ImageSearch';
 
 const Header = () => {
-  return <>
-  <div className="header-wrap">
-  <div className="container">
-      {/* Logo Section */}
-      <img src={Logo} alt="Logo" className="LogoImage" />
+  const [open, setOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-      {/* Search Bar Section */}
-      <div className="searchBarForm">
-        <CiSearch className="searchIcon" />
-        <Input className="search" type="text" placeholder="Search products, brands and categories..." />
-        <CiImageOn className="imageSearch" />
-        <img src={Stroke} alt="" className="stroke" />
-        <Button className="searchButton">Search</Button>
-      </div>
+  return (
+    <>
+      <div className="header-wrap">
+        <div className="container">
+          {/* Logo Section */}
+          <img src={Logo} alt="Logo" className="LogoImage" />
 
-      {/* Login and Icons Section */}
-      <div className="loginDetails">
-        <div className="iconsForm">
-          <PiShoppingCartSimpleLight className="cart" />
-          <BsHeart className="heart" />
-          <img src={Stroke} alt="" className="stroke2" />
-          <TiUserOutline className="user" />
-        
-         <Popover>
-          <PopoverTrigger className='flex'> <p >Account </p> <IoIosArrowDown /> </PopoverTrigger>
-          <PopoverContent  className="w-48 p-4">
-          <div className="flex flex-col space-y-2">
-              <Button variant="ghost" className="w-full">
-                <TiUserOutline className="user" />  My Account
-              </Button>
-              <Button variant="ghost" className="w-full">
-                <BsHeart className="heart" /> Orders
-              </Button>
-              <Button variant="ghost" className="w-full">
-                <TbBorderAll />Wishlist
-              </Button>
-              <Link to="/SignUp">
-                <Button>Login</Button>
-              </Link>
+          {/* Search Bar Section */}
+          <div className="searchBarForm">
+            <CiSearch className="searchIcon" />
+            <Input className="search" type="text" placeholder="Search products, brands and categories..." />
+
+            {/* Clickable Image to Trigger Dialog */}
+            <CiImageOn className="imageSearch cursor-pointer" onClick={() => setOpen(true)} />
+            
+            <img src={Stroke} alt="Open Image Search" className="stroke cursor-pointer" />
+            <Link to="/search-result">
+              <Button className="searchButton">Search</Button>
+            </Link>
+
+          </div>
+
+          {/* Login and Icons Section */}
+          <div className="loginDetails">
+            <div className="iconsForm">
+              <PiShoppingCartSimpleLight className="cart" />
+              <BsHeart className="heart" />
+              <img src={Stroke} alt="" className="stroke2" />
+              <TiUserOutline className="user" />
+
+              <Popover onOpenChange={setIsPopoverOpen}>
+                <PopoverTrigger className='flex items-center gap-1'>
+                  <p>Account</p>
+                  <IoIosArrowDown
+                    className={`account-arrow transition-transform duration-200 ${isPopoverOpen ? "rotate-180" : "rotate-0"}`}
+                  />
+                </PopoverTrigger>
+                <PopoverContent className="w-48 p-4 text-left">
+                  <div className="flex flex-col space-y-2">
+                    <Link to="/user-account">
+                      <Button variant="ghost" className="w-full justify-start">
+                        <TiUserOutline className="mr-2" /> My Account
+                      </Button>
+                    </Link>
+                    <Button variant="ghost" className="w-full justify-start">
+                    <TbBorderAll className="mr-2" /> Orders
+                    </Button>
+                    <Button variant="ghost" className="w-full justify-start">
+                       <BsHeart className="mr-2" />  Wishlist
+                    </Button>
                     
-            </div>  
-          </PopoverContent>
-        </Popover>
-
+                    {/* Breakline before Login button */}
+                    <hr className="my-2" />
+                    
+                    <Link to="/SignUp">
+                      <Button className="w-full mt-4 bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white">Login</Button>
+                    </Link>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    
-  </div>
-   
-    
-  </>
-    
-  
+
+      {/* Image Search Modal */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <ImageSearchModal />
+      </Dialog>
+    </>
+  );
 };
 
 export default Header;
