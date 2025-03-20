@@ -15,15 +15,17 @@ const ProductCard = ({ product }) => {
   return (
     <Card className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden">
       <CardHeader>
-        <img
-          src={product?.images[0]?.url || sampleimage}
-          alt={product?.name}
-          className="object-cover rounded-t-lg"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = sampleimage;
-          }}
-        />
+        <div className="h-[280px] w-full relative">
+          <img
+            src={product?.images[0]?.url || sampleimage}
+            alt={product?.name}
+            className=" absolute inset-0 object-contain w-full h-full rounded-t-lg"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = sampleimage;
+            }}
+          />
+        </div>
       </CardHeader>
       <CardContent className="p-4">
         <CardTitle className="flex justify-between items-center">
