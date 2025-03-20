@@ -34,7 +34,7 @@ const cards = [
 
 const MoreBlogs = () => {
   return (
-    <div className="mx-auto py-8">
+    <div className="mx-auto py-8 pb-[60px]">
         <h1 className="more-blogs">More Blogs</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card) => (

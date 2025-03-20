@@ -6,7 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
-import Home from "./pages/home";
+import Home from './pages/home'
 import VerifyEmail from "./components/Auth/VerifyEmail";
 import CreatePassword from "./components/Auth/CreatePassword";
 import PersonalDetails from "./components/Auth/PersonalDetails";
