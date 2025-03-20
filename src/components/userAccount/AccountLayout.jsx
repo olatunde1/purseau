@@ -5,12 +5,13 @@ import AccountSidebar from "./AccountSidebar";
 const AccountLayout = ({ children }) => {
   return (
     <div>
-      <section className="w-[90%] mx-auto py-10 bg-green-500">
-        <div className="flex justify-between w-full">
-          <div className="w-[23%] bg-yellow-300">
-            <AccountSidebar />
-          </div>
-          <main className="w-[74%] bg-red-500">{children}</main>
+      <section className="w-[90%] mx-auto py-10 ">
+        <div className="flex w-full">
+          {/* <div className="w-[23%] bg-yellow-300"> */}
+          <AccountSidebar />
+          {/* </div> */}
+          {/* className="w-[74%] bg-red-500" */}
+          <main>{children}</main>
         </div>
       </section>
       <StayLoop />
