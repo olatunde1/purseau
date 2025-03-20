@@ -1,19 +1,35 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import LoginLogo from '../../assets/images/login-logo.png';
+import LoginLogo from "../../assets/images/login-logo.png";
 import { FiEdit, FiEye, FiEyeOff, FiCheckCircle } from "react-icons/fi"; // Icons
+import { useCreateUser } from "@/hooks/api/mutation/auth/useSignUp";
+import { toast } from "sonner";
 
 export default function CreatePassword() {
   const navigate = useNavigate(); // Initialize useNavigate
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [email, setEmail] = useState(localStorage.getItem("verifiedEmail") || "purseau@gmail.com"); // Retrieve email
+  const [email, setEmail] = useState(
+    ""
+    // localStorage.getItem("verifiedEmail") || "purseau@gmail.com"
+  ); // Retrieve email
   const [isEmailEditable, setIsEmailEditable] = useState(false); // Toggle email input editability
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggle confirm password visibility
+
+  const { mutate: createUser, isPending } = useCreateUser();
+
+  const { state } = useLocation();
+  const emailOrPhone = state?.emailOrPhone || "";
+
+  React.useEffect(() => {
+    if (!state) {
+      navigate("/SignUp");
+    }
+  }, [state, navigate]);
 
   // Password validation rules
   const hasMinLength = password.length >= 8;
@@ -32,13 +48,33 @@ export default function CreatePassword() {
       return;
     }
 
+    const dataBody = {
+      email: emailOrPhone,
+      password: confirmPassword,
+    };
+
+    createUser(dataBody, {
+      onSuccess: (response) => {
+        console.log(response, "response");
+        toast.success(response?.data?.message || "user created");
+        navigate("/PersonalDetails", { state: { emailOrPhone } });
+        setError("");
+      },
+      onError: (error) => {
+        console.error("Error:", error);
+        toast.error(
+          error?.response?.data?.message ||
+            "Something went wrong. Please try again."
+        );
+        navigate("/PersonalDetails", { state: { emailOrPhone } });
+      },
+    });
     // If validation passes, clear errors and proceed
-    setError("");
-    console.log("Password created successfully for email:", email);
+    // console.log("Password created successfully for email:", email);
     // Add logic to create password (e.g., API call)
 
     // Navigate to PersonalDetails page
-    navigate("/PersonalDetails");
+    // navigate("/PersonalDetails");
   };
 
   // Handle email edit
@@ -77,7 +113,8 @@ export default function CreatePassword() {
 
         {/* Subtitle */}
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-        Let’s get you started. To create your account, we need a strong <br /> password to keep your account safe.
+          Let’s get you started. To create your account, we need a strong <br />{" "}
+          password to keep your account safe.
         </p>
 
         {/* Editable Email Input */}
@@ -86,7 +123,7 @@ export default function CreatePassword() {
             <Input
               id="email"
               type="email"
-              value={email}
+              value={emailOrPhone}
               onChange={(e) => setEmail(e.target.value)}
               className="email-input w-full mt-1 focus:ring mb-4 bg-gray-200"
               disabled={!isEmailEditable} // Disable input unless editing
@@ -169,7 +206,10 @@ export default function CreatePassword() {
 
           {/* Confirm Password Input */}
           <div className="confirm-password-input-group">
-            <label htmlFor="confirmPassword" className="text-gray-700 font-medium">
+            <label
+              htmlFor="confirmPassword"
+              className="text-gray-700 font-medium"
+            >
               Confirm Password *
             </label>
             <div className="relative">
@@ -206,9 +246,14 @@ export default function CreatePassword() {
           <Button
             onClick={handleSubmit}
             className="create-password-button w-full transition-all duration-200"
-            disabled={!hasMinLength || !hasUpperCase || !hasNumber || password !== confirmPassword}
+            disabled={
+              !hasMinLength ||
+              !hasUpperCase ||
+              !hasNumber ||
+              password !== confirmPassword
+            }
           >
-            Continue
+            {isPending ? "please wait..." : "Continue"}
           </Button>
         </div>
       </div>

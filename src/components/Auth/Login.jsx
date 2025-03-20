@@ -4,20 +4,124 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FiEye, FiEyeOff, FiEdit } from "react-icons/fi";
-import HandWave from '../../assets/images/hand-wave.png'
+import HandWave from "../../assets/images/hand-wave.png";
 import { MdOutlineWavingHand } from "react-icons/md";
+import {
+  useForgotPassword,
+  useLogin,
+} from "@/hooks/api/mutation/auth/useLogin";
+import { useAuthStore } from "@/store/authStore";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { toast } from "sonner";
+
+const Loginschema = yup.object().shape({
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Please enter the correct email for account.")
+    .test("no-spaces", "No spaces allowed", (value) => !/\s/.test(value)),
+  password: yup.string().min(6, "Password must contain at least 6 characters"),
+});
 
 export default function Login() {
-  const [email, setEmail] = useState("user@example.com"); // Registered email
+  // const [email, setEmail] = useState("user@example.com"); // Registered email
   const [isEditing, setIsEditing] = useState(false);
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleEmailEdit = () => setIsEditing(true);
   const handleEmailSave = () => setIsEditing(false);
+
+  const { state } = useLocation();
+  const emailOrPhone = state?.emailOrPhone || "";
+
+  // console.log(emailOrPhone, "emailOrPhone");
+
+  React.useEffect(() => {
+    if (!state) {
+      navigate("/SignUp");
+    }
+  }, [state, navigate]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: emailOrPhone,
+      password: "",
+    },
+    resolver: yupResolver(Loginschema),
+    mode: "onChange",
+  });
+
+  const { setAccessToken, setCurrentUser } = useAuthStore();
+  const { mutateAsync, isPending } = useLogin();
+
+  const { mutate: forgotPassword, isPending: forgotPending } =
+    useForgotPassword();
+
+  const onSubmit = async (data) => {
+    const loginData = {
+      emailOrPhone: data?.email,
+      // emailOrPhone: "abayomiogunnusi@gmail.com",
+      // password: "Admin1234#Updated",
+      password: data?.password,
+    };
+    try {
+      const formData = new FormData();
+      Object.keys(loginData).forEach((key) => {
+        if (loginData[key] !== undefined && loginData[key] !== null) {
+          formData.append(key, loginData[key].toString());
+        }
+      });
+
+      await mutateAsync(formData, {
+        onSuccess: (response) => {
+          const token = response?.data?.data?.token;
+          const user = response?.data?.data;
+          if (token && user) {
+            setAccessToken(token);
+            setCurrentUser(user);
+          }
+
+          toast.success(response?.data?.message || "Login successful");
+          navigate("/");
+          console.log(response, "responsebyzeek");
+        },
+        onError: (error) => {
+          toast.error(error?.response?.data?.message);
+        },
+      });
+    } catch (error) {
+      console.log("An error occurred: ", error);
+    }
+  };
+
+  const ForgotPasswordSubmit = () => {
+    forgotPassword(
+      { email: emailOrPhone },
+      {
+        onSuccess: (response) => {
+          toast.success(response?.data?.message || "otp sent");
+          navigate("/ForgotPassword", { state: { emailOrPhone } });
+        },
+        onError: (error) => {
+          toast.error(
+            error?.response?.data?.message ||
+              "Something went wrong. Please try again."
+          );
+        },
+      }
+    );
+  };
 
   return (
     <div className="login-wrapper pt-2 pb-8 flex items-center justify-center min-h-screen bg-gray-50 px-4">
@@ -35,76 +139,93 @@ export default function Login() {
           {/* <img src={HandWave} alt="" /> */}
         </div>
         <p className="login-back-text text-center">
-         Login back into your Purseau account.
+          Login back into your Purseau account.
         </p>
 
-        {/* Email Input with Edit Option */}
-        <div className="w-full mb-4">
-          <div className="flex items-center gap-2">
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full mt-1 focus:ring bg-gray-300 py-8 input-text-email"
-              disabled={!isEditing}
-            />
-            {isEditing ? (
-              <Button
-                onClick={handleEmailSave}
-                className="bg-[#d84327] text-white px-4 py-2 rounded-lg"
-              >
-                Save
-              </Button>
-            ) : (
-              <div
-                className="flex items-center gap-1 text-[#d84327] cursor-pointer"
-                onClick={handleEmailEdit}
-              >
-                <FiEdit className="text-lg" />
-                <span className="text-sm">Edit</span>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Email Input with Edit Option */}
+          <div className="w-full mb-4">
+            {errors.email && (
+              <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
+                {errors.email?.message}
               </div>
             )}
+            <div className="flex items-center gap-2">
+              <Input
+                {...register("email")}
+                name="email"
+                id="email"
+                type="email"
+                placeholder="Enter email address"
+                // disabled={!isEditing}
+                // onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-1 focus:ring bg-gray-300 py-8 input-text-email"
+              />
+              {isEditing ? (
+                <Button
+                  onClick={handleEmailSave}
+                  className="bg-[#d84327] text-white px-4 py-2 rounded-lg"
+                >
+                  Save
+                </Button>
+              ) : (
+                <div
+                  className="flex items-center gap-1 text-[#d84327] cursor-pointer"
+                  onClick={handleEmailEdit}
+                >
+                  <FiEdit className="text-lg" />
+                  <span className="text-sm">Edit</span>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Password Input */}
-        <div className="w-full mb-4">
-          <Label htmlFor="password" className=" login-password-text">
-            Password*
-          </Label>
-          <div className="relative">
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-1 focus:ring bg-gray-300 py-6 mb-4 input-text-caption"
-            />
-            <button
-              type="button"
-              className="absolute right-3 top-4 text-gray-500"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FiEyeOff /> : <FiEye />}
-            </button>
+          {/* Password Input */}
+          <div className="w-full mb-4">
+            {errors.password && (
+              <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
+                {errors.password?.message}
+              </div>
+            )}
+            <Label htmlFor="password" className=" login-password-text">
+              Password*
+            </Label>
+
+            <div className="relative">
+              <Input
+                {...register("password")}
+                name="password"
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                // value={password}
+                // onChange={(e) => setPassword(e.target.value)}
+                className="w-full mt-1 focus:ring bg-gray-300 py-6 mb-4 input-text-caption"
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-4 text-gray-500"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Login Button */}
-        <Button className="w-full bg-[#d84327] text-white py-8 rounded-lg login-continue-button">
-          Continue
-        </Button>
+          {/* Login Button */}
+          <Button className="w-full bg-[#d84327] text-white py-8 rounded-lg login-continue-button">
+            {isPending ? "loading..." : "Continue"}
+          </Button>
+        </form>
 
         {/* Forgot Password */}
         <p className="text-sm text-gray-500 text-center pt-8">
-          <Link
-            to="/ForgotPassword" // Navigate to the Forgot Password page
+          <p
+            onClick={ForgotPasswordSubmit}
             className="text-[#E94E30] hover:underline font-[Lato] text-[16px] text-500"
           >
-            Forgot your Password?
-          </Link>
+            {forgotPending ? "loading..." : "Forgot your Password?"}
+          </p>
         </p>
       </div>
     </div>
