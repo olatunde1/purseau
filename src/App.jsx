@@ -20,6 +20,7 @@ import SearchResults from "./pages/SearchResults";
 import UserAccount from "./components/Auth/UserAccount";
 import EditUserAddress from "./components/Auth/EditUserAddress";
 import MyOrders from "./components/Auth/MyOrders";
+import BlogPage from "./pages/BlogPage";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/blog" element={<BlogPage/>}/>
         <Route path="/BlogDetails" element={<BlogDetails />} />
         <Route path="/search-result" element={<SearchResults/>} />
         <Route path="/user-account" element={<UserAccount/>} />

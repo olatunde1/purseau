@@ -185,7 +185,7 @@ const Navbar = () => {
               {/* Blog */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/SignUp" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                  <Link to="/blog" className="px-4 py-2 text-gray-700 hover:text-gray-900">
                     Blog
                   </Link>
                 </NavigationMenuLink>
