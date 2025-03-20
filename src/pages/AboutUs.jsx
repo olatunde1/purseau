@@ -12,7 +12,7 @@ import TheBeginning from '../assets/images/the-beginning.png'
 import GrowthInnovation from '../assets/images/growth-innovation.png'
 import Today from '../assets/images/today.png'
 import { StayLoop } from '@/components/StayLoop';
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/Footer';
 
 
 

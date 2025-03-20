@@ -11,7 +11,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { GoHome } from "react-icons/go";
 import Tracker from '../../assets/images/order-tracking.png';
 import { StayLoop } from '@/components/StayLoop';
-import { Footer } from '@/components/footer';
+import { Footer } from '@/components/Footer';
 
 const UserAccount = () => {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
