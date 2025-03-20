@@ -24,6 +24,7 @@ export default function SignUp() {
     // Phone number regex pattern (adjust as needed for your requirements)
     // This example accepts formats like: +1234567890, 1234567890, 123-456-7890
     const phonePattern = /^(\+\d{1,3}[-\s]?)?\d{10,14}$/;
+    // const phonePattern = /^(\+234|234)\d{10}$/;
 
     if (emailPattern.test(input)) {
       return { isValid: true, type: "email" };
@@ -49,8 +50,19 @@ export default function SignUp() {
       setError("Please enter a valid email address or phone number");
       return;
     }
+
+    let formattedInput = emailOrPhone;
+
+    if (validation.type === "phone") {
+      if (formattedInput.startsWith("+234")) {
+      formattedInput = formattedInput.slice(1);
+      } else if (formattedInput.startsWith("0")) {
+      formattedInput = "234" + formattedInput.slice(1);
+      }
+    }
     mutate(
-      { emailOrPhone },
+      // { emailOrPhone },
+      { emailOrPhone: formattedInput },
       {
         onSuccess: (response) => {
           console.log(response, "response");
