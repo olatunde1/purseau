@@ -54,12 +54,47 @@ export default function VerifyEmail() {
     }
   };
 
+    const validateInput = (input) => {
+      // Email regex pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Phone number regex pattern (adjust as needed for your requirements)
+      // This example accepts formats like: +1234567890, 1234567890, 123-456-7890
+      const phonePattern = /^(\+\d{1,3}[-\s]?)?\d{10,14}$/;
+      // const phonePattern = /^(\+234|234)\d{10}$/;
+
+      if (emailPattern.test(input)) {
+        return { isValid: true, type: "email" };
+      } else if (phonePattern.test(input)) {
+        return { isValid: true, type: "phone" };
+      } else {
+        return { isValid: false, type: null };
+      }
+    };
+
+   const validation = validateInput(emailOrPhone);
+
+   if (!validation.isValid) {
+     setError("Please enter a valid email address or phone number");
+     return;
+   }
+
+  let formattedInput = emailOrPhone;
+
+  if (validation.type === "phone") {
+    if (formattedInput.startsWith("+234")) {
+      formattedInput = formattedInput.slice(1);
+    } else if (formattedInput.startsWith("0")) {
+      formattedInput = "234" + formattedInput.slice(1);
+    }
+  }
+
   // Verify the OTP
   const verifyOtp = () => {
     const enteredOtp = otp.join(""); // Combine the OTP digits into a single string
 
     mutate(
-      { emailOrPhone, plainOtp: enteredOtp },
+      { emailOrPhone: formattedInput, plainOtp: enteredOtp },
       {
         onSuccess: (response) => {
           console.log(response, "response");

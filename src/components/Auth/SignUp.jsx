@@ -74,6 +74,11 @@ export default function SignUp() {
           } else {
             navigate("/Login", { state: { emailOrPhone } });
           }
+           if (response?.data?.data?.firstTimeUserVerificationPassed) {
+             navigate("/CreatePassword", { state: { emailOrPhone } });
+           } else {
+             navigate("/Login", { state: { emailOrPhone } });
+           }
         },
         onError: (error) => {
           console.error("Error:", error);
