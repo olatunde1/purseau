@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import VerifyEmail from "./VerifyEmail";
 import { useSignUp } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
+import { validateAndFormatInput } from "@/utils";
 
 export default function SignUp() {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -15,25 +16,6 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const { mutate, isPending } = useSignUp();
-
-  // Validation function
-  const validateInput = (input) => {
-    // Email regex pattern
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Phone number regex pattern (adjust as needed for your requirements)
-    // This example accepts formats like: +1234567890, 1234567890, 123-456-7890
-    const phonePattern = /^(\+\d{1,3}[-\s]?)?\d{10,14}$/;
-    // const phonePattern = /^(\+234|234)\d{10}$/;
-
-    if (emailPattern.test(input)) {
-      return { isValid: true, type: "email" };
-    } else if (phonePattern.test(input)) {
-      return { isValid: true, type: "phone" };
-    } else {
-      return { isValid: false, type: null };
-    }
-  };
 
   const handleInputChange = (e) => {
     setEmailOrPhone(e.target.value);
@@ -44,22 +26,14 @@ export default function SignUp() {
     e.preventDefault();
 
     // Validate input first
-    const validation = validateInput(emailOrPhone);
 
-    if (!validation.isValid) {
+    const result = validateAndFormatInput(emailOrPhone);
+    if (!result.isValid) {
       setError("Please enter a valid email address or phone number");
       return;
     }
 
-    let formattedInput = emailOrPhone;
-
-    if (validation.type === "phone") {
-      if (formattedInput.startsWith("+234")) {
-      formattedInput = formattedInput.slice(1);
-      } else if (formattedInput.startsWith("0")) {
-      formattedInput = "234" + formattedInput.slice(1);
-      }
-    }
+    const formattedInput = result.formatted;
     mutate(
       // { emailOrPhone },
       { emailOrPhone: formattedInput },
@@ -71,14 +45,16 @@ export default function SignUp() {
           );
           if (response?.data?.data?.firstTimeUser) {
             navigate("/VerifyEmail", { state: { emailOrPhone } });
-          } else {
+          }
+          if (response?.data?.data?.firstTimeUserVerificationPassed) {
+            navigate("/CreatePassword", { state: { emailOrPhone } });
+          }
+
+          const { stepTwoCompleted, isVerified, completedPersonalDetails } =
+            response?.data?.data || {};
+          if (stepTwoCompleted && isVerified && completedPersonalDetails) {
             navigate("/Login", { state: { emailOrPhone } });
           }
-           if (response?.data?.data?.firstTimeUserVerificationPassed) {
-             navigate("/CreatePassword", { state: { emailOrPhone } });
-           } else {
-             navigate("/Login", { state: { emailOrPhone } });
-           }
         },
         onError: (error) => {
           console.error("Error:", error);
@@ -108,7 +84,7 @@ export default function SignUp() {
           Welcome to Purseau
         </h1>
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-          Please! Kindly enter your e-mail or phone number to log in or <br />{" "}
+          Please! Kindly enter your e-mail to log in or <br />{" "}
           create your Purseau account.
         </p>
 
@@ -120,7 +96,7 @@ export default function SignUp() {
           {/* Email or phone number input */}
           <div className="signup-input-group ">
             <Label htmlFor="emailOrPhone" className="text-gray-700 font-medium">
-              Email or Phone Number *
+              Email *
             </Label>
             <Input
               id="emailOrPhone"

@@ -10,6 +10,7 @@ import {
   useVerifyEmailOrPhone,
 } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
+import { validateAndFormatInput } from "@/utils";
 
 export default function VerifyEmail() {
   const [otp, setOtp] = useState(["", "", "", ""]); // Array to store each digit of the OTP
@@ -27,7 +28,7 @@ export default function VerifyEmail() {
     }
   }, [state, navigate]);
 
-  const emailOrPhone = state?.emailOrPhone || "";
+  const emailOrPhone = state?.emailOrPhone || state?.phoneNumber || "";
   const contactMethod = emailOrPhone.includes("@") ? "email" : "phone";
 
   const { mutate, isPending } = useVerifyEmailOrPhone();
@@ -54,40 +55,13 @@ export default function VerifyEmail() {
     }
   };
 
-    const validateInput = (input) => {
-      // Email regex pattern
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Phone number regex pattern (adjust as needed for your requirements)
-      // This example accepts formats like: +1234567890, 1234567890, 123-456-7890
-      const phonePattern = /^(\+\d{1,3}[-\s]?)?\d{10,14}$/;
-      // const phonePattern = /^(\+234|234)\d{10}$/;
-
-      if (emailPattern.test(input)) {
-        return { isValid: true, type: "email" };
-      } else if (phonePattern.test(input)) {
-        return { isValid: true, type: "phone" };
-      } else {
-        return { isValid: false, type: null };
-      }
-    };
-
-   const validation = validateInput(emailOrPhone);
-
-   if (!validation.isValid) {
-     setError("Please enter a valid email address or phone number");
-     return;
-   }
-
-  let formattedInput = emailOrPhone;
-
-  if (validation.type === "phone") {
-    if (formattedInput.startsWith("+234")) {
-      formattedInput = formattedInput.slice(1);
-    } else if (formattedInput.startsWith("0")) {
-      formattedInput = "234" + formattedInput.slice(1);
-    }
+  const validation = validateAndFormatInput(emailOrPhone);
+  if (!validation.isValid) {
+    setError("Please enter a valid email address or phone number");
+    return;
   }
+
+  const formattedInput = validation.formatted;
 
   // Verify the OTP
   const verifyOtp = () => {
@@ -99,7 +73,13 @@ export default function VerifyEmail() {
         onSuccess: (response) => {
           console.log(response, "response");
           toast.success(response?.data?.message || "otp verified");
-          navigate("/CreatePassword", { state: { emailOrPhone } });
+          if (response?.data?.data?.isVerified) {
+            navigate("/Login", {
+              state: { emailOrPhone: response?.data?.data?.email },
+            });
+          } else {
+            navigate("/CreatePassword", { state: { emailOrPhone } });
+          }
         },
         onError: (error) => {
           console.error("Error:", error);
@@ -107,7 +87,7 @@ export default function VerifyEmail() {
             error?.response?.data?.message ||
               "Something went wrong. Please try again."
           );
-          navigate("/CreatePassword", { state: { emailOrPhone } });
+          // navigate("/CreatePassword", { state: { emailOrPhone } });
         },
       }
     );
