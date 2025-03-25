@@ -21,6 +21,8 @@ import UserAccount from "./components/Auth/UserAccount";
 import EditUserAddress from "./components/Auth/EditUserAddress";
 import MyOrders from "./components/Auth/MyOrders";
 import BlogPage from "./pages/BlogPage";
+import TermsAndConditions from "./pages/Terms";
+import Policy from "./pages/Policy";
 
 
 function App() {
@@ -37,9 +39,14 @@ function App() {
         <Route path="/user-account" element={<UserAccount/>} />
         <Route path="/edit-user-address" element={<EditUserAddress/>} />
         <Route path="/my-order" element={<MyOrders/>} />
+        <Route path="/terms" element={<TermsAndConditions/>} />
+        <Route path="/policy" element={<Policy/>} />
+
 
 
       </Route>
+
+
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/VerifyEmail" element={<VerifyEmail />} />
       <Route path="/CreatePassword" element={<CreatePassword />} />
@@ -50,8 +57,6 @@ function App() {
       <Route path="/CreateNewPassword" element={<CreateNewPassword/>} />
       <Route path="/PasswordResetsuccessful" element={<PasswordResetSuccessful/>} />
       <Route path="/AccountCreatedSuccessful" element={<AccountCreatedSuccessful/>} />
-
-
     </Routes>
   );
 }

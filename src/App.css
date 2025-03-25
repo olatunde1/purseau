@@ -15,6 +15,10 @@
   box-sizing: border-box; /* Include padding in width calculations */
 }
 
+/* body{
+  background-color: #e4e4e4;
+} */
+
 .header-wrap{
   background-color: #ffffff;
 }

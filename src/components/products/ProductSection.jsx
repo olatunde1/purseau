@@ -19,7 +19,8 @@ const ProductSection = ({ ProductData }) => {
   const totalCount = ProductData?.pagedInfo?.total || 0;
 
   return (
-    <div className="container">
+    <div className="container ">
+      <div className="w-full mt-20">
       <div className="p-6 flex justify-between">
         <div className="w-1/4">
           <FilterSidebar />
@@ -32,6 +33,7 @@ const ProductSection = ({ ProductData }) => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

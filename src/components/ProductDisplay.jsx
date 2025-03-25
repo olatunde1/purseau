@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn/ui Button
-import { Star } from "lucide-react"; // For star icons (install lucide-react if not already installed)
+import { Star, Heart } from "lucide-react"; // For star icons (install lucide-react if not already installed)
 import { useNavigate } from "react-router-dom"; // For navigation
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"; // shadcn/ui Card
 // import cloth category
@@ -468,8 +468,23 @@ const productsByCategory = {
 export default function ProductDisplay() {
   const [selectedCategory, setSelectedCategory] = useState("Clothes"); // Default selected category
   const [activeCategory, setActiveCategory] = useState("Clothes"); // Track active category for styling
-
+  const [favorites, setFavorites] = useState(new Set());
   const navigate = useNavigate(); // For navigation
+
+
+  const toggleFavorite = (productId) => {
+    const newFavorites = new Set(favorites);
+    if (newFavorites.has(productId)) {
+      newFavorites.delete(productId);
+    } else {
+      newFavorites.add(productId);
+    }
+    setFavorites(newFavorites);
+  };
+
+
+
+
 
   // Handle button click to update the selected category
   const handleCategoryClick = (category) => {
@@ -517,11 +532,27 @@ export default function ProductDisplay() {
               <h2 className="text-xl font-bold">{product.name}</h2>
             </CardHeader>
             <CardContent>
+            <div className="relative">
               <img
                 src={product.image}
                 alt={product.name}
                 className=" object-cover rounded-lg mb-4"
               />
+
+              <button
+                onClick={() => toggleFavorite(product.id)}
+                className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
+              >
+                <Heart
+                  className={`h-5 w-5 ${
+                    favorites.has(product.id)
+                      ? "fill-red-500 stroke-red-500"
+                      : "stroke-gray-400"
+                  }`}
+                />
+              </button>
+            </div>
+
               {/* Star Rating */}
               <div className="priceRating">
                 <p className="text-gray-600 product-description">{product.description}</p>
@@ -544,7 +575,7 @@ export default function ProductDisplay() {
               
               
              {/* Price and Discount */}
-             <div className="flex items-center gap-2">
+             <div className="flex items-center gap-2 h-[60px]">
                 <span className="text-lg font-semibold text-black-600">
                   {product.discountedPrice}
                 </span>
