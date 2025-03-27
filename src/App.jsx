@@ -48,7 +48,7 @@ function App() {
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/CreateNewPassword" element={<CreateNewPassword />} />
       {/* <Route path="/PasswordResetsuccessful" element={<PasswordResetSuccessful/>} /> */}
-      {/* <Route path="/AccountCreatedSuccessful" element={<AccountCreatedSuccessful/>} /> */}
+      <Route path="/AccountCreatedSuccessful" element={<AccountCreatedSuccessful/>} />
     </Routes>
   );
 }

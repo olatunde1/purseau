@@ -1,12 +1,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import LoginLogo from '../../assets/images/login-logo.png';
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Reset from '../../assets/images/reset-removebg-preview.png';
+import LoginLogo from "../../assets/images/login-logo.png";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import Reset from "../../assets/images/reset-removebg-preview.png";
 
-export default function AccountCreatedSuccessful(emailOrPhone) {
+export default function AccountCreatedSuccessful() {
   const navigate = useNavigate(); // Hook for navigation
 
+  const { state } = useLocation();
+  
+  const emailOrPhone = state?.emailOrPhone || "";
   // Navigate to the Login page
   const handleLogin = () => {
     // navigate("/");

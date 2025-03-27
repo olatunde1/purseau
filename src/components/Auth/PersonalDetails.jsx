@@ -63,7 +63,7 @@ export default function PersonalDetails() {
       onSuccess: (response) => {
         toast.success(response?.data?.message || "user persona done");
         // setSuccess(true);
-        navigate("/VerifyEmail", { state: { phoneNumber } });
+        navigate("/VerifyEmail", { state: { phoneNumber, accountCreation: true } });
       },
       onError: (error) => {
         console.error("Error:", error);

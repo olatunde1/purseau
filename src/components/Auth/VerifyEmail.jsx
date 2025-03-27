@@ -7,6 +7,7 @@ import { GrRefresh } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import {
   useResendVerificationOtp,
+  useVerifyAccountCreation,
   useVerifyEmailOrPhone,
 } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
@@ -14,11 +15,12 @@ import { validateAndFormatInput } from "@/utils";
 
 export default function VerifyEmail() {
   const [otp, setOtp] = useState(["", "", "", ""]); // Array to store each digit of the OTP
-  const [generatedOtp, setGeneratedOtp] = useState("1234"); // Simulated OTP for testing
   const [message, setMessage] = useState("");
   const [timer, setTimer] = useState(60); // Countdown timer
   const inputRefs = useRef([]); // Refs for each input field
   const navigate = useNavigate(); // Hook for navigation
+  
+    // const [success, setSuccess] = useState(false);
 
   const { state } = useLocation();
 
@@ -29,9 +31,12 @@ export default function VerifyEmail() {
   }, [state, navigate]);
 
   const emailOrPhone = state?.emailOrPhone || state?.phoneNumber || "";
+  const accountCreation = state?.accountCreation;
   const contactMethod = emailOrPhone.includes("@") ? "email" : "phone";
 
   const { mutate, isPending } = useVerifyEmailOrPhone();
+  const { mutate: accountMutate, isPending: accountPending } =
+    useVerifyAccountCreation();
   const { mutate: ResendOtp, isPending: ResendPending } =
     useResendVerificationOtp();
 
@@ -67,14 +72,19 @@ export default function VerifyEmail() {
   const verifyOtp = () => {
     const enteredOtp = otp.join(""); // Combine the OTP digits into a single string
 
-    mutate(
+    const mutationFn = accountCreation ? accountMutate : mutate;
+
+    mutationFn(
       { emailOrPhone: formattedInput, plainOtp: enteredOtp },
       {
         onSuccess: (response) => {
           console.log(response, "response");
-          toast.success(response?.data?.message || "otp verified");
-          if (response?.data?.data?.isVerified) {
-            navigate("/Login", {
+          toast.success(response?.data?.message || "OTP verified");
+
+          if (accountCreation) {
+            // if (response?.data?.data?.isVerified) {
+            // setSuccess(true);
+            navigate("/AccountCreatedSuccessful", {
               state: { emailOrPhone: response?.data?.data?.email },
             });
           } else {
@@ -87,19 +97,19 @@ export default function VerifyEmail() {
             error?.response?.data?.message ||
               "Something went wrong. Please try again."
           );
-          // navigate("/CreatePassword", { state: { emailOrPhone } });
         },
       }
     );
-    // if (enteredOtp === generatedOtp) {
-    //   setMessage("Email verified successfully!");
-    //   // Redirect to Create Password page after 2 seconds
-    //   setTimeout(() => {
-    //     navigate("/CreatePassword"); // Navigate to Create Password page
-    //   }, 2000);
-    // } else {
-    //   setMessage("Invalid OTP. Please try again.");
-    // }
+    //   console.log(response, "response");
+    //   toast.success(response?.data?.message || "otp verified");
+    //   if (response?.data?.data?.isVerified) {
+    //     navigate("/Login", {
+    //       state: { emailOrPhone: response?.data?.data?.email },
+    //     });
+    //   } else {
+    //     navigate("/CreatePassword", { state: { emailOrPhone } });
+    //   }
+    // },
   };
 
   // Countdown timer logic
@@ -183,7 +193,7 @@ export default function VerifyEmail() {
           onClick={verifyOtp}
           className="verify-otp-button w-full max-w-md transition-all duration-200 py-8"
         >
-          {isPending ? "Please wait..." : "Submit"}
+          {isPending || accountPending ? "Please wait..." : "Submit"}
         </Button>
 
         {/* Display messages */}
