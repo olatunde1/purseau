@@ -2,9 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "@/hooks/axiosInstace";
 
 const imageSearch = (data) => {
-  return axiosInstance.post(`/api/upload`, data, {
+  return axiosInstance.post(`/product/search-similar`, data, {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
   });
 };
