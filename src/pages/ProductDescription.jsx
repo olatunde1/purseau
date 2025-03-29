@@ -16,6 +16,10 @@ import YouMightAlsoLike from '@/components/YouMightLike';
 import RecentlyViewed from '@/components/RecentlyViewed';
 import { StayLoop } from '@/components/StayLoop';
 import { Footer } from '@/components/footer'
+import Bag1 from '../assets/images/prod-desc-bag1.png'
+import Bag2 from '../assets/images/prod-desc-bag2.png'
+import Bag3 from '../assets/images/prod-desc-bag3.png'
+import Bag4 from '../assets/images/prod-desc-bag4.png'
 // import { Footer } from '@/components/Footer';
 // import Footer from '@/components/Footer';
 // import StayLoop from '@/components/StayLoop';
@@ -57,11 +61,11 @@ const product = {
 
   availableColors: ["Red", "Blue", "Black", "Green", "Yellow"],
   images: [
-    "/bag-main.jpg",
-    "/assets/products/bag-1.jpg",
-    "/assets/products/bag-2.jpg",
-    "/assets/products/bag-3.jpg",
-    "/assets/products/bag-4.jpg",
+    Bag1,
+    Bag2,
+    Bag3,
+    Bag4,
+
   ]
 
 };
@@ -121,7 +125,7 @@ const ProductDescription = () => {
         
         {/* Left: Product Images */}
         <div className="flex flex-col">
-          <img src={selectedImage} alt="Product" className="w-full h-96 object-cover rounded-lg" />
+          <img src={selectedImage} alt="Product" className="md:w-[360px] w-full h-96 object-cover rounded-lg" />
           <div className="flex gap-2 mt-4">
             {product.images.map((img, index) => (
               <img 
