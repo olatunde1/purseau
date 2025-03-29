@@ -6,7 +6,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 import { StayLoop } from "@/components/StayLoop"
-// import { Footer } from "@/components/Footer"
+import { Footer } from '@/components/footer'
 
   
   export default function TermsAndConditions() {
@@ -316,7 +316,7 @@ import { StayLoop } from "@/components/StayLoop"
       </Accordion>
       </div>
     <StayLoop />
-    {/* <Footer /> */}
+    <Footer />
     </>
     
   };

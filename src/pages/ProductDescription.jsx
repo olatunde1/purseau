@@ -15,6 +15,7 @@ import ExploreSimilarProduct from '@/components/ExploreSimilarProduct';
 import YouMightAlsoLike from '@/components/YouMightLike';
 import RecentlyViewed from '@/components/RecentlyViewed';
 import { StayLoop } from '@/components/StayLoop';
+import { Footer } from '@/components/footer'
 // import { Footer } from '@/components/Footer';
 // import Footer from '@/components/Footer';
 // import StayLoop from '@/components/StayLoop';
@@ -307,7 +308,7 @@ const ProductDescription = () => {
     <RecentlyViewed />
 </div>
 <StayLoop />
-{/* <Footer /> */}
+<Footer />
 
 
 </>
