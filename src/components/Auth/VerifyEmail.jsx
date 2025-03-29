@@ -19,8 +19,8 @@ export default function VerifyEmail() {
   const [timer, setTimer] = useState(60); // Countdown timer
   const inputRefs = useRef([]); // Refs for each input field
   const navigate = useNavigate(); // Hook for navigation
-  
-    // const [success, setSuccess] = useState(false);
+
+  // const [success, setSuccess] = useState(false);
 
   const { state } = useLocation();
 
@@ -125,11 +125,12 @@ export default function VerifyEmail() {
   // Resend OTP handler
   const handleResendOtp = () => {
     ResendOtp(
-      { phoneNumber: emailOrPhone },
+      { emailOrPhone: emailOrPhone },
       {
         onSuccess: (response) => {
           setTimer(60);
           toast.success(response?.data?.message || "otp resent");
+          setMessage("A new OTP has been sent to your email.");
         },
         onError: (error) => {
           toast.error(
@@ -139,7 +140,6 @@ export default function VerifyEmail() {
         },
       }
     );
-    setMessage("A new OTP has been sent to your email.");
   };
 
   return (
@@ -215,7 +215,8 @@ export default function VerifyEmail() {
           onClick={handleResendOtp}
         >
           <GrRefresh className="text-[#E94E30]" /> {/* Resend email icon */}
-          Resend {contactMethod === "email" ? "Email" : "SMS"}
+          {ResendPending ? "resending.." : "Resend"}{" "}
+          {contactMethod === "email" ? "Email" : "SMS"}
         </p>
       </div>
     </div>

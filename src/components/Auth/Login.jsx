@@ -41,10 +41,10 @@ export default function Login() {
   const { state } = useLocation();
   const emailOrPhone = state?.emailOrPhone || "";
 
-  // console.log(emailOrPhone, "emailOrPhone");
+  console.log(emailOrPhone, "emailOrPhone");
 
   React.useEffect(() => {
-    if (!state) {
+    if (!state || !emailOrPhone) {
       navigate("/SignUp");
     }
   }, [state, navigate]);

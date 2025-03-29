@@ -66,7 +66,7 @@ export default function ForgotPassword() {
             console.log(response, "response");
             toast.success(response?.data?.message || "otp verified");
             navigate("/CreateNewPassword", {
-              state: { emailOrPhone, plainOtp }
+              state: { emailOrPhone, enteredOtp },
             });
           },
           onError: (error) => {

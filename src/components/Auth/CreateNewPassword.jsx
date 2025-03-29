@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from "../../assets/images/login-logo.png";
@@ -21,6 +21,11 @@ export default function CreateNewPassword() {
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggle confirm password visibility
 
+  const { state } = useLocation();
+
+  const enteredOtp = state?.enteredOtp ?? "";
+  const emailOrPhone = state?.emailOrPhone ?? "";
+
   // Password validation rules
   const hasMinLength = password.length >= 8;
   const hasUpperCase = /[A-Z]/.test(password);
@@ -41,8 +46,8 @@ export default function CreateNewPassword() {
     }
 
     const dataBody = {
-      email: "abayomiogunnusi@gmail.com",
-      plainOtp: "6755",
+      email: emailOrPhone,
+      plainOtp: enteredOtp,
       newPassword: confirmPassword,
     };
 
@@ -89,7 +94,7 @@ export default function CreateNewPassword() {
   return (
     <>
       {success ? (
-        <PasswordResetSuccessful />
+        <PasswordResetSuccessful emailOrPhone={emailOrPhone} />
       ) : (
         <div className="create-password-wrapper pt-2 pb-8">
           <div className="create-password-container flex flex-col items-center justify-center bg-gray-50 px-4">
