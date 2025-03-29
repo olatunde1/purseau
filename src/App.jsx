@@ -23,6 +23,7 @@ import MyOrders from "./components/Auth/MyOrders";
 import BlogPage from "./pages/BlogPage";
 import TermsAndConditions from "./pages/Terms";
 import Policy from "./pages/Policy";
+import ProductDescription from "./pages/ProductDescription";
 
 
 function App() {
@@ -41,9 +42,7 @@ function App() {
         <Route path="/my-order" element={<MyOrders/>} />
         <Route path="/terms" element={<TermsAndConditions/>} />
         <Route path="/policy" element={<Policy/>} />
-
-
-
+        <Route path="/product-description" element={<ProductDescription/>} />
       </Route>
 
 

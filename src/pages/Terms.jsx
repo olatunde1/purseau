@@ -5,8 +5,9 @@ import {
     AccordionItem,
     AccordionTrigger,
   } from "@/components/ui/accordion"
-// import { StayLoop } from "@/components/StayLoop"
-// import { Footer } from '../components/Footer'
+import { StayLoop } from "@/components/StayLoop"
+import { Footer } from "@/components/Footer"
+
   
   export default function TermsAndConditions() {
     useEffect(() => {
@@ -314,8 +315,8 @@ import {
         </AccordionItem>
       </Accordion>
       </div>
-    {/* <StayLoop /> */}
-    {/* <Footer /> */}
+    <StayLoop />
+    <Footer />
     </>
     
   };
