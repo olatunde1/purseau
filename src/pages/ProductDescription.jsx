@@ -35,7 +35,6 @@ const product = {
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 
   additionalInfo: {
-    Feature: "Description",
     SKU: "123456789",
     Material: "High-quality Leather",
     Size: "Medium (30cm x 20cm x 15cm)",
@@ -252,13 +251,16 @@ const ProductDescription = () => {
                 </div>
             )}
             {activeSection === 'additionalInfo' && (
-                <div className="overflow-x-auto md:w-[1200px] w-full">
-                  <table className="w-full border-collapse border border-gray-300 mt-4">
+                <div className="overflow-x-auto md:w-[1200px] w-full mt-16">
+                  <table className="w-full border-collapse">
                     <tbody>
-                        
+                        <tr className="border-b bg-[#ECC297] ">
+                            <td className="p-3 font-bold text-gray-700">Feature</td>
+                            <td className="p-3 font-bold text-gray-700">Description</td>
+                        </tr>
                       {Object.entries(product.additionalInfo).map(([key, value]) => (
                         <tr className="border-b " key={key}>
-                          <td className="p-3 font-semibold border-r border-gray-300">{key}</td>
+                          <td className="p-3 font-semibold  ">{key}</td>
                           <td className="p-3">{value}</td>
                         </tr>
                       ))}
