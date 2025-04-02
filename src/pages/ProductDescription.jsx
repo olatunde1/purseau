@@ -20,6 +20,9 @@ import Bag1 from '../assets/images/prod-desc-bag1.png'
 import Bag2 from '../assets/images/prod-desc-bag2.png'
 import Bag3 from '../assets/images/prod-desc-bag3.png'
 import Bag4 from '../assets/images/prod-desc-bag4.png'
+import { RiErrorWarningLine } from "react-icons/ri";
+import ReviewSection from '@/components/ReviewSection';
+import Pagination from '@/components/Pagination';
 // import { Footer } from '@/components/Footer';
 // import Footer from '@/components/Footer';
 // import StayLoop from '@/components/StayLoop';
@@ -91,13 +94,10 @@ const ProductDescription = () => {
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
-  
-  
-  
   return <>
     
 
-<div className="container mx-auto px-4 py-8">
+<div className="container mx-auto px-4 py-8 font-lato">
      {/* Breadcrumb Section */}
      <div className="breadcrumb mb-6">
             <Breadcrumb>
@@ -155,7 +155,7 @@ const ProductDescription = () => {
             <span className="text-gray-700">({product.reviews} Reviews)</span>
           </div>
           {/* Stock Status */}
-          <p className="text-green-600 font-semibold">{product.stock}</p>
+          <p className="text-green-600 font-semibold rounded-full bg-[#E6F4F1] w-24 flex gap-1 "><RiErrorWarningLine className='mt-1 ml-2 ' />{product.stock}</p>
 
           {/* Price Section */}
           <div className="mt-3 flex items-center gap-8">
@@ -243,14 +243,14 @@ const ProductDescription = () => {
           {/* Section Content */}
           <div className="mt-4 text-gray-600">
             {activeSection === 'description' && (
-                <div className="overflow-x-auto md:w-[1200px] w-full">
+                <div className="overflow-x-auto md:w-[1200px] w-full mt-16">
                     <p>{product.description}</p>
-                    <p>Lorem Ipsum is dummy text used throughout the design industry. Lorem Ipsum has been the standard dummy text for many hundreds of years. Ever since an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    <ul className="list-disc ml-6 mt-2">
-                        <li>Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus bl</li>
-                        <li>Aliquam porta nisl dolor, molestie pellentesque elit molestie in. Morbi metus neque, elementum ullam</li>
-                        <li>Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus.</li>
-                        <li>Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus.</li>
+                    <p className='mt-6'>Lorem Ipsum is dummy text used throughout the design industry. Lorem Ipsum has been the standard dummy text for many hundreds of years. Ever since an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <ul className="list-disc ml-6 mt-6">
+                        <li className='mt-6'>Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus bl</li>
+                        <li className='mt-6'>Aliquam porta nisl dolor, molestie pellentesque elit molestie in. Morbi metus neque, elementum ullam</li>
+                        <li className='mt-6'>Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus.</li>
+                        <li className='mt-6'>Aliquam pulvinar vestibulum blandit. Donec sed nisl libero. Fusce dignissim luctus sem eu dapibus.</li>
                     </ul>
                 </div>
             )}
@@ -263,7 +263,7 @@ const ProductDescription = () => {
                             <td className="p-3 font-bold text-gray-700">Description</td>
                         </tr>
                       {Object.entries(product.additionalInfo).map(([key, value]) => (
-                        <tr className="border-b " key={key}>
+                        <tr className="border-none bg-[#FFF4F0] " key={key}>
                           <td className="p-3 font-semibold  ">{key}</td>
                           <td className="p-3">{value}</td>
                         </tr>
@@ -274,32 +274,35 @@ const ProductDescription = () => {
               )}
               
             {activeSection === 'customerReviews' && (
-                <div className="flex flex-col md:flex-row gap-8 mt-4 mx-auto md:w-[1200px] w-full">
-                  <div className="flex flex-col items-center w-full md:w-1/3 border p-4 rounded-md bg-[#FFE4DA]">
-                  
-                    <p className="text-4xl font-bold text-[#E94E30]">{product.customerReviews.rating}</p>
-                    <div className="flex gap-1 mt-2">
-                      {[...Array(5)].map((_, i) => (
-                        <FaStar key={i} className={i < Math.floor(product.customerReviews.rating) ? 'text-[#E94E30]' : 'text-gray-300'} />
-                      ))}
-                    </div>
-                    <p className="text-gray-600">({product.customerReviews.total} Reviews)</p>
-                  </div>
-                  <div className="w-full md:w-2/3">
-                    {Object.entries(product.customerReviews.breakdown).reverse().map(([stars, count]) => (
-                      <div key={stars} className="flex items-center gap-2 mb-2">
-                        <p className="w-8 font-semibold">{stars}★</p>
-                        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                          <div
-                            className="bg-[#E94E30] h-4"
-                            style={{ width: `${(count / product.customerReviews.total) * 100}%` }}
-                          ></div>
+                <div className="overflow-x-auto md:w-[1200px] w-full mt-16">
+                    <div className="flex flex-col md:flex-row gap-8 mt-4 mx-auto justify-center md:w-[1200px] w-full">
+                    <div className="flex flex-col items-center w-full md:w-1/6 border p-4 rounded-md bg-[#FFE4DA]">
+                    
+                        <p className="text-4xl font-bold text-[#E94E30]">{product.customerReviews.rating}</p>
+                        <div className="flex gap-1 mt-2">
+                        {[...Array(5)].map((_, i) => (
+                            <FaStar key={i} className={i < Math.floor(product.customerReviews.rating) ? 'text-[#E94E30]' : 'text-gray-300'} />
+                        ))}
                         </div>
-                        <p className="w-8 text-right">{count}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                        <p className="text-gray-600">({product.customerReviews.total} Reviews)</p>
+                    </div>
+                    <div className="w-full md:w-2/3">
+                        {Object.entries(product.customerReviews.breakdown).reverse().map(([stars, count]) => (
+                        <div key={stars} className="flex items-center gap-2 mb-2">
+                            <p className="w-16 font-semibold">{stars} Star</p>
+                            <div className="w-full bg-[#FFF4F0] rounded-full h-4 overflow-hidden">
+                            <div
+                                className="bg-[#E94E30] rounded-full h-4"
+                                style={{ width: `${(count / product.customerReviews.total) * 100}%` }}
+                            ></div>
+                            </div>
+                            {/* <p className="w-8 text-right">{count}</p> */}
+                        </div>
+                        ))}
+                    </div>
+                    </div>
+                <ReviewSection />
+               </div>
               )}
           </div>
 
@@ -307,7 +310,7 @@ const ProductDescription = () => {
 
 
 </div>
-
+<Pagination />
 <ExploreSimilarProduct />
 <YouMightAlsoLike />
 <div className="mt-20">
