@@ -46,7 +46,7 @@ const recentlyViewedItems = [
   },
 ];
 
-const RecentlyViewed = () => {
+const TopPicks = () => {
   return (
     <div className="flex flex-col items-center p-4 top-pick">
       {/* Header Section */}
@@ -91,4 +91,4 @@ const RecentlyViewed = () => {
   );
 };
 
-export default RecentlyViewed;
+export default TopPicks;

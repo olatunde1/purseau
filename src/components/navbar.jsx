@@ -101,7 +101,7 @@ const Navbar = () => {
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link
-                      to="/"
+                      to="/shop?category=shoes"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
                       <img
@@ -115,7 +115,7 @@ const Navbar = () => {
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link
-                      to="/"
+                     to="/shop?category=jewelry"
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
                       <img
@@ -129,7 +129,8 @@ const Navbar = () => {
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link
-                      to="/"
+                      to="/shop?category=accessories"
+
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
                       <img
@@ -143,7 +144,8 @@ const Navbar = () => {
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild className="navigation-menu-link">
                     <Link
-                      to="/"
+                      to="/shop?category=beauty"
+
                       className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                     >
                       <img

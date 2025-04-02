@@ -12,9 +12,6 @@ export default function SpecialOffer() {
   const [timeLeft, setTimeLeft] = useState({ hours: 24, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // Save target time in localStorage
-    localStorage.setItem("targetTime", targetTime);
-    
     // Function to calculate remaining time
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
@@ -33,40 +30,40 @@ export default function SpecialOffer() {
 
     // Update countdown every second
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
+      const newTimeLeft = calculateTimeLeft();
+      setTimeLeft(newTimeLeft);
 
-      // Stop the timer when countdown ends
-      if (targetTime - new Date().getTime() <= 0) {
-        clearInterval(timer);
+      // If the timer reaches 0, reset it for another 24 hours
+      if (newTimeLeft.hours === 0 && newTimeLeft.minutes === 0 && newTimeLeft.seconds === 0) {
+        const newTargetTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+        localStorage.setItem("targetTime", newTargetTime);
+        setTargetTime(newTargetTime);
       }
     }, 1000);
 
     return () => clearInterval(timer);
   }, [targetTime]);
 
-  return <>
-    <div className=" special-offer-page">
-        <div className=" special-offer-count-timer">
-            <h2 className="text-3xl font-bold mb-2">Special Offer</h2>
-            <p className="text-lg mb-6">Save up to 50% off our super <br /> sale</p>
+  return (
+    <div className="special-offer-page">
+      <div className="special-offer-count-timer">
+        <h2 className="text-3xl font-bold mb-2">Special Offer</h2>
+        <p className="text-lg mb-6">Save up to 50% off our super <br /> sale</p>
 
-            <div className="flex  gap-4 ">
-                {["Hours", "Minutes", "Seconds"].map((label, index) => {
-                const value = [timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index];
-                return (
-                    <Button key={label} variant="outline" className="w-20 h-20 flex flex-col items-center justify-center timer">
-                    <span className="text-2xl font-bold">{String(value).padStart(2, "0")}</span>
-                    <span className="text-sm">{label}</span>
-                    </Button>
-                );
-                })}
-            </div>
-            <Button className="get-offer" >Get Offer <SlArrowRight /></Button>
+        <div className="flex gap-4">
+          {["Hours", "Minutes", "Seconds"].map((label, index) => {
+            const value = [timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index];
+            return (
+              <Button key={label} variant="outline" className="w-20 h-20 flex flex-col items-center justify-center timer">
+                <span className="text-2xl font-bold">{String(value).padStart(2, "0")}</span>
+                <span className="text-sm">{label}</span>
+              </Button>
+            );
+          })}
         </div>
-        <img src={specialPicture} alt="special offer" className="specialPicture" />
-    
+        <Button className="get-offer">Get Offer <SlArrowRight /></Button>
+      </div>
+      <img src={specialPicture} alt="special offer" className="specialPicture" />
     </div>
-   
-  </>
-    
+  );
 }

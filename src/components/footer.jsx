@@ -10,28 +10,17 @@ import Logo from '../assets/images/logo.png';
 import { SlSocialInstagram } from "react-icons/sl";
 import { FaSquareTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 // List of countries with currency symbols and flag images from FlagCDN
 const countries = [
   { name: "Nigeria", currency: "₦", code: "ng" },
-  { name: "United States", currency: "$", code: "us" },
-  { name: "United Kingdom", currency: "£", code: "gb" },
-  { name: "Canada", currency: "CA$", code: "ca" },
-  { name: "Germany", currency: "€", code: "de" },
-  { name: "Japan", currency: "¥", code: "jp" },
-  { name: "Australia", currency: "A$", code: "au" },
-  { name: "India", currency: "₹", code: "in" },
-  { name: "China", currency: "¥", code: "cn" },
-  { name: "Brazil", currency: "R$", code: "br" },
-  { name: "France", currency: "€", code: "fr" },
-  { name: "Italy", currency: "€", code: "it" },
   { name: "South Africa", currency: "R", code: "za" },
-  { name: "Mexico", currency: "$", code: "mx" },
-  { name: "Saudi Arabia", currency: "SAR", code: "sa" },
-  { name: "Russia", currency: "₽", code: "ru" },
-  { name: "South Korea", currency: "₩", code: "kr" },
-  { name: "United Arab Emirates", currency: "AED", code: "ae" },
-  { name: "Vietnam", currency: "₫", code: "vn" },
+  { name: "Ivory Coast", currency: "CFA", code: "ci" },
+  { name: "Cameroon", currency: "CFA", code: "cm" },
+  { name: "Democratic Republic of the Congo", currency: "CDF", code: "cd" },
+  { name: "Kenya", currency: "KSh", code: "ke" },
+  { name: "Ghana", currency: "₵", code: "gh" },
 ];
 
 export function Footer() {
@@ -68,12 +57,12 @@ export function Footer() {
           <div className="footer-links-details">
             <h3 className="text-lg font-semibold mb-4">Shop</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white">Clothes</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Bags</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Shoes</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Jewelry</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Accessories</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Beauty</a></li>
+              <li><a href="/shop?category=cloth" className="text-gray-400 hover:text-white">Clothes</a></li>
+              <li><a href="/shop?category=bags" className="text-gray-400 hover:text-white">Bags</a></li>
+              <li><a href="/shop?category=shoes" className="text-gray-400 hover:text-white">Shoes</a></li>
+              <li><a href="/shop?category=jewelry" className="text-gray-400 hover:text-white">Jewelry</a></li>
+              <li><a href="/shop?category=accessories" className="text-gray-400 hover:text-white">Accessories</a></li>
+              <li><a href="/shop?category=beauty" className="text-gray-400 hover:text-white">Beauty</a></li>
             </ul>
           </div>
 
@@ -81,7 +70,7 @@ export function Footer() {
           <div className="footer-links-details">
             <h3 className="text-lg font-semibold mb-4">Help</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white">Contact Us</a></li>
+              <li><a href="/Contact" className="text-gray-400 hover:text-white">Contact Us</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white">FAQ’s</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white">Order Tracking</a></li>
               <li><a href="#" className="text-gray-400 hover:text-white">Return Policy</a></li>
@@ -120,7 +109,14 @@ export function Footer() {
       <div className="copyright">
         <div className="copyright-text">
             <p>© 2025 Copyright, Inc. All rights reserve</p>
-            <p className="terms-condition">Terms and Conditions Privacy Policy</p>
+           
+              <div className="flex terms-condition gap-8">
+              <Link to="/terms"> <p >Terms and Conditions</p></Link> 
+              <Link to="/policy"> <p>Privacy Policy</p> </Link> 
+              
+              </div>
+            
+           
         </div>
         <div className="socials">
         <SlSocialInstagram className="social-icon" />
