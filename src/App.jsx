@@ -17,8 +17,6 @@ import CreateNewPassword from "./components/Auth/CreateNewPassword";
 import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
 import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
 import SearchResults from "./pages/SearchResults";
-import UserAccount from "./components/Auth/UserAccount";
-import EditUserAddress from "./components/Auth/EditUserAddress";
 import MyOrders from "./components/Auth/MyOrders";
 import BlogPage from "./pages/BlogPage";
 import TermsAndConditions from "./pages/Terms";
@@ -39,8 +37,8 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/BlogDetails" element={<BlogDetails />} />
         <Route path="/search-result" element={<SearchResults/>} />
-        <Route path="/user-account" element={<UserAccount/>} />
-        <Route path="/edit-user-address" element={<EditUserAddress/>} />
+        <Route path="/user-account" element={<AccountOverview/>} />
+        <Route path="/edit-user-address" element={<EditAccount/>} />
         <Route path="/my-order" element={<MyOrders/>} />
         <Route path="/terms" element={<TermsAndConditions/>} />
         <Route path="/policy" element={<Policy/>} />
