@@ -6,7 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
-import Home from './pages/home'
+import Home from "./pages/home";
 import VerifyEmail from "./components/Auth/VerifyEmail";
 import CreatePassword from "./components/Auth/CreatePassword";
 import PersonalDetails from "./components/Auth/PersonalDetails";
@@ -25,6 +25,8 @@ import TermsAndConditions from "./pages/Terms";
 import Policy from "./pages/Policy";
 import ProductDescription from "./pages/ProductDescription";
 
+import AccountOverview from "./components/userAccount/accounts/AccountOverview";
+import EditAccount from "./pages/userAccont/EditAccount";
 
 function App() {
   return (
@@ -34,7 +36,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/blog" element={<BlogPage/>}/>
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/BlogDetails" element={<BlogDetails />} />
         <Route path="/search-result" element={<SearchResults/>} />
         <Route path="/user-account" element={<UserAccount/>} />

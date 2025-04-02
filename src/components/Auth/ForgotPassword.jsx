@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import LoginLogo from '../../assets/images/login-logo.png';
+import LoginLogo from "../../assets/images/login-logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { GrRefresh } from "react-icons/gr";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import {
+  useResendPasswordOtp,
+  useVerifyForgotPassword,
+} from "@/hooks/api/mutation/auth/useLogin";
+import { toast } from "sonner";
 
 export default function ForgotPassword() {
   const [otp, setOtp] = useState(["", "", "", ""]); // Array to store each digit of the OTP
@@ -13,6 +18,21 @@ export default function ForgotPassword() {
   const [timer, setTimer] = useState(60); // Countdown timer
   const inputRefs = useRef([]); // Refs for each input field
   const navigate = useNavigate(); // Hook for navigation
+
+  const { state } = useLocation();
+  const emailOrPhone = state?.emailOrPhone || "";
+
+  const contactMethod = emailOrPhone.includes("@") ? "email" : "phone";
+  useEffect(() => {
+    console.log(emailOrPhone);
+  }, []);
+
+  const { mutate, isPending } = useVerifyForgotPassword();
+  const { mutate: ResendOtp, isPending: ResendPending } =
+    useResendPasswordOtp();
+
+  // const emailOrPhone = state?.emailOrPhone || "";
+  // console.log(emailOrPhone, "emailOrPhone");
 
   // Handle OTP input change
   const handleOtpChange = (index, value) => {
@@ -37,15 +57,41 @@ export default function ForgotPassword() {
   // Verify the OTP
   const verifyOtp = () => {
     const enteredOtp = otp.join(""); // Combine the OTP digits into a single string
-    if (enteredOtp === generatedOtp) {
-      setMessage("Email verified successfully!");
-      // Redirect to Create Password page after 2 seconds
-      setTimeout(() => {
-        navigate("/CreateNewPassword"); // Navigate to Create Password page
-      }, 2000);
-    } else {
-      setMessage("Invalid OTP. Please try again.");
+
+    try {
+      mutate(
+        { email: emailOrPhone, plainOtp: enteredOtp },
+        {
+          onSuccess: (response) => {
+            console.log(response, "response");
+            toast.success(response?.data?.message || "otp verified");
+            navigate("/CreateNewPassword", {
+              state: { emailOrPhone, plainOtp }
+            });
+          },
+          onError: (error) => {
+            console.error("Error:", error);
+            toast.error(
+              error?.response?.data?.message ||
+                "Something went wrong. Please try again."
+            );
+          },
+        }
+      );
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      toast.error("An unexpected error occurred. Please try again.");
     }
+
+    // if (enteredOtp === generatedOtp) {
+    //   setMessage("Email verified successfully!");
+    //   // Redirect to Create Password page after 2 seconds
+    //   setTimeout(() => {
+    //     navigate("/CreateNewPassword"); // Navigate to Create Password page
+    //   }, 2000);
+    // } else {
+    //   setMessage("Invalid OTP. Please try again.");
+    // }
   };
 
   // Countdown timer logic
@@ -60,9 +106,22 @@ export default function ForgotPassword() {
 
   // Resend OTP handler
   const handleResendOtp = () => {
-    setTimer(60); // Reset timer
+    ResendOtp(
+      { email: emailOrPhone },
+      {
+        onSuccess: (response) => {
+          setTimer(60);
+          toast.success(response?.data?.message || "otp resent");
+        },
+        onError: (error) => {
+          toast.error(
+            error?.response?.data?.message ||
+              "Something went wrong. Please try again."
+          );
+        },
+      }
+    );
     setMessage("A new OTP has been sent to your email.");
-    // Add logic to resend OTP (e.g., API call)
   };
 
   return (
@@ -80,7 +139,11 @@ export default function ForgotPassword() {
 
         {/* Subtitle */}
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-          We’ve sent a verification code to your email <span className="text-gray-900"> purseau@gmail.com </span>  <br /> Please input the code below.
+          We’ve sent a verification code to your {contactMethod}
+          <span className="text-gray-900">
+            {" "}
+            {emailOrPhone ?? ""}
+          </span> <br /> Please input the code below.
         </p>
 
         {/* OTP Input Fields */}
@@ -111,7 +174,7 @@ export default function ForgotPassword() {
           onClick={verifyOtp}
           className="verify-otp-button w-full max-w-md transition-all duration-200 py-8"
         >
-          Submit
+          {isPending ? "Please wait..." : "Submit"}
         </Button>
 
         {/* Display messages */}
@@ -123,7 +186,8 @@ export default function ForgotPassword() {
 
         {/* Request New Code */}
         <p className="request-new-code text-gray-600 text-center mb-2 px-2 sm:px-0 pb-[30px] pt-[16px]">
-          Didn’t receive any code? Request a new code in <span className="text-[#d84327]">{timer} seconds</span> 
+          Didn’t receive any code? Request a new code in{" "}
+          <span className="text-[#d84327]">{timer} seconds</span>
         </p>
 
         {/* Resend Email */}
