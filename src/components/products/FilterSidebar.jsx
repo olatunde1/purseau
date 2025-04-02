@@ -81,38 +81,6 @@ const FilterSidebar = () => {
       </FilterSection>
 
       <FilterSection
-        title="Color"
-        isOpen={isColorOpen}
-        toggleOpen={() => setIsColorOpen(!isColorOpen)}
-      >
-        <CheckboxFilter
-          items={COLORS}
-          selectedItems={colors}
-          onChange={toggleColor}
-        />
-      </FilterSection>
-
-      <FilterSection
-        title="Size"
-        isOpen={isSizeOpen}
-        toggleOpen={() => setIsSizeOpen(!isSizeOpen)}
-      >
-        <CheckboxFilter
-          items={SIZES}
-          selectedItems={sizes}
-          onChange={toggleSize}
-        />
-      </FilterSection>
-
-      <FilterSection
-        title="Rating"
-        isOpen={isRatingOpen}
-        toggleOpen={() => setIsRatingOpen(!isRatingOpen)}
-      >
-        <RatingFilter selectedRating={rating} onChange={setRating} />
-      </FilterSection>
-
-      <FilterSection
         title="Brand"
         isOpen={isBrandOpen}
         toggleOpen={() => setIsBrandOpen(!isBrandOpen)}
@@ -133,6 +101,7 @@ const FilterSidebar = () => {
         />
       </FilterSection>
 
+      
       <FilterSection
         title="Price Range"
         isOpen={isPriceRangeOpen}
@@ -151,6 +120,43 @@ const FilterSidebar = () => {
           <p className="text-gray-600">Up to ₦{tempMaxPrice}</p>
         </div>
       </FilterSection>
+
+      <FilterSection
+        title="Size"
+        isOpen={isSizeOpen}
+        toggleOpen={() => setIsSizeOpen(!isSizeOpen)}
+      >
+        <CheckboxFilter
+          items={SIZES}
+          selectedItems={sizes}
+          onChange={toggleSize}
+        />
+      </FilterSection>
+
+      <FilterSection
+        title="Color"
+        isOpen={isColorOpen}
+        toggleOpen={() => setIsColorOpen(!isColorOpen)}
+      >
+        <CheckboxFilter
+          items={COLORS}
+          selectedItems={colors}
+          onChange={toggleColor}
+        />
+      </FilterSection>
+
+
+      <FilterSection
+        title="Rating"
+        isOpen={isRatingOpen}
+        toggleOpen={() => setIsRatingOpen(!isRatingOpen)}
+      >
+        <RatingFilter selectedRating={rating} onChange={setRating} />
+      </FilterSection>
+
+
+
+   
     </div>
   );
 };

@@ -4,6 +4,9 @@ export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+		fontFamily: {
+			custom: ["Lato"],
+		  },
   		animation: {
   			marquee: 'marquee 20s linear infinite',
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -83,6 +86,7 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			}
   		}
+		
   	}
   },
   plugins: [require("tailwindcss-animate")],

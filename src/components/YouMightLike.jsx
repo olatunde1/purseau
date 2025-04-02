@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, Heart } from "lucide-react";
-import Recent1 from '../assets/images/recent1.png';
-import Recent2 from '../assets/images/recent2.png';
-import Recent3 from '../assets/images/recent3.png';
-import Recent4 from '../assets/images/recent4.png';
+import { Star } from "lucide-react";
+import { Heart } from "lucide-react";
+import Recent1 from '../assets/images/recent1.png'
+import Recent2 from '../assets/images/recent2.png'
+import Recent3 from '../assets/images/recent3.png'
+import Recent4 from '../assets/images/recent4.png'
 import { MdArrowForwardIos } from "react-icons/md";
 
-const recentlyViewedItems = [
+const ExploreSimilarProductsItems = [
   {
     id: 1,
     image: Recent1,
@@ -47,7 +48,7 @@ const recentlyViewedItems = [
   },
 ];
 
-const RecentlyViewed = () => {
+const ExploreSimilarProducts = () => {
   const [favorites, setFavorites] = useState(new Set());
 
   const toggleFavorite = (id) => {
@@ -63,44 +64,43 @@ const RecentlyViewed = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-16 recently-view ">
+    <div className="flex flex-col items-center p-4 mt-20 ">
       {/* Header Section */}
       <div className="w-[1200px] flex justify-between items-center mb-2 ">
-        <h2 className="text-lg font-semibold">Recently Viewed</h2>
+        <h2 className="text-lg font-semibold">Explore Similar Products</h2>
         <Button variant="link" className="text-[#E94E30] flex items-center">
           See All <MdArrowForwardIos />
         </Button>
       </div>
 
       {/* Cards Section - Responsive Grid */}
-      <div className="flex gap-6 flex-wrap justify-center w-full recently-viewed-card ">
-        {recentlyViewedItems.map((item) => (
-          <Card key={item.id} className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden all-product-card relative">
+      <div className="flex gap-6 flex-wrap justify-center w-full">
+        {ExploreSimilarProductsItems.map((item) => (
+          <Card key={item.id} className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden relative">
             <CardHeader>
-              <img src={item.image} alt={item.title} className="object-cover rounded-t-lg all-product-image" />
+              <img src={item.image} alt={item.title} className="object-cover rounded-t-lg md:w-[100%] w-full" />
               <button
                 onClick={() => toggleFavorite(item.id)}
                 className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
               >
                 <Heart
-                  className={`h-5 w-5 ${favorites.has(item.id) ? "fill-red-500 stroke-red-500" : "stroke-gray-400"}`}
+                  className="h-5 w-5"
+                  style={{
+                    fill: favorites.has(item.id) ? "red" : "transparent",
+                    stroke: favorites.has(item.id) ? "red" : "gray",
+                  }}
                 />
               </button>
             </CardHeader>
             <CardContent className="p-4">
               {/* Title & Rating in a single row */}
-              <CardTitle className="flex justify-between items-center">
+              <div className="flex justify-between items-center">
                 <span>{item.title}</span>
                 <div className="flex items-center space-x-1">
-                  {[...Array(5)].map((_, index) => (
-                    <Star
-                      key={index}
-                      className={`h-4 w-4 ${index < item.rating ? "text-yellow-500" : "text-gray-300"}`}
-                      fill={index < item.rating ? "currentColor" : "none"}
-                    />
-                  ))}
+                  <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+                  <span className="text-sm font-medium text-gray-600">{item.rating.toFixed(1)}</span>
                 </div>
-              </CardTitle>
+              </div>
               <CardDescription className="mt-2">{item.description}</CardDescription>
             </CardContent>
             <CardFooter className="p-4 flex justify-between items-center">
@@ -114,4 +114,4 @@ const RecentlyViewed = () => {
   );
 };
 
-export default RecentlyViewed;
+export default ExploreSimilarProducts;

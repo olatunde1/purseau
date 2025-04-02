@@ -1,4 +1,4 @@
-/* Existing CSS (unchanged) */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap');
 
 .container {
   color: #000; /* Text color */
@@ -14,6 +14,10 @@
   margin: 0 auto; /* Center the container horizontally */
   box-sizing: border-box; /* Include padding in width calculations */
 }
+
+/* body{
+  background-color: #e4e4e4;
+} */
 
 .header-wrap{
   background-color: #ffffff;

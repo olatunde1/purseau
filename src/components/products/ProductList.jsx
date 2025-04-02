@@ -12,14 +12,14 @@ const ProductList = ({ products, totalCount, sortBy, setSortBy }) => {
   if (!products || products.length === 0) {
     return (
       <div className="w-3/4">
-        <h1 className="font-bold mb-4">Our Products</h1>
+        <h1 className="font-bold mb-4 ">Our Products</h1>
         <p className="text-gray-600">No products available.</p>
       </div>
     );
   }
   return (
     <div className="w-full">
-      <h1 className="font-bold mb-4">Our Products</h1>
+      <h1 className="font-bold mb-4 ">Our Products</h1>
       <div className="flex justify-between items-center mb-6">
         <p className="text-gray-600">
           Showing {products.length} of {totalCount} results

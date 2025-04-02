@@ -37,7 +37,6 @@ const Header = () => {
             <Link to="/search-result">
               <Button className="searchButton">Search</Button>
             </Link>
-
           </div>
 
           {/* Login and Icons Section */}
@@ -48,7 +47,7 @@ const Header = () => {
               <img src={Stroke} alt="" className="stroke2" />
               <TiUserOutline className="user" />
 
-              <Popover onOpenChange={setIsPopoverOpen}>
+              <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger className='flex items-center gap-1'>
                   <p>Account</p>
                   <IoIosArrowDown
@@ -57,22 +56,22 @@ const Header = () => {
                 </PopoverTrigger>
                 <PopoverContent className="w-48 p-4 text-left">
                   <div className="flex flex-col space-y-2">
-                    <Link to="/user-account">
+                    <Link to="/user-account" onClick={() => setIsPopoverOpen(false)}>
                       <Button variant="ghost" className="w-full justify-start">
                         <TiUserOutline className="mr-2" /> My Account
                       </Button>
                     </Link>
-                    <Button variant="ghost" className="w-full justify-start">
-                    <TbBorderAll className="mr-2" /> Orders
+                    <Button variant="ghost" className="w-full justify-start" onClick={() => setIsPopoverOpen(false)}>
+                      <TbBorderAll className="mr-2" /> Orders
                     </Button>
-                    <Button variant="ghost" className="w-full justify-start">
-                       <BsHeart className="mr-2" />  Wishlist
+                    <Button variant="ghost" className="w-full justify-start" onClick={() => setIsPopoverOpen(false)}>
+                      <BsHeart className="mr-2" /> Wishlist
                     </Button>
-                    
+
                     {/* Breakline before Login button */}
                     <hr className="my-2" />
-                    
-                    <Link to="/SignUp">
+
+                    <Link to="/SignUp" onClick={() => setIsPopoverOpen(false)}>
                       <Button className="w-full mt-4 bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white">Login</Button>
                     </Link>
                   </div>

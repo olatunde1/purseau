@@ -8,7 +8,7 @@ import Brush from '../assets/images/faceBrushCategory.png';
 
 const ExploreCategories = () => {
   return (
-    <div className="explore-wrapper">
+    <div className="explore-wrapper border-r-gray-900">
       <div className="explore-by-categories">
         <h1 className="explore-text">Explore By Categories</h1>
         <p className="browse-favorites">Browse your favorites by categories</p>
@@ -17,32 +17,32 @@ const ExploreCategories = () => {
         {/* Image with overlay text */}
         <div className="image-container">
           <img src={Cloth} alt="Cloth" />
-          <div className="overlay-text">Clothes</div>
+          <div className="overlay-text-expolore">Clothes</div>
         </div>
 
         <div className="image-container">
           <img src={Bags} alt="Bags" />
-          <div className="overlay-text">Bags</div>
+          <div className="overlay-text-expolore">Bags</div>
         </div>
 
         <div className="image-container">
           <img src={Shoes} alt="Shoes" />
-          <div className="overlay-text">Shoes</div>
+          <div className="overlay-text-expolore">Shoes</div>
         </div>
 
         <div className="image-container">
           <img src={Jewelry} alt="Jewelry" />
-          <div className="overlay-text">Jewelries</div>
+          <div className="overlay-text-expolore">Jewelries</div>
         </div>
 
         <div className="image-container">
           <img src={Hat} alt="Hat" />
-          <div className="overlay-text">Accessories</div>
+          <div className="overlay-text-expolore">Accessories</div>
         </div>
 
         <div className="image-container">
           <img src={Brush} alt="Brush" />
-          <div className="overlay-text">Beauty</div>
+          <div className="overlay-text-expolore">Beauty</div>
         </div>
       </div>
     </div>

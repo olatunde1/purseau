@@ -28,7 +28,7 @@ const CardCarousel = () => {
         <p>In a laoreet purus. Integer turpis quam, laoreet id orci nec, <br />ultrices lacinia nunc. Aliquam erat vo</p>
     </div>
 
-    <div className=" max-w-4xl mx-auto py-4 ">
+    <div className=" max-w-4xl mx-auto py-20 ">
       <Carousel className="relative news-blog-card ">
         <CarouselContent className=" gap-4">
           {items.map((item) => (
@@ -48,7 +48,7 @@ const CardCarousel = () => {
         </CarouselContent>
 
         {/* Navigation Buttons (Bottom Right) */}
-        <div className="absolute bottom-0 right-0 flex space-x-2 p-4 carouselDirection ">
+        <div className="absolute bottom-0 right-0 mt-20 flex space-x-2 p-4 carouselDirection ">
           <CarouselPrevious />
           <CarouselNext />
         </div>

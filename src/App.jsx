@@ -17,10 +17,12 @@ import CreateNewPassword from "./components/Auth/CreateNewPassword";
 import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
 import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
 import SearchResults from "./pages/SearchResults";
-import UserAccount from "./components/Auth/UserAccount";
-import EditUserAddress from "./components/Auth/EditUserAddress";
 import MyOrders from "./components/Auth/MyOrders";
 import BlogPage from "./pages/BlogPage";
+import TermsAndConditions from "./pages/Terms";
+import Policy from "./pages/Policy";
+import ProductDescription from "./pages/ProductDescription";
+
 import AccountOverview from "./components/userAccount/accounts/AccountOverview";
 import EditAccount from "./pages/userAccont/EditAccount";
 
@@ -38,7 +40,11 @@ function App() {
         <Route path="/user-account" element={<AccountOverview />} />
         <Route path="/edit-user-address" element={<EditAccount />} />
         <Route path="/my-order" element={<MyOrders />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/policy" element={<Policy />} />
+        <Route path="/product-description" element={<ProductDescription />} />
       </Route>
+
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/VerifyEmail" element={<VerifyEmail />} />
       <Route path="/CreatePassword" element={<CreatePassword />} />
@@ -48,7 +54,10 @@ function App() {
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/CreateNewPassword" element={<CreateNewPassword />} />
       {/* <Route path="/PasswordResetsuccessful" element={<PasswordResetSuccessful/>} /> */}
-      <Route path="/AccountCreatedSuccessful" element={<AccountCreatedSuccessful/>} />
+      <Route
+        path="/AccountCreatedSuccessful"
+        element={<AccountCreatedSuccessful />}
+      />
     </Routes>
   );
 }
