@@ -49,7 +49,7 @@ export default function CreatePassword() {
     }
 
     const dataBody = {
-      email: emailOrPhone,
+     emailOrPhone,
       password: confirmPassword,
     };
 
@@ -66,7 +66,6 @@ export default function CreatePassword() {
           error?.response?.data?.message ||
             "Something went wrong. Please try again."
         );
-        navigate("/PersonalDetails", { state: { emailOrPhone } });
       },
     });
     // If validation passes, clear errors and proceed

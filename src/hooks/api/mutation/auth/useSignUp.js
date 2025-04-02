@@ -8,6 +8,9 @@ const signUp = (data) => {
 const verifyEmailOrPhone = (data) => {
   return axiosInstance.post(`/user/checker/verification`, data);
 };
+const verifyAccountCreation = (data) => {
+  return axiosInstance.post(`/user/verify`, data);
+};
 
 const resendVerificationOtp = (data) => {
   return axiosInstance.post(`/user/resend/otp`, data);
@@ -50,6 +53,11 @@ const useCreatePersonalDetails = () => {
     mutationFn: (data) => createPersonalDetails(data),
   });
 };
+const useVerifyAccountCreation = () => {
+  return useMutation({
+    mutationFn: (data) => verifyAccountCreation(data),
+  });
+};
 
 export {
   useSignUp,
@@ -57,4 +65,5 @@ export {
   useResendVerificationOtp,
   useCreateUser,
   useCreatePersonalDetails,
+  useVerifyAccountCreation,
 };

@@ -1,15 +1,14 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import LoginLogo from '../../assets/images/login-logo.png';
+import LoginLogo from "../../assets/images/login-logo.png";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Reset from '../../assets/images/reset-removebg-preview.png';
+import Reset from "../../assets/images/reset-removebg-preview.png";
 
-export default function PasswordResetSuccessful() {
+export default function PasswordResetSuccessful({ emailOrPhone }) {
   const navigate = useNavigate(); // Hook for navigation
 
-  // Navigate to the Login page
   const handleLogin = () => {
-    navigate("/Login");
+    navigate("/Login", { state: { emailOrPhone } });
   };
 
   return (
@@ -27,7 +26,8 @@ export default function PasswordResetSuccessful() {
 
         {/* Subtitle */}
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-          Your password has been reset successfully. Kindly go to the login page <br /> to gain access to your account.
+          Your password has been reset successfully. Kindly go to the login page{" "}
+          <br /> to gain access to your account.
         </p>
 
         {/* Reset Image */}

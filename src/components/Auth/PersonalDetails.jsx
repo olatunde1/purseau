@@ -10,6 +10,7 @@ import { FiCalendar } from "react-icons/fi";
 import { useCreatePersonalDetails } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
 import AccountCreatedSuccessful from "./AccountCreatedSuccessful";
+import { validateAndFormatInput } from "@/utils";
 
 export default function PersonalDetails() {
   const [firstName, setFirstName] = useState("");
@@ -40,12 +41,20 @@ export default function PersonalDetails() {
       return;
     }
 
+    const result = validateAndFormatInput(phoneNumber);
+    if (!result.isValid) {
+      setError("Please enter a valid phone number");
+      return;
+    }
+
+    const formattedPhoneNumber = result.formatted;
+
     const dataBody = {
-      email: emailOrPhone,
+      emailOrPhone,
       // email: "abayomiogunnusi@gmail.com",
       firstName,
       lastName,
-      phoneNumber,
+      phoneNumber: formattedPhoneNumber,
       gender,
       dob,
     };
@@ -53,8 +62,8 @@ export default function PersonalDetails() {
     createPersonalDetails(dataBody, {
       onSuccess: (response) => {
         toast.success(response?.data?.message || "user persona done");
-        setSuccess(true);
-        navigate("/Login", { state: { emailOrPhone } });
+        // setSuccess(true);
+        navigate("/VerifyEmail", { state: { phoneNumber, accountCreation: true } });
       },
       onError: (error) => {
         console.error("Error:", error);
@@ -96,114 +105,111 @@ export default function PersonalDetails() {
 
   return (
     <>
-      {success ? (
-        <AccountCreatedSuccessful />
-      ) : (
-        <div className="personal-details-wrapper pt-2 pb-8">
-          <div className="personal-details-container flex flex-col items-center justify-center bg-gray-50 px-4">
-            <div className="signup-logo mb-6">
-              <img src={LoginLogo} alt="Purseau Logo" className="h-16 w-16" />
+      {/* {success ? (
+        <AccountCreatedSuccessful emailOrPhone ={emailOrPhone}/>
+      ) : ( */}
+      <div className="personal-details-wrapper pt-2 pb-8">
+        <div className="personal-details-container flex flex-col items-center justify-center bg-gray-50 px-4">
+          <div className="signup-logo mb-6">
+            <img src={LoginLogo} alt="Purseau Logo" className="h-16 w-16" />
+          </div>
+
+          <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">
+            Personal Details
+          </h1>
+
+          <p className="text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
+            Kindly fill the form below with your correct details
+          </p>
+
+          <div className="w-full max-w-md space-y-5 rounded-lg p-6 sm:p-8">
+            <div>
+              <label htmlFor="firstName" className="text-gray-900 font-medium">
+                First Name *
+              </label>
+              <Input
+                id="firstName"
+                type="text"
+                placeholder="Enter your first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full mt-1 focus:ring mb-4 bg-gray-200"
+                required
+              />
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900 mb-2 text-center">
-              Personal Details
-            </h1>
+            <div>
+              <label htmlFor="lastName" className="text-gray-900 font-medium">
+                Last Name *
+              </label>
+              <Input
+                id="lastName"
+                type="text"
+                placeholder="Enter your last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full mt-1 focus:ring mb-4 bg-gray-200"
+                required
+              />
+            </div>
 
-            <p className="text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-              Kindly fill the form below with your correct details
-            </p>
+            <div>
+              <label className="text-gray-900 font-medium">
+                Phone Number *
+              </label>
+              <CountrySelector
+                phoneNumber={phoneNumber}
+                setPhoneNumber={setPhoneNumber}
+                country={country}
+                setCountry={setCountry}
+              />
+            </div>
 
-            <div className="w-full max-w-md space-y-5 rounded-lg p-6 sm:p-8">
-              <div>
-                <label
-                  htmlFor="firstName"
-                  className="text-gray-900 font-medium"
-                >
-                  First Name *
-                </label>
-                <Input
-                  id="firstName"
-                  type="text"
-                  placeholder="Enter your first name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="w-full mt-1 focus:ring mb-4 bg-gray-200"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="lastName" className="text-gray-900 font-medium">
-                  Last Name *
-                </label>
-                <Input
-                  id="lastName"
-                  type="text"
-                  placeholder="Enter your last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="w-full mt-1 focus:ring mb-4 bg-gray-200"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="text-gray-900 font-medium">
-                  Phone Number *
-                </label>
-                <CountrySelector
-                  phoneNumber={phoneNumber}
-                  setPhoneNumber={setPhoneNumber}
-                  country={country}
-                  setCountry={setCountry}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="gender" className="text-gray-700 font-medium">
-                  Gender *
-                </label>
-                <select
-                  id="gender"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  className="w-full mt-1 focus:ring mb-4 bg-gray-200 p-2 border border-gray-300 rounded-lg"
-                  required
-                >
-                  <option value="" disabled>
-                    Select your gender
-                  </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="dob" className="text-gray-700 font-medium">
-                  Date of Birth *
-                </label>
-                <div className="relative">
-                  <DatePicker
-                    selected={dob}
-                    onChange={(date) => setDob(date)}
-                    dateFormat="dd/MM/yyyy"
-                    placeholderText="dd/mm/yy"
-                    customInput={<CustomDateInput />}
-                    required
-                  />
-                </div>
-              </div>
-
-              <Button
-                onClick={handleSubmit}
-                className="w-full transition-all duration-200"
+            <div>
+              <label htmlFor="gender" className="text-gray-700 font-medium">
+                Gender *
+              </label>
+              <select
+                id="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className="w-full mt-1 focus:ring mb-4 bg-gray-200 p-2 border border-gray-300 rounded-lg"
+                required
               >
-                {isPending ? "please wait..." : "Continue"}
-              </Button>
+                <option value="" disabled>
+                  Select your gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
             </div>
+
+            <div>
+              <label htmlFor="dob" className="text-gray-700 font-medium">
+                Date of Birth *
+              </label>
+              <div className="relative">
+                <DatePicker
+                  selected={dob}
+                  onChange={(date) => setDob(date)}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText="dd/mm/yy"
+                  customInput={<CustomDateInput />}
+                  required
+                />
+              </div>
+            </div>
+
+            <Button
+              onClick={handleSubmit}
+              className="w-full transition-all duration-200"
+            >
+              {isPending ? "please wait..." : "Continue"}
+            </Button>
           </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   );
 }

@@ -15,15 +15,32 @@ const ProductCard = ({ product }) => {
   return (
     <Card className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden">
       <CardHeader>
-        <img
-          src={product?.images[0]?.url || sampleimage}
-          alt={product?.name}
-          className="object-cover rounded-t-lg"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = sampleimage;
-          }}
-        />
+        <div className="h-[280px] w-full relative">
+          <img
+            src={product?.images[0]?.url || sampleimage}
+            alt={product?.name}
+            className=" absolute inset-0 object-contain w-full h-full rounded-t-lg"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = sampleimage;
+            }}
+          />
+          {/* <svg
+            width="19"
+            height="19"
+            viewBox="0 0 19 19"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.0803 15.8448C9.83062 15.9329 9.41938 15.9329 9.16969 15.8448C7.04 15.1177 2.28125 12.0848 2.28125 6.94415C2.28125 4.67493 4.10984 2.83899 6.36437 2.83899C7.70094 2.83899 8.88328 3.48524 9.625 4.48399C10.3667 3.48524 11.5564 2.83899 12.8856 2.83899C15.1402 2.83899 16.9688 4.67493 16.9688 6.94415C16.9688 12.0848 12.21 15.1177 10.0803 15.8448Z"
+              stroke="#E94E30"
+              stroke-width="1.10156"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg> */}
+        </div>
       </CardHeader>
       <CardContent className="p-4">
         <CardTitle className="flex justify-between items-center">

@@ -1,15 +1,19 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import LoginLogo from '../../assets/images/login-logo.png';
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import Reset from '../../assets/images/reset-removebg-preview.png';
+import LoginLogo from "../../assets/images/login-logo.png";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import Reset from "../../assets/images/reset-removebg-preview.png";
 
 export default function AccountCreatedSuccessful() {
   const navigate = useNavigate(); // Hook for navigation
 
+  const { state } = useLocation();
+  
+  const emailOrPhone = state?.emailOrPhone || "";
   // Navigate to the Login page
   const handleLogin = () => {
-    navigate("/");
+    // navigate("/");
+    navigate("/Login", { state: { emailOrPhone } });
   };
 
   return (
@@ -22,12 +26,13 @@ export default function AccountCreatedSuccessful() {
 
         {/* Title */}
         <h1 className="password-reset-title text-2xl font-bold text-gray-900 mb-2 text-center">
-        Account created Successfully
+          Account created Successfully
         </h1>
 
         {/* Subtitle */}
         <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-        Your account has been created successfully. Kindly press the <br /> button bellow to continue
+          Your account has been created successfully. Kindly press the <br />{" "}
+          button bellow to continue
         </p>
 
         {/* Reset Image */}

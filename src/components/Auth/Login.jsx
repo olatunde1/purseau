@@ -41,10 +41,10 @@ export default function Login() {
   const { state } = useLocation();
   const emailOrPhone = state?.emailOrPhone || "";
 
-  // console.log(emailOrPhone, "emailOrPhone");
+  console.log(emailOrPhone, "emailOrPhone");
 
   React.useEffect(() => {
-    if (!state) {
+    if (!state || !emailOrPhone) {
       navigate("/SignUp");
     }
   }, [state, navigate]);
@@ -222,7 +222,7 @@ export default function Login() {
         <p className="text-sm text-gray-500 text-center pt-8">
           <p
             onClick={ForgotPasswordSubmit}
-            className="text-[#E94E30] hover:underline font-[Lato] text-[16px] text-500"
+            className="text-[#E94E30] hover:underline font-[Lato] text-[16px] text-500 cursor-pointer"
           >
             {forgotPending ? "loading..." : "Forgot your Password?"}
           </p>
