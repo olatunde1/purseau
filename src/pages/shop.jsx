@@ -55,7 +55,7 @@ const shop = () => {
     <>
       <SubMenu category={categoryName} />
       <Explore />
-      <ProductSection ProductData={ProductData} />
+      <ProductSection ProductData={ProductData?.items} />
       <ProductsPage />
       <Pagination />
       <RecentlyViewed />
