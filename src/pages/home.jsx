@@ -55,7 +55,7 @@ const Home = () => {
       <div className="container2">
         <h1 className="unleash">Unleash Your Feminine <br /> Style with Purseau.</h1>
         <p className="discover">Discover trendy fashion items and accessories, exclusively designed <br /> for women.</p>
-        <Button className="explore">
+        <Button className="explore transform transition-transform duration-300 hover:scale-105 ">
           Explore <SlArrowRight />
         </Button>
       </div>
@@ -66,22 +66,32 @@ const Home = () => {
       <p>We provide you with the best customer experience</p>
     </div>
     
-    <div className="notification-list">
-      
-      {notifications.map((notification, index) => (
-        <Card key={index} className="mb-4">
-          <CardHeader>
-          <img src={notification.image} alt={notification.title} className="notification-image" />
-          </CardHeader>
-          <CardContent>
-            <p className='notification-title'>{notification.title}</p>
-          </CardContent>
-          <CardFooter>
-            <p className='notification-description'>{notification.description}</p> 
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
+    <div className="notification-list grid gap-4">
+  {notifications.map((notification, index) => (
+    <Card
+      key={index}
+      className="rounded-xl p-4 text-black shadow-sm hover:shadow-md transition-all border border-white/10 mb-20"
+    >
+      <CardHeader className="flex items-center gap-4">
+        <img
+          src={notification.image}
+          alt={notification.title}
+          className="w-12 h-12 rounded-full object-cover"
+        />
+        <h3 className="text-lg font-semibold">{notification.title}</h3>
+      </CardHeader>
+
+      <CardContent>
+        <p className="text-sm text-[#5B5B5B]">{notification.description}</p>
+      </CardContent>
+
+      <CardFooter>
+        {/* You can add a timestamp or CTA here if needed */}
+      </CardFooter>
+    </Card>
+  ))}
+</div>
+
 
 
   <div className="container">

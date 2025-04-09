@@ -51,6 +51,7 @@ const SearchResults = () => {
       {/* Main Content: Sidebar + Product Results */}
       <div className="container mx-auto flex gap-6">
         {/* Search Results */}
+
         <main className="flex-1">
           {searchProducts.length === 0 ? (
             <div className="text-center text-gray-500 my-5">

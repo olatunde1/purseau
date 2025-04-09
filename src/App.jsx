@@ -22,13 +22,17 @@ import BlogPage from "./pages/BlogPage";
 import TermsAndConditions from "./pages/Terms";
 import Policy from "./pages/Policy";
 import ProductDescription from "./pages/ProductDescription";
-
+import ScrollToTop from "./components/ScrollToTop";
 import AccountOverview from "./components/userAccount/accounts/AccountOverview";
 import EditAccount from "./pages/userAccont/EditAccount";
+import ShoppingCart from "./pages/ShoppingCart";
+
 
 function App() {
   return (
-    <Routes>
+    <>
+     <ScrollToTop />
+     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/shop" element={<Shop />} />
@@ -43,6 +47,8 @@ function App() {
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="/product-description" element={<ProductDescription />} />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+      
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />
@@ -59,6 +65,8 @@ function App() {
         element={<AccountCreatedSuccessful />}
       />
     </Routes>
+    </>
+   
   );
 }
 
