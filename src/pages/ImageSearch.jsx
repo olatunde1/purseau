@@ -8,10 +8,14 @@ import {
 } from "@/components/ui/dialog";
 import UploadImage from "../assets/images/upload-image.png";
 import useImageSearch from "@/hooks/api/mutation/imageSearch/useImageSearch";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
-export default function ImageSearchModal() {
+export default function ImageSearchModal({ setOpen }) {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   // Handle file selection
   const handleFileChange = (e) => {
@@ -67,8 +71,15 @@ export default function ImageSearchModal() {
     mutateAsync(formData, {
       onSuccess: (response) => {
         console.log(response);
+        setOpen(false);
+        navigate("/search-result", {
+          state: {
+            searchProduct: response?.data?.data?.similarProducts,
+          },
+        });
       },
       onError: (error) => {
+        toast.error("network error");
         console.log(error); // Handle error
       },
     });

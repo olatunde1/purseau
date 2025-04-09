@@ -7,6 +7,7 @@ import Recent2 from '../assets/images/recent2.png';
 import Recent3 from '../assets/images/recent3.png';
 import Recent4 from '../assets/images/recent4.png';
 import { MdArrowForwardIos } from "react-icons/md";
+import useGetRecentlyViewedProduct from "@/hooks/api/queries/product/useGetRecentlyViewedProduct";
 
 const recentlyViewedItems = [
   {
@@ -49,6 +50,9 @@ const recentlyViewedItems = [
 
 const RecentlyViewed = () => {
   const [favorites, setFavorites] = useState(new Set());
+
+  const { data } = useGetRecentlyViewedProduct();
+  console.log(data, "recently viewed data");
 
   const toggleFavorite = (id) => {
     setFavorites((prev) => {
