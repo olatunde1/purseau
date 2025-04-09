@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { useProductStore } from "@/store/productStore";
 import useGetProducts from "@/hooks/api/queries/useGetProducts";
 
@@ -45,6 +45,9 @@ const SearchResults = () => {
       {/* Main Content: Sidebar + Product Results */}
       <div className="container mx-auto flex gap-6">
         {/* Search Results */}
+        <Link>
+        
+        </Link>
         <main className="flex-1">
           {ProductData.length === 0 ? (
             <div className="text-center text-gray-500">No products found.</div>

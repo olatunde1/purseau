@@ -5,6 +5,7 @@ import Shoes from '../assets/images/shoeCategory.png';
 import Jewelry from '../assets/images/necklaceCategory.png';
 import Hat from '../assets/images/hatCategory.png';
 import Brush from '../assets/images/faceBrushCategory.png';
+import { Link } from 'react-router-dom';
 
 const ExploreCategories = () => {
   return (
@@ -15,35 +16,48 @@ const ExploreCategories = () => {
       </div>
       <div className="explore-by-categories-images">
         {/* Image with overlay text */}
-        <div className="image-container">
-          <img src={Cloth} alt="Cloth" />
-          <div className="overlay-text-expolore">Clothes</div>
-        </div>
-
-        <div className="image-container">
+        <Link to="/shop?category=cloth">
+          <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
+            <img src={Cloth} alt="Cloth" />
+            <div className="overlay-text-expolore">Clothes</div>
+          </div>
+        </Link>
+        
+        <Link to="/shop?category=bag">
+        <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
           <img src={Bags} alt="Bags" />
           <div className="overlay-text-expolore">Bags</div>
         </div>
+        </Link>
 
-        <div className="image-container">
+        <Link to="/shop?category=shoes">
+        <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
           <img src={Shoes} alt="Shoes" />
           <div className="overlay-text-expolore">Shoes</div>
         </div>
+        </Link>
 
-        <div className="image-container">
+        <Link to="/shop?category=jewelry">
+        <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
           <img src={Jewelry} alt="Jewelry" />
           <div className="overlay-text-expolore">Jewelries</div>
         </div>
+        </Link>
 
-        <div className="image-container">
-          <img src={Hat} alt="Hat" />
+        <Link to="/shop?category=accessories">
+        <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
+          <img src={Hat} alt="Accessories" />
           <div className="overlay-text-expolore">Accessories</div>
         </div>
+        </Link>
 
-        <div className="image-container">
-          <img src={Brush} alt="Brush" />
+
+        <Link to="/shop?category=beauty">
+        <div className="image-container shadow-md transform transition-transform duration-300 hover:scale-105">
+          <img src={Brush} alt="Beauty" />
           <div className="overlay-text-expolore">Beauty</div>
         </div>
+        </Link>
       </div>
     </div>
   );

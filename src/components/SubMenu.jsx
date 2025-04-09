@@ -6,6 +6,7 @@ import JewelryBackground from '../assets/images/jewelry-background.png';
 import BeautyBackground from '../assets/images/beauty-background.png';
 import AccessoriesBackground from '../assets/images/accessories-background.png';
 import ShopBackground from '../assets/images/shop-background.png';
+import ShoppingBackground from '../assets/images/shopping-cart.png'
 
 const SubMenu = ({ category }) => {
   let title;
@@ -42,6 +43,11 @@ const SubMenu = ({ category }) => {
       title = "Accessories";
       description = "Explore our beauty products";
       background = AccessoriesBackground;
+      break;
+    case "shopping-cart":
+      title = "Shopping Cart";
+      description = "View your picks, update as needed, and checkout with ease!";
+      background = ShoppingBackground;
       break;
     default:
       title = "Shop";

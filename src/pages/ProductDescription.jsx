@@ -23,6 +23,7 @@ import Bag4 from '../assets/images/prod-desc-bag4.png'
 import { RiErrorWarningLine } from "react-icons/ri";
 import ReviewSection from '@/components/ReviewSection';
 import Pagination from '@/components/Pagination';
+import { Link } from 'react-router-dom';
 // import { Footer } from '@/components/Footer';
 // import Footer from '@/components/Footer';
 // import StayLoop from '@/components/StayLoop';
@@ -68,24 +69,30 @@ const product = {
     Bag2,
     Bag3,
     Bag4,
-
   ]
 
 };
 
 const colorMap = {
+  Red: "bg-[#CDC3AD]",
+  Blue: "bg-[#D9ACBB]",
+  Black: "bg-[#000000]",
+  Green: "bg-[#CDCFC4]",
+  Yellow: "bg-yellow-500",
+};
 
-    Red: "bg-[#CDC3AD]",
-    Blue: "bg-[#D9ACBB]",
-    Black: "bg-[#000000]",
-    Green: "bg-[#CDCFC4]",
-    Yellow: "bg-yellow-500",
+const borderColorMap = {
+  Red: "border-[#CDC3AD]",
+  Blue: "border-[#D9ACBB]",
+  Black: "border-black",
+  Green: "border-[#CDCFC4]",
+  Yellow: "border-yellow-500",
+};
 
-  };
-
+  
 
 const ProductDescription = () => {
-  const [selectedColor, setSelectedColor] = useState(product.availableColors[0]);
+  const [selectedColor, setSelectedColor] = useState("Red");
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(product.images[0]);
   const [userRating, setUserRating] = useState(0);
@@ -132,7 +139,7 @@ const ProductDescription = () => {
                 key={index} 
                 src={img} 
                 alt={`Thumbnail ${index + 1}`} 
-                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img ? "border-red-500" : "border-gray-300"}`}
+                className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${selectedImage === img ? "border-[#E94E30]" : "border-gray-300"}`}
                 onClick={() => setSelectedImage(img)}
               />
             ))}
@@ -187,46 +194,75 @@ const ProductDescription = () => {
 
           {/* Color Selector */}
           <div className="mt-4">
-            <p className="font-semibold mb-1">Available Colors</p>
-            <div className="flex gap-2">
-              {product.availableColors.map((color) => (
-                <div
-                  key={color}
-                  className={`w-8 h-8 rounded-full cursor-pointer border-2 flex items-center justify-center ${colorMap[color]} ${selectedColor === color ? "border-black" : "border-transparent"}`}
-                  onClick={() => setSelectedColor(color)}
-                />
-              ))}
+      <p className="font-semibold mb-1">Available Colors</p>
+      <div className="flex gap-2">
+        {product.availableColors.map((color) => (
+          <button
+            key={color}
+            type="button"
+            onClick={() => setSelectedColor(color)}
+            className={`w-8 h-8 rounded-full cursor-pointer border-2 flex items-center justify-center 
+              transition-all duration-300
+              ${colorMap[color]}
+              border-transparent
+              hover:${borderColorMap[color]}
+              hover:scale-105
+              ${selectedColor === color ? 'ring-2 ring-offset-2 ring-gray-400' : ''}`}
+            aria-label={`${color} color option`}
+          />
+        ))}
+      </div>
+    </div>
+
+
+          {/* Quantity Selector */}
+          <div className="mt-4">
+            <p className="font-semibold mb-2">Quantity</p>
+            <div className="flex items-center rounded-lg py-4 w-40 justify-between gap-4 ">
+              <Button
+                variant="ghost"
+                onClick={decreaseQuantity}
+                className="w-10 h-10 flex items-center justify-center 
+                          text-[#E94E30] bg-[#FFE4DA] 
+                          hover:bg-red-600 hover:text-white 
+                          shadow-md hover:shadow-lg 
+                          transition-all duration-200"
+              >
+                <IoMdRemove size={20} />
+              </Button>
+              <span className="text-lg font-semibold">{quantity}</span>
+              <Button
+                variant="ghost"
+                onClick={increaseQuantity}
+                className="w-10 h-10 flex items-center justify-center 
+                          text-[#E94E30] bg-[#FFE4DA] 
+                          hover:bg-red-600 hover:text-white 
+                          shadow-md hover:shadow-lg 
+                          transition-all duration-200"
+              >
+                <IoMdAdd size={20} />
+              </Button>
             </div>
           </div>
 
-          {/* Quantity Selector */}
-            <div className="mt-4">
-            <p className="font-semibold mb-2">Quantity</p>
-            <div className="flex items-center  rounded-lg py-4 w-32 justify-between gap-10">
-                <Button variant="ghost" onClick={decreaseQuantity} className="p-3  text-[#E94E30] bg-[#FFE4DA] hover:bg-red-600 hover:text-white">
-                <IoMdRemove size={20} />
-                </Button>
-                <span className="text-lg font-semibold">{quantity}</span>
-                <Button variant="ghost" onClick={increaseQuantity} className="p-3 text-[#E94E30] bg-[#FFE4DA] hover:bg-red-600 hover:text-white">
-                <IoMdAdd size={20} />
-                </Button>
-            </div>
-            </div>
 
           {/* Buttons */}
-          <div className="mt-6 flex gap-4">
-            <Button className=" bg-white border border-[#E94E30]  text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
-              Add to Cart
-            </Button>
-            <Button className=" bg-white border border-[#E94E30]  text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
+          <div className="mt-6 flex flex-wrap sm:flex-nowrap gap-4">
+            <Link to="/shopping-cart">
+              <Button className="bg-white border border-[#E94E30] w-full sm:w-[288px] text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
+                Add to Cart
+              </Button>
+            </Link>           
+            <Button className="bg-white border border-[#E94E30] w-full sm:w-[288px] text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
               Buy Now
             </Button>
           </div>
+
+
         </div>
       </div>
 
-    
-
+  
     {/* Section Tabs */}
    <div className="product-tabs mt-8 relative ">
    <div className="mt-6 flex gap-4 border-b justify-center">
