@@ -18,7 +18,7 @@ import Caution from '../assets/images/info-circle.png'
 import ExploreSimilarProducts from "@/components/YouMightLike";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import StayLoop from "@/components/StayLoop";
-import Footer  from "@/components/Footer";
+import Footer  from '../components/Footer'
 
 
 const ShoppingCart = () => {
