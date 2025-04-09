@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"; // Assuming you're using shadcn
 import useSubscribe from "@/hooks/api/mutation/contact/useSubscribe";
 import { toast } from "sonner";
 
-export function StayLoop() {
+export default function StayLoop() {
   const { mutate, isPending } = useSubscribe();
 
   const [email, setEmail] = useState();

@@ -249,7 +249,7 @@ const ShoppingCart = () => {
 
 
                   <div className="mt-6 flex flex-col items-center gap-4">
-                        <a href="/" className="text-center w-full sm:w-[412px] border py-2 rounded-md  text-[#E94E30] border border-[#E94E30] hover:text-white hover:bg-[#E94E30] shadow-md transform transition-transform duration-300 hover:scale-100 ">
+                        <a href="/" className="text-center w-full sm:w-[412px] py-2 rounded-md  text-[#E94E30] border border-[#E94E30] hover:text-white hover:bg-[#E94E30] shadow-md transform transition-transform duration-300 hover:scale-100 ">
                             Continue Shopping
                         </a>
                         <button className=" w-full sm:w-[412px] py-2 rounded-md  text-[#E94E30] border border-[#E94E30] hover:text-white hover:bg-[#E94E30] shadow-md transform transition-transform duration-300 hover:scale-100">
