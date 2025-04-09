@@ -28,7 +28,7 @@ const ProductSection = ({ ProductData }) => {
 
         <div className="w-3/4">
           <ProductList
-            products={ProductData?.items || []}
+            products={ProductData || []}
             totalCount={totalCount}
           />
         </div>

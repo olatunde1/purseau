@@ -5,22 +5,32 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbBorderAll, TbSettings2 } from "react-icons/tb";
 import { TiUserOutline } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 
 import Tracker from "../../assets/images/order-tracking.png";
+import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
 
 const AccountSidebar = () => {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+
+  const { logout } = useAuthStore();
+  
+   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    toast.success("Logged out successfully");
+  };
 
   return (
     <div>
       <aside className="w-[382px] shadow-lg bg-white p-4 border-r personal-information-sidebar">
         <nav className="space-y-3">
           <Link to="/user-account">
-            <button
-              className="flex sidebar-link-first items-center w-full"
-            >
+            <button className="flex sidebar-link-first items-center w-full">
               <TiUserOutline className="mr-4 w-[20px] h-[20px]" /> My Personal
               Information
             </button>
@@ -73,7 +83,10 @@ const AccountSidebar = () => {
             <img src={Tracker} alt="" height={16} width={16} className="mr-4" />
             Track Order
           </Link>
-          <Button className="w-full bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white py-8 track-order ">
+          <Button
+            onClick={handleLogout}
+            className="w-full bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white py-8 track-order "
+          >
             Logout
           </Button>
         </nav>
