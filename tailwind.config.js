@@ -6,6 +6,7 @@ export default {
   	extend: {
 		fontFamily: {
 			custom: ["Lato"],
+			custom2: ["Playfair"],
 		  },
   		animation: {
   			marquee: 'marquee 20s linear infinite',

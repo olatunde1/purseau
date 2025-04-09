@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn/ui Button
 import { Star, Heart } from "lucide-react"; // For star icons (install lucide-react if not already installed)
-import { useNavigate } from "react-router-dom"; // For navigation
+import { useNavigate, Link } from "react-router-dom"; // For navigation
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"; // shadcn/ui Card
 // import cloth category
 import clothe1 from '../assets/images/image1.png'
@@ -504,7 +504,7 @@ export default function ProductDisplay() {
   return (
     <div className="container mx-auto p-4">
       {/* Category Buttons */}
-      <div className="select-category">
+      <div className="select-category mb-16">
         <div className="select-category-button flex flex-wrap gap-2">
           {Object.keys(productsByCategory).map((category) => (
             <Button
@@ -525,72 +525,76 @@ export default function ProductDisplay() {
       </div>
 
       {/* Product Grid */}
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <Link to="/product-description">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
         {products.map((product) => (
-          <Card key={product.id} className="cardDetails hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <h2 className="text-xl font-bold">{product.name}</h2>
-            </CardHeader>
-            <CardContent>
-            <div className="relative">
-              <img
-                src={product.image}
-                alt={product.name}
-                className=" object-cover rounded-lg mb-4"
-              />
-
-              <button
-                onClick={() => toggleFavorite(product.id)}
-                className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
-              >
-                <Heart
-                  className={`h-5 w-5 ${
-                    favorites.has(product.id)
-                      ? "fill-red-500 stroke-red-500"
-                      : "stroke-gray-400"
-                  }`}
-                />
-              </button>
-            </div>
-
-              {/* Star Rating */}
-              <div className="priceRating">
-                <p className="text-gray-600 product-description">{product.description}</p>
-                <div className="flex items-center gap-1 mb-2 product-description">
-                    {[...Array(1)].map((_, index) => (
-                    <Star
-                        key={index}
-                        className={`h-4 w-4 ${
-                        index < Math.floor(product.rating)
-                            ? "fill-yellow-400 stroke-yellow-400"
-                            : "fill-gray-300 stroke-gray-300"
-                        }`}
-                    />
-                    ))}
-                    <span className="text-sm text-gray-600 ml-1">
-                    ({product.rating})
-                    </span>
-                </div>
-              </div>
-              
-              
-             {/* Price and Discount */}
-             <div className="flex items-center gap-2 h-[60px]">
-                <span className="text-lg font-semibold text-black-600">
-                  {product.discountedPrice}
-                </span>
-                <span className="text-sm text-gray-500 line-through">
-                  {product.price}
-                </span>
-                <span className="text-sm text-gray-500   ">
-                  <Button id="add-to-cart" >Add to Cart</Button>
-                </span>
-              </div>
-            </CardContent>
-          </Card>
+         <Card
+         key={product.id}
+         className="cardDetails rounded-xl hover:shadow-xl transition-shadow duration-300 hover:bg-[#f3f3f3] bg-white"
+       >
+         <CardHeader>
+           <h2 className="text-xl font-bold">{product.name}</h2>
+         </CardHeader>
+       
+         <CardContent>
+           <div className="relative">
+             <img
+               src={product.image}
+               alt={product.name}
+               className="object-cover mb-4 rounded-lg w-full h-48"
+             />
+       
+             <button
+               onClick={() => toggleFavorite(product.id)}
+               className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors mr-2"
+             >
+               <Heart
+                 className={`h-5 w-5 ${
+                   favorites.has(product.id)
+                     ? "stroke-[#E94E30] fill-[#E94E30]"
+                     : "stroke-[#E94E30]"
+                 }`}
+               />
+             </button>
+           </div>
+       
+           {/* Star Rating */}
+           <div className="priceRating">
+             <p className="text-gray-600 product-description px-2">{product.description}</p>
+             <div className="flex items-center gap-1 mb-2 px-2">
+               {[...Array(1)].map((_, index) => (
+                 <Star
+                   key={index}
+                   className={`h-4 w-4 ${
+                     index < Math.floor(product.rating)
+                       ? "fill-yellow-400 stroke-yellow-400"
+                       : "fill-gray-300 stroke-gray-300"
+                   }`}
+                 />
+               ))}
+               <span className="text-sm text-gray-600">({product.rating})</span>
+             </div>
+           </div>
+       
+           {/* Price and Add to Cart */}
+           <div className="flex items-center justify-between px-2 h-[60px]">
+             <div className="flex items-center gap-2">
+               <span className="text-lg font-semibold text-black-600">
+                 {product.discountedPrice}
+               </span>
+               <span className="text-sm text-gray-500 line-through">
+                 {product.price}
+               </span>
+             </div>
+               <Button id="add-to-cart" className="hover:shadow-md">
+                 Add to Cart
+               </Button>
+           </div>
+         </CardContent>
+       </Card>
         ))}
       </div>
-       
+       </Link>
       <Button className='view-more'>View More</Button>
     </div>
   );

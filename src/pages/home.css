@@ -122,7 +122,6 @@ input:focus{
     justify-content: center; /* Center content horizontally */
     display: flex; /* Use Flexbox */
     gap: 24px; /* Add spacing between cards */
-    justify-content: center; /* Center cards horizontally */
     text-align: center;
     max-width: 1200px; /* Limit the maximum width */
     margin: 0 auto; /* Center the container */
@@ -150,6 +149,7 @@ input:focus{
     font-family: 'Lato';
     font-weight: bold;
     font-size: 18px;
+
     /* width: 250px; */
   }
 
@@ -158,7 +158,7 @@ input:focus{
     font-weight: 300;
     font-size: 14px;
     /* width: 250px; */
-    padding-bottom: 1rem;
+    /* padding-bottom: 1rem; */
   }
   
 
@@ -200,7 +200,6 @@ input:focus{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
     color: white;
     display: flex;
     flex-direction: column;
@@ -217,7 +216,6 @@ input:focus{
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
     color: white;
     display: flex;
     flex-direction: column;
@@ -296,7 +294,7 @@ input:focus{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
     padding-left: 2px;
     padding-right: 2px;
     
@@ -331,9 +329,6 @@ input:focus{
 
   .explore-by-categories-images img{
     border-radius: 8px;
-    width: 180px;
-    height: 190px;
-    
   }
 
   .explore-wrapper{
@@ -2425,28 +2420,7 @@ input:focus{
         display: grid;
         
     }
-    .explore-by-categories-images {
-        max-width: 100%; /* Ensure the container takes the full width */
-        width: 1200px;
-        height: auto; /* Allow height to adjust based on content */
-        background-color: #FFE4DA;
-        display: grid;
-        grid-template-columns: 1fr; /* Single column layout for mobile */
-        justify-content: center;
-        align-items: center;
-        gap: 16px;
-        padding: 10px; /* Combine padding-left and padding-right */
-        margin-left: 120px;
-    }
-
-    .explore-by-categories-images img {
-        width: 100%; /* Make the image take up the full width of its container */
-        height: auto; /* Maintain aspect ratio */
-        background-color: #FFE4DA;
-        display: block; /* Change to block to avoid grid conflicts */
-        object-fit: cover; /* Ensure the image covers the area without distortion */
-    }
-
+  
     
 }
   
