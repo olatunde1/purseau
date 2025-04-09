@@ -6,7 +6,7 @@ import Pagination from "@/components/Pagination";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import { StayLoop } from "@/components/StayLoop";
 import { useSearchParams } from "react-router-dom";
-import useGetProducts from "@/hooks/api/queries/useGetProducts";
+import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 import GeneralLoader from "@/components/general/GeneralLoader";
 import ProductSection from "@/components/products/ProductSection";
 import { useProductStore } from "@/store/productStore";
@@ -56,7 +56,7 @@ const shop = () => {
       <SubMenu category={categoryName} />
       <Explore />
       <ProductSection ProductData={ProductData?.items} />
-      <ProductsPage />
+      {/* <ProductsPage /> */}
       <Pagination />
       <RecentlyViewed />
       <StayLoop />

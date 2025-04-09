@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { useProductStore } from "@/store/productStore";
-import useGetProducts from "@/hooks/api/queries/useGetProducts";
+import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 
 // Components
 import { Footer } from "@/components/footer";
