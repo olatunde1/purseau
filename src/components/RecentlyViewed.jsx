@@ -17,7 +17,7 @@ const recentlyViewedItems = [
     rating: 4,
     description: "This is a description for Product 1.",
     price: 28000,
-    discount: "20% off",
+    // discount: "20% off",
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const recentlyViewedItems = [
     rating: 5,
     description: "This is a description for Product 2.",
     price: 28000,
-    discount: "15% off",
+    // discount: "15% off",
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const recentlyViewedItems = [
     rating: 3,
     description: "This is a description for Product 3.",
     price: 28000,
-    discount: "10% off",
+    // discount: "10% off",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ const recentlyViewedItems = [
     rating: 4,
     description: "This is a description for Product 4.",
     price: 28000,
-    discount: "5% off",
+    // discount: "5% off",
   },
 ];
 
@@ -70,16 +70,16 @@ const RecentlyViewed = () => {
     <div className="flex flex-col items-center p-16 recently-view ">
       {/* Header Section */}
       <div className="w-[1200px] flex justify-between items-center mb-2 ">
-        <h2 className="text-lg font-semibold">Recently Viewed</h2>
-        <Button variant="link" className="text-[#E94E30] flex items-center">
+        <h2 className="text-4xl font-bold font-custom2">Recently Viewed</h2>
+        <Button variant="link" className="text-[#E94E30] flex items-center font-custom font-semibold leading-6">
           See All <MdArrowForwardIos />
         </Button>
       </div>
 
       {/* Cards Section - Responsive Grid */}
-      <div className="flex gap-6 flex-wrap justify-center w-full recently-viewed-card ">
+      <div className="flex gap-6 flex-wrap justify-center w-full recently-viewed-card  ">
         {recentlyViewedItems.map((item) => (
-          <Card key={item.id} className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden all-product-card relative">
+          <Card key={item.id} className="hover:shadow-xl rounded-lg overflow-hidden all-product-card relative shadow-md transform transition-transform duration-1000 hover:scale-105">
             <CardHeader>
               <img src={item.image} alt={item.title} className="object-cover rounded-t-lg all-product-image" />
               <button

@@ -63,11 +63,11 @@ const ExploreSimilarProduct = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 mt-20 ">
+    <div className="flex flex-col items-center ">
       {/* Header Section */}
-      <div className="w-[1200px] flex justify-between items-center mb-2 ">
-        <h2 className="text-lg font-semibold">Explore Similar Products</h2>
-        <Button variant="link" className="text-[#E94E30] flex items-center">
+      <div className="w-[1200px] flex justify-between items-center ">
+        <h2 className="text-4xl font-bold font-custom2">Explore Similar Products</h2>
+        <Button variant="link" className="text-[#E94E30] flex items-center text-base font-semibold">
           See All <MdArrowForwardIos />
         </Button>
       </div>

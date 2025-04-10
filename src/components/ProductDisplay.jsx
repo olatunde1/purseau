@@ -526,11 +526,11 @@ export default function ProductDisplay() {
 
       {/* Product Grid */}
       <Link to="/product-description">
-      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 ">
         {products.map((product) => (
          <Card
          key={product.id}
-         className="cardDetails rounded-xl hover:shadow-xl transition-shadow duration-300 hover:bg-[#f3f3f3] bg-white"
+         className="cardDetails rounded-xl hover:shadow-xl hover:bg-[#f3f3f3] bg-white shadow-md transform transition-transform duration-1000 hover:scale-105"
        >
          <CardHeader>
            <h2 className="text-xl font-bold">{product.name}</h2>
