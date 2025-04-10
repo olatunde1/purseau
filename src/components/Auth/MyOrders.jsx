@@ -167,7 +167,7 @@ const MyOrders = () => {
                           </div>
 
                           {/* View Details Button */}
-                          <Link to="/product-description" className="flex items-center">
+                          <Link to="/product-description/123" className="flex items-center">
                             <Button variant="outline" className="text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white">
                               View Details
                             </Button>

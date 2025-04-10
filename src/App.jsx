@@ -46,7 +46,7 @@ function App() {
         <Route path="/my-order" element={<MyOrders />} />
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/policy" element={<Policy />} />
-        <Route path="/product-description" element={<ProductDescription />} />
+        <Route path="/product-description/:id" element={<ProductDescription />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
       
       </Route>
