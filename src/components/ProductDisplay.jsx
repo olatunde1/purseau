@@ -525,7 +525,7 @@ export default function ProductDisplay() {
       </div>
 
       {/* Product Grid */}
-      <Link to="/product-description">
+      <Link to="/product-description/123">
       <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
         {products.map((product) => (
          <Card

@@ -9,11 +9,35 @@ import {
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import { Star } from "lucide-react";
 import { calculateReviewStats } from "@/utils";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import useAddRecentProduct from "@/hooks/api/mutation/products/useAddRecentProduct";
 
 const ProductCard = ({ product }) => {
+  const { mutate: addRecent } = useAddRecentProduct(product?._id ?? "");
+  const navigate = useNavigate();
+
+  const handleView = () => {
+    addRecent({
+      onSuccess: (response) => {
+        console.log(response, "response");
+        toast.success("view added successfully!");
+      },
+      onError: (error) => {
+        toast.error(error?.response?.data?.message || "Error applying");
+      },
+    });
+  };
+
   const { averageRating } = calculateReviewStats(product?.reviews || []);
   return (
-    <Card className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden">
+    <Card
+      onClick={() => {
+        handleView();
+        navigate(`/product-description/${product?._id}`);
+      }}
+      className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden"
+    >
       <CardHeader>
         <div className="h-[280px] w-full relative">
           <img
