@@ -63,17 +63,17 @@ return (
 
     <div className="mt-20 rounded-md">
     <h2 className="text-lg text-[#1B121B] font-semibold text-[24px]">Add Your Review</h2>
-    <p className="text-gray-500 mt-4">Your email address will not be published. Required fields are marked *</p>
+    <p className="text-[#F2F2F7] mt-4">Your email address will not be published. Required fields are marked *</p>
     
     <form className="mt-20 space-y-12">
         <div className="flex gap-4">
             <div className="w-1/2">
                 <label className="block text-[#1B121B] mb-4 font-bold">Full Name *</label>
-                <input type="text" placeholder="Enter your name here *" className="w-full bg-[#F2F2F7] px-3 py-2 rounded-md" required />
+                <input type="text" placeholder="Enter your name here *" className="w-full bg-[#F2F2F7] px-6 py-5 rounded-[12px]" required />
             </div>
             <div className="w-1/2">
                 <label className="block text-gray-700  mb-4 font-bold">Email *</label>
-                <input type="email" placeholder="Enter your email here" className="w-full bg-[#F2F2F7] px-3 py-2 rounded-md" required />
+                <input type="email" placeholder="Enter your email here" className="w-full bg-[#F2F2F7]  px-6 py-5 rounded-[12px]" required />
             </div>
         </div>
         <div>
@@ -90,15 +90,15 @@ return (
         </div>
         <div>
             <label className="block text-gray-700  mb-4 font-bold">Add Review Title *</label>
-            <input type="text" placeholder="Ex.I like what i got" className="w-full bg-[#F2F2F7] px-3 py-2 rounded-md" required />
+            <input type="text" placeholder="Ex.I like what i got" className="w-full bg-[#F2F2F7]  px-6 py-5 rounded-[12px]" required />
         </div>
         <div>
             <label className="block text-gray-700  mb-4 font-bold">Add Detailed Review *</label>
-            <textarea placeholder="Ex.I like what i got" className="w-full bg-[#F2F2F7] px-3 py-2 rounded-md" rows="4" required></textarea>
+            <textarea placeholder="Ex.I like what i got" className="w-full bg-[#F2F2F7] px-6 py-[20px] rounded-[12px]" rows="4" required></textarea>
         </div>
         <div>
             <label className="block text-gray-700  mb-4 font-bold">Photo/Video (Optional)</label>
-            <div className="border border-dashed bg-[#F2F2F7] rounded-md p-4 flex flex-col items-center justify-center h-32 relative">
+            <div className="border border-dashed bg-[#F2F2F7] rounded-[12px] p-4 flex flex-col items-center justify-center h-32 relative">
                 <img src={UploadImage} alt="" className="upload-image cursor-pointer" />
                 <p className="text-gray-500 text-sm">Drag an image / Video here or <span className="text-[#E94E30] underline">Upload a file</span></p>
                 <input type="file" className="opacity-0 absolute w-full h-full cursor-pointer" />

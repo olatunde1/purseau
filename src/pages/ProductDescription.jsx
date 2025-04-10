@@ -24,10 +24,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import ReviewSection from '@/components/ReviewSection';
 import Pagination from '@/components/Pagination';
 import { Link } from 'react-router-dom';
-// import { Footer } from '@/components/Footer';
-// import Footer from '@/components/Footer';
-// import StayLoop from '@/components/StayLoop';
-
+import Cart from '../assets/images/cart.png'
 
 
 
@@ -101,9 +98,12 @@ const ProductDescription = () => {
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
 
-  return <>
-    
+  const [activeButton, setActiveButton] = useState(null); // 'cart' | 'buy' | null
+  
 
+
+
+  return <>
 <div className="container mx-auto px-4 py-8 font-lato">
      {/* Breadcrumb Section */}
      <div className="breadcrumb mb-6">
@@ -207,7 +207,7 @@ const ProductDescription = () => {
               border-transparent
               hover:${borderColorMap[color]}
               hover:scale-105
-              ${selectedColor === color ? 'ring-2 ring-offset-2 ring-gray-400' : ''}`}
+              ${selectedColor === color ? 'ring-2 ring-offset-2 ring-[#E94E30]' : ''}`}
             aria-label={`${color} color option`}
           />
         ))}
@@ -249,22 +249,46 @@ const ProductDescription = () => {
           {/* Buttons */}
           <div className="mt-6 flex flex-wrap sm:flex-nowrap gap-4">
             <Link to="/shopping-cart">
-              <Button className="bg-white border border-[#E94E30] w-full sm:w-[288px] text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
-                Add to Cart
+              <Button
+                onClick={() => setActiveButton("cart")}
+                className={`group w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
+                  activeButton === "cart"
+                    ? "bg-[#E94E30] text-white border-[#E94E30]"
+                    : "bg-white text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+                }`}
+              >
+                <img
+                  src={Cart}
+                  alt="Cart"
+                  width="24px"
+                  height="24px"
+                  className={`mr-2 transition-all duration-300 ${
+                    activeButton === "cart"
+                      ? "filter invert brightness-0 contrast-200"
+                      : "filter group-hover:invert group-hover:brightness-0 group-hover:contrast-200"
+                  }`}
+                />
+                Add To Cart
               </Button>
-            </Link>           
-            <Button className="bg-white border border-[#E94E30] w-full sm:w-[288px] text-[#E94E30] px-16 py-2 rounded-md hover:bg-red-600 hover:text-white">
+            </Link>
+
+            <Button
+              onClick={() => setActiveButton("buy")}
+              className={`w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
+                activeButton === "buy"
+                  ? "bg-[#E94E30] text-white border-[#E94E30]"
+                  : "bg-white text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+              }`}
+            >
               Buy Now
             </Button>
           </div>
-
-
         </div>
       </div>
 
   
     {/* Section Tabs */}
-   <div className="product-tabs mt-8 relative ">
+   <div className="product-tabs mt-8 ">
    <div className="mt-6 flex gap-4 border-b justify-center">
             {['description', 'additionalInfo', 'customerReviews'].map((section) => (
               <button 

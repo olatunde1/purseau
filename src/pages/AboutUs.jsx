@@ -24,10 +24,10 @@ export default function AboutUs() {
     </div>
 
    
-        <Card className="mx-auto p-4 md:p-8 ml-[120px] lg:p-12 bg-card">
-    <div className="flex flex-col md:flex-row items-center justify-between">
+        <Card className="mx-auto p-4 md:p-8 w-full md:w-[1200px]">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left Side - Text */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="md:w-[710px] text-center md:text-left">
             <h1 className="text-3xl md:text-4xl mb-4">Our Vision</h1>
             <p className="text-gray-600 text-sm md:text-base mb-6">
                 At Purseau, our mission is to redefine women’s fashion by offering a seamless blend of style, quality, and accessibility. We believe that fashion is more than just clothing—it’s a powerful form of self-expression that inspires confidence and celebrates individuality. We are committed to creating timeless pieces that resonate with every woman, no matter her style or background. Through careful curation and design, we strive to provide collections that cater to all occasions—whether it’s a casual day out, a professional setting, or a special event. Sustainability is at the heart of what we do. From choosing eco-friendly materials to reducing waste in our production and packaging processes, we are dedicated to protecting our planet while delivering the best to our customers. Equally important is our commitment to ethical practices. We partner with suppliers who share our values, ensuring fair wages, safe working environments, and respect for all workers in our supply chain.
@@ -37,21 +37,21 @@ export default function AboutUs() {
             <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-6">
                 <div className="flex flex-col items-center md:items-start">
                     <img src={VisionIcon1} alt="Exclusive Female-Focused Collections" className="w-12 h-12 mb-2" />
-                    <p className="text-sm md:text-base text-gray-700 text-center md:text-left">Exclusive Female-Focused Collections</p>
+                    <p className="text-sm md:text-sm text-[#1B121B] text-center font-custom2 font-semibold">Exclusive Female-Focused Collections</p>
                 </div>
                 <div className="flex flex-col items-center md:items-start">
                     <img src={VisionIcon2} alt="Access to 100% High-Quality Products" className="w-12 h-12 mb-2" />
-                    <p className="text-sm md:text-base text-gray-700 text-center md:text-left">Access to 100% High-Quality Products</p>
+                    <p className="text-sm md:text-sm text-gray-700 text-center font-custom2 font-semibold">Access to 100% High-Quality Products</p>
                 </div>
                 <div className="flex flex-col items-center md:items-start">
                     <img src={VisionIcon3} alt="Partner with us for hassle-free drop shipping" className="w-12 h-12 mb-2" />
-                    <p className="text-sm md:text-base text-gray-700 text-center md:text-left">Partner with us for hassle-free drop shipping—quality fashion.</p>
+                    <p className="text-sm md:text-sm text-gray-700 text-center font-custom2 font-semibold ">Partner with us for hassle-free drop shipping—quality fashion.</p>
                 </div>
             </div>
         </div>
 
         {/* Right Side - Image */}
-        <div className="md:w-1/2 flex justify-center mt-6 md:mt-0">
+        <div className="md:w-[450px] flex justify-center mt-6 md:mt-0">
             <img
                 src={OurVision}
                 alt="Fashion Display"
@@ -65,9 +65,10 @@ export default function AboutUs() {
     {/* OUR SERVICES SECTION */}
 
     <div className="our-services">
-    <div className="our-services-text text-center">
-        <h1>Our Services</h1>
-        <p>Discover what we offer</p>
+    <div className="container">
+    <div className="our-services-text text-center mx-auto">
+        <h1 className='text-white text-4xl '>Our Services</h1>
+        <p className='text-[#FFFDF7]'>Discover what we offer</p>
     </div>
     <div className="product-text">
         <div className="service-item">
@@ -92,7 +93,8 @@ export default function AboutUs() {
             </div>
         </div>
     </div>
-</div>
+    </div>
+    </div>
     {/* OUR STORY SECTION */}
 
     <div className="our-story">

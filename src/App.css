@@ -13,11 +13,17 @@
   width: 100%; /* Ensure it takes full width up to max-width */
   margin: 0 auto; /* Center the container horizontally */
   box-sizing: border-box; /* Include padding in width calculations */
+  padding-left: 0px;
 }
 
-/* body{
-  background-color: #e4e4e4;
+/* .body{
+  background-color: #ffffff;
 } */
+
+.bg-mainBg {
+    --tw-bg-opacity: 1;
+    background-color: #ffffff;
+}
 
 .header-wrap{
   background-color: #ffffff;
