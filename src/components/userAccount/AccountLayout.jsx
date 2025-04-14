@@ -1,4 +1,4 @@
-import { Footer } from "../footer";
+import { Footer } from "../Footer_temp";
 import { StayLoop } from "../StayLoop";
 import AccountSidebar from "./AccountSidebar";
 

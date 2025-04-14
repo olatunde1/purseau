@@ -15,7 +15,7 @@ import ExploreSimilarProduct from '@/components/ExploreSimilarProduct';
 import YouMightAlsoLike from '@/components/YouMightLike';
 import RecentlyViewed from '@/components/RecentlyViewed';
 import { StayLoop } from '@/components/StayLoop';
-import { Footer } from '@/components/footer'
+import { Footer } from '@/components/Footer_temp'
 import Bag1 from '../assets/images/prod-desc-bag1.png'
 import Bag2 from '../assets/images/prod-desc-bag2.png'
 import Bag3 from '../assets/images/prod-desc-bag3.png'

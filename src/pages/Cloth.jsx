@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer } from '@/components/footer'
+import { Footer } from '@/components/Footer_temp'
 import Explore from '../components/ExploreCategories'
 import RecentlyViewed from '@/components/RecentlyViewed'
 import ProductCloth from '../components/ProductCloth'

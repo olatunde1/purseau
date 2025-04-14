@@ -6,7 +6,7 @@ import { FaSquareTwitter, FaFacebook } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import useContactUs from "@/hooks/api/mutation/contact/useContactUs";
 import { toast } from "sonner";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/Footer_temp";
 
 const Contact = () => {
   const { mutate, isPending } = useContactUs();

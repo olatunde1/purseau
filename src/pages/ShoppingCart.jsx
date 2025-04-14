@@ -17,7 +17,7 @@ import Watch from "../assets/images/watch.png";
 import Caution from "../assets/images/info-circle.png";
 import ExploreSimilarProducts from "@/components/YouMightLike";
 import RecentlyViewed from "@/components/RecentlyViewed";
-import { Footer } from "@/components/Footer";
+import { Footer } from "@/components/Footer_temp";
 import { StayLoop } from "@/components/StayLoop";
 import Checkout from "./CheckOut";
 

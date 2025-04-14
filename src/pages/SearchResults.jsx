@@ -4,7 +4,7 @@ import { useProductStore } from "@/store/productStore";
 import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 
 // Components
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/Footer_temp";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
