@@ -24,7 +24,7 @@ const countries = [
 ];
 
 
-const Footer = () => {
+export function Footer() {
   return (
     <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8 footer">
       <div className="container mx-auto">
@@ -128,4 +128,3 @@ const Footer = () => {
     </footer>
   );
 };
-export default Footer;
