@@ -3,7 +3,7 @@ import OrderComplete from "../assets/images/reset.png";
 import DownloadIcon from '../assets/images/download-icon.png'
 import { SlArrowRight } from "react-icons/sl";
 import { StayLoop } from "@/components/StayLoop";
-import { Footer } from "@/components/Footer";
+import { Footer } from "../components/Footer";
 
 const PaymentSuccessful = () => {
   const orderId = "ORD-903458";
