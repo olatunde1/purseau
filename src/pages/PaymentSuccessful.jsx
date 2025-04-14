@@ -3,7 +3,7 @@ import OrderComplete from "../assets/images/reset.png";
 import DownloadIcon from '../assets/images/download-icon.png'
 import { SlArrowRight } from "react-icons/sl";
 
-import { Footer } from "@/components/Footer_temp";
+import { Footer } from "@/components/Footer";
 import { StayLoop } from "@/components/StayLoop";
 
 

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import MoreBlogs from '@/components/MoreBlogs'
 import { StayLoop } from '@/components/StayLoop'
-import { Footer } from '@/components/Footer_temp'
+import { Footer } from '@/components/Footer'
 
 const BlogPage = () => {
   return <>

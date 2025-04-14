@@ -1,6 +1,6 @@
 import React from "react";
 import SubMenu from "../components/SubMenu";
-import { Footer } from "@/components/Footer_temp";
+import { Footer } from "@/components/Footer";
 import Explore from "../components/ExploreCategories";
 import Pagination from "@/components/Pagination";
 import RecentlyViewed from "@/components/RecentlyViewed";

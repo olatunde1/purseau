@@ -6,7 +6,7 @@ import {
     AccordionTrigger,
   } from "@/components/ui/accordion"
 import { StayLoop } from "@/components/StayLoop"
-import { Footer } from '@/components/Footer_temp'
+import { Footer } from '@/components/Footer'
   
   export default function Policy() {
     useEffect(() => {
