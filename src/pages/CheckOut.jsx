@@ -258,7 +258,7 @@ const Checkout = () => {
               <span>Tax</span>
               <span>₦{tax.toLocaleString()}</span>
             </div>
-            <hr />
+            <hr className="border-t-2 border-dashed border-[#FFD6CF]" />
             <div className="flex justify-between font-bold text-black text-base">
               <span>Total</span>
               <span>₦{total.toLocaleString()}</span>

@@ -28,6 +28,7 @@ import EditAccount from "./pages/userAccont/EditAccount";
 import ShoppingCart from "./pages/ShoppingCart";
 import CheckOut from "./pages/CheckOut";
 import PaymentSuccessful from './pages/PaymentSuccessful'
+import EmptyCart from "./pages/EmptyCart";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/product-description/:id" element={<ProductDescription />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/payment-successful" element={<PaymentSuccessful />} />
+        <Route  path="empty-cart" element= {<EmptyCart />} />
        
 
       </Route>

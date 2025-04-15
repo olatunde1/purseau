@@ -285,7 +285,7 @@ const ShoppingCart = () => {
 
             <div className="mt-6 flex flex-col items-center gap-4">
               <a
-                href="#"
+                href="/empty-cart"
                 onClick={() => setActiveButton("continue")}
                 className={`text-center w-full hover:text-white hover:bg-[#E94E30] py-[18.5px] rounded-md border shadow-md transition duration-300 ${
                   activeButton === "continue"

@@ -248,7 +248,7 @@ const ProductDescription = () => {
 
           {/* Buttons */}
           <div className="mt-6 flex flex-wrap sm:flex-nowrap gap-4">
-            <Link to="/shopping-cart">
+        
               <Button
                 onClick={() => setActiveButton("cart")}
                 className={`group w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
@@ -270,8 +270,8 @@ const ProductDescription = () => {
                 />
                 Add To Cart
               </Button>
-            </Link>
-
+            
+              <Link to="/shopping-cart">
             <Button
               onClick={() => setActiveButton("buy")}
               className={`w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
@@ -282,6 +282,7 @@ const ProductDescription = () => {
             >
               Buy Now
             </Button>
+            </Link>
           </div>
         </div>
       </div>
