@@ -530,7 +530,7 @@ export default function ProductDisplay() {
         {products.map((product) => (
          <Card
          key={product.id}
-         className="cardDetails rounded-xl hover:shadow-xl transition-shadow duration-300 hover:bg-[#f3f3f3] bg-white"
+         className="cardDetails rounded-xl hover:shadow-xl hover:bg-[#f3f3f3] bg-white shadow-md transform transition-transform duration-1000 hover:scale-105"
        >
          <CardHeader>
            <h2 className="text-xl font-bold">{product.name}</h2>

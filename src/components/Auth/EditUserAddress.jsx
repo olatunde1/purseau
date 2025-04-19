@@ -13,7 +13,7 @@ import Tracker from "../../assets/images/order-tracking.png";
 import CountrySelector from "./CountrySelector";
 import { IoChevronBackSharp } from "react-icons/io5";
 import { StayLoop } from "@/components/StayLoop";
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/Footer";
 
 // Updated data for regions and cities in Nigeria, Ghana, and 5 neighboring countries
 const africaRegions = {

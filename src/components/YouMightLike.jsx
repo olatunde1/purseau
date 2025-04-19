@@ -3,48 +3,48 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 import { Heart } from "lucide-react";
-import Recent1 from '../assets/images/recent1.png'
-import Recent2 from '../assets/images/recent2.png'
-import Recent3 from '../assets/images/recent3.png'
-import Recent4 from '../assets/images/recent4.png'
+import Recent1 from '../assets/images/bag1.png'
+import Recent2 from '../assets/images/bag2.png'
+import Recent3 from '../assets/images/bag3.png'
+import Recent4 from '../assets/images/bag4.png'
 import { MdArrowForwardIos } from "react-icons/md";
 
 const ExploreSimilarProductsItems = [
   {
     id: 1,
     image: Recent1,
-    title: "Product 1",
+    title: "Nicole & Doris Fashion",
     rating: 4,
-    description: "This is a description for Product 1.",
+    description: "Handvfjfjfjfjfjfjfjfjfnvnv nv vn",
     price: 28000,
-    discount: "20% off",
+    // discount: "20% off",
   },
   {
     id: 2,
     image: Recent2,
-    title: "Product 2",
+    title: "Nicole & Doris Fashion",
     rating: 5,
-    description: "This is a description for Product 2.",
+    description: "Handvfjfjfjfjfjfjfjfjfnvnv nv vn",
     price: 28000,
-    discount: "15% off",
+    // discount: "15% off",
   },
   {
     id: 3,
     image: Recent3,
-    title: "Product 3",
+    title: "Nicole & Doris Fashion",
     rating: 3,
-    description: "This is a description for Product 3.",
+    description: "Handvfjfjfjfjfjfjfjfjfnvnv nv vn",
     price: 28000,
-    discount: "10% off",
+    // discount: "10% off",
   },
   {
     id: 4,
     image: Recent4,
-    title: "Product 4",
+    title: "Nicole & Doris Fashion",
     rating: 4,
-    description: "This is a description for Product 4.",
+    description: "Handvfjfjfjfjfjfjfjfjfnvnv nv vn",
     price: 28000,
-    discount: "5% off",
+    // discount: "5% off",
   },
 ];
 
@@ -67,8 +67,8 @@ const ExploreSimilarProducts = () => {
     <div className="flex flex-col items-center p-4 mt-20 ">
       {/* Header Section */}
       <div className="w-[1200px] flex justify-between items-center mb-2 ">
-        <h2 className="text-lg font-semibold">Explore Similar Products</h2>
-        <Button variant="link" className="text-[#E94E30] flex items-center">
+        <h2 className="text-4xl font-bold font-custom2">You Might Also Like</h2>
+        <Button variant="link" className="text-[#E94E30] flex items-center font-custom font-semibold leading-6">
           See All <MdArrowForwardIos />
         </Button>
       </div>

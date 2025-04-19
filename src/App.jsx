@@ -26,7 +26,10 @@ import ScrollToTop from "./components/ScrollToTop";
 import AccountOverview from "./components/userAccount/accounts/AccountOverview";
 import EditAccount from "./pages/userAccont/EditAccount";
 import ShoppingCart from "./pages/ShoppingCart";
-
+import CheckOut from "./pages/CheckOut";
+import PaymentSuccessful from './pages/PaymentSuccessful'
+import EmptyCart from "./pages/EmptyCart";
+import OrderDetails from "./components/Auth/OrderDetails";
 
 function App() {
   return (
@@ -48,7 +51,11 @@ function App() {
         <Route path="/policy" element={<Policy />} />
         <Route path="/product-description/:id" element={<ProductDescription />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
-      
+        <Route path="/payment-successful" element={<PaymentSuccessful />} />
+        <Route  path="empty-cart" element= {<EmptyCart />} />
+        <Route  path="order-details/:id" element= {<OrderDetails/>} />
+       
+
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />
@@ -59,6 +66,7 @@ function App() {
       <Route path="/Login" element={<LoginPage />} />
       <Route path="/ForgotPassword" element={<ForgotPassword />} />
       <Route path="/CreateNewPassword" element={<CreateNewPassword />} />
+      <Route path="/check-out" element={<CheckOut />} />
       {/* <Route path="/PasswordResetsuccessful" element={<PasswordResetSuccessful/>} /> */}
       <Route
         path="/AccountCreatedSuccessful"
