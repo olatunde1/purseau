@@ -139,8 +139,8 @@ const MyOrders = () => {
                             </p>
                             <p className="text-sm text-gray-500">Date: {order.date}</p>
                           </div>
-                          <Link to="">
-                            <Button variant="outline" className="text-[#E94E30] hover:bg-[#E94E30] hover:text-white">
+                          <Link to={`/order-details/${order.id}`} state = {{order}}>
+                            <Button variant="outline" className="text-[#E94E30] border-none hover:bg-[#E94E30] hover:text-white">
                               View Details
                             </Button>
                           </Link>
