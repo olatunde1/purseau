@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import Stroke from "../assets/images/stroke.png";
@@ -18,12 +18,25 @@ import {
 import { Dialog } from "@/components/ui/dialog";
 import ImageSearchModal from "@/pages/ImageSearch";
 import { useAuthStore } from "@/store/authStore";
+import useCartStore from "@/store/cartStore";
+import { useGetCart } from "@/hooks/api/mutation/carts/cartOperations";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const { currentUser } = useAuthStore();
+
+  const { cartCount, setCartItems } = useCartStore();
+  const { data: cartData } = useGetCart();
+
+  // Update store when cart data changes
+  useEffect(() => {
+    if (cartData?.data) {
+      // Pass the entire data object from the API response
+      setCartItems(cartData?.data?.data);
+    }
+  }, [cartData, setCartItems]);
 
   return (
     <>
@@ -60,7 +73,14 @@ const Header = () => {
           {/* Login and Icons Section */}
           <div className="loginDetails">
             <div className="iconsForm">
-              <PiShoppingCartSimpleLight className="cart" />
+              <div className="relative">
+                <PiShoppingCartSimpleLight className="cart" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-[#E94E30] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
               <BsHeart className="heart" />
               <img src={Stroke} alt="" className="stroke2" />
               <TiUserOutline className="user" />
