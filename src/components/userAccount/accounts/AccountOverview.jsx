@@ -4,7 +4,7 @@ import AccountLayout from "../AccountLayout";
 
 const AccountOverview = () => {
   return (
-    <AccountLayout>
+    <AccountLayout >
       <UserAccount />
       
     </AccountLayout>

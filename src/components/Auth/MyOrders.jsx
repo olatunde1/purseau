@@ -103,15 +103,15 @@ const MyOrders = () => {
               <CardTitle className="text-2xl font-semibold mb-6">My Orders</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex space-x-4 border-b mb-6">
+              <div className="flex space-x-4  pb-6">
                 {["ongoing", "delivered", "canceled", "returned"].map((tab) => (
                   <Button
                     key={tab}
                     variant={activeTab === tab ? "default" : "ghost"}
                     onClick={() => setActiveTab(tab)}
-                    className={`py-2 px-4 capitalize ${activeTab === tab ? "border-b-2 border-[#E94E30]" : ""}`}
+                    className={`py-2 px-4 capitalize ${activeTab === tab ? "rounded-none border-b-2 border-[#E94E30] bg-transparent text-black" : "hover:bg-[#E94E30] hover:text-white hover:rounded-none"}`}
                   >
-                    {tab} ({orders[tab].length})
+                    {tab} ({orders[tab]?.length || 0})
                   </Button>
                 ))}
               </div>

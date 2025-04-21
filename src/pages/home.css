@@ -8,6 +8,10 @@ input:focus{
   outline: none;
 }
 
+.hover\:bg-primary\/90:hover {
+  background-color: #E94E30 ;
+  color: #ffffff;
+}
 
 /* Base Styles */
 .wrap {
