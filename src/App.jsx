@@ -30,6 +30,7 @@ import CheckOut from "./pages/CheckOut";
 import PaymentSuccessful from './pages/PaymentSuccessful'
 import EmptyCart from "./pages/EmptyCart";
 import OrderDetails from "./components/Auth/OrderDetails";
+import OrderStatus from "./components/Auth/OrderStatus";
 
 function App() {
   return (
@@ -52,10 +53,9 @@ function App() {
         <Route path="/product-description/:id" element={<ProductDescription />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/payment-successful" element={<PaymentSuccessful />} />
-        <Route  path="empty-cart" element= {<EmptyCart />} />
-        <Route  path="order-details/:id" element= {<OrderDetails/>} />
-       
-
+        <Route  path="/empty-cart" element= {<EmptyCart />} />
+        <Route  path="/order-details/:id" element= {<OrderDetails/>} />
+        <Route  path="/order-status/:orderId" element= {<OrderStatus/>} />
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />
