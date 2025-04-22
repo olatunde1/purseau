@@ -16,7 +16,7 @@ const shop = () => {
   const [searchParams] = useSearchParams();
   const categoryName = searchParams.get("category");
 
-  console.log(categoryName, "categoryName");
+  // console.log(categoryName, "categoryName");
 
   const {
     category,
@@ -44,7 +44,7 @@ const shop = () => {
 
   const ProductData = Allproducts?.data?.result ?? [];
 
-  console.log(ProductData);
+  // console.log(ProductData);
 
   if (isPending) {
     return <GeneralLoader />;

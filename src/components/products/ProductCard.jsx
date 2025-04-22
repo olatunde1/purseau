@@ -7,15 +7,34 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import sampleimage from "@/assets/images/sampleimage.jpg";
-import { Star } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import { calculateReviewStats } from "@/utils";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useAddRecentProduct from "@/hooks/api/mutation/products/useAddRecentProduct";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import { useAddToCart } from "@/hooks/api/mutation/carts/cartOperations";
+import { useAuthStore } from "@/store/authStore";
 
 const ProductCard = ({ product }) => {
   const { mutate: addRecent } = useAddRecentProduct(product?._id ?? "");
   const navigate = useNavigate();
+   const { currentUser } = useAuthStore();
+
+   const userId = currentUser?.userId || ""; 
+
+  const [favorites, setFavorites] = useState(new Set());
+
+  const toggleFavorite = (productId) => {
+    const newFavorites = new Set(favorites);
+    if (newFavorites.has(productId)) {
+      newFavorites.delete(productId);
+    } else {
+      newFavorites.add(productId);
+    }
+    setFavorites(newFavorites);
+  };
 
   const handleView = () => {
     addRecent({
@@ -30,13 +49,37 @@ const ProductCard = ({ product }) => {
   };
 
   const { averageRating } = calculateReviewStats(product?.reviews || []);
+
+  const { mutate: addToCart, isPending } = useAddToCart();
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation(); // Prevent card click navigation
+
+    const cartItem = {
+      userId,
+      productId: product?._id,
+      quantity: 1, // Default to 1, or you could add a quantity selector
+      selectedColor: product.availableColors?.[0] || "", // Default to first color if exists
+      selectedSize: product.size || "L", // Default to first size if exists or "L"
+    };
+
+    addToCart(cartItem, {
+      onSuccess: () => {
+        toast.success("Added to cart successfully!");
+      },
+      onError: (error) => {
+        toast.error(error?.response?.data?.message || "Error adding to cart");
+      },
+    });
+  };
+
   return (
     <Card
       onClick={() => {
         handleView();
         navigate(`/product-description/${product?._id}`);
       }}
-      className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden"
+      className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden group"
     >
       <CardHeader>
         <div className="h-[280px] w-full relative">
@@ -49,21 +92,16 @@ const ProductCard = ({ product }) => {
               e.target.src = sampleimage;
             }}
           />
-          {/* <svg
-            width="19"
-            height="19"
-            viewBox="0 0 19 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.0803 15.8448C9.83062 15.9329 9.41938 15.9329 9.16969 15.8448C7.04 15.1177 2.28125 12.0848 2.28125 6.94415C2.28125 4.67493 4.10984 2.83899 6.36437 2.83899C7.70094 2.83899 8.88328 3.48524 9.625 4.48399C10.3667 3.48524 11.5564 2.83899 12.8856 2.83899C15.1402 2.83899 16.9688 4.67493 16.9688 6.94415C16.9688 12.0848 12.21 15.1177 10.0803 15.8448Z"
-              stroke="#E94E30"
-              stroke-width="1.10156"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+          <button className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors mr-2">
+            <Heart
+              onClick={() => toggleFavorite(product.id)}
+              className={`h-5 w-5 ${
+                favorites.has(product.id)
+                  ? "stroke-[#E94E30] fill-[#E94E30]"
+                  : "stroke-[#E94E30]"
+              }`}
             />
-          </svg> */}
+          </button>
         </div>
       </CardHeader>
       <CardContent className="p-4">
@@ -89,10 +127,17 @@ const ProductCard = ({ product }) => {
           {product?.description}
         </CardDescription>
       </CardContent>
+
       <CardFooter className="p-4 flex justify-between items-center">
         <span className="text-lg font-semibold">
           ₦{product?.pricing?.perQuantity?.onePiece}
         </span>
+        <Button
+          onClick={handleAddToCart}
+          className="invisible group-hover:visible ml-[34px] mb-[4px] bg-[#E94E30] text-[12px] hover:shadow-md"
+        >
+          {isPending ? "..." : "Add to Cart"}
+        </Button>
         <span className="text-sm text-red-600">
           {product.pricing?.percentageDiscount}% off
         </span>
