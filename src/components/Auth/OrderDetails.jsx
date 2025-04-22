@@ -59,8 +59,8 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="container-sidebar flex justify-center font-custom">
-      <aside
+    <div className=" flex justify-center font-custom">
+      {/* <aside
         className="w-[382px] p-4 h-[648px] border-r personal-information-sidebar"
         style={{
           boxShadow: `
@@ -100,7 +100,7 @@ const OrderDetails = () => {
             Logout
           </Button>
         </nav>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
       <main className="ml-8 w-[878px] pb-10">

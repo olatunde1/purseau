@@ -17,7 +17,6 @@ import CreateNewPassword from "./components/Auth/CreateNewPassword";
 import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
 import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
 import SearchResults from "./pages/SearchResults";
-import MyOrders from "./components/Auth/MyOrders";
 import BlogPage from "./pages/BlogPage";
 import TermsAndConditions from "./pages/Terms";
 import Policy from "./pages/Policy";
@@ -29,8 +28,13 @@ import ShoppingCart from "./pages/ShoppingCart";
 import CheckOut from "./pages/CheckOut";
 import PaymentSuccessful from './pages/PaymentSuccessful'
 import EmptyCart from "./pages/EmptyCart";
-import OrderDetails from "./components/Auth/OrderDetails";
-import OrderStatus from "./components/Auth/OrderStatus";
+import WishlistComponent from "./components/userAccount/wishlist/WishlistComponent";
+import MyOrderComponent from "./components/userAccount/myOrder/MyOrderComponent";
+import OrderDetailsComponent from "./components/userAccount/orderDetails/OrderDetailsComponent";
+import OrderStatusComponent from "./components/userAccount/orderStatus/OrderStatusComponent";
+import ProfileDetails from "./components/Auth/ProfileDetails";
+import ProfileComponent from "./components/userAccount/profile/profileComponent";
+
 
 function App() {
   return (
@@ -47,15 +51,17 @@ function App() {
         <Route path="/search-result" element={<SearchResults />} />
         <Route path="/user-account" element={<AccountOverview />} />
         <Route path="/edit-user-address" element={<EditAccount />} />
-        <Route path="/my-order" element={<MyOrders />} />
+        <Route path="/my-order" element={<MyOrderComponent />} />
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/policy" element={<Policy />} />
         <Route path="/product-description/:id" element={<ProductDescription />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/payment-successful" element={<PaymentSuccessful />} />
         <Route  path="/empty-cart" element= {<EmptyCart />} />
-        <Route  path="/order-details/:id" element= {<OrderDetails/>} />
-        <Route  path="/order-status/:orderId" element= {<OrderStatus/>} />
+        <Route  path="/order-details/:id" element= {<OrderDetailsComponent/>} />
+        <Route  path="/order-status/:orderId" element= {<OrderStatusComponent/>} />
+        <Route  path="/wishlist" element= {<WishlistComponent/>} />
+        <Route  path="/profile-details" element= {<ProfileComponent/>} />
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />

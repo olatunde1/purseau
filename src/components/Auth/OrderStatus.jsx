@@ -44,9 +44,9 @@ const OrderStatus = () => {
   };
 
   return (
-    <div className="container-sidebar flex flex-col lg:flex-row justify-center font-custom bg-gray-50 min-h-screen p-2">
+    <div className=" flex flex-col lg:flex-row justify-center font-custom bg-gray-50 min-h-screen p-2">
       {/* Sidebar */}
-      <aside
+      {/* <aside
         className="w-full lg:w-[382px] p-4 h-auto lg:h-[648px] border-r personal-information-sidebar mb-6 lg:mb-0"
         style={{
           boxShadow: `
@@ -86,7 +86,7 @@ const OrderStatus = () => {
             Logout
           </Button>
         </nav>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
       <main className="w-full lg:w-[878px] lg:ml-8 pt-4 lg:pt-0">

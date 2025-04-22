@@ -41,7 +41,7 @@ const AccountSidebar = () => {
           >
             <TbBorderAll className="mr-4 w-[20px] h-[20px]" /> My Orders
           </Link>
-          <Link to="#" className=" sidebar-link flex text-base items-center">
+          <Link to="/wishlist" className=" sidebar-link flex text-base items-center">
             <BsHeart className="mr-4 w-[20px] h-[20px]" /> Wishlist
           </Link>
 
@@ -62,7 +62,7 @@ const AccountSidebar = () => {
             {isAccountMenuOpen && (
               <div className="ml-4 space-y-2">
                 <Link
-                  to="#"
+                  to="/profile-details"
                   className=" text-sm flex sidebar-link items-center"
                 >
                   <TiUserOutline className="mr-4 w-[20px] h-[20px]" />

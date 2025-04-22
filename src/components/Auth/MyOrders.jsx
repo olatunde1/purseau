@@ -75,8 +75,8 @@ const MyOrders = () => {
   };
 
   return (
-    <div className="container-sidebar flex justify-center">
-      <aside className="w-[382px] h-[648px] p-2 border-r personal-information-sidebar">
+    <div className="flex justify-center">
+      {/* <aside className="w-[382px] h-[648px] p-2 border-r personal-information-sidebar">
         <nav className="space-y-3">
           <Link to="/user-account">
             <button className="block flex sidebar-link-first items-center w-full">
@@ -94,16 +94,26 @@ const MyOrders = () => {
           <Link to="#" className="block sidebar-link flex items-center"><img src={Tracker} alt="" height={16} width={16} className="mr-4" />Track Order</Link>
           <Button className="w-full bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white py-8 track-order">Logout</Button>
         </nav>
-      </aside>
+      </aside> */}
 
-      <main className="ml-8 w-[878px]">
+      <main className="ml-8 w-[878px] pb-[100px] px-10"
+         style={{
+          boxShadow: `
+            0px 14px 30px 0px #7575751A,
+            0px 55px 55px 0px #75757517,
+            0px 124px 74px 0px #7575750D,
+            0px 220px 88px 0px #75757503,
+            0px 344px 96px 0px #75757500
+          `,
+        }}
+      >
         <div className="grid grid-cols-1 gap-6">
           <Card className="border rounded-lg shadow-lg bg-white p-6">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold mb-6">My Orders</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex space-x-4  pb-6">
+              <div className="flex space-x-4  pb-5">
                 {["ongoing", "delivered", "canceled", "returned"].map((tab) => (
                   <Button
                     key={tab}
@@ -119,9 +129,9 @@ const MyOrders = () => {
               {loading ? (
                 <p className="text-center">Loading orders...</p>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-4 ">
                   {orders[activeTab].map((order) => (
-                    <Card key={order.id} className="border rounded-lg shadow-sm p-4">
+                    <Card key={order.id} className="border rounded-lg shadow-sm p-10 bg-[#F2F2F7]">
                       <CardContent>
                         <div className="flex items-center space-x-4">
                           <div className="w-20 h-20 flex-shrink-0">
@@ -140,7 +150,7 @@ const MyOrders = () => {
                             <p className="text-sm text-gray-500">Date: {order.date}</p>
                           </div>
                           <Link to={`/order-details/${order.id}`} state = {{order}}>
-                            <Button variant="outline" className="text-[#E94E30] border-none hover:bg-[#E94E30] hover:text-white">
+                            <Button variant="outline" className="text-[#E94E30] border-none bg-[#F2F2F7] hover:bg-[#E94E30] hover:text-white">
                               View Details
                             </Button>
                           </Link>
