@@ -5,8 +5,8 @@ import AccountSidebar from "./AccountSidebar";
 const AccountLayout = ({ children }) => {
   return (
     <div>
-      <section className="w-[90%] mx-auto py-10 ">
-        <div className="flex w-full">
+      <section className="w-[90%] mx-auto py-10">
+        <div className="flex w-full ">
           {/* <div className="w-[23%] bg-yellow-300"> */}
           <AccountSidebar />
           {/* </div> */}
