@@ -14,7 +14,6 @@ import VerifyPhoneNumber from "./components/Auth/VerifyPhoneNumber";
 import LoginPage from "./components/Auth/Login";
 import ForgotPassword from "./components/Auth/ForgotPassword";
 import CreateNewPassword from "./components/Auth/CreateNewPassword";
-import PasswordResetSuccessful from "./components/Auth/PasswordResetSuccessful";
 import AccountCreatedSuccessful from "./components/Auth/AccountCreatedSuccessful";
 import SearchResults from "./pages/SearchResults";
 import BlogPage from "./pages/BlogPage";
@@ -32,8 +31,10 @@ import WishlistComponent from "./components/userAccount/wishlist/WishlistCompone
 import MyOrderComponent from "./components/userAccount/myOrder/MyOrderComponent";
 import OrderDetailsComponent from "./components/userAccount/orderDetails/OrderDetailsComponent";
 import OrderStatusComponent from "./components/userAccount/orderStatus/OrderStatusComponent";
-import ProfileDetails from "./components/Auth/ProfileDetails";
 import ProfileComponent from "./components/userAccount/profile/profileComponent";
+import DeleteConfirmation from "./components/Auth/DeleteConfirmation";
+import PasswordSettingsComponent from "./components/userAccount/PasswordSettings/PasswordSettingsComponent";
+import AddressBookComponent from "./components/userAccount/AddressBook/AddressBookComponent";
 
 
 function App() {
@@ -62,6 +63,10 @@ function App() {
         <Route  path="/order-status/:orderId" element= {<OrderStatusComponent/>} />
         <Route  path="/wishlist" element= {<WishlistComponent/>} />
         <Route  path="/profile-details" element= {<ProfileComponent/>} />
+        <Route  path="/delete-confirmation" element= {<DeleteConfirmation/>} />
+        <Route path="/password-settings" element= {<PasswordSettingsComponent/>} />
+        <Route path="/address-book" element= {<AddressBookComponent/>} />
+
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />
