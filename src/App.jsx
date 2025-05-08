@@ -35,6 +35,8 @@ import ProfileComponent from "./components/userAccount/profile/profileComponent"
 import DeleteConfirmation from "./components/Auth/DeleteConfirmation";
 import PasswordSettingsComponent from "./components/userAccount/PasswordSettings/PasswordSettingsComponent";
 import AddressBookComponent from "./components/userAccount/AddressBook/AddressBookComponent";
+import AddNewAddressComponent from "./components/userAccount/AddNewAddress/AddNewAddressComponent";
+import TrackOrderComponent from "./components/userAccount/TrackOrder/TrackOrderComponent";
 
 
 function App() {
@@ -66,6 +68,8 @@ function App() {
         <Route  path="/delete-confirmation" element= {<DeleteConfirmation/>} />
         <Route path="/password-settings" element= {<PasswordSettingsComponent/>} />
         <Route path="/address-book" element= {<AddressBookComponent/>} />
+        <Route path="/add-new-address" element= {<AddNewAddressComponent/>} />
+        <Route path="/track-order" element= {<TrackOrderComponent/>} />
 
       </Route>
 

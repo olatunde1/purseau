@@ -60,47 +60,6 @@ const OrderDetails = () => {
 
   return (
     <div className=" flex justify-center font-custom">
-      {/* <aside
-        className="w-[382px] p-4 h-[648px] border-r personal-information-sidebar"
-        style={{
-          boxShadow: `
-              0px 14px 30px 0px #7575751A,
-              0px 55px 55px 0px #75757517,
-              0px 124px 74px 0px #7575750D,
-              0px 220px 88px 0px #75757503,
-              0px 344px 96px 0px #75757500
-            `,
-        }}
-      >
-        <nav className="space-y-0">
-          <Link to="/user-account">
-            <button className="block flex sidebar-link-first items-center w-full">
-              <TiUserOutline className="mr-4 w-[20px] h-[20px]" /> My Personal Information
-            </button>
-          </Link>
-          <Link to="/my-order" className="block sidebar-link flex text-base items-center">
-            <TbBorderAll className="mr-4 w-[20px] h-[20px]" /> My Orders
-          </Link>
-          <Link to="#" className="block sidebar-link flex text-base items-center">
-            <BsHeart className="mr-4 w-[20px] h-[20px]" /> Wishlist
-          </Link>
-          <button className="flex items-center w-full text-left sidebar-link">
-            <TbSettings2 className="mr-4 w-[20px] h-[20px]" /> Account Management{" "}
-            <span className="ml-auto">
-              <IoIosArrowDown />
-            </span>
-          </button>
-          <Link to="#" className="block sidebar-link flex items-center">
-            <GoHome className="mr-4 w-[20px] h-[20px]" /> Address Management
-          </Link>
-          <Link to="#" className="block sidebar-link flex items-center">
-            <img src={Tracker} alt="" height={16} width={16} className="mr-4" /> Track Order
-          </Link>
-          <Button className="w-full bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white py-8 track-order">
-            Logout
-          </Button>
-        </nav>
-      </aside> */}
 
       {/* Main Content */}
       <main className="ml-8 w-[878px] pb-10">

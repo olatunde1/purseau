@@ -79,7 +79,7 @@ const AccountSidebar = () => {
           <Link to="/address-book" className="sidebar-link flex items-center">
             <GoHome className="mr-4 w-[20px] h-[20px]" /> Address Management
           </Link>
-          <Link to="#" className="sidebar-link flex items-center ">
+          <Link to="/track-order" className="sidebar-link flex items-center ">
             <img src={Tracker} alt="" height={16} width={16} className="mr-4" />
             Track Order
           </Link>

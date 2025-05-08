@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pencil, Star } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const addresses = [
   {
@@ -18,15 +19,22 @@ const addresses = [
 
 export default function AddressBook() {
   return (
-    <div className="w-[878px] mx-auto ml-10 p-6">
-     <div className="flex justify-between">
+    <div className="w-[878px] mx-auto ml-10 p-6"
+    style={{
+        boxShadow:
+          '0px 14px 30px 0px #7575751A, 0px 55px 55px 0px #75757517, 0px 124px 74px 0px #7575750D, 0px 220px 88px 0px #75757503, 0px 344px 96px 0px #75757500',
+      }}
+    >
+     <div className="flex justify-between ">
         <h2 className="text-2xl font-semibold mb-6">Address Book</h2>
-        <button className="mb-6 px-4 py-2 bg-[#F2542D] text-white rounded hover:bg-[#F2542D]">
-            Add New Address
+       <Link to="/add-new-address">
+       <button className="mb-6 px-4 py-2 bg-[#F2542D] text-white rounded-[10px] hover:bg-[#F2542D]">
+            Add new address
         </button>
+       </Link>
      </div>
 
-      <div className="space-y-6 w-[400px] ml-10 ">
+      <div className="space-y-6 w-[400px] ml-10 pb-[293px]">
         {addresses.map((item, index) => (
           <div key={index} className="border p-4 rounded shadow-sm bg-[#FFF4F0]">
             <h3 className="text-lg font-semibold mb-6">{item.name}</h3>
@@ -46,7 +54,7 @@ export default function AddressBook() {
               >
                 Set as default
               </button>
-              <button className="text-[#E94E30] hover:text-blue-600 flex items-center gap-1 text-base">
+              <button className="text-[#E94E30] hover:text-[#E94E30] flex items-center gap-1 text-base">
                 <Pencil size={16} /> Edit
               </button>
             </div>
