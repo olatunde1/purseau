@@ -37,6 +37,7 @@ import PasswordSettingsComponent from "./components/userAccount/PasswordSettings
 import AddressBookComponent from "./components/userAccount/AddressBook/AddressBookComponent";
 import AddNewAddressComponent from "./components/userAccount/AddNewAddress/AddNewAddressComponent";
 import TrackOrderComponent from "./components/userAccount/TrackOrder/TrackOrderComponent";
+import Admin from "./dashboard/AdminDashboard";
 
 
 function App() {
@@ -71,6 +72,11 @@ function App() {
         <Route path="/add-new-address" element= {<AddNewAddressComponent/>} />
         <Route path="/track-order" element= {<TrackOrderComponent/>} />
 
+      </Route>
+
+
+      <Route path="/admin" element={<Admin />}>
+        
       </Route>
 
       <Route path="/SignUp" element={<SignUp />} />
