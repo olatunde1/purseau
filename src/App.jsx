@@ -38,6 +38,7 @@ import AddressBookComponent from "./components/userAccount/AddressBook/AddressBo
 import AddNewAddressComponent from "./components/userAccount/AddNewAddress/AddNewAddressComponent";
 import TrackOrderComponent from "./components/userAccount/TrackOrder/TrackOrderComponent";
 import Admin from "./dashboard/AdminDashboard";
+import OrderHistoryComponent from "./components/adminAccount/orderHistory/OrderHistoryComponent"
 
 
 function App() {
@@ -74,11 +75,6 @@ function App() {
 
       </Route>
 
-
-      <Route path="/admin" element={<Admin />}>
-        
-      </Route>
-
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/VerifyEmail" element={<VerifyEmail />} />
       <Route path="/CreatePassword" element={<CreatePassword />} />
@@ -93,7 +89,19 @@ function App() {
         path="/AccountCreatedSuccessful"
         element={<AccountCreatedSuccessful />}
       />
+
+
+
+      <Route path="/admin" element={<Admin />}>
+      <Route path="orders-history" element={<OrderHistoryComponent />} />
+      
+      </Route>
+      
+      
     </Routes>
+
+
+
     </>
    
   );
