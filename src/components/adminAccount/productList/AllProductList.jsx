@@ -1,20 +1,20 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Search, Filter, ArrowUpDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const initialOrders = [
-    { id: 'PUR-15627927', customer: 'Ralph Edwards', product: 'Prada Mini Bag', date: '2020-10-28', items: 4, status: 'Ongoing', amount: '$8.99' },
-    { id: 'PUR-15627928', customer: 'Eleanor Pena', product: 'Gucci, 1995 Horsebit', date: '2020-10-23', items: 24, status: 'Ongoing', amount: '$17.84' },
-    { id: 'PUR-15627929', customer: 'Bessie Cooper', product: 'Chanel, Boy Flap', date: '2020-10-30', items: 13, status: 'Delivered', amount: '$11.70' },
-    { id: 'PUR-15627930', customer: 'Wade Warren', product: 'Hermès Birkin 25', date: '2020-11-01', items: 7, status: 'Cancelled', amount: '$5.22' },
-    { id: 'PUR-15627931', customer: 'Darrell Steward', product: 'Gucci Mules', date: '2020-10-16', items: 12, status: 'Returned', amount: '$14.81' },
-    { id: 'PUR-15627932', customer: 'Cameron Williamson', product: 'Jimmy Choo Pumps', date: '2020-10-27', items: 2, status: 'Delivered', amount: '$14.81' },
-    { id: 'PUR-15627933', customer: 'Kathryn Murphy', product: 'Valentino Studded Shoe', date: '2020-10-29', items: 1, status: 'Delivered', amount: '$6.48' },
-    { id: 'PUR-15627934', customer: 'Savannah Nguyen', product: 'Aquazurra Heels', date: '2020-10-17', items: 21, status: 'Pickup', amount: '$124.81' },
-    { id: 'PUR-15627935', customer: 'Annette Black', product: 'Chanel, Boy Flap', date: '2020-10-20', items: 16, status: 'Delivered', amount: '$17.84' },
-    { id: 'PUR-15627936', customer: 'Jenny Wilson', product: 'Gucci, 1995 Horsebit', date: '2020-10-25', items: 5, status: 'Cancelled', amount: '$14.81' },
-    { id: 'PUR-15627937', customer: 'Theresa Webb', product: 'Valentino Studded Shoe', date: '2020-10-26', items: 2, status: 'Delivered', amount: '$107.84' },
-  ];
+    { id: 'PUR-15627927', customer: 'Ralph Edwards', category: 'Bags', items: 4, size: 'Medium', amount: '$8.99' },
+    { id: 'PUR-15627928', customer: 'Eleanor Pena', category: 'Accessories', items: 24, size: 'XS', amount: '$17.84' },
+    { id: 'PUR-15627929', customer: 'Bessie Cooper', category: 'Bags', items: 13, size: 'S', amount: '$11.70' },
+    { id: 'PUR-15627930', customer: 'Wade Warren', category: 'Bags', items: 7, size: 'M', amount: '$5.22' },
+    { id: 'PUR-15627931', customer: 'Darrell Steward', category: 'Shoes', items: 12, size: 'EU 36-37', amount: '$14.81' },
+    { id: 'PUR-15627932', customer: 'Cameron Williamson', category: 'Shoes', items: 2, size: 'EU 37', amount: '$14.81' },
+    { id: 'PUR-15627933', customer: 'Kathryn Murphy', category: 'Shoes', items: 1, size: 'EU 38', amount: '$6.48' },
+    { id: 'PUR-15627934', customer: 'Savannah Nguyen', category: 'Shoes', items: 21, size: 'EU 39', amount: '$124.81' },
+    { id: 'PUR-15627935', customer: 'Annette Black', category: 'Bags', items: 16, size: 'L', amount: '$17.84' },
+    { id: 'PUR-15627936', customer: 'Jenny Wilson', category: 'Accessories', items: 5, size: 'XL', amount: '$14.81' },
+    { id: 'PUR-15627937', customer: 'Theresa Webb', category: 'Shoes', items: 2, size: 'EU 40', amount: '$107.84' },
+];
 
 const statusColor = {
   Delivered: 'bg-green-100 text-green-700',
@@ -26,7 +26,7 @@ const statusColor = {
 
 const statusList = ['All', 'Delivered', 'Ongoing', 'Pickup', 'Returned', 'Cancelled'];
 
-export default function OrderHistory() {
+export default function AllProductList() {
   const [originalOrders] = useState(initialOrders);
   const [orders, setOrders] = useState(initialOrders);
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -34,6 +34,11 @@ export default function OrderHistory() {
   const [showFilter, setShowFilter] = useState(false);
   const [sortOption, setSortOption] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+
+
+
+  const [selectedRows, setSelectedRows] = useState([]);
+
   const itemsPerPage = 10;
 
   const handleSort = (value) => {
@@ -63,7 +68,7 @@ export default function OrderHistory() {
     return orders.filter((order) => {
       const matchesStatus = selectedStatus === 'All' || order.status === selectedStatus;
       const matchesSearch =
-        order.product.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
         order.id.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesStatus && matchesSearch;
     });
@@ -94,11 +99,22 @@ export default function OrderHistory() {
   // Modal state
   const [modalOrder, setModalOrder] = useState(null);
 
+  const allSelected = paginatedOrders.length > 0 && paginatedOrders.every((order) => selectedRows.includes(order.id));
+
+  const toggleSelectAll = () => {
+    if (allSelected) {
+      setSelectedRows([]);
+    } else {
+      const newSelection = paginatedOrders.map((order) => order.id);
+      setSelectedRows(newSelection);
+    }
+  };
+
   return (
     <div className="w-full px-10">
       <div className="flex justify-between items-center mb-[53.94px]">
-        <h1 className="text-2xl font-bold">Orders History</h1>
-        <button className="bg-[#E94E30] text-white px-4 py-2 rounded">Create Order</button>
+        <h1 className="text-2xl font-bold">Product List</h1>
+        <button className="bg-[#E94E30] text-white px-4 py-2 rounded-xl">Create New Product</button>
       </div>
 
       <div className="flex items-center justify-between space-x-4 mb-6">
@@ -106,7 +122,7 @@ export default function OrderHistory() {
           <Search className="absolute top-3 left-2 text-gray-400" size={18} />
           <input
             type="text"
-            placeholder="Search for product by name or ID"
+            placeholder="Search for category by name or ID"
             className="pl-8 pr-4 py-2 border-2 border-[#878787] rounded-2xl w-full"
             value={searchTerm}
             onChange={(e) => {
@@ -160,35 +176,30 @@ export default function OrderHistory() {
             </select>
             <ArrowUpDown className="absolute left-2 top-3 text-gray-500" size={16} />
           </div>
+          <div>
+            <p>...</p>
+          </div>
         </div>
-      </div>
-
-      <div className="flex justify-evenly items-center space-x-6 mb-6 text-sm gap-6 cursor-pointer flex-wrap">
-        {statusList.map((status) => (
-          <span
-            key={status}
-            onClick={() => {
-              setSelectedStatus(status);
-              setCurrentPage(1);
-            }}
-            className={`font-semibold ${selectedStatus === status ? 'text-[#E94E30]' : ''}`}
-          >
-            {status.toUpperCase()} ({counts[status === 'All' ? 'All' : status] || 0})
-          </span>
-        ))}
       </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full text-left border-t">
           <thead>
             <tr className="border-b text-[#878787] bg-[#FFF4F0]">
-              <th className="py-[20.5px] px-4 font-normal">Order ID</th>
-              <th className="py-[20.5px] px-4 font-normal">Customer</th>
-              <th className="py-[20.5px] px-4 font-normal">Product</th>
-              <th className="py-[20.5px] px-4 font-normal">Date</th>
-              <th className="py-[20.5px] px-4 font-normal">Items</th>
-              <th className="py-[20.5px] px-4 font-normal">Status</th>
-              <th className="py-[20.5px] px-4 font-normal">Amount</th>
+               <th className="py-[20.5px] px-4 font-normal">
+                <input
+                  type="checkbox"
+                  checked={allSelected}
+                  onChange={toggleSelectAll}
+                  className="accent-[#E94E30]"
+                />
+              </th>
+              <th className="py-[20.5px] px-4 font-normal">Product ID</th>
+              <th className="py-[20.5px] px-4 font-normal">Name</th>
+              <th className="py-[20.5px] px-4 font-normal">Price</th>
+              <th className="py-[20.5px] px-4 font-normal">Category</th>
+              <th className="py-[20.5px] px-4 font-normal">Quantity</th>
+              <th className="py-[20.5px] px-4 font-normal">Size</th>
               <th className="py-[20.5px] px-4 font-normal"></th>
             </tr>
           </thead>
@@ -200,35 +211,39 @@ export default function OrderHistory() {
                   index % 2 === 0 ? 'bg-white' : 'bg-[#F4F4F6]'
                 }`}
               >
+                <td className="py-[20.5px] px-4">
+                  <input
+                    type="checkbox"
+                    className="accent-[#E94E30]"
+                    checked={selectedRows.includes(order.id)}
+                    onChange={() => toggleSelectRow(order.id)}
+                  />
+                </td>
                 <td className="py-[20.5px] px-4">{order.id}</td>
                 <td className="py-[20.5px] px-4">{order.customer}</td>
-                <td className="py-[20.5px] px-4">{order.product}</td>
-                <td className="py-[20.5px] px-4">{new Date(order.date).toDateString()}</td>
-                <td className="py-[20.5px] px-4">{order.items} Items</td>
-                <td className="py-[20.5px] px-4">
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${statusColor[order.status]}`}>
-                    {order.status}
-                  </span>
-                </td>
                 <td className="py-2 px-4">{order.amount}</td>
+                <td className="py-[20.5px] px-4">{order.category}</td>
+                <td className="py-[20.5px] px-4">{order.items}</td>
+                <td className="py-[20.5px] px-4">{order.size}</td>
+                
                 <td className='py-2 px-4 font-bold cursor-pointer relative'>
                   <span onClick={() => setModalOrder(order)}>...</span>
                   {modalOrder && modalOrder.id === order.id && (
                     <div className="absolute right-0 top-6 z-20 bg-white border rounded shadow p-2 min-w-[178px]">
                       <button
-                        className="w-full text-center px-1 py-2 hover:bg-[#FFE4DA] hover:text-[#E94E30] rounded  font-semibold"
+                        className="w-full text-center px-1 py-2  rounded hover:text-[#E94E30] font-semibold"
                         onClick={() => {
                           setModalOrder(null);
                           handleViewOrder(order);
                         }}
                       >
-                        View Details
+                        Edit
                       </button>
                       <button
-                        className="w-full text-center px-3 py-2 text-gray-500 hover:text-[#E94E30] hover:bg-gray-100 rounded"
+                        className="w-full font-medium text-center px-3 py-2 bg-[#FFE4DA] text-[#E94E30] hover:bg-[#E94E30] hover:text-white rounded"
                         onClick={() => setModalOrder(null)}
                       >
-                        Cancel
+                        Remove
                       </button>
                     </div>
                   )}
