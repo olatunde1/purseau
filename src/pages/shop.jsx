@@ -34,8 +34,9 @@ const shop = () => {
       category: categoryName || category,
       availableColors: colors.length > 0 ? colors.join(",") : null,
       brand,
+      limit: 20,
       reviewRating: rating,
-      maxPrice: maxPrice,
+      // maxPrice: maxPrice ?? "",
       size: sizes.length > 0 ? sizes.join(",") : null,
     }).filter(([_, value]) => value !== undefined && value !== null)
   );

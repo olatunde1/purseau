@@ -10,7 +10,7 @@ export const useProductStore = create(
       colors: [],
       sizes: [],
       rating: null,
-      maxPrice: 1000,
+      maxPrice: "",
       searchQuery: "",
       sortBy: "",
 
@@ -63,7 +63,7 @@ export const useProductStore = create(
           colors: [],
           sizes: [],
           rating: null,
-          maxPrice: 1000,
+          maxPrice: "",
           searchQuery: "",
           sortBy: "",
         }),

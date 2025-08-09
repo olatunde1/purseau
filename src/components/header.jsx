@@ -43,7 +43,9 @@ const Header = () => {
       <div className="header-wrap">
         <div className="container">
           {/* Logo Section */}
-          <img src={Logo} alt="Logo" className="LogoImage" />
+          <Link to={"/"}>
+          <img src={Logo} alt="Logo" className="LogoImage cursor-pointer" />
+          </Link>
 
           {/* Search Bar Section */}
           <div className="searchBarForm">

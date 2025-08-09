@@ -8,9 +8,9 @@ const CATEGORIES = [
   "Clothes",
   "Bags",
   "Shoes",
-  "Jewelry",
+  "Jewelries",
   "Accessories",
-  "Beauty",
+  "Beauties",
 ];
 
 const BRANDS = ["Nike", "Adidas", "Gucci", "Louis Vuitton", "Zara", "H&M"];
@@ -111,13 +111,13 @@ const FilterSidebar = () => {
           <input
             type="range"
             min="0"
-            max="5000"
+            max="1000000"
             value={tempMaxPrice}
             onChange={(e) => setTempMaxPrice(Number(e.target.value))}
             className="w-full"
             aria-label="Price range slider"
           />
-          <p className="text-gray-600">Up to ₦{tempMaxPrice}</p>
+          <p className="text-gray-600">Up to ₦{tempMaxPrice?.toLocaleString()}</p>
         </div>
       </FilterSection>
 
