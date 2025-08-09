@@ -20,9 +20,10 @@ import { useAuthStore } from "@/store/authStore";
 const ProductCard = ({ product }) => {
   const { mutate: addRecent } = useAddRecentProduct(product?._id ?? "");
   const navigate = useNavigate();
-   const { currentUser } = useAuthStore();
+  const { currentUser } = useAuthStore();
 
-   const userId = currentUser?.userId || ""; 
+  const userId = currentUser?.userId || "";
+  console.log(userId, "idd");
 
   const [favorites, setFavorites] = useState(new Set());
 
