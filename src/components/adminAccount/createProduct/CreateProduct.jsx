@@ -1,0 +1,207 @@
+import { useState } from 'react';
+
+function CreateProduct() {
+  const [form, setForm] = useState({});
+  const [images, setImages] = useState([]);
+
+  const categories = ["Shoes", "Clothing", "Bags", "Accessories"];
+  const discounts = ["0%", "5%", "10%", "15%", "20%"];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleImageChange = (e) => {
+    setImages([...e.target.files]);
+  };
+
+  const handleRemoveImages = () => {
+    setImages([]);
+  };
+
+  const handleSubmit = () => {
+    const payload = {
+      ...form,
+      images, // In real app, handle file upload separately
+    };
+    console.log("Product to submit:", payload);
+    alert("Product submitted. Check console for payload.");
+  };
+
+return (
+    <div className="bg-white shadow-md rounded-xl p-6">
+        <div className="px-10 flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-semibold">Create Product</h1>
+            <div className="left">
+                <div className="flex space-x-4">
+                    <button className="border border-[#878787] text-black px-6 py-2 rounded-xl">Archive Product</button>
+                    <button onClick={handleSubmit} className="bg-[#E94E30] text-white px-6 py-2 rounded-xl">Add Product</button>
+                </div>
+                    </div>
+            </div>
+            <div className="px-3 mx-10  space-y-8 bg-slate-400">
+         
+        <h1 className="text-xl font-semibold">Product Information</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+            <div>
+                <label className="font-semibold">Product ID</label>
+                <input disabled value="DS-FG72TSOQ" className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Product Name</label>
+                <input name="productName" placeholder="Enter the product name" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Category</label>
+                <select name="category" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3">
+                    <option value="">Select category</option>
+                    {categories.map((cat, idx) => (
+                        <option key={idx} value={cat}>{cat}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div>
+                <label className="font-semibold">Brand</label>
+                <input name="brand" placeholder="Enter the product brand" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Material</label>
+                <input name="material" placeholder="Enter the product material" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Quantity</label>
+                <input type="number" name="quantity" placeholder="Enter the quantity" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Price $</label>
+                <input type="number" name="price" placeholder="Enter the product price" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+
+            <div>
+                <label className="font-semibold">Discount %</label>
+                <select name="discount" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3">
+                    <option value="">Select Discount</option>
+                    {discounts.map((disc, idx) => (
+                        <option key={idx} value={disc}>{disc}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div>
+                <label className="font-semibold">Weight (kg)</label>
+                <input type="number" name="weight" placeholder="Enter the product weight" onChange={handleChange} className="w-full px-6 py-3 border rounded mt-3" />
+            </div>
+            {/* Checkbox inserted here */}
+            <div className="flex items-center mt-3">
+                <input
+                    type="checkbox"
+                    name="featured"
+                    id="featured"
+                    onChange={e => setForm({ ...form, featured: e.target.checked })}
+                    className="mr-2"
+                />
+                <label htmlFor="featured" className="font-semibold">Add price variants for wholesale</label>
+            </div>
+        </div>
+                    
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+            <div className='border border-l-0 w-[350px] rounded-xl'>
+                <label className="font-semibold px-5 pt-[18px] pb-[15px] bg-[#F2F2F7] rounded-l-xl">3-12 pc</label>
+                <input name="price3to12" placeholder="Enter the price" onChange={handleChange} className="w-[250px] px-6 py-3 rounded mt-1" />
+            </div>
+            <div className='border border-l-0 w-[350px] rounded-xl'>
+                <label className="font-semibold px-8 pt-[18px] pb-[15px] bg-[#F2F2F7] rounded-l-xl">13+</label>
+                <input name="price13plus" placeholder="Enter the price" onChange={handleChange} className="w-[250px] px-7 py-3 rounded mt-1" />
+            </div>
+        </div>
+            </div>
+
+            {/* Variants Section */}
+
+            <div className="flex bg-emerald-100 gap-6 mt-6 mx-10">
+                    <div className="w-[850px] grid grid-cols-1 md:grid-cols-1 gap-6 bg-gray-400 px-5">
+                        <div className="space-y-4 ">
+                            <div className="flex justify-between">
+                                <h2 className="text-xl font-semibold">Variants</h2>
+                                <p className="text-[#E94E30] font-semibold">Add new variant</p>
+                            </div>
+                        </div>
+                    <div>
+                    <label className="font-semibold">Color</label>
+                    <select name="color" onChange={handleChange} className="w-full p-2 border rounded mt-1">
+                        <option value="">Select color</option>
+                        <option>White</option>
+                        <option>Black</option>
+                        <option>Gold</option>
+                        <option>Purple</option>
+                        <option>Blue</option>
+                        <option>Yellow</option>
+                    </select>
+                     </div>
+                    <div>
+                    <label className="font-semibold">Size</label>
+                    <select name="size" onChange={handleChange} className="w-full p-2 border rounded mt-1">
+                        <option value="">Select size</option>
+                        <option>EU 35</option>
+                        <option>EU 35-36</option>
+                        <option>EU 36</option>
+                        <option>EU 38</option>
+                        <option>EU 42</option>
+                        <option>EU 42-43</option>
+                    </select>
+                    </div>
+          
+                    </div>
+
+                    <div className="w-full gap-6 bg-gray-400 px-5">
+
+                        <div>
+                            <label className="font-semibold">Product Summary</label>
+                            <textarea name="summary" placeholder="Add short description for product" onChange={handleChange} className="w-full p-20 border rounded mt-1" />
+                        </div>
+                        <div>
+                            <label className="font-semibold">Product Description</label>
+                            <textarea name="description" placeholder="Add product full description" onChange={handleChange} className="w-full p-20 border rounded mt-1" />
+                        </div>
+                    </div>
+            </div>
+
+        <div>
+            <h2 className="text-xl font-semibold mb-2">Product Images</h2>
+            <div className="border-2 border-dashed p-6 rounded text-center text-gray-500 relative">
+                <input type="file" accept="image/*" multiple onChange={handleImageChange} hidden id="fileUpload" />
+                <label htmlFor="fileUpload" className="cursor-pointer text-[#E94E30] font-semibold">Choose a file to upload</label>
+                <p className="text-sm mt-2">Max 10MB size</p>
+
+                {images.length > 0 && (
+                    <>
+                        <div className="flex flex-wrap gap-4 mt-4 justify-center">
+                            {Array.from(images).map((img, idx) => (
+                                <div key={idx} className="w-24 h-24 border rounded overflow-hidden">
+                                    <img src={URL.createObjectURL(img)} alt={`preview-${idx}`} className="w-full h-full object-cover" />
+                                </div>
+                            ))}
+                        </div>
+                        <button onClick={handleRemoveImages} className="mt-4 text-[#E94E30] underline">Remove</button>
+                    </>
+                )}
+            </div>
+        </div>
+
+        
+            
+    </div>
+    
+    
+);
+}
+
+export default CreateProduct;

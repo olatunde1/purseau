@@ -68,7 +68,7 @@ const AccountSidebar = () => {
                   <TiUserOutline className="mr-4 w-[20px] h-[20px]" />
                   Profile
                 </Link>
-                <Link to="#" className="text-sm flex sidebar-link items-center">
+                <Link to="/password-settings" className="text-sm flex sidebar-link items-center">
                   <IoSettingsOutline className="mr-4 w-[20px] h-[20px]" />{" "}
                   Security Settings
                 </Link>
@@ -76,10 +76,10 @@ const AccountSidebar = () => {
             )}
           </div>
 
-          <Link to="#" className="sidebar-link flex items-center">
+          <Link to="/address-book" className="sidebar-link flex items-center">
             <GoHome className="mr-4 w-[20px] h-[20px]" /> Address Management
           </Link>
-          <Link to="#" className="sidebar-link flex items-center ">
+          <Link to="/track-order" className="sidebar-link flex items-center ">
             <img src={Tracker} alt="" height={16} width={16} className="mr-4" />
             Track Order
           </Link>
