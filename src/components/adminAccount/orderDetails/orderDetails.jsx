@@ -96,8 +96,8 @@ export default function OrderDetails() {
         <div className="flex-1 bg-white shadow-md rounded-xl p-4">
           <div className="combined">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-              <div className="text-sm">Order ID: <strong>PUR-15627927</strong></div>
-              <button className="bg-[#E94E30] text-white py-2 px-6 rounded-lg text-sm">Download Invoice</button>
+              <div className="text-sm"><strong>Order ID:</strong> PUR-15627927</div>
+              <button className="bg-[#E94E30] text-white py-2 px-6 rounded-lg text-sm">Invoice</button>
          </div>
 
             <div className="overflow-x-auto">
