@@ -8,6 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import SubMenu from "@/components/SubMenu";
+import sampleimage from "@/assets/images/sampleimage.jpg";
 import Trash from "../assets/images/trash.png";
 import Bag from "../assets/images/bag1.png";
 import Cap from "../assets/images/cap.png";
@@ -20,81 +21,105 @@ import RecentlyViewed from "@/components/RecentlyViewed";
 import { Footer } from "@/components/Footer";
 import { StayLoop } from "@/components/StayLoop";
 import Checkout from "./CheckOut";
+import useCartStore from "@/store/cartStore";
+import {
+  useDecrementCartItem,
+  useGetCart,
+  useIncrementCartItem,
+  useRemoveFromCart,
+} from "@/hooks/api/mutation/carts/cartOperations";
 
 const ShoppingCart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "A Cute Ladies Hand And Shoulder Bag",
-      price: 62000,
-      status: "In Stock",
-      image: Bag,
-      quantity: 1,
-      colors: ["pink", "red", "blue"],
-      selectedColor: "red",
-    },
-    {
-      id: 2,
-      name: "Nike Sport Cap",
-      price: 15000,
-      status: "In Stock",
-      image: Cap,
-      quantity: 1,
-      colors: ["pink", "red", "blue"],
-      selectedColor: "black",
-    },
-    {
-      id: 3,
-      name: "High Heels Ladies Shoe",
-      price: 15000,
-      status: "In Stock",
-      image: Shoe,
-      quantity: 1,
-      colors: ["pink", "red", "blue"],
-      selectedColor: "black",
-    },
-    {
-      id: 4,
-      name: "Oversize Crop Top Dhambstons",
-      price: 15000,
-      status: "Out Of Stock",
-      image: Dhambston,
-      quantity: 1,
-      colors: ["pink", "red", "blue"],
-      selectedColor: "black",
-    },
-    {
-      id: 5,
-      name: "Luxury Women Poedagar Wrist Watch ",
-      price: 15000,
-      status: "In Stock",
-      image: Watch,
-      quantity: 1,
-      colors: ["pink", "red", "blue"],
-      selectedColor: "black",
-    },
-  ]);
+  // const [cartItems, setCartItems] = useState([
+  //   {
+  //     id: 1,
+  //     name: "A Cute Ladies Hand And Shoulder Bag",
+  //     price: 62000,
+  //     status: "In Stock",
+  //     image: Bag,
+  //     quantity: 1,
+  //     colors: ["pink", "red", "blue"],
+  //     selectedColor: "red",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Nike Sport Cap",
+  //     price: 15000,
+  //     status: "In Stock",
+  //     image: Cap,
+  //     quantity: 1,
+  //     colors: ["pink", "red", "blue"],
+  //     selectedColor: "black",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "High Heels Ladies Shoe",
+  //     price: 15000,
+  //     status: "In Stock",
+  //     image: Shoe,
+  //     quantity: 1,
+  //     colors: ["pink", "red", "blue"],
+  //     selectedColor: "black",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Oversize Crop Top Dhambstons",
+  //     price: 15000,
+  //     status: "Out Of Stock",
+  //     image: Dhambston,
+  //     quantity: 1,
+  //     colors: ["pink", "red", "blue"],
+  //     selectedColor: "black",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Luxury Women Poedagar Wrist Watch ",
+  //     price: 15000,
+  //     status: "In Stock",
+  //     image: Watch,
+  //     quantity: 1,
+  //     colors: ["pink", "red", "blue"],
+  //     selectedColor: "black",
+  //   },
+  // ]);
 
   const [deliveryMethod, setDeliveryMethod] = useState("free");
   const [activeButton, setActiveButton] = useState(null);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
 
-  const updateQuantity = (id, amount) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + amount) }
-          : item
-      )
-    );
+  const { cartItems, cartCount, setCartItems } = useCartStore();
+
+  // console.log(cartItems, "cartItems");
+  const { data } = useGetCart();
+  const cartData = data?.data
+  const increment = useIncrementCartItem();
+  const decrement = useDecrementCartItem();
+  const remove = useRemoveFromCart();
+
+  const updateQuantity = (id, delta) => {
+    if (delta > 0) increment.mutate(id);
+    else decrement.mutate(id);
   };
 
+  // const updateQuantity = (id, amount) => {
+  //   setCartItems((prev) =>
+  //     prev.map((item) =>
+  //       item.id === id
+  //         ? { ...item, quantity: Math.max(1, item.quantity + amount) }
+  //         : item
+  //     )
+  //   );
+  // };
+
+  // const removeItem = (id) => {
+  //   setCartItems((prev) => prev.filter((item) => item.id !== id));
+  // };
   const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    remove.mutate(id);
   };
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item.unitPrice * item.quantity,
     0
   );
   const deliveryFee = deliveryMethod === "free" ? 0 : 2000;
@@ -145,26 +170,28 @@ const ShoppingCart = () => {
 
             {cartItems.map((item) => (
               <div
-                key={item.id}
+                key={item._id}
                 className="flex flex-col sm:flex-row items-center justify-between bg-[#F2F2F7] gap-4 border p-4 rounded-md shadow-md mx-8"
               >
                 <img
-                  src={item.image}
+                  src={item.productId?.images[0]?.url || sampleimage}
                   alt={item.name}
                   className="w-[130px] h-[130px] object-cover rounded"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = sampleimage;
+                  }}
                 />
                 <div className="flex-1 space-y-2">
                   <div className="flex justify-between">
                     <h3 className="text-lg font-semibold mb-4">
-                      {item.name}
+                      {item.productId?.name}
                     </h3>
-                    <p className="font-bold text-black">
-                      ₦{item.price.toLocaleString()}
-                    </p>
+                    <p className="font-bold text-black">₦{item?.totalPrice}</p>
                   </div>
                   <div className="flex">
                     <p className="text-gray-500 pr-2 mb-4">
-                      ₦ {item.price.toLocaleString()}
+                      ₦{item?.unitPrice}
                     </p>{" "}
                     |
                     <p
@@ -180,7 +207,7 @@ const ShoppingCart = () => {
 
                   <div className="flex justify-between">
                     <div className="flex gap-4">
-                      {item.name.includes("Wrist") ? (
+                      {item?.productId?.name.includes("Wrist") ? (
                         <div className="flex items-center gap-2">
                           <select className="border-[#878787] bg-transparent border-2 rounded-md px-2 py-1 pr-8 w-[100px]">
                             <option>Rose Gold</option>
@@ -192,14 +219,17 @@ const ShoppingCart = () => {
 
                       <div className="flex items-center gap-3 border-2 border-[#878787] rounded-md w-[120px] text-center justify-center">
                         <button
-                          onClick={() => updateQuantity(item.id, -1)}
+                          onClick={() => {
+                            console.log(item.productId?._id);
+                            updateQuantity(item.productId?._id, -1);
+                          }}
                           className="w-8 h-8 text-lg"
                         >
                           −
                         </button>
                         <span>{item.quantity}</span>
                         <button
-                          onClick={() => updateQuantity(item.id, 1)}
+                          onClick={() => updateQuantity(item.productId?._id, 1)}
                           className="w-8 h-8 text-lg"
                         >
                           +
@@ -207,7 +237,7 @@ const ShoppingCart = () => {
                       </div>
                     </div>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item?.productId?._id)}
                       className="text-[#E94E30] flex gap-2"
                     >
                       <img src={Trash} alt="" className="w-5 h-5" />
@@ -242,7 +272,7 @@ const ShoppingCart = () => {
                     : "bg-white text-[#5B5B5B]"
                 }`}
               >
-                Express (₦4,700)
+                Express (₦{total})
               </button>
             </div>
 
@@ -285,7 +315,8 @@ const ShoppingCart = () => {
 
             <div className="mt-6 flex flex-col items-center gap-4">
               <a
-                href="/empty-cart"
+                // href="/empty-cart"
+                href="/shop"
                 onClick={() => setActiveButton("continue")}
                 className={`text-center w-full hover:text-white hover:bg-[#E94E30] py-[18.5px] rounded-md border shadow-md transition duration-300 ${
                   activeButton === "continue"
@@ -330,7 +361,7 @@ const ShoppingCart = () => {
             >
               &times;
             </button>
-          < Checkout />
+            <Checkout />
           </div>
         </div>
       )}

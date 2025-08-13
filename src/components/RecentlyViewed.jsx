@@ -95,7 +95,7 @@ const RecentlyViewed = () => {
           </div>
 
           {/* Cards Section - Responsive Grid */}
-          <div className="flex gap-6 flex-wrap w-full recently-viewed-card ">
+          <div className="gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full recently-viewed-card ">
             {recentlyViewedProductData.map((item) => (
               <Card
                 key={item._id}

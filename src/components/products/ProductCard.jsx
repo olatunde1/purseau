@@ -12,9 +12,13 @@ import { calculateReviewStats } from "@/utils";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useAddRecentProduct from "@/hooks/api/mutation/products/useAddRecentProduct";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { useAddToCart } from "@/hooks/api/mutation/carts/cartOperations";
+import {
+  useAddToCart,
+  useLikeAProduct,
+  useUnLikeAProduct,
+} from "@/hooks/api/mutation/carts/cartOperations";
 import { useAuthStore } from "@/store/authStore";
 
 const ProductCard = ({ product }) => {
@@ -23,19 +27,10 @@ const ProductCard = ({ product }) => {
   const { currentUser } = useAuthStore();
 
   const userId = currentUser?.userId || "";
-  console.log(userId, "idd");
+
+  console.log(userId, "id")
 
   const [favorites, setFavorites] = useState(new Set());
-
-  const toggleFavorite = (productId) => {
-    const newFavorites = new Set(favorites);
-    if (newFavorites.has(productId)) {
-      newFavorites.delete(productId);
-    } else {
-      newFavorites.add(productId);
-    }
-    setFavorites(newFavorites);
-  };
 
   const handleView = () => {
     addRecent({
@@ -52,6 +47,45 @@ const ProductCard = ({ product }) => {
   const { averageRating } = calculateReviewStats(product?.reviews || []);
 
   const { mutate: addToCart, isPending } = useAddToCart();
+  const { mutate: likeProduct } = useLikeAProduct();
+  const { mutate: unlikeProduct } = useUnLikeAProduct();
+  const handleLike = (e, productId) => {
+    e.stopPropagation();
+
+    if (!userId) {
+      toast.error("Please login to like products");
+      return;
+    }
+
+    const isLiked = favorites.has(productId);
+
+    // Optimistic update
+    const newFavorites = new Set(favorites);
+    if (isLiked) {
+      newFavorites.delete(productId);
+    } else {
+      newFavorites.add(productId);
+    }
+    setFavorites(newFavorites);
+
+    if (isLiked) {
+      unlikeProduct(productId, {
+        // Make sure you're passing the right parameters
+        onError: () => {
+          toast.error("Failed to unlike product");
+          setFavorites(favorites); // Revert to original state
+        },
+      });
+    } else {
+      likeProduct(productId, {
+        // Make sure you're passing the right parameters
+        onError: () => {
+          toast.error("Failed to like product");
+          setFavorites(favorites); // Revert to original state
+        },
+      });
+    }
+  };
 
   const handleAddToCart = (e) => {
     e.stopPropagation(); // Prevent card click navigation
@@ -74,6 +108,22 @@ const ProductCard = ({ product }) => {
     });
   };
 
+  useEffect(() => {
+    if (userId && product?.likes?.length > 0) {
+      const isLiked = product.likes.some((like) => like.userId === userId);
+      if (isLiked) {
+        setFavorites((prev) => new Set(prev).add(product._id));
+      } else {
+        // Make sure to remove it if it's not liked
+        setFavorites((prev) => {
+          const newSet = new Set(prev);
+          newSet.delete(product._id);
+          return newSet;
+        });
+      }
+    }
+  }, [product?.likes, userId, product._id]);
+
   return (
     <Card
       onClick={() => {
@@ -95,9 +145,9 @@ const ProductCard = ({ product }) => {
           />
           <button className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors mr-2">
             <Heart
-              onClick={() => toggleFavorite(product.id)}
+              onClick={(e) => handleLike(e, product._id)}
               className={`h-5 w-5 ${
-                favorites.has(product.id)
+                favorites.has(product._id)
                   ? "stroke-[#E94E30] fill-[#E94E30]"
                   : "stroke-[#E94E30]"
               }`}

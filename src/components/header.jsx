@@ -44,7 +44,7 @@ const Header = () => {
         <div className="container">
           {/* Logo Section */}
           <Link to={"/"}>
-          <img src={Logo} alt="Logo" className="LogoImage cursor-pointer" />
+            <img src={Logo} alt="Logo" className="LogoImage cursor-pointer" />
           </Link>
 
           {/* Search Bar Section */}
@@ -75,14 +75,16 @@ const Header = () => {
           {/* Login and Icons Section */}
           <div className="loginDetails">
             <div className="iconsForm">
-              <div className="relative">
-                <PiShoppingCartSimpleLight className="cart" />
-                {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#E94E30] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
-                    {cartCount}
-                  </span>
-                )}
-              </div>
+              <Link to="/shopping-cart">
+                <div className="relative">
+                  <PiShoppingCartSimpleLight className="cart" />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-[#E94E30] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                      {cartCount}
+                    </span>
+                  )}
+                </div>
+              </Link>
               <BsHeart className="heart" />
               <img src={Stroke} alt="" className="stroke2" />
               <TiUserOutline className="user" />
