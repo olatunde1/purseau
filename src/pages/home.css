@@ -367,6 +367,7 @@ input:focus{
  
     .priceRating{
         display: flex;
+        justify-content: space-between;
     }
 
     .product-description{

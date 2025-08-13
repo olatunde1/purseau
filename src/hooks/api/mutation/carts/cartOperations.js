@@ -15,6 +15,30 @@ export const useAddToCart = () => {
     },
   });
 };
+export const useLikeAProduct = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (productId) => {
+      return axiosInstance.patch(`/user/like/${productId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+};
+export const useUnLikeAProduct = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (productId) => {
+      return axiosInstance.patch(`/user/unlike/${productId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+};
 
 // Remove from cart mutation
 export const useRemoveFromCart = () => {
