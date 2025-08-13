@@ -51,11 +51,11 @@ export default function ProductDisplay() {
   const userId = currentUser?.userId || "";
 
   const { mutate: addToCart } = useAddToCart();
-  
-const [pendingId, setPendingId] = useState(null);
+
+  const [pendingId, setPendingId] = useState(null);
 
   const handleAddToCart = (product) => {
-     setPendingId(product._id); 
+    setPendingId(product._id);
     const cartItem = {
       userId,
       productId: product?._id,
@@ -67,11 +67,11 @@ const [pendingId, setPendingId] = useState(null);
     addToCart(cartItem, {
       onSuccess: () => {
         toast.success("Added to cart successfully!");
-         setPendingId(null);
+        setPendingId(null);
       },
       onError: (error) => {
         toast.error(error?.response?.data?.message || "Error adding to cart");
-         setPendingId(null);
+        setPendingId(null);
       },
     });
   };
@@ -167,10 +167,10 @@ const [pendingId, setPendingId] = useState(null);
                 <div className="flex items-center justify-between px-2 h-[60px]">
                   <div className="flex items-center gap-2">
                     <span className="text-lg font-semibold text-black-600">
-                      {product.pricing?.percentageDiscount}
+                      ₦{product?.pricing?.perQuantity?.onePiece}
                     </span>
                     <span className="text-sm text-gray-500 line-through">
-                      ₦{product?.pricing?.perQuantity?.onePiece}
+                      {product.pricing?.percentageDiscount}
                     </span>
                   </div>
                   <Button
@@ -189,7 +189,14 @@ const [pendingId, setPendingId] = useState(null);
           ))}
       </div>
 
-      <Button onClick={() => {navigate(`/shop?category=${selectedCategory}`);}} className="view-more">View More</Button>
+      <Button
+        onClick={() => {
+          navigate(`/shop?category=${selectedCategory}`);
+        }}
+        className="view-more"
+      >
+        View More
+      </Button>
     </div>
   );
 }
