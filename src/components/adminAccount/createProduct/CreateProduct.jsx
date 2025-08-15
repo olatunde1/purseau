@@ -1,9 +1,10 @@
+import Download from '../../../assets/images/download-icon.png'; // Adjust the path as necessary
 import { useState } from 'react';
 import { X } from "react-feather"; // or any icon lib you like
 
 function CreateProduct() {
   const [form, setForm] = useState({});
-  const [images, setImages] = useState([]);
+
 
   const categories = ["Shoes", "Clothing", "Bags", "Accessories"];
   const discounts = ["0%", "5%", "10%", "15%", "20%"];
@@ -13,9 +14,7 @@ function CreateProduct() {
     setForm({ ...form, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setImages([...e.target.files]);
-  };
+
 
   const handleRemoveImages = () => {
     setImages([]);
@@ -57,6 +56,20 @@ function CreateProduct() {
     setSelectedSizes(selectedSizes.filter((s) => s !== size));
   };
 
+  const [images, setImages] = useState([]);
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setImages((prev) => {
+      const newImages = [...prev, ...files];
+      return newImages.slice(0, 4); // limit to 4
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
 return (
     <div className="bg-white shadow-md rounded-xl p-6">
         <div className="px-10 flex justify-between items-center mb-6">
@@ -68,7 +81,7 @@ return (
                 </div>
                     </div>
             </div>
-            <div className="px-4 mx-10 py-6  space-y-8 bg-slate-400 rounded-xl">
+            <div className="px-4 mx-10 py-6  space-y-8  rounded-xl">
          
         <h1 className="text-xl font-semibold">Product Information</h1>
 
@@ -171,7 +184,7 @@ return (
 
             {/* Variants Section */}
 
-            <div className="flex bg-emerald-100 gap-6 py-10 mt-6 mx-10 rounded-xl">
+            <div className="flex gap-6 py-10 mt-6 mx-10 rounded-xl">
                     <div className="w-[850px] md:grid-cols-1 gap-6 px-5">
                         <div className="space-y-4 pb-8 ">
                             <div className="flex justify-between">
@@ -268,27 +281,53 @@ return (
                     </div>
             </div>
 
-        <div>
-            <h2 className="text-xl font-semibold mb-2">Product Images</h2>
-            <div className="border-2 border-dashed p-6 rounded text-center text-gray-500 relative">
-                <input type="file" accept="image/*" multiple onChange={handleImageChange} hidden id="fileUpload" />
-                <label htmlFor="fileUpload" className="cursor-pointer text-[#E94E30] font-semibold">Choose a file to upload</label>
-                <p className="text-sm mt-2">Max 10MB size</p>
+   <div className="grid gap-6 py-10 mt-6 mx-10 rounded-xl" >
+      <h2 className="text-xl font-semibold mb-2">Product Images</h2>
+      <div className="flex gap-4">
+        
+        {/* Upload box - hide if already 4 images */}
+        {images.length < 4 && (
+          <label
+            htmlFor="fileUpload"
+            className="w-24 md:w-[194px] h-24 md:h-[194px] grid items-center justify-center border-2 border-dashed rounded cursor-pointer  text-[#5B5B5B] font-semibold text-xs text-center"
+          >
+            <img src={Download} alt="" height="24px" width="24px" />
+            Drag and drop here or <span className=' text-[#E94E30] font-semibold'>Choose a file</span> to upload 
+            
+            <p className='text-[#5B5B5B] font-semibold'>Max 10MB size</p>
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleImageChange}
+              hidden
+              id="fileUpload"
+            />
+          </label>
+        )}
 
-                {images.length > 0 && (
-                    <>
-                        <div className="flex flex-wrap gap-4 mt-4 justify-center">
-                            {Array.from(images).map((img, idx) => (
-                                <div key={idx} className="w-24 h-24 border rounded overflow-hidden">
-                                    <img src={URL.createObjectURL(img)} alt={`preview-${idx}`} className="w-full h-full object-cover" />
-                                </div>
-                            ))}
-                        </div>
-                        <button onClick={handleRemoveImages} className="mt-4 text-[#E94E30] underline">Remove</button>
-                    </>
-                )}
-            </div>
-        </div>
+        {/* Image previews */}
+        {images.map((img, idx) => (
+          <div
+            key={idx}
+            className="relative w-24 h-24 md:w-[194px] md:h-[194px] border rounded overflow-hidden"
+          >
+            <img
+              src={URL.createObjectURL(img)}
+              alt={`preview-${idx}`}
+              className="w-full h-full object-cover"
+            />
+            <button
+              type="button"
+              onClick={() => handleRemoveImage(idx)}
+              className="absolute top-1 right-1 bg-white text-red-500 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
 
         
             
