@@ -289,7 +289,8 @@ return (
         {images.length < 4 && (
           <label
             htmlFor="fileUpload"
-            className="w-24 md:w-[194px] h-24 md:h-[194px] grid items-center justify-center border-2 border-dashed rounded cursor-pointer  text-[#5B5B5B] font-semibold text-xs text-center"
+            className="w-24 md:w-[194px] h-24 md:h-[194px] items-center justify-center border-2 
+            border-dashed rounded cursor-pointer  text-[#5B5B5B] font-semibold text-xs text-center"
           >
             <img src={Download} alt="" height="24px" width="24px" />
             Drag and drop here or <span className=' text-[#E94E30] font-semibold'>Choose a file</span> to upload 
@@ -308,24 +309,29 @@ return (
 
         {/* Image previews */}
         {images.map((img, idx) => (
-          <div
-            key={idx}
-            className="relative w-24 h-24 md:w-[194px] md:h-[194px] border rounded overflow-hidden"
-          >
-            <img
-              src={URL.createObjectURL(img)}
-              alt={`preview-${idx}`}
-              className="w-full h-full object-cover"
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveImage(idx)}
-              className="absolute top-1 right-1 bg-white text-red-500 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold"
-            >
-              ×
-            </button>
-          </div>
-        ))}
+  <div
+    key={idx}
+    className="relative w-24 h-24 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
+  >
+    <img
+      src={URL.createObjectURL(img)}
+      alt={`preview-${idx}`}
+      className="w-full h-full object-cover"
+    />
+
+    {/* Hover overlay with Remove button */}
+    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+      <button
+        type="button"
+        onClick={() => handleRemoveImage(idx)}
+        className="bg-[#E94E30] text-white px-4 py-2 rounded-lg font-semibold"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+))}
+
       </div>
     </div>
 
