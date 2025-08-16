@@ -24,7 +24,7 @@ function Sidebar() {
       submenu: [
         { name: 'All Products', route: '/admin/product-list' },
         { name: 'Create Product', route: '/admin/create-product' },
-        { name: 'Archived Products', route: '/admin/archived-products' },
+        { name: 'Archived Products', route: '/admin/archived-product' },
       ],
     },
     { name: 'Customers', iconSrc: Users, route: '/admin/customers' },

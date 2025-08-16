@@ -1,4 +1,4 @@
-import Download from '../../../assets/images/download-icon.png'; // Adjust the path as necessary
+import Download from '../../../assets/images/admin-create-product-upload.png'; // Adjust the path as necessary
 import { useState } from 'react';
 import { X } from "react-feather"; // or any icon lib you like
 
@@ -290,12 +290,12 @@ return (
           <label
             htmlFor="fileUpload"
             className="w-24 md:w-[194px] h-24 md:h-[194px] items-center justify-center border-2 
-            border-dashed rounded cursor-pointer  text-[#5B5B5B] font-semibold text-xs text-center"
+            border-dashed rounded cursor-pointer pt-10 px-4 text-[#5B5B5B] font-semibold text-[14px] text-center"
           >
-            <img src={Download} alt="" height="24px" width="24px" />
-            Drag and drop here or <span className=' text-[#E94E30] font-semibold'>Choose a file</span> to upload 
+            <img className='mx-auto mb-6' src={Download} alt="" height="24px" width="24px" />
+            Drag and drop here or <span className=' underline text-[#E94E30] font-semibold'>Choose a file</span> to upload 
             
-            <p className='text-[#5B5B5B] font-semibold'>Max 10MB size</p>
+            <p className='text-[#AEAEB2] pt-6 font-semibold'>Max 10MB size</p>
             <input
               type="file"
               accept="image/*"

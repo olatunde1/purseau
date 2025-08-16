@@ -42,6 +42,8 @@ import OrderHistoryComponent from "./components/adminAccount/orderHistory/OrderH
 import AdminOrderDetailsComponent from "./components/adminAccount/orderDetails/OrderDetailsComponent";
 import AllProductListComponent from "./components/adminAccount/productList/AllProductListComponent";
 import CreateProductComponent from "./components/adminAccount/createProduct/CreateProductComponent";
+import ArchivedProductComponent from "./components/adminAccount/archivedProduct/ArchivedProductComponent";
+import ArchivedProductDetailsComponent from "./components/adminAccount/archivedProduct/ArchivedProductDetailsComponent";
 
 
 function App() {
@@ -93,6 +95,8 @@ function App() {
           <Route path="order-details" element={<AdminOrderDetailsComponent />} />
           <Route path="product-list" element={<AllProductListComponent />} />
           <Route path="create-product" element={<CreateProductComponent />} />
+          <Route path="archived-product" element={<ArchivedProductComponent />} />
+          <Route path="archived-product-details" element={<ArchivedProductDetailsComponent />} />
         </Route>
       </Routes>
     </>
