@@ -10,6 +10,28 @@ const ProductDetails = () => {
     "https://via.placeholder.com/150x150?text=Image+4",
   ];
   const [mainImage, setMainImage] = useState(productImages[0]);
+  const reviews = [
+  {
+    name: "John Doe",
+    rating: 4,
+    text: "Great quality, the material feels premium and delivery was fast!",
+    images: [
+      "https://via.placeholder.com/120x120.png?text=Item+1",
+      "https://via.placeholder.com/120x120.png?text=Item+2",
+    ],
+    date: "Aug 18, 2025",
+  },
+  {
+    name: "Jane Smith",
+    rating: 5,
+    text: "Absolutely love this product! Exceeded my expectations.",
+    images: [
+      "https://via.placeholder.com/120x120.png?text=Item+A",
+      "https://via.placeholder.com/120x120.png?text=Item+B",
+    ],
+    date: "Aug 15, 2025",
+  },
+];
 
   return (
     <div className="p-4 sm:p-6 bg-gray-50 min-h-screen">
@@ -45,6 +67,7 @@ const ProductDetails = () => {
               />
             ))}
           </div>
+          
         </div>
 
         {/* Product Info */}
@@ -82,93 +105,145 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          {/* Stats */}
-         <div className="bg-white grid grid-cols-3 mt-6 border rounded-xl shadow h-[88px]">
-            <div className="p-3  sm:p-4 text-center border-r border-gray-200 first:rounded-l-xl">
-              <p className="text-lg sm:text-2xl font-bold">251</p>
-              <p className="text-gray-500 text-xs sm:text-sm">Orders</p>
-            </div>
-            <div className="p-3 sm:p-4 text-center border-r border-gray-200">
-              <p className="text-lg sm:text-2xl font-bold">214</p>
-              <p className="text-gray-500 text-xs sm:text-sm">Available Stocks</p>
-            </div>
-            <div className="p-3 sm:p-4 text-center">
-              <p className="text-lg sm:text-2xl font-bold">₦ 1.563,800</p>
-              <p className="text-gray-500 text-xs sm:text-sm">Revenue</p>
-            </div>
-          </div>
-          <h1 className="font-bold text-[20px] pt-4">Product Description</h1>
-          <p className="text-justify py-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Lorem Ipsum is dummy text used throughout the design industry. Lorem Ipsum has been the standard dummy text for many hundreds of years. Ever since an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five View more</p>
-        </div>
-      </div>
+               <div className="bg-white grid grid-cols-3 mt-6 border rounded-xl shadow h-[88px]">
+                <div className="p-3  sm:p-4  border-r border-gray-200 first:rounded-l-xl">
+                  <p className="text-lg sm:text-2xl font-bold">251</p>
+                  <p className="text-gray-500 text-xs sm:text-sm">Orders</p>
+                </div>
+                <div className="p-3 sm:p-4 border-r border-gray-200">
+                  <p className="text-lg sm:text-2xl font-bold">214</p>
+                  <p className="text-gray-500 text-xs sm:text-sm">Available Stocks</p>
+                </div>
+                <div className="p-3 sm:p-4 ">
+                  <p className="text-lg sm:text-2xl font-bold">₦ 1.563,800</p>
+                  <p className="text-gray-500 text-xs sm:text-sm">Total Revenue</p>
+                </div>
+                </div>
+                <h1 className="font-bold text-[20px] pt-4">Product Description</h1>
+                <p className="text-justify py-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Lorem Ipsum is dummy text used throughout the design industry. Lorem Ipsum has been the standard dummy text for many hundreds of years. Ever since an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five View more</p>
+                
+                <h1 className="font-bold text-[20px] pt-4">Additional Information</h1>
+                <table className="mt-6 w-full border rounded-xl bg-white shadow">
+                <thead>
+                  <tr className="">
+                  <th scope="col" className="px-4 py-5 text-left font-semibold text-gray-700">
+                    Brand
+                  </th>
+                  <th scope="col" className="px-4 py-5 text-left font-semibold text-gray-700">
+                    Channel
+                  </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-[#F8F8F8]">
+                  <td className="px-4 py-5 text-gray-600">Weight</td>
+                  <td className="px-4 py-5 text-gray-600">80kg</td>
+                  </tr>
+                  <tr>
+                  <td className="px-4 py-5 text-gray-600">Material</td>
+                  <td className="px-4 py-5 text-gray-600">PU Leather</td>
+                  </tr>
+                </tbody>
+                </table>
 
-      {/* Tabs */}
-      <div className="mt-8 bg-white rounded-xl shadow">
-        {/* Tab Header */}
-        <div className="flex border-b overflow-x-auto">
-          {[
-            { id: "description", label: "Description" },
-            { id: "additional", label: "Additional Information" },
-            { id: "reviews", label: "Reviews" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              className={`px-4 sm:px-6 py-3 font-medium whitespace-nowrap ${
-                activeTab === tab.id
-                  ? "border-b-2 border-orange-500 text-orange-500"
-                  : "text-gray-500"
-              }`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+                <h1 className="font-bold text-[20px] pt-4">Ratings & Review</h1>
+                <div className="flex space-x-4 mt-2">
+                  <div className="left w-full md:w-[339px]">
+                    <div className="flex items-center gap-2 mt-4">
+                <span className="text-xl sm:text-2xl font-bold bg-[#FFE4DA] py-6 px-[23px] rounded-md text-[#E94E30]">4.8</span>
+                <div className="grid space-y-3">
+                  <span className="flex items-center gap-1">
+                     {/* 5 stars, 4 active */}
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                  key={i}
+                  className={i < 4 ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}
+                  size={20}
+                  />
+                ))}
+                  </span>
+                  <span className="text-gray-500 text-sm">Based on 578 ratings</span>
+                </div>
+               
 
-        {/* Tab Content */}
-        <div className="p-4 sm:p-6">
-          {activeTab === "description" && (
-            <div>
-              <p className="text-gray-700 mb-4">
-                Available Color — Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-              </p>
-              <p className="text-gray-700">
-                Lorem Ipsum is dummy text used throughout the design industry.
-              </p>
-            </div>
-          )}
+                </div>
+                
+                <div className="mt-6"></div>
+                  {[
+                    { stars: 5, percent: 80, count: 2436 },
+                    { stars: 4, percent: 12, count: 456 },
+                    { stars: 3, percent: 50, count: 150 },
+                    { stars: 2, percent: 2, count: 60 },
+                    { stars: 1, percent: 1, count: 30 },
+                  ].map((rating, idx) => (
+                    <div key={idx} className="flex items-center gap-3 mb-2">
+                      <div className="flex items-center gap-1 w-16 font-semibold text-gray-700">
+                        {rating.stars} Star{rating.stars > 1 ? "s" : ""}
+                      </div>
+                      <div className="flex-1 h-3 bg-gray-200 rounded overflow-hidden mx-2">
+                        <div
+                          className="h-full w-full"
+                          style={{
+                            width: `${rating.percent}%`,
+                            background: "#e94e30",
+                            borderRadius: "inherit",
+                          }}
+                        />
+                      </div>
+                      <span className="text-gray-700 text-sm font-medium w-12 text-right">{rating.count}</span>
+                    </div>
+                  ))}
+                  </div>
+                  <div className="right w-full md:w-[313px]">
+                    <div className="mt-4 space-y-3">
+                      {reviews.map((review, idx) => (
+                        <div key={idx} className="border p-2 rounded-lg shadow-sm bg-white">
+                          {/* Name + Stars */}
+                          <div className="flex items-center justify-between">
+                            <span className="font-semibold text-gray-800">{review.name}</span>
+                            <div className="flex space-x-1 text-[#e94e30]">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <Star
+                                  key={i}
+                                  size={16}
+                                  fill={i < review.rating ? "#E9BB02" : "none"}
+                                  stroke="#E9BB02"
+                                />
+                              ))}
+                            </div>
+                          </div>
 
-          {activeTab === "additional" && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <p><strong>Brand:</strong> Channel</p>
-              <p><strong>Weight:</strong> 80kg</p>
-              <p><strong>Material:</strong> PU Leather</p>
-              <p><strong>Sizes:</strong> EU 34-35, EU 35, EU 35-36, EU 37...</p>
-            </div>
-          )}
+                          {/* Review Text */}
+                          <p className="mt-2 text-gray-600 text-sm">{review.text}</p>
 
-          {activeTab === "reviews" && (
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xl sm:text-2xl font-bold">4.8</span>
-                <Star className="text-yellow-400 fill-yellow-400" size={20} />
-                <span className="text-gray-500 text-sm">
-                  Based on 578 ratings
-                </span>
+                          {/* Review Images */}
+                          <div className="flex">
+                            <div className="flex space-x-3 mt-3">
+                            {review.images.map((img, i) => (
+                              <img
+                                key={i}
+                                src={img}
+                                alt="Reviewed item"
+                                className="w-24 md:w-[40px] h-24 md:h-[40px] rounded-lg object-cover"
+                              />
+                            ))}
+                          </div>
+
+                          {/* Date */}
+                          <p className="mt-2 text-xs text-gray-500">{review.date}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                </div>
               </div>
-              <div className="border-t pt-4">
-                <p className="font-semibold">Idowu Racheal</p>
-                <p className="text-gray-600 text-sm">
-                  My hubby bought me this for my birthday and I love it.
-                </p>
-                <p className="text-xs text-gray-400 mt-1">Apr 14, 2025</p>
+            
               </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+
+            
   );
 };
 
