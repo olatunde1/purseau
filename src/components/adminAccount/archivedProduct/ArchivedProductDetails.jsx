@@ -99,29 +99,36 @@ const sizeOptions = [
     Available Color
   </h3>
 
-  <div className="mt-3 flex items-center gap-3">
-    {colorOptions.map((c) => (
-      <button
-        key={c.hex}
-        type="button"
-        onClick={() => setSelectedColor(c.hex)}
-        aria-label={`Select color ${c.name}`}
-        className={`h-9 w-9 rounded-full border shadow-sm transition-transform hover:scale-105 
-          ${selectedColor === c.hex ? "ring-2 ring-offset-2 ring-gray-900" : ""}`}
-        style={{ backgroundColor: c.hex }}
-      />
-    ))}
-  </div>
+  <div className="mt-4 flex items-center gap-3">
+  {colorOptions.map((c) => (
+    <button
+      key={c.hex}
+      type="button"
+      onClick={() => setSelectedColor(c.hex)}
+      aria-label={`Select color ${c.name}`}
+      className="h-9 w-9 rounded-full border shadow-sm transition-transform hover:scale-105"
+      style={{
+        backgroundColor: c.hex,
+        boxShadow:
+          selectedColor === c.hex
+            ? `0 0 0 3px white,   /* offset margin (background gap) */
+               0 0 0 6px ${c.hex}` /* actual colored ring */
+            : undefined,
+      }}
+    />
+  ))}
+</div>
 
-  {/* Selected color label */}
-  <p className="mt-2 text-xs text-gray-500">
-    Selected:{" "}
-    <span className="font-medium">
-      {colorOptions.find((c) => c.hex === selectedColor)?.name}
-    </span>
-  </p>
+{/* Selected color label */}
+<p className="mt-2 text-xs text-gray-500">
+  Selected:{" "}
+  <span className="font-medium">
+    {colorOptions.find((c) => c.hex === selectedColor)?.name}
+  </span>
+</p>
 
-  <input type="hidden" name="color" value={selectedColor} />
+<input type="hidden" name="color" value={selectedColor} />
+
 </div>
 
 {/* Available Sizes */}
@@ -130,25 +137,26 @@ const sizeOptions = [
     Available Sizes
   </h3>
 
-  <div className="mt-3 flex flex-wrap gap-2">
-    {sizeOptions.map((size) => (
-      <button
-        key={size}
-        type="button"
-        onClick={() => setSelectedSize(size)}
-        className={`px-3 py-1 rounded-lg border text-sm sm:text-base cursor-pointer transition 
-          ${selectedSize === size 
-            ? "ring-2 ring-offset-1 ring-orange-500 border-orange-500 font-medium" 
-            : "hover:border-gray-400"
-          }`}
-      >
-        {size}
-      </button>
-    ))}
-  </div>
+  <div className="mt-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-3">
+  {sizeOptions.map((size) => (
+    <button
+      key={size}
+      type="button"
+      onClick={() => setSelectedSize(size)}
+      className={`w-full px-3 py-2 rounded-2xl border text-sm sm:text-base cursor-pointer bg-[#F2F2F7] transition
+        ${selectedSize === size 
+          ? "ring-2 ring-offset-1 ring-orange-500 border-orange-500 font-medium" 
+          : "hover:border-gray-400"
+        }`}
+    >
+      {size}
+    </button>
+  ))}
+</div>
+
 
   {/* Selected size label */}
-  <p className="mt-2 text-xs text-gray-500">
+  <p className="mt-3 text-xs text-gray-500">
     Selected: <span className="font-medium">{selectedSize}</span>
   </p>
 
@@ -162,7 +170,7 @@ const sizeOptions = [
         <div className="ml-4 w-full md:w-[708px]">
           <div className="flex justify-between">
             <div>
-            <h2 className="text-lg sm:text-[20px] lg:text-[28px] font-bold mb-1">
+            <h2 className="text-lg sm:text-[20px] lg:text-[28px] font-semibold mb-1">
             Caramew - CHL Bags - 370
             </h2>
           </div>
@@ -173,7 +181,7 @@ const sizeOptions = [
             <p className="text-sm text-gray-500 mb-4">
             Product ID: DS-PS01ID92
           </p>
-          <h3 className="font-bold text-[20px] pb-6">Product Summary</h3>
+          <h3 className="font-semibold text-[20px] pb-6">Product Summary</h3>
           <p className="mb-4 text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
@@ -214,11 +222,11 @@ const sizeOptions = [
                   <p className="text-gray-500 text-xs sm:text-sm">Total Revenue</p>
                 </div>
                 </div>
-                <h1 className="font-bold text-[20px] pt-6">Product Description</h1>
+                <h1 className="font-semibold text-[20px] pt-6">Product Description</h1>
                 <p className="text-justify py-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Lorem Ipsum is dummy text used throughout the design industry. Lorem Ipsum has been the standard dummy text for many hundreds of years. Ever since an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five View more</p>
                 
-                <h1 className="font-bold text-[20px] pt-4">Additional Information</h1>
+                <h1 className="font-semibold text-[20px] pt-4">Additional Information</h1>
                 <table className="mt-6 w-full border rounded-xl bg-white shadow">
                 <thead>
                   <tr className="">
@@ -242,7 +250,7 @@ const sizeOptions = [
                 </tbody>
                 </table>
 
-                <h1 className="font-bold text-[20px] pt-6">Ratings & Review</h1>
+                <h1 className="font-semibold text-[20px] pt-6">Ratings & Review</h1>
                 <div className="flex space-x-4 mt-2">
                   <div className="left w-full md:w-[339px]">
                     <div className="flex items-center gap-2 mt-4">

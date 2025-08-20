@@ -44,6 +44,8 @@ import AllProductListComponent from "./components/adminAccount/productList/AllPr
 import CreateProductComponent from "./components/adminAccount/createProduct/CreateProductComponent";
 import ArchivedProductComponent from "./components/adminAccount/archivedProduct/ArchivedProductComponent";
 import ArchivedProductDetailsComponent from "./components/adminAccount/archivedProduct/ArchivedProductDetailsComponent";
+import CustomerInfoPageComponent from "./components/adminAccount/customers/CustomerInfoPageComponent";
+import CustomersPageComponent from "./components/adminAccount/customers/CustomersPageComponent";
 
 
 function App() {
@@ -97,6 +99,8 @@ function App() {
           <Route path="create-product" element={<CreateProductComponent />} />
           <Route path="archived-product" element={<ArchivedProductComponent />} />
           <Route path="archived-product-details" element={<ArchivedProductDetailsComponent />} />
+          {/* <Route path="customer" element={<CustomerInfoPageComponent />} /> */}
+          <Route path="customer" element={<CustomersPageComponent />} />
         </Route>
       </Routes>
     </>

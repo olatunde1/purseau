@@ -27,7 +27,7 @@ function Sidebar() {
         { name: 'Archived Products', route: '/admin/archived-product' },
       ],
     },
-    { name: 'Customers', iconSrc: Users, route: '/admin/customers' },
+    { name: 'Customers', iconSrc: Users, route: '/admin/customer' },
     { name: 'Settings', iconSrc: Settings, route: '/admin/settings' },
     { name: 'Sign Out', iconSrc: LogOut, route: '/logout' },
   ];
