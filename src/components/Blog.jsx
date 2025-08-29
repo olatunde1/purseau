@@ -3,6 +3,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Card, CardContent } from "@/components/ui/card";
 import Blog1 from '../assets/images/blog1.png'
 import Blog2 from '../assets/images/blog2.png'
+import useGetBlogs from "@/hooks/api/queries/blogs/useGetBlogs.jsx";
 
 const items = [
   {
@@ -21,6 +22,8 @@ const items = [
 ];
 
 const CardCarousel = () => {
+
+    const {data: blogs} = useGetBlogs()
   return <>
   <div className="news-blog">
   <div className="brand">
