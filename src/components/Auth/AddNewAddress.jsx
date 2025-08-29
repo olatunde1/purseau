@@ -4,6 +4,8 @@ import { Listbox } from '@headlessui/react';
 import { ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
+import useCreateDeliveryAddress from "@/hooks/api/mutation/addressBook/useCreateDeliveryAddress.js";
+import {toast} from "sonner";
 
 const africaRegions = {
   Nigeria: ['Abia', 'Lagos', 'Kano', 'Oyo'],
@@ -51,13 +53,43 @@ export default function AddNewAddress() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted:', formData, selectedCountry);
-    // You could now send this to an API or context
-  };
+    const { mutate: createAddress, isPending } = useCreateDeliveryAddress();
 
-  return (
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const payload = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phoneNumber: formData.phone,
+            alternatePhoneNumber: formData.additionalPhone,
+            delivery: formData.address,
+            isDefault: true,
+            region: formData.region,
+            city: formData.city,
+        };
+        createAddress(payload, {
+            onSuccess: (response) => {
+                toast.success(response?.data?.message || "Address book added!");
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    additionalPhone: '',
+                    address: '',
+                    region: '',
+                    city: '',
+                });
+               navigate("/address-book")
+            },
+            onError: (error) => {
+                toast.error(error?.response?.data?.message || "Error applying");
+                // handle error, e.g., show error message
+            },
+        });
+    };
+    return (
     <div
       className="w-[878px] mx-auto ml-10 p-6"
       style={{
@@ -213,7 +245,7 @@ export default function AddNewAddress() {
         </div>
 
         <button type="submit" className="w-[300px] bg-[#E94E30] rounded-2xl text-white hover:bg-[#D94326] py-[18px] save-edit-address ">
-          Save
+            {isPending ? "saving" :  "Save" }
         </button>
       </form>
     </div>

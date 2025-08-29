@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pencil, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import useGetAddressBook from "@/hooks/api/queries/addressBook/useGetAddressBook.js";
 
 const addresses = [
   {
@@ -18,6 +19,8 @@ const addresses = [
 ];
 
 export default function AddressBook() {
+
+    const {data} = useGetAddressBook()
   return (
     <div className="w-[878px] mx-auto ml-10 p-6"
     style={{
