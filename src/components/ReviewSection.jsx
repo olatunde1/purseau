@@ -96,14 +96,14 @@ return (
             <label className="block text-gray-700  mb-4 font-bold">Add Detailed Review *</label>
             <textarea placeholder="Ex.I like what i got" className="w-full bg-[#F2F2F7] px-6 py-[20px] rounded-[12px]" rows="4" required></textarea>
         </div>
-        <div>
+        {/* <div>
             <label className="block text-gray-700  mb-4 font-bold">Photo/Video (Optional)</label>
             <div className="border border-dashed bg-[#F2F2F7] rounded-[12px] p-4 flex flex-col items-center justify-center h-32 relative">
                 <img src={UploadImage} alt="" className="upload-image cursor-pointer" />
                 <p className="text-gray-500 text-sm">Drag an image / Video here or <span className="text-[#E94E30] underline">Upload a file</span></p>
                 <input type="file" className="opacity-0 absolute w-full h-full cursor-pointer" />
             </div>
-        </div>
+        </div> */}
        
         <button type="submit" className=" w-[300px] bg-[#E94E30] text-white py-2 rounded-md transform transition-transform duration-300 hover:scale-100 hover:bg-[#D43C28]">Submit</button>
     </form>

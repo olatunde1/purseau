@@ -133,21 +133,21 @@ export default function SignUp() {
             of <br /> Purseau.
           </p>
 
-          {/* Divider */}
+          {/* Divider
           <div className="signup-divider flex items-center my-4">
             <div className="flex-grow border-t border-gray-300"></div>
             <span className="mx-4 text-gray-500 text-sm">or</span>
             <div className="flex-grow border-t border-gray-300"></div>
-          </div>
+          </div> */}
 
           {/* Login with Google button */}
-          <Button
+          {/* <Button
             variant="outline"
             className="signup-google-btn w-full flex items-center justify-center gap-2 border-gray-300  transition-all duration-200 mb-[178.18px]"
           >
             <FcGoogle />
             Login with Google
-          </Button>
+          </Button> */}
         </form>
       </div>
     </div>

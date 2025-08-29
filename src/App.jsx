@@ -42,6 +42,13 @@ import OrderHistoryComponent from "./components/adminAccount/orderHistory/OrderH
 import AdminOrderDetailsComponent from "./components/adminAccount/orderDetails/OrderDetailsComponent";
 import AllProductListComponent from "./components/adminAccount/productList/AllProductListComponent";
 import CreateProductComponent from "./components/adminAccount/createProduct/CreateProductComponent";
+import ArchivedProductComponent from "./components/adminAccount/archivedProduct/ArchivedProductComponent";
+import ArchivedProductDetailsComponent from "./components/adminAccount/archivedProduct/ArchivedProductDetailsComponent";
+import CustomerInfoPageComponent from "./components/adminAccount/customers/CustomerInfoPageComponent";
+import CustomersPageComponent from "./components/adminAccount/customers/CustomersPageComponent";
+import SettingPageComponent from "./components/adminAccount/settings/SettingPageComponent";
+import AdminBlogComponent from "./components/adminAccount/adminBlog/AdminBlogComponent";
+import BlogPostComponent from "./components/adminAccount/blogPost/BlogPostComponent";
 
 
 function App() {
@@ -93,6 +100,14 @@ function App() {
           <Route path="order-details" element={<AdminOrderDetailsComponent />} />
           <Route path="product-list" element={<AllProductListComponent />} />
           <Route path="create-product" element={<CreateProductComponent />} />
+          <Route path="archived-product" element={<ArchivedProductComponent />} />
+          <Route path="archived-product-details" element={<ArchivedProductDetailsComponent />} />
+          <Route path="customer-information" element={<CustomerInfoPageComponent />} />
+          <Route path="customer" element={<CustomersPageComponent />} />
+          <Route path="settings" element={<SettingPageComponent />} />
+           <Route path="blog-admin" element={<AdminBlogComponent />} />
+           <Route path="blog-post" element={<BlogPostComponent />} />
+
         </Route>
       </Routes>
     </>

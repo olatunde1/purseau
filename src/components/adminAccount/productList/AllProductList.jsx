@@ -135,7 +135,7 @@ export default function AllProductList() {
         <div className="action flex gap-3 relative">
           <div>
             <button
-              className="flex items-center gap-2 border px-4 py-1 rounded bg-[#F2F2F7]"
+              className="flex items-center gap-2 border px-4 py-1.5 rounded bg-[#F2F2F7]"
               onClick={() => setShowFilter(!showFilter)}
             >
               <Filter size={16} /> Filter
@@ -164,7 +164,7 @@ export default function AllProductList() {
 
           <div className="relative">
             <select
-              className="appearance-none pl-8 pr-4 py-2 border rounded text-sm text-gray-700 bg-[#F2F2F7] focus:outline-none"
+              className="appearance-none pl-8 pr-4 py-2 border rounded text-sm w-[107px] text-gray-700 bg-[#F2F2F7] focus:outline-none"
               value={sortOption}
               onChange={(e) => handleSort(e.target.value)}
             >
