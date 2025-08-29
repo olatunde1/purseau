@@ -86,7 +86,7 @@ export default function Login() {
       await mutateAsync(formData, {
         onSuccess: (response) => {
           const token = response?.data?.data?.token;
-          const user = response?.data?.data;
+          const user = response?.data?.data?.user;
           if (token && user) {
             setAccessToken(token);
             setCurrentUser(user);
