@@ -55,7 +55,7 @@ const Navbar = () => {
                     Shop
                   </Link>
                 </NavigationMenuLink>
-                <NavigationMenuTrigger className="text-gray-700 hover:text-gray-900 " />
+                <NavigationMenuTrigger className="text-[#E94E30] font-bold" />
                   {/* <Link
                     to="/shop"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-100"

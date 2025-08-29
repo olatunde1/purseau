@@ -18,21 +18,24 @@ const ProductList = ({ products, totalCount, sortBy, setSortBy }) => {
     );
   }
   return (
-    <div className="w-full">
+    <div className="w-full px-6">
       <h1 className="font-bold mb-4 ">Our Products</h1>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center ">
         <p className="text-gray-600">
           Showing {products.length} of {totalCount} results
         </p>
+        
+      <div className="flex items-center gap-2">
+          <p>Sort By :</p>
         <Select onValueChange={setSortBy}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full md:w-[180px]">
             <SelectValue
               placeholder={
                 sortBy
                   ? sortBy === "price_asc"
                     ? "Price: Low to High"
                     : "Price: High to Low"
-                  : "Sort By"
+                  : "New Arrivals"
               }
             />
           </SelectTrigger>
@@ -41,6 +44,7 @@ const ProductList = ({ products, totalCount, sortBy, setSortBy }) => {
             <SelectItem value="price_desc">Price: High to Low</SelectItem>
           </SelectContent>
         </Select>
+      </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

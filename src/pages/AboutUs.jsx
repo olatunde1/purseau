@@ -70,26 +70,26 @@ export default function AboutUs() {
         <h1 className='text-white text-4xl '>Our Services</h1>
         <p className='text-[#FFFDF7]'>Discover what we offer</p>
     </div>
-    <div className="product-text">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-10">
         <div className="service-item">
             <img src={Retail} alt="Retail Products" />
             <div className="service-item-text">
-                <h1>Retail Products</h1>
-                <p>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
+                <h1 className='text-white'>Retail Products</h1>
+                <p className='text-white'>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
             </div>
         </div>
         <div className="service-item">
             <img src={Wholesale} alt="Wholesale Products" />
             <div className="service-item-text">
-                <h1>Wholesale Products</h1>
-                <p>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
+                <h1  className='text-white'>Wholesale Products</h1>
+                <p  className='text-white'>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
             </div>
         </div>
         <div className="service-item">
             <img src={DropShipping} alt="Drop Shipping" />
             <div className="service-item-text">
-                <h1>Drop Shipping</h1>
-                <p>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
+                <h1  className='text-white'>Drop Shipping</h1>
+                <p  className='text-white'>Phasellus accumsan imperdiet tempor. Cras tincidunt, arcu nec</p>
             </div>
         </div>
     </div>
@@ -107,7 +107,7 @@ export default function AboutUs() {
         From humble beginnings to a global fashion destination, Purseu has grown by empowering women through timeless, high-quality designs. Today, we continue to innovate while staying true to our commitment to style, sustainability, and individuality.
     </p>
 
-    <div className="story-card-container">
+    <div className="container grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
         <div className="story-card">
             <img src={TheBeginning} alt="The-Beginning" className="card-image" />
             <div className="card-content">
