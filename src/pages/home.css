@@ -1915,6 +1915,22 @@ input:focus{
   align-items: center; /* Center content horizontally */
 }
 
+.blog-page2{
+  background-image: url(../assets/images/blogPage.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  border-radius: 16px;
+  width: 100%; /* Use full width */
+  max-width: 1200px; /* Limit maximum width */
+  height: 300px;
+  color: #fff;
+  /* margin: 40px auto 0; Center horizontally and add top margin */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
 .breadcrumb{
   padding-top: 40px;
 }
@@ -1929,6 +1945,7 @@ input:focus{
   font-size: 36px;
   padding-top: 80px;
 }
+
 
 .minute-read{
   color: #878787;

@@ -28,6 +28,7 @@ function Sidebar() {
       ],
     },
     { name: 'Customers', iconSrc: Users, route: '/admin/customer' },
+      { name: 'Blog', iconSrc: Users, route: '/admin/blog-admin' },
     { name: 'Settings', iconSrc: Settings, route: '/admin/settings' },
     { name: 'Sign Out', iconSrc: LogOut, route: '/logout' },
   ];
