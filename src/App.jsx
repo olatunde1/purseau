@@ -1,7 +1,6 @@
 import "./App.css";
 import Layout from "./components/layout";
 import { Routes, Route } from "react-router-dom";
-import Shop from "./pages/Shop";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 // import BlogDetails from "./pages/BlogDetails";
@@ -50,6 +49,7 @@ import SettingPageComponent from "./components/adminAccount/settings/SettingPage
 import AdminBlogComponent from "./components/adminAccount/adminBlog/AdminBlogComponent";
 import BlogPostComponent from "./components/adminAccount/blogPost/BlogPostComponent";
 import UserBlogPage from "./components/UserBlogPage";
+import Shop from "./pages/Shop"
 
 
 function App() {
