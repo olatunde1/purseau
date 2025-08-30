@@ -1,5 +1,4 @@
-import React from 'react';
-import Feat1 from '../assets/images/features4.png';
+// import Feat1 from '../assets/images/features4.png';
 import Feat2 from '../assets/images/features3.png';
 import Feat3 from '../assets/images/features2.png';
 import Feat4 from '../assets/images/features1.png';

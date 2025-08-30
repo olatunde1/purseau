@@ -1,9 +1,7 @@
-import React from 'react'
-
 const Beauty = () => {
     return (
         <>
-          <SubMenu category={"beauty"} />
+          {/* <SubMenu category={"beauty"} />
           <Explore />
           <TopPicks />
           <ProductCloth />
@@ -11,7 +9,7 @@ const Beauty = () => {
           <OurFeaturedCollection />
           <RecentlyViewed />
           <StayLoop />
-          <Footer />
+          <Footer /> */}
         </>
       );
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from "react";
+import { useMemo, useState, useRef } from "react";
 // import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -45,10 +45,10 @@ const posts = [
 ];
 
 export default function AdminBlogPage() {
-  const [query, setQuery] = useState("");
+  const [query,] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [menuOpen, setMenuOpen] = useState(null);
-  const [deleteCustomer, setDeleteCustomer] = useState(null);
+  const [, setDeleteCustomer] = useState(null);
   const pageSize = 6;
   const navigate = useNavigate();
   const menuRef = useRef(null);

@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn/ui Button
 import { Star, Heart } from "lucide-react"; // For star icons (install lucide-react if not already installed)
-import { useNavigate, Link } from "react-router-dom"; // For navigation
+import { useNavigate } from "react-router-dom"; // For navigation
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
 } from "@/components/ui/card"; // shadcn/ui Card
 import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
@@ -33,7 +32,7 @@ export default function ProductDisplay() {
     Object.entries({
       category: selectedCategory,
       limit: 8, // only first 8 for preview
-    }).filter(([_, value]) => value !== undefined && value !== null)
+    }).filter(([, value]) => value !== undefined && value !== null)
   );
 
   const { data: Allproducts, isPending, error } = useGetProducts(params);

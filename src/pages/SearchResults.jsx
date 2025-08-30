@@ -1,27 +1,23 @@
-import React from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
-import { useProductStore } from "@/store/productStore";
-import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
+import { useLocation} from "react-router-dom";
+
+
 
 // Components
 import { Footer } from "@/components/Footer";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+
+
+
 import Pagination from "@/components/Pagination";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import { StayLoop } from "@/components/StayLoop";
-import GeneralLoader from "@/components/general/GeneralLoader";
+
 import ProductSection from "@/components/products/ProductSection";
-import SubMenu from "../components/SubMenu";
-import Explore from "../components/ExploreCategories";
 
 const SearchResults = () => {
-  const [searchParams] = useSearchParams();
-  const categoryName = searchParams.get("category");
-  const { category, brand, colors, sizes, rating, maxPrice } =
-    useProductStore();
+  // const [searchParams] = useSearchParams();
+  // const categoryName = searchParams.get("category");
+  // const { category, brand, colors, sizes, rating, maxPrice } =
+  //   useProductStore();
 
   const { state } = useLocation();
   console.log(state?.searchProduct, "state from search results");

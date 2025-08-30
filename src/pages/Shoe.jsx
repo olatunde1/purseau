@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 const Shoe = () => {
     return (
         <>
-          <SubMenu category={"shoes"} />
+          {/* <SubMenu category={"shoes"} />
           <Explore />
           <TopPicks />
           <ProductCloth />
@@ -11,7 +11,7 @@ const Shoe = () => {
           <OurFeaturedCollection />
           <RecentlyViewed />
           <StayLoop />
-          <Footer />
+          <Footer /> */}
         </>
       );
 }

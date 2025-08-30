@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Button } from '../components/ui/button';
 import { SlArrowRight } from "react-icons/sl";
 import {

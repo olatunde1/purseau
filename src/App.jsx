@@ -1,10 +1,10 @@
 import "./App.css";
 import Layout from "./components/layout";
 import { Routes, Route } from "react-router-dom";
-import Shop from "./pages/shop";
+import Shop from "./pages/Shop";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
-import BlogDetails from "./pages/BlogDetails";
+// import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
 import Home from "./pages/home";
 import VerifyEmail from "./components/Auth/VerifyEmail";

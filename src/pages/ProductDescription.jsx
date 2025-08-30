@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
@@ -66,7 +66,7 @@ const ProductDescription = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [activeButton, setActiveButton] = useState(null); // 'cart' | 'buy' | null
-  const [userRating, setUserRating] = useState(0);
+  const [, setUserRating] = useState(0);
   const [activeSection, setActiveSection] = useState("description");
 
   // State for product-specific selections

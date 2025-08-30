@@ -1,8 +1,6 @@
 
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import Blog1 from '../assets/images/blog1.png'
-import Blog2 from '../assets/images/blog2.png'
 import useGetBlogs from "@/hooks/api/queries/blogs/useGetBlogs.jsx";
 
 // const items = [

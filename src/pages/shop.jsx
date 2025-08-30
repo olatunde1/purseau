@@ -1,4 +1,3 @@
-import React from "react";
 import SubMenu from "../components/SubMenu";
 import { Footer } from "@/components/Footer";
 import Explore from "../components/ExploreCategories";
@@ -10,9 +9,9 @@ import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 import GeneralLoader from "@/components/general/GeneralLoader";
 import ProductSection from "@/components/products/ProductSection";
 import { useProductStore } from "@/store/productStore";
-import ProductsPage from "./product";
 
-const shop = () => {
+
+const Shop = () => {
   const [searchParams] = useSearchParams();
   const categoryName = searchParams.get("category");
 
@@ -24,9 +23,7 @@ const shop = () => {
     colors,
     sizes,
     rating,
-    maxPrice,
-    searchQuery,
-    sortBy,
+   
   } = useProductStore();
 
   const params = Object.fromEntries(
@@ -38,7 +35,7 @@ const shop = () => {
       reviewRating: rating,
       // maxPrice: maxPrice ?? "",
       size: sizes.length > 0 ? sizes.join(",") : null,
-    }).filter(([_, value]) => value !== undefined && value !== null)
+    }).filter(([, value]) => value !== undefined && value !== null)
   );
 
   const { data: Allproducts, isPending, error } = useGetProducts(params);
@@ -66,4 +63,4 @@ const shop = () => {
   );
 };
 
-export default shop;
+export default Shop;

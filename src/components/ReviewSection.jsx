@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaStar } from 'react-icons/fa';
-import UploadImage from '../assets/images/upload-image.png';
+// import UploadImage from '../assets/images/upload-image.png';
 
 const reviews = [
   { id: 1, name: 'Olabunmi', stars: 5, subject: 'Excellent product, I like it', statement: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', time: '1 week ago' },

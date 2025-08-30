@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,11 +10,6 @@ import {
 import SubMenu from "@/components/SubMenu";
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import Trash from "../assets/images/trash.png";
-import Bag from "../assets/images/bag1.png";
-import Cap from "../assets/images/cap.png";
-import Dhambston from "../assets/images/dhambston.png";
-import Shoe from "../assets/images/shoe1.png";
-import Watch from "../assets/images/watch.png";
 import Caution from "../assets/images/info-circle.png";
 import ExploreSimilarProducts from "@/components/YouMightLike";
 import RecentlyViewed from "@/components/RecentlyViewed";
@@ -24,7 +19,6 @@ import Checkout from "./CheckOut";
 import useCartStore from "@/store/cartStore";
 import {
   useDecrementCartItem,
-  useGetCart,
   useIncrementCartItem,
   useRemoveFromCart,
 } from "@/hooks/api/mutation/carts/cartOperations";
@@ -87,11 +81,11 @@ const ShoppingCart = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
 
-  const { cartItems, cartCount, setCartItems } = useCartStore();
+  const { cartItems } = useCartStore();
 
   // console.log(cartItems, "cartItems");
-  const { data } = useGetCart();
-  const cartData = data?.data
+  // const { data } = useGetCart();
+  // const cartData = data?.data
   const increment = useIncrementCartItem();
   const decrement = useDecrementCartItem();
   const remove = useRemoveFromCart();

@@ -1,4 +1,4 @@
-import React, { useState,useRef, useEffect } from "react";
+import { useState,useRef, useEffect } from "react";
 import { Search, MoreHorizontal } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +6,7 @@ const CustomersPage = () => {
   const [search, setSearch] = useState("");
   const [selectedRows, setSelectedRows] = useState([]);
   const [menuOpen, setMenuOpen] = useState(null);
-  const [deleteCustomer, setDeleteCustomer] = useState(null);
+  const [, setDeleteCustomer] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 2; // ✅ control items per page
 

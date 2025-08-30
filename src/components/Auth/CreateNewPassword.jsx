@@ -1,23 +1,22 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useState } from "react";
+import { useLocation } from "react-router-dom"; // Import useNavigate
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { FiEdit, FiEye, FiEyeOff, FiCheckCircle } from "react-icons/fi"; // Icons
+import { FiEye, FiEyeOff, FiCheckCircle } from "react-icons/fi"; // Icons
 import { useResetPassword } from "@/hooks/api/mutation/auth/useLogin";
 import { toast } from "sonner";
 import PasswordResetSuccessful from "./PasswordResetSuccessful";
 
 export default function CreateNewPassword() {
-  const navigate = useNavigate(); // Initialize useNavigate
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [email, setEmail] = useState(
-    localStorage.getItem("verifiedEmail") || "purseau@gmail.com"
-  ); // Retrieve email
-  const [isEmailEditable, setIsEmailEditable] = useState(false); // Toggle email input editability
+  // const [email,] = useState(
+  //   localStorage.getItem("verifiedEmail") || "purseau@gmail.com"
+  // ); // Retrieve email
+  // const [, setIsEmailEditable] = useState(false); // Toggle email input editability
   const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggle confirm password visibility
 
@@ -71,15 +70,15 @@ export default function CreateNewPassword() {
   };
 
   // Handle email edit
-  const handleEmailEdit = () => {
-    setIsEmailEditable(true); // Enable email input editing
-  };
+  // const handleEmailEdit = () => {
+  //   setIsEmailEditable(true); // Enable email input editing
+  // };
 
   // Handle email save
-  const handleEmailSave = () => {
-    setIsEmailEditable(false); // Disable email input editing
-    localStorage.setItem("verifiedEmail", email); // Save the updated email
-  };
+  // const handleEmailSave = () => {
+    // setIsEmailEditable(false); 
+    // localStorage.setItem("verifiedEmail", email); 
+  // };
 
   // Toggle password visibility
   const togglePasswordVisibility = () => {

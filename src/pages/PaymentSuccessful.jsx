@@ -1,5 +1,5 @@
-import React from "react";
-import OrderComplete from "../assets/images/reset.png";
+
+// import OrderComplete from "../assets/images/reset.png";
 import DownloadIcon from '../assets/images/download-icon.png'
 import { SlArrowRight } from "react-icons/sl";
 

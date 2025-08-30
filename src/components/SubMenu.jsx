@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ClothBackground from '../assets/images/cloth-background.png';
 import BagsBackground from '../assets/images/bags-background.png';
 import ShoesBackground from '../assets/images/shoes-background.png';

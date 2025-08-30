@@ -1,21 +1,12 @@
-import React, { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FaEdit } from "react-icons/fa";
-import { BsHeart } from "react-icons/bs";
-import { TiUserOutline } from "react-icons/ti";
-import { IoIosArrowDown } from "react-icons/io";
-import { TbBorderAll, TbSettings2 } from "react-icons/tb";
-import { IoSettingsOutline } from "react-icons/io5";
-import { GoHome } from "react-icons/go";
-import Tracker from "../../assets/images/order-tracking.png";
-import { StayLoop } from "@/components/StayLoop";
-import { Footer } from "@/components/Footer";
 import {useAuthStore} from "@/store/authStore.js";
 
 const UserAccount = () => {
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  // const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const {currentUser, currentAddress} = useAuthStore()
 
 

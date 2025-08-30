@@ -1,35 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Star, ChevronDown, ChevronUp } from "lucide-react";
+import { useEffect, useState } from "react";
+
 
 const CATEGORIES = ["Clothes", "Bags", "Shoes", "Jewelry", "Accessories", "Beauty"];
 const BRANDS = ["Nike", "Adidas", "Gucci", "Louis Vuitton", "Zara", "H&M"];
 const COLORS = ["Red", "Blue", "Green", "Black", "White", "Yellow"];
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
-const RATINGS = [1, 2, 3, 4, 5]; // Star ratings from 1 to 5
+// const RATINGS = [1, 2, 3, 4, 5]; // Star ratings from 1 to 5
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null); // Single category selection
-  const [selectedBrand, setSelectedBrand] = useState(null); // Single brand selection
-  const [selectedColors, setSelectedColors] = useState([]); // Multiple color selection
-  const [selectedSizes, setSelectedSizes] = useState([]); // Multiple size selection
-  const [selectedRating, setSelectedRating] = useState(null); // Single rating selection
-  const [sortBy, setSortBy] = useState("");
-  const [brandSearch, setBrandSearch] = useState("");
-  const [priceRange, setPriceRange] = useState(1000);
+  const [, setFilteredProducts] = useState([]);
+  const [selectedCategory, ] = useState(null); // Single category selection
+  const [selectedBrand, ] = useState(null); // Single brand selection
+  const [selectedColors, ] = useState([]); // Multiple color selection
+  const [selectedSizes, ] = useState([]); // Multiple size selection
+  const [selectedRating, ] = useState(null); // Single rating selection
+  // const [sortBy, setSortBy] = useState("");
+  // const [brandSearch, setBrandSearch] = useState("");
+  // const [priceRange, setPriceRange] = useState(1000);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // State for collapsible sections
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
-  const [isColorOpen, setIsColorOpen] = useState(true);
-  const [isSizeOpen, setIsSizeOpen] = useState(true);
-  const [isRatingOpen, setIsRatingOpen] = useState(true);
-  const [isBrandOpen, setIsBrandOpen] = useState(true);
-  const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(true);
+  // const [isCategoriesOpen, setIsCategoriesOpen] = useState(true);
+  // const [isColorOpen, setIsColorOpen] = useState(true);
+  // const [isSizeOpen, setIsSizeOpen] = useState(true);
+  // const [isRatingOpen, setIsRatingOpen] = useState(true);
+  // const [isBrandOpen, setIsBrandOpen] = useState(true);
+  // const [isPriceRangeOpen, setIsPriceRangeOpen] = useState(true);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products/")
@@ -60,40 +58,40 @@ const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    filterProducts(selectedCategory, selectedBrand, selectedColors, selectedSizes, selectedRating, priceRange);
-  }, [selectedCategory, selectedBrand, selectedColors, selectedSizes, selectedRating, priceRange, products]);
+    filterProducts(selectedCategory, selectedBrand, selectedColors, selectedSizes, selectedRating);
+  }, [selectedCategory, selectedBrand, selectedColors, selectedSizes, selectedRating, products]);
 
-  const handleCategoryChange = (category) => {
-    setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
-  };
+  // const handleCategoryChange = (category) => {
+  //   setSelectedCategory((prevCategory) => (prevCategory === category ? null : category));
+  // };
 
-  const handleBrandChange = (brand) => {
-    setSelectedBrand((prevBrand) => (prevBrand === brand ? null : brand));
-  };
+  // const handleBrandChange = (brand) => {
+  //   setSelectedBrand((prevBrand) => (prevBrand === brand ? null : brand));
+  // };
 
-  const handleColorChange = (color) => {
-    let updatedColors = [...selectedColors];
-    if (updatedColors.includes(color)) {
-      updatedColors = updatedColors.filter((c) => c !== color); // Unselect color
-    } else {
-      updatedColors.push(color); // Select color
-    }
-    setSelectedColors(updatedColors);
-  };
+  // const handleColorChange = (color) => {
+  //   let updatedColors = [...selectedColors];
+  //   if (updatedColors.includes(color)) {
+  //     updatedColors = updatedColors.filter((c) => c !== color); // Unselect color
+  //   } else {
+  //     updatedColors.push(color); // Select color
+  //   }
+  //   setSelectedColors(updatedColors);
+  // };
 
-  const handleSizeChange = (size) => {
-    let updatedSizes = [...selectedSizes];
-    if (updatedSizes.includes(size)) {
-      updatedSizes = updatedSizes.filter((s) => s !== size); // Unselect size
-    } else {
-      updatedSizes.push(size); // Select size
-    }
-    setSelectedSizes(updatedSizes);
-  };
+  // const handleSizeChange = (size) => {
+  //   let updatedSizes = [...selectedSizes];
+  //   if (updatedSizes.includes(size)) {
+  //     updatedSizes = updatedSizes.filter((s) => s !== size); // Unselect size
+  //   } else {
+  //     updatedSizes.push(size); // Select size
+  //   }
+  //   setSelectedSizes(updatedSizes);
+  // };
 
-  const handleRatingChange = (rating) => {
-    setSelectedRating((prevRating) => (prevRating === rating ? null : rating)); // Toggle rating selection
-  };
+  // const handleRatingChange = (rating) => {
+  //   setSelectedRating((prevRating) => (prevRating === rating ? null : rating)); // Toggle rating selection
+  // };
 
   const filterProducts = (category, brand, colors, sizes, rating, price) => {
     let filtered = products;
@@ -116,13 +114,13 @@ const ProductsPage = () => {
     setFilteredProducts(filtered);
   };
 
-  const handleSortChange = (value) => {
-    setSortBy(value);
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
-      return value === "price_asc" ? a.price - b.price : b.price - a.price;
-    });
-    setFilteredProducts(sortedProducts);
-  };
+  // const handleSortChange = (value) => {
+  //   setSortBy(value);
+  //   const sortedProducts = [...filteredProducts].sort((a, b) => {
+  //     return value === "price_asc" ? a.price - b.price : b.price - a.price;
+  //   });
+  //   setFilteredProducts(sortedProducts);
+  // };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

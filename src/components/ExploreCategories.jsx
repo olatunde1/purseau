@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Cloth from '../assets/images/clothCategory.png';
 import Bags from '../assets/images/bagCategory.png';
 import Shoes from '../assets/images/shoeCategory.png';

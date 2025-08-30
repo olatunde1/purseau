@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,10 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Heart } from "lucide-react";
-import Recent1 from "../assets/images/recent1.png";
-import Recent2 from "../assets/images/recent2.png";
-import Recent3 from "../assets/images/recent3.png";
-import Recent4 from "../assets/images/recent4.png";
+
 
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import { MdArrowForwardIos } from "react-icons/md";

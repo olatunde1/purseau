@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Search, Bell } from 'lucide-react';
 import ProfilePic from "../assets/images/admin-profile-picture.png";
 

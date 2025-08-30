@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Package, ChevronDown, ChevronRight, ChevronUp } from 'lucide-react';
+import { Package, ChevronDown, ChevronUp } from 'lucide-react';
 
 import Logo from "../assets/images/logo.png";
-import ProfilePic from "../assets/images/admin-profile-picture.png";
 import LayoutDashboard from "../assets/images/overview.png";
 import Box from "../assets/images/product.png";
 import Users from "../assets/images/customers.png";

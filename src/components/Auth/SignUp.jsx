@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
-import VerifyEmail from "./VerifyEmail";
+import { useNavigate } from "react-router-dom";
 import { useSignUp } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
 import { validateAndFormatInput } from "@/utils";

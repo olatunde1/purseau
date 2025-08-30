@@ -1,14 +1,7 @@
-import React from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { IoIosArrowBack, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 import ProgressTracker from "./ProgressTracker";
-import { TiUserOutline } from "react-icons/ti";
-import { TbBorderAll, TbSettings2 } from "react-icons/tb";
-import { BsHeart } from "react-icons/bs";
-import { GoHome } from "react-icons/go";
-import Tracker from "../../assets/images/order-tracking.png";
-import { Button } from "@/components/ui/button";
 
 // ✅ Status style function
 const getStatusStyle = (status) => {

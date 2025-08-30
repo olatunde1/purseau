@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FaEdit, FaArrowLeft } from "react-icons/fa";
-import { BsHeart } from "react-icons/bs";
-import { TiUserOutline } from "react-icons/ti";
-import { IoIosArrowDown } from "react-icons/io";
-import { TbBorderAll, TbSettings2 } from "react-icons/tb";
-import { IoSettingsOutline } from "react-icons/io5";
-import { GoHome } from "react-icons/go";
-import Tracker from "../../assets/images/order-tracking.png";
 import CountrySelector from "./CountrySelector";
 import { IoChevronBackSharp } from "react-icons/io5";
-import { StayLoop } from "@/components/StayLoop";
-import { Footer } from "@/components/Footer";
 
 // Updated data for regions and cities in Nigeria, Ghana, and 5 neighboring countries
 const africaRegions = {
@@ -64,7 +54,6 @@ const africaRegions = {
 };
 
 const EditUserAddress = () => {
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("US");
   const [activeSection, setActiveSection] = useState("editAddress");

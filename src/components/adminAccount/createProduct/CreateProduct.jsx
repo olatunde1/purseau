@@ -16,9 +16,9 @@ function CreateProduct() {
 
 
 
-  const handleRemoveImages = () => {
-    setImages([]);
-  };
+  // const handleRemoveImages = () => {
+  //   setImages([]);
+  // };
 
   const handleSubmit = () => {
     const payload = {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import {
   NavigationMenu,
@@ -16,8 +16,7 @@ import Jewelries from "../assets/images/jewelries.png";
 import Accessories from "../assets/images/accessories-icon.png";
 import Beauty from "../assets/images/beauty-icon.png";
 import Bags from "../assets/images/bags-icon.png";
-import { GiPoloShirt } from "react-icons/gi";
-import { TbShoppingBagSearch } from "react-icons/tb";
+
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
@@ -79,7 +78,7 @@ const Navbar = () => {
                       <img
                         src={Clothes}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />{" "}
                       Cloth
@@ -93,7 +92,7 @@ const Navbar = () => {
                       <img
                         src={Bags}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />{" "}
                       Bags
@@ -107,7 +106,7 @@ const Navbar = () => {
                       <img
                         src={Shoes}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />{" "}
                       Shoes
@@ -121,7 +120,7 @@ const Navbar = () => {
                       <img
                         src={Jewelries}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />{" "}
                       Jewelries
@@ -136,7 +135,7 @@ const Navbar = () => {
                       <img
                         src={Accessories}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />
                       Accessories
@@ -151,7 +150,7 @@ const Navbar = () => {
                       <img
                         src={Beauty}
                         alt=""
-                        srcset=""
+                        // srcset=""
                         className="navigation-menu-link-icon"
                       />{" "}
                       Beauty

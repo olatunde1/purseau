@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button"; // shadcn/ui Button
 import { SlArrowRight } from "react-icons/sl";
 import specialPicture from '../assets/images/special-offer-img.png';
