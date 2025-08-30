@@ -361,7 +361,12 @@ const ShoppingCart = () => {
             >
               &times;
             </button>
-            <Checkout />
+            <Checkout cartItems={cartItems}
+                      subtotal={subtotal}
+                      deliveryFee={deliveryFee}
+                      tax={tax}
+                      total={total}
+                      deliveryMethod={deliveryMethod} />
           </div>
         </div>
       )}
