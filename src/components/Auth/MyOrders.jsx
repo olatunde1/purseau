@@ -58,7 +58,7 @@ const MyOrders = () => {
                 }}
             >
                 <div className="grid grid-cols-1 gap-6">
-                    <Card className="border rounded-lg shadow-lg bg-white p-6">
+                    <Card className="border rounded-lg shadow-lg bg-white px-6 py-6">
                         <CardHeader>
                             <CardTitle className="text-2xl font-semibold mb-6">
                                 My Orders
@@ -107,7 +107,7 @@ const MyOrders = () => {
                                                             <img
                                                                 src={image}
                                                                 alt={product?.name}
-                                                                className="w-full h-full object-cover rounded-lg"
+                                                                className="w-full h-full object-contain rounded-lg"
                                                             />
                                                         </div>
                                                         <div className="flex-1">

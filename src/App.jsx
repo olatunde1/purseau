@@ -3,9 +3,10 @@ import Layout from "./components/layout";
 import { Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
+import Shop from "./pages/Shop";
 // import BlogDetails from "./pages/BlogDetails";
 import SignUp from "./components/Auth/SignUp";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import VerifyEmail from "./components/Auth/VerifyEmail";
 import CreatePassword from "./components/Auth/CreatePassword";
 import PersonalDetails from "./components/Auth/PersonalDetails";
@@ -49,7 +50,7 @@ import SettingPageComponent from "./components/adminAccount/settings/SettingPage
 import AdminBlogComponent from "./components/adminAccount/adminBlog/AdminBlogComponent";
 import BlogPostComponent from "./components/adminAccount/blogPost/BlogPostComponent";
 import UserBlogPage from "./components/UserBlogPage";
-import Shop from "./pages/Shop"
+
 
 
 function App() {

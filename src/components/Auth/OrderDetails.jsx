@@ -63,7 +63,7 @@ const OrderDetails = () => {
                     }}
                 >
                     <CardHeader>
-                        <CardTitle className="text-2xl font-semibold mb-6 flex items-center space-x-3">
+                        <CardTitle className="text-2xl font-semibold mb-6 flex items-center space-x-3 px-2 py-2">
                             <Link to="/my-order" className="text-black hover:text-[#c8371d]">
                                 <IoIosArrowBack size={24} />
                             </Link>
@@ -100,7 +100,7 @@ const OrderDetails = () => {
                             <Link to={`/order-status/${order.id}`} state={{ order }}>
                                 <Button
                                     variant="outline"
-                                    className="text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+                                    className="text-[#E94E30] font-bold border-[#E94E30] py-6 hover:bg-[#E94E30] hover:text-white"
                                 >
                                     See Order Status
                                 </Button>
@@ -115,14 +115,16 @@ const OrderDetails = () => {
                                     {order.items.map((item) => (
                                         <div
                                             key={item.id}
-                                            className="flex flex-col sm:flex-row rounded-md bg-[#F2F2F7] justify-between p-5"
+                                            className="flex flex-col sm:flex-row rounded-xl bg-[#F2F2F7] justify-between p-5"
                                         >
+                                                <div className="flex space-x-6">
+                                                    
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
-                                                className="w-[130px] h-[130px] object-cover rounded-md"
+                                                className="w-[130px] h-[130px] object-contain rounded-md"
                                             />
-                                            <div className="flex-1 mr-0 sm:mr-[212px] ml-0 sm:ml-6 mt-4 sm:mt-0">
+                                            <div className="">
                                                 <p className="font-semibold text-base">{item.name}</p>
                                                 <p className="font-medium text-gray-600 pt-3">
                                                     Quantity:{" "}
@@ -130,27 +132,24 @@ const OrderDetails = () => {
                                                         {item.quantity || "Nil"}
                                                     </strong>
                                                 </p>
-                                                <p className="font-bold text-base text-black pt-3">
+                                                <p className="font-extrabold text-base text-black pt-3">
                                                     ₦{" "}
                                                     {item.price
                                                         ? item.price.toLocaleString()
                                                         : "Nil"}
                                                 </p>
                                             </div>
-                          {/*                  <Button*/}
-                          {/*                      className="text-white mt-4 sm:mt-0 bg-[#F2542D] hover:bg-[#E94E30]"*/}
-                          {/*                      style={{*/}
-                          {/*                          boxShadow: `*/}
-                          {/*  0px 2px 4px 0px #0000001A,*/}
-                          {/*  0px 7px 7px 0px #00000017,*/}
-                          {/*  0px 16px 10px 0px #0000000D,*/}
-                          {/*  0px 29px 12px 0px #00000003,*/}
-                          {/*  0px 45px 13px 0px #00000000*/}
-                          {/*`,*/}
-                          {/*                      }}*/}
-                          {/*                  >*/}
-                          {/*                      Buy Again*/}
-                          {/*                  </Button>*/}
+                                            
+                                                        
+                                                </div>
+                                                 <Button
+                                                    variant="outline"
+                                                    className="text-white bg-[#E94E30] shadow-lg font-bold border-[#E94E30] px-6 py-5 hover:bg-[#E94E30] hover:text-white rounded-lg "
+                                                >
+                                                    Buy Again
+                                                </Button>
+                                        
+                          
                                         </div>
                                     ))}
                                 </div>
@@ -187,13 +186,13 @@ const OrderDetails = () => {
                         {/* Payment Info */}
                         <div className="pb-[60px]">
                             <p className="text-lg font-semibold mb-6">Payment Information</p>
-                            <div className="bg-[#F9F9F9] p-6 rounded-md border border-gray-200 space-y-4">
+                            <div className="  border-gray-200 space-y-4">
                                 <div className="flex justify-normal text-[#5B5B5B]">
-                                    <strong className="text-black w-[180px]">Payment Method:</strong>
+                                    <strong className="text-black w-[180px]">Payment Method :</strong>
                                     <span className="text-right">{order.paymentInfo.method || "Nil"}</span>
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
-                                    <strong className="text-black w-[180px]">Items Total:</strong>
+                                    <strong className="text-black w-[180px]">Items Total :</strong>
                                     <span className="text-right">
                     ₦{" "}
                                         {order.paymentInfo.itemsTotal
@@ -202,7 +201,7 @@ const OrderDetails = () => {
                   </span>
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
-                                    <strong className="text-black w-[180px]">Delivery Fees:</strong>
+                                    <strong className="text-black w-[180px]">Delivery Fees :</strong>
                                     <span className="text-right">
                     ₦{" "}
                                         {order.paymentInfo.DeliveryFees
@@ -211,7 +210,7 @@ const OrderDetails = () => {
                   </span>
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
-                                    <strong className="text-black w-[180px]">Total:</strong>
+                                    <strong className="text-black w-[180px]">Total :</strong>
                                     <span className="text-right">
                     ₦{" "}
                                         {order.paymentInfo.Total
