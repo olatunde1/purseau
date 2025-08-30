@@ -30,6 +30,10 @@ const Header = () => {
   const { cartCount, setCartItems } = useCartStore();
   const { data: cartData } = useGetCart();
 
+  const userId = currentUser?._id || "";
+
+  const targetRoute = userId ? "/user-account" : "/SignUp";
+
   // Update store when cart data changes
   useEffect(() => {
     if (cartData?.data) {
@@ -101,7 +105,7 @@ const Header = () => {
                 <PopoverContent className="w-48 p-4 text-left">
                   <div className="flex flex-col space-y-2">
                     <Link
-                      to="/user-account"
+                      to={targetRoute}
                       onClick={() => setIsPopoverOpen(false)}
                     >
                       <Button variant="ghost" className="w-full justify-start">
