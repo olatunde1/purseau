@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const { currentUser } = useAuthStore();
 
-  const userId = currentUser?.userId || "";
+  const userId = currentUser?._id || "";
 
   console.log(userId, "id")
 

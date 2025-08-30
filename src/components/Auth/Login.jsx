@@ -62,7 +62,7 @@ export default function Login() {
     mode: "onChange",
   });
 
-  const { setAccessToken, setCurrentUser } = useAuthStore();
+  const { setAccessToken, setCurrentUser, setCurrentAddress } = useAuthStore();
   const { mutateAsync, isPending } = useLogin();
 
   const { mutate: forgotPassword, isPending: forgotPending } =
@@ -86,10 +86,12 @@ export default function Login() {
       await mutateAsync(formData, {
         onSuccess: (response) => {
           const token = response?.data?.data?.token;
-          const user = response?.data?.data;
+          const user = response?.data?.data?.user;
+          const addressBook = response?.data?.data?.addressBook;
           if (token && user) {
             setAccessToken(token);
             setCurrentUser(user);
+            setCurrentAddress(addressBook);
           }
 
           toast.success(response?.data?.message || "Login successful");

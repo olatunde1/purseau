@@ -26,6 +26,10 @@ const OrderStatus = () => {
   const location = useLocation();
   const orderFromState = location.state?.order || {};
 
+  console.log(orderFromState, "orderFromState");
+    const updates = orderFromState.statusUpdates || [];
+
+    const currentStatus = updates.length ? updates[updates.length - 1].status : null;
   const status = orderFromState.status?.toLowerCase() || "ongoing";
   const statusStyle = getStatusStyle(status);
   const isHiddenSection = status === "canceled" || status === "returned";
@@ -130,7 +134,8 @@ const OrderStatus = () => {
             </div>
 
             {/* Progress Tracker */}
-            <ProgressTracker currentStatus={orderFromState.status} />
+            <ProgressTracker  currentStatus={currentStatus}
+                             timeline={updates}/>
 
             {/* Delivery and Payment Info */}
             {!isHiddenSection && (

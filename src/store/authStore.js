@@ -6,9 +6,11 @@ const authStore = createStore(
     (set) => ({
       accessToken: null,
       currentUser: null,
+      currentAddress: null,
       setAccessToken: (token) => set({ accessToken: token }),
       setCurrentUser: (user) => set({ currentUser: user }),
-      logout: () => set({ accessToken: null, currentUser: null }),
+      setCurrentAddress: (address) => set({ currentAddress: address }),
+      logout: () => set({ accessToken: null, currentUser: null , currentAddress: null }),
     }),
     {
       name: "auth",

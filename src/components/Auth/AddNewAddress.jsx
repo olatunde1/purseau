@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Flag from 'react-world-flags';
 import { Listbox } from '@headlessui/react';
 import { ChevronDown } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
+import useCreateDeliveryAddress from "@/hooks/api/mutation/addressBook/useCreateDeliveryAddress.js";
+import {toast} from "sonner";
+import useEditDeliveryAddress from "@/hooks/api/mutation/addressBook/useEditAddress.js";
 
 const africaRegions = {
   Nigeria: ['Abia', 'Lagos', 'Kano', 'Oyo'],
@@ -25,7 +28,16 @@ const countries = [
 
 export default function AddNewAddress() {
   const navigate = useNavigate();
+
+    const location = useLocation();
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+
+    const isEditMode = new URLSearchParams(location.search).get("edit") === "true";
+    const editData = location.state;
+
+    console.log(editData, "editData")
+
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -34,13 +46,32 @@ export default function AddNewAddress() {
     additionalPhone: '',
     address: '',
     region: '',
-    city: '',
+    city: '', isDefault: false,
   });
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    useEffect(() => {
+        if (isEditMode && editData) {
+            setFormData({
+                firstName: editData.firstName || "",
+                lastName: editData.lastName || "",
+                email: editData.email || "",
+                phone: editData.phoneNumber || "",
+                additionalPhone: editData.alternatePhoneNumber || "",
+                address: editData.delivery || "",
+                region: editData.region || "",
+                city: editData.city || "",
+                isDefault: editData.isDefault || false,
+            });
+        }
+    }, [isEditMode, editData]);
+
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value,
+        }));
+    };
 
   const handleRegionChange = (e) => {
     const region = e.target.value;
@@ -51,13 +82,68 @@ export default function AddNewAddress() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted:', formData, selectedCountry);
-    // You could now send this to an API or context
-  };
+    const { mutate: createAddress, isPending } = useCreateDeliveryAddress();
+    const { mutate: editAddress, isPending: isEditPending } =
+        useEditDeliveryAddress();
 
-  return (
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const payload = {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phoneNumber: formData.phone,
+            alternatePhoneNumber: formData.additionalPhone,
+            delivery: formData.address,
+            isDefault: formData.isDefault,
+            region: formData.region,
+            city: formData.city,
+        };
+
+        if (isEditMode && editData?._id) {
+            // EDIT FLOW
+            editAddress(
+                { id: editData._id, ...payload },
+                {
+                    onSuccess: (response) => {
+                        toast.success(response?.data?.message || "Address updated!");
+                        navigate("/address-book");
+                    },
+                    onError: (error) => {
+                        toast.error(
+                            error?.response?.data?.message || "Error updating address"
+                        );
+                    },
+                }
+            );
+        } else {
+            // CREATE FLOW
+            createAddress(payload, {
+                onSuccess: (response) => {
+                    toast.success(response?.data?.message || "Address added!");
+                    setFormData({
+                        firstName: "",
+                        lastName: "",
+                        email: "",
+                        phone: "",
+                        additionalPhone: "",
+                        address: "",
+                        region: "",
+                        city: "",
+                    });
+                    navigate("/address-book");
+                },
+                onError: (error) => {
+                    toast.error(error?.response?.data?.message || "Error saving address");
+                },
+            });
+        }
+    };
+
+
+
+
+    return (
     <div
       className="w-[878px] mx-auto ml-10 p-6"
       style={{
@@ -66,7 +152,7 @@ export default function AddNewAddress() {
       }}
     >
       <button onClick={() => navigate(-1)} className="mb-[48px] text-base font-medium flex gap-2 ">
-          <IoIosArrowBack size={24} />Add New Address
+          <IoIosArrowBack size={24} /> {isEditMode ? "Edit Address" : "Add New Address"}
       </button>
 
       <h2 className="text-2xl font-semibold mb-6"></h2>
@@ -211,9 +297,27 @@ export default function AddNewAddress() {
             </select>
           </div>
         </div>
+          <div className="flex items-center gap-3">
+              <input
+                  type="checkbox"
+                  id="isDefault"
+                  name="isDefault"
+                  checked={formData.isDefault}
+                  onChange={handleInputChange}
+                  className="h-5 w-5 accent-[#E94E30] rounded"
+              />
+              <label htmlFor="isDefault" className="text-sm font-medium">
+                  Set as default address
+              </label>
+          </div>
+
 
         <button type="submit" className="w-[300px] bg-[#E94E30] rounded-2xl text-white hover:bg-[#D94326] py-[18px] save-edit-address ">
-          Save
+            {isPending || isEditPending
+                ? "Saving..."
+                : isEditMode
+                    ? "Update"
+                    : "Save"}
         </button>
       </form>
     </div>

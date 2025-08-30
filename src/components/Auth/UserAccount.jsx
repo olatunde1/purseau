@@ -12,9 +12,12 @@ import { GoHome } from "react-icons/go";
 import Tracker from "../../assets/images/order-tracking.png";
 import { StayLoop } from "@/components/StayLoop";
 import { Footer } from "@/components/Footer";
+import {useAuthStore} from "@/store/authStore.js";
 
 const UserAccount = () => {
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const {currentUser, currentAddress} = useAuthStore()
+
 
   return (
     <>
@@ -32,10 +35,10 @@ const UserAccount = () => {
               <CardTitle className="pb-[24px]">Account Details</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 pb-2 "> Seun fashola</p>
-              <p className="text-gray-400 pb-2"> pursue@example.com</p>{" "}
+              <p className="text-gray-700 pb-2"> {currentUser?.firstName}</p>
+              <p className="text-gray-400 pb-2"> {currentUser?.email}</p>{" "}
               {/* Inactive email */}
-              <p className="text-gray-400"> +234803567890</p>{" "}
+              <p className="text-gray-400"> +{currentUser?.phoneNumber}</p>{" "}
               {/* Inactive phone number */}
             </CardContent>
           </Card>
@@ -50,12 +53,13 @@ const UserAccount = () => {
               {/* Inactive description */}
             </CardHeader>
             <CardContent>
-              <p className="text-gray-700 pb-2"> seun fashola</p>
-              <p className="text-gray-400 pb-2"> 123 Main St, New York</p>{" "}
+              <p className="text-gray-700 pb-2"> {currentAddress[0]?.firstName}  {currentAddress[0]?.lastName}</p>
+              <p className="text-gray-400 pb-2"> {currentAddress[0]?.delivery}</p>{" "}
               {/* Inactive address */}
-              <p className="text-gray-400 mb-8"> USA</p>{" "}
+              <p className="text-gray-400 mb-8"> {currentAddress[0]?.city}, {currentAddress[0]?.region}</p>{" "}
               {/* Inactive country */}
-              <Link to="/edit-user-address">
+              <Link to="/address-book">
+              {/*<Link to="/edit-user-address">*/}
                 <Button className="absolute top-4 right-4 flex items-center gap-2 text-[#E94E30] bg-transparent hover:bg-transparent">
                   <FaEdit /> Edit
                 </Button>
