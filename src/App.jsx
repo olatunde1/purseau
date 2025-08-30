@@ -31,7 +31,7 @@ import WishlistComponent from "./components/userAccount/wishlist/WishlistCompone
 import MyOrderComponent from "./components/userAccount/myOrder/MyOrderComponent";
 import OrderDetailsComponent from "./components/userAccount/orderDetails/OrderDetailsComponent";
 import OrderStatusComponent from "./components/userAccount/orderStatus/OrderStatusComponent";
-import ProfileComponent from "./components/userAccount/profile/profileComponent";
+import ProfileComponent from "./components/userAccount/profile/ProfileComponent";
 import DeleteConfirmation from "./components/Auth/DeleteConfirmation";
 import PasswordSettingsComponent from "./components/userAccount/PasswordSettings/PasswordSettingsComponent";
 import AddressBookComponent from "./components/userAccount/AddressBook/AddressBookComponent";
