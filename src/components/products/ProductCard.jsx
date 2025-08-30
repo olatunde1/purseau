@@ -133,11 +133,11 @@ const ProductCard = ({ product }) => {
       className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden group"
     >
       <CardHeader>
-        <div className="h-[280px] w-full relative bg-[#FFE4DA]">
+        <div className="h-[280px] w-full relative bg-[#FFE4DA] cursor-pointer">
           <img
             src={product?.images[0]?.url || sampleimage}
             alt={product?.name}
-            className=" absolute inset-0 object-cover w-full h-full rounded-t-lg bg-[#FFE4DA]"
+            className=" absolute inset-0 object-contain w-full h-full rounded-t-lg bg-[#FFE4DA]"
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = sampleimage;

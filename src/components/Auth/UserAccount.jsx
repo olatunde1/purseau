@@ -30,7 +30,7 @@ const UserAccount = () => {
           <h1 className="text-2xl font-medium">Account Overview</h1>
 
           {/* Account Details Card */}
-          <Card className="border rounded-lg shadow-lg bg-white p-10">
+          <Card className="border-t-0 rounded-lg shadow-xl bg-white p-10 md:hover:cursor-pointer relative">
             <CardHeader>
               <CardTitle className="pb-[24px]">Account Details</CardTitle>
             </CardHeader>
@@ -44,7 +44,7 @@ const UserAccount = () => {
           </Card>
 
           {/* Address Book Card */}
-          <Card className="border rounded-lg shadow-lg bg-white relative p-10">
+          <Card className="border rounded-lg shadow-lg bg-white relative p-10 md:hover:cursor-pointer">
             <CardHeader className="mb-[24px]">
               <CardTitle>Address Book</CardTitle>
               <p className="text-gray-400">

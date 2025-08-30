@@ -48,7 +48,7 @@ const Contact = () => {
     <>
       <div className="contact-us">
         <h1>Contact Us</h1>
-        <p>Everything you need to know about us</p>
+        <p className="text-[#BEBEBE]">Everything you need to know about us</p>
       </div>
       <div className="container-contact-us">
         {/* Left Div - Form */}
@@ -119,15 +119,15 @@ const Contact = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <Button className="submitButton" disabled={isPending}>
-              {isPending ? "submitting" : "Submit"}
+            <Button className="px-6 w-full md:w-[288px] pt-6 pb-6 bg-[#E94E30] rounded-xl" disabled={isPending}>
+              {isPending ? "submitting" : "Send Message"}
             </Button>
           </form>
         </div>
 
         {/* Right Div - Contact Info */}
         <div className="rightDiv">
-          <div className="contactInfo">
+          <div className="contactInfo rounded-xl">
             <h3>Address</h3>
             <p>
               27/29 Martin Street, shop FF04, last floor, Fulham plaza, <br />

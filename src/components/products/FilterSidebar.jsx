@@ -60,12 +60,6 @@ const FilterSidebar = () => {
 
   return (
     <div className="w-full p-4 border-r">
-      {/* <button
-        className="mb-4 px-3 py-1 bg-gray-200 rounded text-sm"
-        onClick={resetFilters}
-      >
-        Reset Filters
-      </button> */}
 
       <FilterSection
         title="Categories"

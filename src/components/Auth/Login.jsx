@@ -161,7 +161,7 @@ export default function Login() {
                 placeholder="Enter email address"
                 // disabled={!isEditing}
                 // onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-1 focus:ring bg-gray-300 py-8 input-text-email"
+                className="w-full mt-1 focus:ring bg-gray-300 py-6 input-text-email"
               />
               {isEditing ? (
                 <Button
@@ -215,7 +215,7 @@ export default function Login() {
           </div>
 
           {/* Login Button */}
-          <Button className="w-full bg-[#d84327] text-white py-8 rounded-lg login-continue-button">
+          <Button className="w-full bg-[#d84327] text-white py-6 rounded-lg login-continue-button">
             {isPending ? "loading..." : "Continue"}
           </Button>
         </form>
