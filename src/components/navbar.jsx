@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -7,9 +7,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "@/components/ui/navigation-menu"; // Import shadcn/ui components
-import { Button } from "@/components/ui/button"; // Import Button component
-import { Menu, X } from "lucide-react"; // Icons for mobile menu toggler
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import Shoes from "../assets/images/shoes-icon.png";
 import Clothes from "../assets/images/dress-icon.png";
 import Jewelries from "../assets/images/jewelries.png";
@@ -17,17 +17,37 @@ import Accessories from "../assets/images/accessories-icon.png";
 import Beauty from "../assets/images/beauty-icon.png";
 import Bags from "../assets/images/bags-icon.png";
 
-
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu toggle
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileShopOpen, setMobileShopOpen] = useState(false);
+  const navRef = useRef(null);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen); // Toggle mobile menu
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleMobileShop = () => {
+    setMobileShopOpen(!mobileShopOpen);
+  };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsMobileMenuOpen(false);
+        setMobileShopOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className="bg-white shadow-md w-full navBar pt-2 pb-4">
-      <div className="container mx-auto px-4 py-3 flex justify-center items-center relative">
+    <nav className="bg-white shadow-md w-full navBar py-2 sticky top-0 z-50" ref={navRef}>
+      <div className="container mx-auto px-4 flex justify-center items-center relative">
         {/* Desktop Menu */}
         <div className="hidden md:flex justify-center w-full">
           <NavigationMenu>
@@ -37,125 +57,99 @@ const Navbar = () => {
                 <NavigationMenuLink asChild>
                   <Link
                     to="/"
-                    className="px-4 py-2 text-black-800 hover:text-gray-900"
+                    className="px-4 py-2 text-gray-800 hover:text-gray-900 transition-colors duration-200"
                   >
                     Home
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
-              {/* Shop with Submenu */}
+              {/* Shop with Submenu - Fixed structure */}
               <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                  <Link
-                    to="/shop"
-                    className="px-4 py-2 text-black-800 hover:text-gray-900"
-                  >
-                    Shop
-                  </Link>
-                </NavigationMenuLink>
-                <NavigationMenuTrigger className="text-[#E94E30] font-bold" />
-                  {/* <Link
-                    to="/shop"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Shop
-                  </Link> */}
-                {/* </NavigationMenuTrigger> */}
-
-                <NavigationMenuContent className="bg-white shadow-lg rounded-lg navigation-submenu">
-                  {/* <NavigationMenuLink asChild>
-                    <Link to="/Shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      All Product
-                    </Link>
-                  </NavigationMenuLink> */}
-
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                      to="/shop?category=cloth"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Clothes}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />{" "}
-                      Cloth
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                      to="/shop?category=bags"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Bags}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />{" "}
-                      Bags
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                      to="/shop?category=shoes"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Shoes}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />{" "}
-                      Shoes
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                     to="/shop?category=jewelry"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Jewelries}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />{" "}
-                      Jewelries
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                      to="/shop?category=accessories"
-
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Accessories}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />
-                      Accessories
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild className="navigation-menu-link">
-                    <Link
-                      to="/shop?category=beauty"
-
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      <img
-                        src={Beauty}
-                        alt=""
-                        // srcset=""
-                        className="navigation-menu-link-icon"
-                      />{" "}
-                      Beauty
-                    </Link>
-                  </NavigationMenuLink>
+                <NavigationMenuTrigger className="px-4 py-2 text-gray-800 hover:text-gray-900 data-[state=open]:text-gray-900 flex items-center gap-1">
+                  Shop
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-4 w-[500px] md:w-[200px]">
+                  <div className="grid grid-cols-1 gap-3 justify-center text-center">
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=cloth"
+                        className="flex items-center p-3  text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Clothes}
+                          alt="Clothing"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Cloth
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=bags"
+                        className="flex items-center p-3 text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Bags}
+                          alt="Bags"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Bags
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=shoes"
+                        className="flex items-center p-3 text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Shoes}
+                          alt="Shoes"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Shoes
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=jewelry"
+                        className="flex items-center p-3 text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Jewelries}
+                          alt="Jewelries"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Jewelries
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=accessories"
+                        className="flex items-center p-3 text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Accessories}
+                          alt="Accessories"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Accessories
+                      </Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild className="navigation-menu-link">
+                      <Link
+                        to="/shop?category=beauty"
+                        className="flex items-center p-3 text-gray-700 hover:text-white hover:bg-[#E94E30] rounded-md transition-colors duration-200"
+                      >
+                        <img
+                          src={Beauty}
+                          alt="Beauty"
+                          className="w-6 h-6 mr-2 object-contain"
+                        />
+                        Beauty
+                      </Link>
+                    </NavigationMenuLink>
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
@@ -164,7 +158,7 @@ const Navbar = () => {
                 <NavigationMenuLink asChild>
                   <Link
                     to="/AboutUs"
-                    className="px-4 py-2 text-gray-700 hover:text-dark-900"
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
                   >
                     About Us
                   </Link>
@@ -176,7 +170,7 @@ const Navbar = () => {
                 <NavigationMenuLink asChild>
                   <Link
                     to="/Contact"
-                    className="px-4 py-2 text-gray-700 hover:text-gray-900"
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
                   >
                     Contact Us
                   </Link>
@@ -186,7 +180,10 @@ const Navbar = () => {
               {/* Blog */}
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
-                  <Link to="/blog-page" className="px-4 py-2 text-gray-700 hover:text-gray-900">
+                  <Link 
+                    to="/blog-page" 
+                    className="px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                  >
                     Blog
                   </Link>
                 </NavigationMenuLink>
@@ -210,98 +207,110 @@ const Navbar = () => {
         </Button>
       </div>
 
-
-
-
-
-
-
-
-
       {/* Mobile Menu */}
+      <div className={`md:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="px-4 py-3 flex flex-col items-center space-y-3">
+          {/* Home */}
+          <Link
+            to="/"
+            className="w-full text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <NavigationMenu orientation="vertical">
-            <NavigationMenuList className="flex flex-col items-center space-y-2 p-4">
-              {/* Home */}
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/src/pages/home.jsx"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Home
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+          {/* Shop with expandable submenu */}
+          <div className="w-full">
+            <button
+              onClick={toggleMobileShop}
+              className="w-full flex justify-center items-center py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+            >
+              <span>Shop</span>
+              {mobileShopOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            </button>
+            
+            <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileShopOpen ? 'max-h-96' : 'max-h-0'}`}>
+              <div className="pl-6 py-2 grid grid-cols-2 gap-2">
+                <Link
+                  to="/shop?category=cloth"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Clothes} alt="Clothing" className="w-5 h-5 mr-2 object-contain" />
+                  Cloth
+                </Link>
+                <Link
+                  to="/shop?category=bags"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Bags} alt="Bags" className="w-5 h-5 mr-2 object-contain" />
+                  Bags
+                </Link>
+                <Link
+                  to="/shop?category=shoes"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Shoes} alt="Shoes" className="w-5 h-5 mr-2 object-contain" />
+                  Shoes
+                </Link>
+                <Link
+                  to="/shop?category=jewelry"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Jewelries} alt="Jewelries" className="w-5 h-5 mr-2 object-contain" />
+                  Jewelries
+                </Link>
+                <Link
+                  to="/shop?category=accessories"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Accessories} alt="Accessories" className="w-5 h-5 mr-2 object-contain" />
+                  Accessories
+                </Link>
+                <Link
+                  to="/shop?category=beauty"
+                  className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <img src={Beauty} alt="Beauty" className="w-5 h-5 mr-2 object-contain" />
+                  Beauty
+                </Link>
+              </div>
+            </div>
+          </div>
 
-              {/* Shop with Submenu */}
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Shop
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-2">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/src/pages/Shop.jsx"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                    >
-                      Action
-                    </Link>
-                  </NavigationMenuLink>
-                  {/* <NavigationMenuLink asChild>
-                    <Link to="/shop/another-action" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Another Action
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="/shop/something-else" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                      Something Else
-                    </Link>
-                  </NavigationMenuLink> */}
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+          {/* About Us */}
+          <Link
+            to="/AboutUs"
+            className="w-full text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About Us
+          </Link>
 
-              {/* About Us */}
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/about"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    About Us
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+          {/* Contact Us */}
+          <Link
+            to="/Contact"
+            className="w-full text-center py-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contact Us
+          </Link>
 
-              {/* Contact Us */}
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/contact"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Contact Us
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-
-              {/* Blog */}
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to="/blog"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Blog
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* Blog */}
+          <Link
+            to="/blog-page"
+            className="w-full text-center  text-gray-700 hover:bg-gray-100 rounded-md transition-colors duration-200"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Blog
+          </Link>
         </div>
-      )}
+      </div>
     </nav>
   );
 };
