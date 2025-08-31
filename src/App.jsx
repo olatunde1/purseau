@@ -49,7 +49,7 @@ import SettingPageComponent from "./components/adminAccount/settings/SettingPage
 import AdminBlogComponent from "./components/adminAccount/adminBlog/AdminBlogComponent";
 import BlogPostComponent from "./components/adminAccount/blogPost/BlogPostComponent";
 import UserBlogPage from "./components/UserBlogPage";
-import Shop from "./pages/Shop";
+import Shop from "./pages/Shop"
 
 
 function App() {
