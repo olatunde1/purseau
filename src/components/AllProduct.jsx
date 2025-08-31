@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Star } from "lucide-react";
@@ -15,7 +15,7 @@ const ProductsPage = () => {
   const [selectedBrand, setSelectedBrand] = useState(null); // Single brand selection
   const [selectedColors, setSelectedColors] = useState([]); // Multiple color selection
   const [selectedSizes, setSelectedSizes] = useState([]); // Multiple size selection
-  const [sortBy, setSortBy] = useState("");
+  const [, setSortBy] = useState("");
   const [brandSearch, setBrandSearch] = useState("");
   const [priceRange, setPriceRange] = useState(1000);
   const [loading, setLoading] = useState(true);

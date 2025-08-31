@@ -3,11 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FiEye, FiEyeOff, FiEdit } from "react-icons/fi";
-import HandWave from "../../assets/images/hand-wave.png";
-import { MdOutlineWavingHand } from "react-icons/md";
 import {
   useForgotPassword,
   useLogin,

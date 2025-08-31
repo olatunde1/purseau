@@ -1,18 +1,18 @@
-import React from 'react'
-import { Footer } from '@/components/Footer'
-import Explore from '../components/ExploreCategories'
-import RecentlyViewed from '@/components/RecentlyViewed'
-import ProductCloth from '../components/ProductCloth'
-import TopPicks from '@/components/TopPicks'
-import Pagination from '@/components/Pagination'
-import OurFeaturedCollection from '../components/OurFeaturedCollection'
-import { StayLoop } from '@/components/StayLoop'
+// import { Footer } from '@/components/Footer'
+// import Explore from '../components/ExploreCategories'
+// import RecentlyViewed from '@/components/RecentlyViewed'
+// import ProductCloth from '../components/ProductCloth'
+// import TopPicks from '@/components/TopPicks'
+// import Pagination from '@/components/Pagination'
+// import OurFeaturedCollection from '../components/OurFeaturedCollection'
+// import { StayLoop } from '@/components/StayLoop'
+// import SubMenu from '@/components/SubMenu'
 
 
 const Bags = () => {
   return (
     <>
-      <SubMenu category={"bags"} />
+      {/* <SubMenu category={"bags"} />
       <Explore />
       <TopPicks />
       <ProductCloth />
@@ -20,7 +20,7 @@ const Bags = () => {
       <OurFeaturedCollection />
       <RecentlyViewed />
       <StayLoop />
-      <Footer />
+      <Footer /> */}
     </>
   );
 

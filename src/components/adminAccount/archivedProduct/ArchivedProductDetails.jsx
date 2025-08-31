@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Edit, Star } from "lucide-react";
 
 const ProductDetails = () => {
-  const [activeTab, setActiveTab] = useState("description");
+  // const [activeTab, setActiveTab] = useState("description");
   const productImages = [
     "https://via.placeholder.com/500x500?text=Main+Image",
     "https://via.placeholder.com/150x150?text=Image+2",

@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { FcGoogle } from "react-icons/fc";
 import { GrRefresh } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import {
@@ -13,7 +12,7 @@ import { toast } from "sonner";
 
 export default function ForgotPassword() {
   const [otp, setOtp] = useState(["", "", "", ""]); // Array to store each digit of the OTP
-  const [generatedOtp, setGeneratedOtp] = useState("1234"); // Simulated OTP for testing
+  // const [generatedOtp, setGeneratedOtp] = useState("1234"); // Simulated OTP for testing
   const [message, setMessage] = useState("");
   const [timer, setTimer] = useState(60); // Countdown timer
   const inputRefs = useRef([]); // Refs for each input field
@@ -196,7 +195,7 @@ export default function ForgotPassword() {
           onClick={handleResendOtp}
         >
           <GrRefresh className="text-[#E94E30]" /> {/* Resend email icon */}
-          Resend Email
+          {ResendPending ? "Resending..." : "Resend Email"}
         </p>
       </div>
     </div>

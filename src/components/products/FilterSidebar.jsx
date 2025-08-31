@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FilterSection from "./FilterSection";
 import CheckboxFilter from "./CheckBoxFilter";
 import { useProductStore } from "@/store/productStore";
@@ -39,7 +39,7 @@ const FilterSidebar = () => {
     toggleSize,
     setRating,
     setMaxPrice,
-    resetFilters,
+   
   } = useProductStore();
 
   const filteredBrands = BRANDS.filter((b) =>

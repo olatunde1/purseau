@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { StayLoop } from "@/components/StayLoop";
 import Map from "../assets/images/map.png";
 import { SlSocialInstagram } from "react-icons/sl";

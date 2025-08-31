@@ -1,97 +1,96 @@
-import React, { useState } from "react";
-import { Trash2, Ban, Search,ArrowLeft , Filter, ArrowUpDown, FilterIcon } from "lucide-react";
+import { Trash2, Ban, ArrowLeft ,  } from "lucide-react";
 import OrderHistory from "../orderHistory/OrderHistory";
 
 
 const CustomerInfoPage = () => {
-  const [search, setSearch] = useState("");
-  const [sortBy, setSortBy] = useState(null);
-  const [filterStatus, setFilterStatus] = useState("");
+  // const [search, ] = useState("");
+  // const [sortBy, ] = useState(null);
+  // const [filterStatus, ] = useState("");
 
-  const orders = [
-    {
-      id: "PUR-15627927",
-      customer: "Noah Fuad",
-      product: "Prada Mini Bag",
-      date: "Oct 28, 2020",
-      items: "4 Items",
-      status: "Ongoing",
-      amount: "$8.99",
-    },
-    {
-      id: "PUR-15627928",
-      customer: "Noah Fuad",
-      product: "Gucci, 1995 Horsebit",
-      date: "Oct 23, 2020",
-      items: "24 Items",
-      status: "Ongoing",
-      amount: "$17.84",
-    },
-    {
-      id: "PUR-15627929",
-      customer: "Noah Fuad",
-      product: "Chanel, Boy Flap",
-      date: "Oct 30, 2020",
-      items: "13 Items",
-      status: "Delivered",
-      amount: "$11.70",
-    },
-    {
-      id: "PUR-15627930",
-      customer: "Noah Fuad",
-      product: "Hermès Birkin 25",
-      date: "Nov 01, 2020",
-      items: "7 Items",
-      status: "Cancelled",
-      amount: "$5.22",
-    },
-    {
-      id: "PUR-15627931",
-      customer: "Noah Fuad",
-      product: "Gucci Mules",
-      date: "Oct 16, 2020",
-      items: "12 Items",
-      status: "Returned",
-      amount: "$14.81",
-    },
-    {
-      id: "PUR-15627932",
-      customer: "Noah Fuad",
-      product: "Jimmy Choo Pumps",
-      date: "Oct 27, 2020",
-      items: "2 Items",
-      status: "Delivered",
-      amount: "$14.81",
-    },
-    {
-      id: "PUR-15627933",
-      customer: "Noah Fuad",
-      product: "Valentino Studded Shoe",
-      date: "Oct 29, 2020",
-      items: "1 Item",
-      status: "Delivered",
-      amount: "$6.48",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     id: "PUR-15627927",
+  //     customer: "Noah Fuad",
+  //     product: "Prada Mini Bag",
+  //     date: "Oct 28, 2020",
+  //     items: "4 Items",
+  //     status: "Ongoing",
+  //     amount: "$8.99",
+  //   },
+  //   {
+  //     id: "PUR-15627928",
+  //     customer: "Noah Fuad",
+  //     product: "Gucci, 1995 Horsebit",
+  //     date: "Oct 23, 2020",
+  //     items: "24 Items",
+  //     status: "Ongoing",
+  //     amount: "$17.84",
+  //   },
+  //   {
+  //     id: "PUR-15627929",
+  //     customer: "Noah Fuad",
+  //     product: "Chanel, Boy Flap",
+  //     date: "Oct 30, 2020",
+  //     items: "13 Items",
+  //     status: "Delivered",
+  //     amount: "$11.70",
+  //   },
+  //   {
+  //     id: "PUR-15627930",
+  //     customer: "Noah Fuad",
+  //     product: "Hermès Birkin 25",
+  //     date: "Nov 01, 2020",
+  //     items: "7 Items",
+  //     status: "Cancelled",
+  //     amount: "$5.22",
+  //   },
+  //   {
+  //     id: "PUR-15627931",
+  //     customer: "Noah Fuad",
+  //     product: "Gucci Mules",
+  //     date: "Oct 16, 2020",
+  //     items: "12 Items",
+  //     status: "Returned",
+  //     amount: "$14.81",
+  //   },
+  //   {
+  //     id: "PUR-15627932",
+  //     customer: "Noah Fuad",
+  //     product: "Jimmy Choo Pumps",
+  //     date: "Oct 27, 2020",
+  //     items: "2 Items",
+  //     status: "Delivered",
+  //     amount: "$14.81",
+  //   },
+  //   {
+  //     id: "PUR-15627933",
+  //     customer: "Noah Fuad",
+  //     product: "Valentino Studded Shoe",
+  //     date: "Oct 29, 2020",
+  //     items: "1 Item",
+  //     status: "Delivered",
+  //     amount: "$6.48",
+  //   },
+  // ];
 
   // Filtering + Sorting
-  const filteredOrders = orders
-    .filter(
-      (o) =>
-        (o.product.toLowerCase().includes(search.toLowerCase()) ||
-          o.id.toLowerCase().includes(search.toLowerCase())) &&
-        (filterStatus === "" || o.status === filterStatus)
-    )
-    .sort((a, b) => {
-      if (!sortBy) return 0;
-      if (sortBy === "date") {
-        return new Date(b.date) - new Date(a.date);
-      }
-      if (sortBy === "amount") {
-        return parseFloat(b.amount.replace("$", "")) - parseFloat(a.amount.replace("$", ""));
-      }
-      return 0;
-    });
+  // const filteredOrders = orders
+  //   .filter(
+  //     (o) =>
+  //       (o.product.toLowerCase().includes(search.toLowerCase()) ||
+  //         o.id.toLowerCase().includes(search.toLowerCase())) &&
+  //       (filterStatus === "" || o.status === filterStatus)
+  //   )
+  //   .sort((a, b) => {
+  //     if (!sortBy) return 0;
+  //     if (sortBy === "date") {
+  //       return new Date(b.date) - new Date(a.date);
+  //     }
+  //     if (sortBy === "amount") {
+  //       return parseFloat(b.amount.replace("$", "")) - parseFloat(a.amount.replace("$", ""));
+  //     }
+  //     return 0;
+  //   });
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">

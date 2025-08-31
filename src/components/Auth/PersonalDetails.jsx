@@ -9,18 +9,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FiCalendar } from "react-icons/fi";
 import { useCreatePersonalDetails } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
-import AccountCreatedSuccessful from "./AccountCreatedSuccessful";
 import { validateAndFormatInput } from "@/utils";
 
 export default function PersonalDetails() {
   const [firstName, setFirstName] = useState("");
+  const [, setError] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [country, setCountry] = useState("US");
   const [dob, setDob] = useState(null);
   const [gender, setGender] = useState("");
-
-  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -40,6 +38,7 @@ export default function PersonalDetails() {
       alert("Please fill out all fields.");
       return;
     }
+
 
     const result = validateAndFormatInput(phoneNumber);
     if (!result.isValid) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Eye, EyeOff, CheckCircle, XCircle } from "lucide-react";
 import { useUpdatePassword } from "@/hooks/api/mutation/auth/useUpdateProfile.js";
 import { toast } from "sonner";

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Pencil } from "lucide-react"; // import edit icon
+import { useState } from "react";
 import ProfilePic from "../../../assets/images/admin-profile-picture.png";
 import EditIcon from "../../../assets/images/edit-icon.png";
 

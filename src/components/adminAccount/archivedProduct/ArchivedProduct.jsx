@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Search, Filter, ArrowUpDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,13 +16,13 @@ const initialOrders = [
     { id: 'PUR-15627937', customer: 'Theresa Webb', category: 'Shoes', items: 2, size: 'EU 40', amount: '$107.84' },
 ];
 
-const statusColor = {
-  Delivered: 'bg-green-100 text-green-700',
-  Ongoing: 'bg-yellow-100 text-yellow-800',
-  Cancelled: 'bg-gray-300 text-gray-800',
-  Returned: 'bg-red-100 text-red-600',
-  Pickup: 'bg-blue-100 text-blue-700',
-};
+// const statusColor = {
+//   Delivered: 'bg-green-100 text-green-700',
+//   Ongoing: 'bg-yellow-100 text-yellow-800',
+//   Cancelled: 'bg-gray-300 text-gray-800',
+//   Returned: 'bg-red-100 text-red-600',
+//   Pickup: 'bg-blue-100 text-blue-700',
+// };
 
 const statusList = ['All', 'Delivered', 'Ongoing', 'Pickup', 'Returned', 'Cancelled'];
 
@@ -81,13 +81,13 @@ export default function ArchivedProduct() {
 
   const totalPages = Math.ceil(filteredOrders.length / itemsPerPage);
 
-  const counts = useMemo(() => {
-    const count = { All: orders.length };
-    orders.forEach((order) => {
-      count[order.status] = (count[order.status] || 0) + 1;
-    });
-    return count;
-  }, [orders]);
+  // const counts = useMemo(() => {
+  //   const count = { All: orders.length };
+  //   orders.forEach((order) => {
+  //     count[order.status] = (count[order.status] || 0) + 1;
+  //   });
+  //   return count;
+  // }, [orders]);
 
 
   const navigate = useNavigate();
@@ -218,7 +218,7 @@ export default function ArchivedProduct() {
                     type="checkbox"
                     className="accent-[#E94E30]"
                     checked={selectedRows.includes(order.id)}
-                    onChange={() => toggleSelectRow(order.id)}
+                    // onChange={() => toggleSelectRow(order.id)}
                   />
                 </td>
                 <td className="py-[20.5px] px-4">{order.id}</td>

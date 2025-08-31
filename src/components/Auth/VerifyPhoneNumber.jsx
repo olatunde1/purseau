@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from '../../assets/images/login-logo.png';
@@ -9,7 +9,7 @@ export default function VerifyPhoneNumber() {
   const location = useLocation();
   const phoneNumber = location.state?.phoneNumber || "Unknown Number"; // Get phone number from state
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const [generatedOtp, setGeneratedOtp] = useState("1234"); // Simulated OTP for testing
+  const [generatedOtp, ] = useState("1234"); // Simulated OTP for testing
   const [message, setMessage] = useState("");
   const [timer, setTimer] = useState(60);
   const inputRefs = useRef([]);

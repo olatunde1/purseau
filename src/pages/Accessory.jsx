@@ -1,9 +1,10 @@
-import React from 'react'
+// import SubMenu from "@/components/SubMenu";
+// import TopPicks from "@/components/TopPicks";
 
 const Accessory = () => {
     return (
         <>
-          <SubMenu category={"accessories"} />
+          {/* <SubMenu category={"accessories"} />
           <Explore />
           <TopPicks />
           <ProductCloth />
@@ -11,7 +12,7 @@ const Accessory = () => {
           <OurFeaturedCollection />
           <RecentlyViewed />
           <StayLoop />
-          <Footer />
+          <Footer /> */}
         </>
       );
 }

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -7,7 +7,6 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {Link} from "react-router-dom";
 import {useCheckout} from "@/hooks/api/mutation/useCheckout.js";
 import {toast} from "sonner";
 // import { Footer } from "@/components/Footer";
@@ -21,7 +20,7 @@ const Checkout = ({
                       tax,
                       total,
                       deliveryMethod,
-                      closeModal,
+                    //   closeModal\\,
                   }) => {
     // const [deliveryOption, setDeliveryOption] = useState("address");
     const [deliveryOption, setDeliveryOption] = useState(

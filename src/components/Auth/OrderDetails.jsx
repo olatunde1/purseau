@@ -1,10 +1,9 @@
-import React from "react";
+
 import { Link, useParams, useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { IoIosArrowBack } from "react-icons/io";
 import Bag1 from "../../assets/images/bag1.png";
-import Bag2 from "../../assets/images/bag2.png";
 
 const OrderDetails = () => {
     const { orderId } = useParams();

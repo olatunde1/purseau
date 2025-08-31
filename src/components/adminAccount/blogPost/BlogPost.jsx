@@ -1,16 +1,9 @@
-import React from 'react'
-import { Separator } from '@/components/ui/separator'
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import MoreBlogs from '@/components/MoreBlogs'
-import { StayLoop } from '@/components/StayLoop'
-import { Footer } from '@/components/Footer'
 
 const BlogPost = () => {
   return <>

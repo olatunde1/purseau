@@ -1,4 +1,3 @@
-import React from 'react';
 import Sidebar from './Sidebar'; // Import Sidebar
 import Navbar from './Navbar'; // Import Navbar
 import { Outlet } from 'react-router-dom'; // Import Outlet for nested routes

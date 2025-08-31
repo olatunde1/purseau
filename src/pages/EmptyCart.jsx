@@ -1,4 +1,4 @@
-import React from "react";
+
 import EmptyCartIcon from '../assets/images/empty-cart.png'
 import SubMenu from "@/components/SubMenu";
 import ImageGrid from "@/components/OurFeaturedCollection";

@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { FcGoogle } from "react-icons/fc";
 import { GrRefresh } from "react-icons/gr";
 import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import {
@@ -15,6 +14,7 @@ import { validateAndFormatInput } from "@/utils";
 
 export default function VerifyEmail() {
   const [otp, setOtp] = useState(["", "", "", ""]); // Array to store each digit of the OTP
+  const [, setError] = useState("");
   const [message, setMessage] = useState("");
   const [timer, setTimer] = useState(60); // Countdown timer
   const inputRefs = useRef([]); // Refs for each input field
@@ -112,15 +112,7 @@ export default function VerifyEmail() {
     // },
   };
 
-  // Countdown timer logic
-  useEffect(() => {
-    if (timer > 0) {
-      const interval = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-  }, [timer]);
+ 
 
   // Resend OTP handler
   const handleResendOtp = () => {
@@ -141,6 +133,16 @@ export default function VerifyEmail() {
       }
     );
   };
+
+   // Countdown timer logic
+  useEffect(() => {
+    if (timer > 0) {
+      const interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [timer]);
 
   return (
     <div className="email-verification-wrapper pt-2 pb-8">

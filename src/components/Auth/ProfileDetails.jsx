@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useUpdateProfile } from "@/hooks/api/mutation/auth/useUpdateProfile.js";

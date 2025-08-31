@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button"; // Assuming you're using shadcn/ui Button
 import useSubscribe from "@/hooks/api/mutation/contact/useSubscribe";
 import { toast } from "sonner";
