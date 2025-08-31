@@ -20,9 +20,9 @@ const OrderStatus = () => {
   const orderFromState = location.state?.order || {};
 
   console.log(orderFromState, "orderFromState");
-    const updates = orderFromState.statusUpdates || [];
+  const updates = orderFromState.statusUpdates || [];
 
-    const currentStatus = updates.length ? updates[updates.length - 1].status : null;
+  const currentStatus = updates.length ? updates[updates.length - 1].status : null;
   const status = orderFromState.status?.toLowerCase() || "ongoing";
   const statusStyle = getStatusStyle(status);
   const isHiddenSection = status === "canceled" || status === "returned";
@@ -86,9 +86,9 @@ const OrderStatus = () => {
       </aside> */}
 
       {/* Main Content */}
-      <main className="w-full lg:w-[878px] lg:ml-8 pt-4 lg:pt-0">
+      <main className="w-full lg:w-[878px] lg:ml-8 lg:pt-0">
         <Card
-          className="border-none rounded-lg shadow-lg bg-white pb-[100px] h-full"
+          className="border-none rounded-lg shadow-2xl bg-white p-4 pb-[100px] h-full"
           style={{
             boxShadow: `
               0px 14px 30px 0px #7575751A,
@@ -100,7 +100,7 @@ const OrderStatus = () => {
           }}
         >
           <CardHeader className="flex justify-between">
-            <CardTitle className="text-2xl font-medium flex items-center mb-12">
+            <CardTitle className="text-2xl font-medium flex items-center mb-2">
               <Link to="/my-order">
                 <IoIosArrowBack className="mr-4 text-xl" />
               </Link>
@@ -112,17 +112,21 @@ const OrderStatus = () => {
             {/* Order Info */}
             <div className="space-y-2">
               <p className="text-lg font-semibold">Order ID: {orderFromState.id || orderId}</p>
-              <p className="text-gray-600">
-                Status:{" "}
-                <span className={`font-semibold px-3 py-1 rounded-md text-sm inline-block ${statusStyle}`}>
+              <p className="text-gray-600">{" "}
+                <span className={`font-semibold py-1 rounded-md text-sm inline-block ${statusStyle}`}>
                   {orderFromState.status || "Ongoing"}
                 </span>
               </p>
+
+              {/* Placeholder for number of items  for numbers of items not fixed yet*/}
+
+              <p className="text-gray-600">Number of items: </p>
+
               <p className="text-gray-600">
-                Date: <span className="font-semibold">{orderFromState.date || "07 Feb 2025"}</span>
+                Date: <span className="">{orderFromState.date || "07 Feb 2025"}</span>
               </p>
               <p className="text-gray-600">
-                Total Amount: <span className="font-semibold">₦ {totalAmount.toLocaleString()}</span>
+                Total Amount: <span className="">₦ {totalAmount.toLocaleString()}</span>
               </p>
             </div>
 
@@ -150,7 +154,7 @@ const OrderStatus = () => {
                 {/* Payment Info */}
                 <div className="pb-[60px]">
                   <p className="text-lg font-semibold mb-6">Payment Information</p>
-                  <div className="bg-[#F9F9F9] p-6 rounded-md border border-gray-200 space-y-4">
+                  <div className="p-6 rounded-md border border-gray-200 space-y-4">
                     <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
                       <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Payment Method:</strong>
                       <span className="text-right">{paymentInfo.method}</span>
