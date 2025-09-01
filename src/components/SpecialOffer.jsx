@@ -45,8 +45,8 @@ export default function SpecialOffer() {
   }, [targetTime]);
 
   return (
-    <div className="special-offer-page">
-      <div className="special-offer-count-timer">
+    <div className="grid grid-cols-1 md:grid-cols-2 justify-between lg:gap-80 ">
+      <div className="special-offer-count-timer lg:pl-[120px] mx-auto lg:pt-[82px] py-8">
         <h2 className="text-3xl font-bold mb-2">Special Offer</h2>
         <p className="text-lg mb-6">Save up to 50% off our super <br /> sale</p>
 
@@ -63,7 +63,7 @@ export default function SpecialOffer() {
         </div>
         <Button className="get-offer">Get Offer <SlArrowRight /></Button>
       </div>
-      <img src={specialPicture} alt="special offer" className="specialPicture" />
+      <img src={specialPicture} alt="special offer" className="specialPicture hidden lg:block " />
     </div>
   );
 }

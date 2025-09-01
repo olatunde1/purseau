@@ -108,10 +108,10 @@ input:focus{
 }
 
 .special-offer-page{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 418px;
+    height: 418px; */
 }
 
 .specialPicture{
@@ -271,19 +271,17 @@ input:focus{
 
  
   .explore-text{
-    font-size: 36px;
     font-family: 'Playfair';
     font-weight: bold;
-    padding-top: 80px;
     opacity: 100%;
   }
 
   .browse-favorites{
-    padding-bottom: 60px;
     font-family: 'Lato';
     font-size: 16px;
     color: #878787;
     opacity: 100%;
+
   }
 
   .explore-by-categories-images{
@@ -439,8 +437,8 @@ input:focus{
     }
 
     .special-offer-count-timer{
-        padding-top: 82px;
-        padding-left: 120px;
+        /* padding-top: 82px; */
+        /* padding-left: 120px; */
         
     }
 
@@ -462,8 +460,8 @@ input:focus{
 /* Brand section styling */
 
     .brand{
-        padding-top: 80px;
-        margin-bottom: 40px;
+        /* padding-top: 80px; */
+        /* margin-bottom: 40px; */
     }
 
     .brand h1{
@@ -2438,7 +2436,7 @@ input:focus{
       }
 
     .special-offer-page{
-        display: grid;
+        /* display: grid; */
         
     }
   
