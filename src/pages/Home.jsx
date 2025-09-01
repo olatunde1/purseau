@@ -69,7 +69,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="discovery">
+      <div className="discovery ">
         <h1>Discover What Sets Us Apart</h1>
         <p>We provide you with the best customer experience</p>
       </div>
@@ -112,7 +112,7 @@ const Home = () => {
                 Your Wardrobe Deserves Something New - Shop now <br /> to grab
                 our latest arrivals
               </p>
-              <Button className="overlay-button">
+              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
                 Shop Now <SlArrowRight className="mt-1" />
               </Button>
             </div>
@@ -132,7 +132,7 @@ const Home = () => {
                   Discover the latest trending picks that define chic & <br />{" "}
                   confidence
                 </p>
-                <Button className="overlay-button">
+              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
                   Explore <SlArrowRight className="mt-1" />
                 </Button>
               </div>
@@ -151,7 +151,7 @@ const Home = () => {
                   Tried, Tested & Loved – Our Top Picks Fashion Hits <br />{" "}
                   You’ll Love Forever
                 </p>
-                <Button className="overlay-button">
+              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
                   Discover <SlArrowRight className="mt-1" />
                 </Button>
               </div>
