@@ -167,10 +167,10 @@ const Home = () => {
       <section>
         <div className="container">
           <div className="explore-by-categories">
-            <h1 className="explore-text">Our Top Selling Products</h1>
-            <p className="browse-favorites">
-              In a laoreet purus. Integer turpis quam, laoreet id orci nec,{" "}
-              <br /> ultrices lacinia nunc. Aliquam erat vo
+            <h1 className="explore-text lg:text-4xl text-2xl lg:pt-20 pt-16">Our Top Selling Products</h1>
+            <p className="browse-favorites lg:pb-16 pb-6 w-[288px] lg:w-[436px] mx-auto justify-center pt-4">
+              In a laoreet purus. Integer turpis quam, laoreet id orci nec,
+              ultrices lacinia nunc. Aliquam erat vo
             </p>
           </div>
         </div>

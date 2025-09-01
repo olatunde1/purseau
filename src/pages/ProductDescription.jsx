@@ -202,7 +202,7 @@ const ProductDescription = () => {
               <img
                 src={displayImage}
                 alt={product.name}
-                className="md:w-[360px] w-full h-96 object-cover rounded-lg"
+                className="md:w-[360px] w-full h-96 object-contain rounded-lg"
                 onError={(e) => {
                   e.target.onerror = null; // Prevent infinite loop
                   e.target.src = fallbackImages[0]; // Set default image on error
@@ -214,7 +214,7 @@ const ProductDescription = () => {
                     key={index}
                     src={img}
                     alt={`${product.name} thumbnail ${index + 1}`}
-                    className={`w-20 h-20 object-cover rounded-lg cursor-pointer border-2 ${
+                    className={`w-20 h-20 object-contain rounded-lg cursor-pointer border-2 ${
                       displayImage === img
                         ? "border-[#E94E30]"
                         : "border-gray-300"
