@@ -65,11 +65,18 @@ export function StayLoop() {
 
             {/* Terms and Conditions Checkbox */}
             <div className="mt-6 flex items-center j">
-              <input
-                type="checkbox"
-                id="terms"
-                className="w-4 h-4  subscribe-checkbox"
-              />
+           <input
+  type="checkbox"
+  id="terms"
+  className="w-4 h-4 rounded border border-gray-300 
+             checked:bg-[#f2542d] checked:border-[#f2542d] 
+             checked:text-white focus:ring-0 cursor-pointer
+              checked:bg-[#f2542d] checked:border-[#f2542d]
+    checked:after:content-['✔'] checked:after:text-white
+    checked:after:block checked:after:text-xs checked:after:flex checked:after:items-center checked:after:justify-center
+             "
+/>
+
               <label
                 htmlFor="terms"
                 className="ml-2 text-sm text-gray-600 agreement-check"
