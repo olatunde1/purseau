@@ -69,38 +69,45 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="discovery ">
-        <h1>Discover What Sets Us Apart</h1>
-        <p>We provide you with the best customer experience</p>
+      <div className="discovery lg:mb-6 mb-10 text-center">
+        <h1 className=" text-3xl lg:text-4xl">Discover What Sets Us Apart</h1>
+        <p className="pt-1">We provide you with the best customer experience</p>
       </div>
 
-      <div className="notification-list grid gap-4">
-        {notifications.map((notification, index) => (
-          <Card
-            key={index}
-            className="rounded-xl p-4 text-black shadow-sm hover:shadow-md transition-all border border-white/10 mb-20"
-          >
-            <CardHeader className="flex items-center gap-4">
-              <img
-                src={notification.image}
-                alt={notification.title}
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <h3 className="text-lg font-semibold">{notification.title}</h3>
-            </CardHeader>
+       <div className="notification-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center lg:pt-20">
+          {notifications.map((notification, index) => (
+            <Card
+              key={index}
+              className="
+                rounded-xl cursor-pointer p-10 lg:p-4 text-black transition-all mb-5
+                bg-white shadow-md border
+                md:bg-transparent md:shadow-sm md:border-white/10
+                hover:shadow-md
+              "
+            >
+              <CardHeader className="flex items-center gap-4">
+                <img
+                  src={notification.image}
+                  alt={notification.title}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
+                <h3 className="text-lg font-semibold">{notification.title}</h3>
+              </CardHeader>
 
-            <CardContent>
-              <p className="text-sm text-[#5B5B5B]">
-                {notification.description}
-              </p>
-            </CardContent>
+              <CardContent>
+                <p className="text-sm text-[#5B5B5B] pt-3">
+                  {notification.description}
+                </p>
+              </CardContent>
 
-            <CardFooter>
-              {/* You can add a timestamp or CTA here if needed */}
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+              <CardFooter>
+                {/* Optional timestamp or CTA */}
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+
+
 
       <div className="container">
         <div className="arrival">
@@ -124,7 +131,7 @@ const Home = () => {
                 alt="Trending Cloth"
                 className="trendingCloth"
               />
-              <div className="overlayTrending">
+              <div className="overlayTrending ">
                 <h2 className="overlayTrending-title overlay-title">
                   Trending Now
                 </h2>
@@ -167,8 +174,8 @@ const Home = () => {
       <section>
         <div className="container">
           <div className="explore-by-categories">
-            <h1 className="explore-text lg:text-4xl text-2xl lg:pt-20 pt-16">Our Top Selling Products</h1>
-            <p className="browse-favorites lg:pb-16 pb-6 w-[288px] lg:w-[436px] mx-auto justify-center pt-4">
+            <h1 className="explore-text lg:text-4xl text-3xl lg:pt-20 pt-16">Our Top Selling Products</h1>
+            <p className="browse-favorites lg:pb-16 pb-6  lg:w-[436px] mx-auto justify-center pt-2">
               In a laoreet purus. Integer turpis quam, laoreet id orci nec,
               ultrices lacinia nunc. Aliquam erat vo
             </p>

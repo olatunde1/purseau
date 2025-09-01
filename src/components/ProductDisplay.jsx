@@ -251,7 +251,7 @@ export default function ProductDisplay() {
       <div className=" mx-auto px-4 py-8 block lg:hidden ">
         {/* Category Buttons */}
         <div className="mb-6">
-          <h2 className="text-xl font-bold text-center mb-4">Shop by Category</h2>
+          {/* <h2 className="text-xl font-bold text-center mb-4">Shop by Category</h2> */}
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map((category) => (
               <Button

@@ -77,36 +77,36 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 5 - Country Selector */}
+       
          {/* Column 5 - Country Selector */}
-<div className="footer-links-details">
-  <Select defaultValue="nigeria">
-    <SelectTrigger className="select-item border-gray-700 text-white">
-      <SelectValue placeholder="Select a country" />
-    </SelectTrigger>
-    <SelectContent className="bg-gray-800 border-gray-700 text-white">
-      {countries.map((country) => (
-        <SelectItem
-          key={country.name}
-          value={country.name.toLowerCase()}
-          className="flex items-center space-x-2"
-        >
-          <div className="flex items-center">
-            <img
-              src={`https://flagcdn.com/w40/${country.code}.png`}
-              alt={`${country.name} flag`}
-              className="w-5 h-5 mr-2 rounded-sm"
-            />
-            <span>{country.name} ({country.currency})</span>
-          </div>
-        </SelectItem>
-      ))}
-    </SelectContent>
-  </Select>
-</div>
+        <div className="footer-links-details ">
+          <Select defaultValue="nigeria">
+            <SelectTrigger className="select-item border-gray-700 text-white">
+              <SelectValue placeholder="Select a country" />
+            </SelectTrigger>
+            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+              {countries.map((country) => (
+                <SelectItem
+                  key={country.name}
+                  value={country.name.toLowerCase()}
+                  className="flex items-center space-x-2"
+                >
+                  <div className="flex items-center">
+                    <img
+                      src={`https://flagcdn.com/w40/${country.code}.png`}
+                      alt={`${country.name} flag`}
+                      className="w-5 h-5 mr-2 rounded-sm"
+                    />
+                    <span>{country.name} ({country.currency})</span>
+                  </div>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         </div>
       </div>
-      <div className="copyright">
+      <div className="copyright px-4 pb-4 ">
         <div className="copyright-text">
             <p>© 2025 Copyright, Inc. All rights reserve</p>
            
