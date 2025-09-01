@@ -395,7 +395,7 @@ const ProductDescription = () => {
               <div className="mt-6 flex flex-wrap sm:flex-nowrap gap-4">
                 <Button
                   onClick={handleAddToCart}
-                  className={`group w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
+                  className={`group w-full sm:w-[288px] px-16 py-6 rounded-md border transition-colors duration-300 ${
                     activeButton === "cart"
                       ? "bg-[#E94E30] text-white border-[#E94E30]"
                       : "bg-white text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
@@ -425,7 +425,7 @@ const ProductDescription = () => {
                 <Link to="/shopping-cart">
                   <Button
                     onClick={() => setActiveButton("buy")}
-                    className={`w-full sm:w-[288px] px-16 py-[18.5px] rounded-md border transition-colors duration-300 ${
+                    className={`w-[370px] lg:w-[288px] px-16 py-6 rounded-md border transition-colors duration-300 ${
                       activeButton === "buy"
                         ? "bg-[#E94E30] text-white border-[#E94E30]"
                         : "bg-white text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
@@ -441,7 +441,7 @@ const ProductDescription = () => {
         </div>
 
         {/* Section Tabs */}
-        <div className="product-tabs mt-8 ">
+        <div className="product-tabs mt-8 mb-20 ">
           <div className="mt-6 flex gap-4 border-b justify-center">
             {["description", "additionalInfo", "customerReviews"].map(
               (section) => (
@@ -612,7 +612,7 @@ const ProductDescription = () => {
           </div>
         </div>
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
       <ExploreSimilarProduct />
       <YouMightAlsoLike />
       <div className="mt-20">

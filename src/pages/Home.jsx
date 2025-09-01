@@ -116,10 +116,11 @@ const Home = () => {
             <div className="overlay">
               <h2 className="overlay-title">New Arrivals</h2>
               <p className="overlay-text">
-                Your Wardrobe Deserves Something New - Shop now <br /> to grab
+                Your Wardrobe Deserves Something New - Shop now to grab
                 our latest arrivals
               </p>
-              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
+              
+              <Button onClick={() => navigate("/shop")} className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white active:bg-[#d84327] text-white overlay-button">
                 Shop Now <SlArrowRight className="mt-1" />
               </Button>
             </div>
@@ -136,7 +137,7 @@ const Home = () => {
                   Trending Now
                 </h2>
                 <p className="overlay-text">
-                  Discover the latest trending picks that define chic & <br />{" "}
+                  Discover the latest trending picks that define chic &
                   confidence
                 </p>
               <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
@@ -155,7 +156,7 @@ const Home = () => {
                   Best Sellers
                 </h2>
                 <p className="overlay-text">
-                  Tried, Tested & Loved – Our Top Picks Fashion Hits <br />{" "}
+                  Tried, Tested & Loved – Our Top Picks Fashion Hits 
                   You’ll Love Forever
                 </p>
               <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
