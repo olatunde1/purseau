@@ -170,7 +170,7 @@ const ShoppingCart = () => {
                 <img
                   src={item.productId?.images[0]?.url || sampleimage}
                   alt={item.name}
-                  className="w-[130px] h-[130px] object-cover rounded"
+                  className="w-[130px] h-[130px] object-contain rounded"
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = sampleimage;
@@ -329,7 +329,7 @@ const ShoppingCart = () => {
                 className={`w-full hover:text-white hover:bg-[#E94E30] rounded-md py-[18.5px] border shadow-md transition duration-300 ${
                   activeButton === "checkout"
                     ? "bg-[#E94E30] text-white border-[#E94E30]"
-                    : "text-[#E94E30] border-[#E94E30] bg-white"
+                    : "text-white bg-[#E94E30]"
                 }`}
               >
                 Proceed to Checkout

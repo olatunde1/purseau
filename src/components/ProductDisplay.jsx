@@ -97,7 +97,7 @@ export default function ProductDisplay() {
                   setActiveCategory(category);
                 }}
                 variant={selectedCategory === category ? "default" : "outline"}
-                className={`text-sm md:text-base rounded-full transition-all ${
+                className={`text-sm md:text-base rounded-lg transition-all ${
                   activeCategory === category 
                     ? "bg-[#E94E30] text-white" 
                     : "bg-[#F2F2F7] text-black hover:bg-[#E94E30] hover:text-white"
@@ -237,15 +237,16 @@ export default function ProductDisplay() {
           })}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-16 mb-10">
           <Button
             onClick={() => navigate(`/shop?category=${selectedCategory}`)}
-            className="view-more bg-[#E94E30] hover:bg-[#d93e20]"
+            className=" bg-[#E94E30] px-28 py-7 hover:bg-[#d93e20]"
           >
             View More
           </Button>
         </div>
       </div>
+
 
       {/* Mobile View */}
       <div className=" mx-auto px-4 py-8 block lg:hidden ">
@@ -310,7 +311,7 @@ export default function ProductDisplay() {
             return (
               <Card
                 key={product._id}
-                className="overflow-hidden"
+                className="overflow-hidden shadow-2xl"
                 onClick={() => navigate(`/product-description/${product?._id}`)}
               >
                 <div className="relative h-40 w-full bg-gray-100 overflow-hidden">
@@ -390,12 +391,12 @@ export default function ProductDisplay() {
         </div>
 
         {!isPending && products.length > 0 && (
-          <div className="text-center">
+          <div className="text-center mt-16 mb-2">
             <Button
               onClick={() => navigate(`/shop?category=${selectedCategory}`)}
               size="sm"
               variant="outline"
-              className="rounded-full bg-white border-[#E94E30] text-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+              className="rounded-lg bg-white border-[#E94E30] text-[#E94E30] hover:bg-[#E94E30] px-28 py-7 hover:text-white"
             >
               View More {selectedCategory}
             </Button>

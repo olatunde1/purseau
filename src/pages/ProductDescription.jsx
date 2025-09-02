@@ -428,7 +428,7 @@ const ProductDescription = () => {
                     className={`w-[370px] lg:w-[288px] px-16 py-6 rounded-md border transition-colors duration-300 ${
                       activeButton === "buy"
                         ? "bg-[#E94E30] text-white border-[#E94E30]"
-                        : "bg-white text-[#E94E30] border-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+                        : "bg-[#E94E30] text-white hover:bg-[#d73819] hover:text-white"
                     }`}
                     disabled={product.availableQuantity <= 0}
                   >

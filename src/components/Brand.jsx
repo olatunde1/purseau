@@ -28,7 +28,7 @@ const BrandMarquee = () => {
       <div className="flex animate-marquee space-x-8 justify-between items-center ">
         {logos.map((logo, index) => (
           <div key={index} className="flex-1 flex justify-center">
-            <img src={logo} alt={`Logo ${index + 1}`} className="" />
+            <img src={logo} alt={`Logo ${index + 1}`} className="w-[150px] lg" />
           </div>
         ))}
       </div>

@@ -54,8 +54,8 @@ export default function SpecialOffer() {
           {["Hours", "Minutes", "Seconds"].map((label, index) => {
             const value = [timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index];
             return (
-              <Button key={label} variant="outline" className="w-20 h-20 flex flex-col items-center justify-center timer">
-                <span className="text-2xl font-bold">{String(value).padStart(2, "0")}</span>
+              <Button key={label} variant="outline" className="w-20 h-20 bg-[#bb6b73] transp flex flex-col items-center justify-center rounded-lg text-white border-0 shadow-md">
+                <span className="text-2xl font-bold">{String(value).padStart(2, "0")} </span>
                 <span className="text-sm">{label}</span>
               </Button>
             );
