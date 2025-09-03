@@ -22,5 +22,20 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (
+      // error.response?.data?.message === "Authorization token is required" ||
+      error.response?.data?.message === "Invalid or expired token" 
+    ) {
+      const { logout } = useAuthStore();
+      logout();
+      window.location.href = "/SignUp";
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

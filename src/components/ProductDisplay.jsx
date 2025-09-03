@@ -2,11 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn/ui Button
 import { Star, Heart } from "lucide-react"; // For star icons (install lucide-react if not already installed)
 import { useNavigate } from "react-router-dom"; // For navigation
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card"; // shadcn/ui Card
+import { Card, CardContent, CardHeader } from "@/components/ui/card"; // shadcn/ui Card
 import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import { useAddToCart } from "@/hooks/api/mutation/carts/cartOperations";
