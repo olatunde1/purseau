@@ -77,12 +77,11 @@ input:focus{
 
 .discovery{
     text-align: center;
-    padding-bottom: 60px;
 }
 .discovery h1{
     font-family: 'Playfair';
     color: black;
-    font-size: 36px;
+    /* font-size: 36px; */
     font-weight: bold;
     line-height: auto;
     padding-top: 80px;
@@ -109,10 +108,10 @@ input:focus{
 }
 
 .special-offer-page{
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 418px;
+    height: 418px; */
 }
 
 .specialPicture{
@@ -121,17 +120,15 @@ input:focus{
 }
 
 /* Notification List Container */
+
 .notification-list {
- 
-    justify-content: center; /* Center content horizontally */
-    display: flex; /* Use Flexbox */
-    gap: 24px; /* Add spacing between cards */
-    text-align: center;
-    max-width: 1200px; /* Limit the maximum width */
-    margin: 0 auto; /* Center the container */
-    padding: 0 24px; /* Add padding for smaller screens */
-    margin-bottom: 80px;
-  }
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto; /* center container */
+  /* padding: 0 24px; */
+  margin-bottom: 80px;
+  
+}
   
   /* Individual Card Styling */
   .notification-list .mb-4 {
@@ -183,17 +180,23 @@ input:focus{
   .newArrival{
     border-radius: 32px;
     opacity: 100%;
+    filter: saturate(60%) brightness(70%); /* reduce saturation & darken */
+  object-fit: cover;
   }
  
   .trendingCloth{
     opacity: 100%;
     border-radius: 32px;
     margin-bottom: 20px;
+    filter: saturate(60%) brightness(70%); /* reduce saturation & darken */
+  object-fit: cover;
   }
 
   .bestSellingCloth{
     opacity: 100%;
     border-radius: 32px;
+    filter: saturate(60%) brightness(70%); /* reduce saturation & darken */
+    object-fit: cover;
   }
 
 
@@ -272,19 +275,17 @@ input:focus{
 
  
   .explore-text{
-    font-size: 36px;
     font-family: 'Playfair';
     font-weight: bold;
-    padding-top: 80px;
     opacity: 100%;
   }
 
   .browse-favorites{
-    padding-bottom: 60px;
     font-family: 'Lato';
     font-size: 16px;
     color: #878787;
     opacity: 100%;
+
   }
 
   .explore-by-categories-images{
@@ -440,8 +441,8 @@ input:focus{
     }
 
     .special-offer-count-timer{
-        padding-top: 82px;
-        padding-left: 120px;
+        /* padding-top: 82px; */
+        /* padding-left: 120px; */
         
     }
 
@@ -463,8 +464,8 @@ input:focus{
 /* Brand section styling */
 
     .brand{
-        padding-top: 80px;
-        margin-bottom: 40px;
+        /* padding-top: 80px; */
+        /* margin-bottom: 40px; */
     }
 
     .brand h1{
@@ -485,7 +486,7 @@ input:focus{
 
    .news-blog{
     background-color: #E8DDD9;
-   padding-bottom: 100px;
+   /* padding-bottom: 100px; */
    }
 
    .news-blog-card{
@@ -549,8 +550,12 @@ input:focus{
   .select-item{
     background-color: #000000;
     width: 173px;
+    width: 100%;
   }
 
+  [data-radix-popper-content-wrapper] {
+  z-index: 1000 !important;
+}
   .copyright{
     display: flex;
     margin: 0 auto;
@@ -621,9 +626,10 @@ input:focus{
   }
 
   .subscribe-checkbox{
-    background-color: #f2542d !important;
-    border: #f2542d !important;
-    color: #f2542d !important; 
+    /* width: 24px;
+    height: 24px;
+    border: 1px solid #878787;
+    border-radius: 4px; */
   }
 
   .agreement-check{
@@ -1767,7 +1773,7 @@ input:focus{
   font-size: 1rem;
   color: #4b5563;
 }
-
+font-custom2
 .drop-zone p.text-sm {
   font-size: 0.875rem;
   color: #6b7280;
@@ -2416,7 +2422,7 @@ input:focus{
   .copyright{
     display: grid;
     margin-top: 40px;
-    border-radius: 0px;
+    border-radius: 32px;
     background-color: #fff4f0;
     color: #f2542d;
     max-width: 100%;
@@ -2435,11 +2441,13 @@ input:focus{
 
     .footer-links-details {
         padding-left: 0px;
+        position: relative;
+  z-index: 10;
        
       }
 
     .special-offer-page{
-        display: grid;
+        /* display: grid; */
         
     }
   
@@ -2449,32 +2457,35 @@ input:focus{
   @media (max-width: 480px) {
     .overlay {
         position: absolute;
-        padding-top: 60px;
+        top: -22%;
         justify-content:center;
-        align-items:center;
-        text-align:center;
+        align-items:left;
+        text-align:left;
       }
 
       .overlayTrending{
+        
         position: absolute;
-        padding-top: 30px;
+        top: -15%;
         justify-content:center;
-        align-items:center;
-        text-align:center;
+        align-items:left;
+        text-align:left;
       }
 
       .overlayTrending-title {
+        margin-top: 10px;
         font-size: 24px;
         font-family: 'Playfair';
         font-weight: bold;
-        margin-bottom: 4px;
+        margin-bottom: 0px;
       }
       
       .overlay-text {
         font-size: 16px;
         font-family: 'Lato';
         font-weight: 300;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
+        color:#ffffff;
       }
       
       

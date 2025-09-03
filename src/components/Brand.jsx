@@ -19,13 +19,13 @@ const logos = [
 
 const BrandMarquee = () => {
   return <>
-      <div className="brand">
+      <div className="brand lg:pt-20 pt-10 lg:pb-10">
         <h1>Brands</h1>
-        <p>In a laoreet purus. Integer turpis quam, laoreet id orci nec, <br />ultrices lacinia nunc. Aliquam erat vo</p>
+        <p className='px-8 lg:w-[485px] mx-auto pb-8'>In a laoreet purus. Integer turpis quam, laoreet id orci nec, ultrices lacinia nunc. Aliquam erat vo</p>
     </div>
-    <div className=" relative w-full overflow-hidden  w-full  py-8 brand-logo">
+    <div className=" relative w-full overflow-hidden  py-4 brand-logo">
       {/* Logo Container */}
-      <div className="flex animate-marquee space-x-8 flex justify-between items-center ">
+      <div className="flex animate-marquee space-x-8 justify-between items-center ">
         {logos.map((logo, index) => (
           <div key={index} className="flex-1 flex justify-center">
             <img src={logo} alt={`Logo ${index + 1}`} className="" />
