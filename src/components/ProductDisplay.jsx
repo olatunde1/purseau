@@ -2,11 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Star, Heart, ShoppingCart, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import useGetProducts from "@/hooks/api/queries/product/useGetProducts";
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import { useAddToCart } from "@/hooks/api/mutation/carts/cartOperations";
@@ -50,7 +46,8 @@ export default function ProductDisplay() {
   };
 
   const { currentUser } = useAuthStore();
-  const userId = currentUser?.userId || "";
+
+  const userId = currentUser?._id || "";
   const { mutate: addToCart } = useAddToCart();
   const [pendingId, setPendingId] = useState(null);
 
@@ -98,8 +95,8 @@ export default function ProductDisplay() {
                 }}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className={`text-sm md:text-base rounded-full transition-all ${
-                  activeCategory === category 
-                    ? "bg-[#E94E30] text-white" 
+                  activeCategory === category
+                    ? "bg-[#E94E30] text-white"
                     : "bg-[#F2F2F7] text-black hover:bg-[#E94E30] hover:text-white"
                 }`}
               >
@@ -111,7 +108,7 @@ export default function ProductDisplay() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {isPending && 
+          {isPending &&
             Array.from({ length: 8 }).map((_, index) => (
               <Card key={index} className="rounded-xl overflow-hidden">
                 <Skeleton className="h-48 w-full" />
@@ -125,116 +122,125 @@ export default function ProductDisplay() {
                   </div>
                 </CardContent>
               </Card>
-            ))
-          }
-          
+            ))}
+
           {error && (
             <div className="col-span-full text-center py-10">
-              <p className="text-red-500 mb-4">Failed to load products. Please try again.</p>
+              <p className="text-red-500 mb-4">
+                Failed to load products. Please try again.
+              </p>
               <Button onClick={() => window.location.reload()}>Retry</Button>
             </div>
           )}
-          
+
           {!isPending && products.length === 0 && (
             <div className="col-span-full text-center py-10">
-              <p className="text-gray-500">No products found in this category.</p>
+              <p className="text-gray-500">
+                No products found in this category.
+              </p>
             </div>
           )}
 
-          {!isPending && products.map((product) => {
-            const originalPrice = product?.pricing?.perQuantity?.onePiece;
-            const discountPercentage = product.pricing?.percentageDiscount;
-            const discountedPrice = calculateDiscountPrice(originalPrice, discountPercentage);
-            
-            return (
-              <Card
-                key={product._id}
-                className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl  duration-300 transform transition-transform hover:scale-105"
-                onClick={() => navigate(`/product-description/${product?._id}`)}
-              >
-                <div className="h-48 w-full relative bg-white">
-                  <img
-                    src={product?.images[0]?.url || sampleimage}
-                    alt={product.name}
-                    className="object-contain absolute inset-0 w-full h-48 p-4"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = sampleimage;
-                    }}
-                  />
+          {!isPending &&
+            products.map((product) => {
+              const originalPrice = product?.pricing?.perQuantity?.onePiece;
+              const discountPercentage = product.pricing?.percentageDiscount;
+              const discountedPrice = calculateDiscountPrice(
+                originalPrice,
+                discountPercentage
+              );
 
-                  <button
-                    onClick={(e) => toggleFavorite(product._id, e)}
-                    className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
-                  >
-                    <Heart
-                      className={`h-5 w-5 ${
-                        favorites.has(product._id)
-                          ? "stroke-[#E94E30] fill-[#E94E30]"
-                          : "stroke-[#E94E30]"
-                      }`}
+              return (
+                <Card
+                  key={product._id}
+                  className="rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl  duration-300 transform transition-transform hover:scale-105"
+                  onClick={() =>
+                    navigate(`/product-description/${product?._id}`)
+                  }
+                >
+                  <div className="h-48 w-full relative bg-white">
+                    <img
+                      src={product?.images[0]?.url || sampleimage}
+                      alt={product.name}
+                      className="object-contain absolute inset-0 w-full h-48 p-4"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = sampleimage;
+                      }}
                     />
-                  </button>
 
-                  {discountPercentage > 0 && (
-                    <div className="absolute top-3 left-3">
-                      <span className="bg-[#E94E30] text-white text-xs font-bold px-2 py-1 rounded">
-                        -{discountPercentage}%
-                      </span>
-                    </div>
-                  )}
-                </div>
-                
-                <CardContent className="p-4">
-                  <CardHeader className="p-0 mb-2">
-                    <h2 className="text-lg font-semibold">{product.name}</h2>
-                  </CardHeader>
-
-                  <p className="text-gray-600 text-sm mb-2 line-clamp-2">
-                    {product.description}
-                  </p>
-
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, index) => (
-                      <Star
-                        key={index}
-                        className={`h-4 w-4 ${
-                          index < Math.floor(product.rating || 0)
-                            ? "fill-yellow-400 stroke-yellow-400"
-                            : "fill-gray-300 stroke-gray-300"
+                    <button
+                      onClick={(e) => toggleFavorite(product._id, e)}
+                      className="absolute top-3 right-3 p-1 rounded-full bg-white/80 hover:bg-white transition-colors"
+                    >
+                      <Heart
+                        className={`h-5 w-5 ${
+                          favorites.has(product._id)
+                            ? "stroke-[#E94E30] fill-[#E94E30]"
+                            : "stroke-[#E94E30]"
                         }`}
                       />
-                    ))}
+                    </button>
+
+                    {discountPercentage > 0 && (
+                      <div className="absolute top-3 left-3">
+                        <span className="bg-[#E94E30] text-white text-xs font-bold px-2 py-1 rounded">
+                          -{discountPercentage}%
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg font-semibold text-black">
-                        ₦{discountedPrice || originalPrice}
-                      </span>
-                      {discountedPrice && (
-                        <span className="text-sm text-gray-500 line-through">
-                          ₦{originalPrice}
-                        </span>
-                      )}
+                  <CardContent className="p-4">
+                    <CardHeader className="p-0 mb-2">
+                      <h2 className="text-lg font-semibold">{product.name}</h2>
+                    </CardHeader>
+
+                    <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+                      {product.description}
+                    </p>
+
+                    <div className="flex items-center gap-1 mb-3">
+                      {[...Array(5)].map((_, index) => (
+                        <Star
+                          key={index}
+                          className={`h-4 w-4 ${
+                            index < Math.floor(product.rating || 0)
+                              ? "fill-yellow-400 stroke-yellow-400"
+                              : "fill-gray-300 stroke-gray-300"
+                          }`}
+                        />
+                      ))}
                     </div>
-                    
-                    <Button
-                      onClick={(e) => handleAddToCart(product, e)}
-                      className="bg-[#E94E30] hover:bg-[#d93e20]"
-                      disabled={pendingId === product._id}
-                    >
-                      {pendingId === product._id ? (
-                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                      ) : (
-                        "Add to Cart"
-                      )}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg font-semibold text-black">
+                          ₦{discountedPrice || originalPrice}
+                        </span>
+                        {discountedPrice && (
+                          <span className="text-sm text-gray-500 line-through">
+                            ₦{originalPrice}
+                          </span>
+                        )}
+                      </div>
+
+                      <Button
+                        onClick={(e) => handleAddToCart(product, e)}
+                        className="bg-[#E94E30] hover:bg-[#d93e20]"
+                        disabled={pendingId === product._id}
+                      >
+                        {pendingId === product._id ? (
+                          <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                        ) : (
+                          "Add to Cart"
+                        )}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
         </div>
 
         <div className="text-center mt-8">
@@ -259,8 +265,8 @@ export default function ProductDisplay() {
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className={`rounded-full px-4 text-xs sm:text-sm ${
-                  selectedCategory === category 
-                    ? "bg-[#E94E30] text-white" 
+                  selectedCategory === category
+                    ? "bg-[#E94E30] text-white"
                     : "bg-[#F2F2F7] text-black"
                 }`}
               >
@@ -272,7 +278,7 @@ export default function ProductDisplay() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 gap-4 mb-8">
-          {isPending && 
+          {isPending &&
             Array.from({ length: 4 }).map((_, index) => (
               <Card key={index} className="overflow-hidden">
                 <Skeleton className="h-40 w-full" />
@@ -286,107 +292,120 @@ export default function ProductDisplay() {
                   </div>
                 </CardContent>
               </Card>
-            ))
-          }
-          
+            ))}
+
           {error && (
             <div className="col-span-2 text-center py-6">
-              <p className="text-red-500 mb-3 text-sm">Failed to load products.</p>
-              <Button onClick={() => window.location.reload()} size="sm">Retry</Button>
-            </div>
-          )}
-          
-          {!isPending && products.length === 0 && (
-            <div className="col-span-2 text-center py-6">
-              <p className="text-gray-500 text-sm">No products found in this category.</p>
+              <p className="text-red-500 mb-3 text-sm">
+                Failed to load products.
+              </p>
+              <Button onClick={() => window.location.reload()} size="sm">
+                Retry
+              </Button>
             </div>
           )}
 
-          {!isPending && products.map((product) => {
-            const originalPrice = product?.pricing?.perQuantity?.onePiece;
-            const discountPercentage = product.pricing?.percentageDiscount;
-            const discountedPrice = calculateDiscountPrice(originalPrice, discountPercentage);
-            
-            return (
-              <Card
-                key={product._id}
-                className="overflow-hidden"
-                onClick={() => navigate(`/product-description/${product?._id}`)}
-              >
-                <div className="relative h-40 w-full bg-gray-100 overflow-hidden">
-                  <img
-                    src={product?.images[0]?.url || sampleimage}
-                    alt={product.name}
-                    className="object-contain w-full h-40"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = sampleimage;
-                    }}
-                  />
-                  
-                  <button
-                    onClick={(e) => toggleFavorite(product._id, e)}
-                    className="absolute top-2 right-2 p-1 rounded-full bg-white/80"
-                  >
-                    <Heart
-                      className={`h-4 w-4 ${
-                        favorites.has(product._id)
-                          ? "stroke-[#E94E30] fill-[#E94E30]"
-                          : "stroke-gray-600"
-                      }`}
+          {!isPending && products.length === 0 && (
+            <div className="col-span-2 text-center py-6">
+              <p className="text-gray-500 text-sm">
+                No products found in this category.
+              </p>
+            </div>
+          )}
+
+          {!isPending &&
+            products.map((product) => {
+              const originalPrice = product?.pricing?.perQuantity?.onePiece;
+              const discountPercentage = product.pricing?.percentageDiscount;
+              const discountedPrice = calculateDiscountPrice(
+                originalPrice,
+                discountPercentage
+              );
+
+              return (
+                <Card
+                  key={product._id}
+                  className="overflow-hidden"
+                  onClick={() =>
+                    navigate(`/product-description/${product?._id}`)
+                  }
+                >
+                  <div className="relative h-40 w-full bg-gray-100 overflow-hidden">
+                    <img
+                      src={product?.images[0]?.url || sampleimage}
+                      alt={product.name}
+                      className="object-contain w-full h-40"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = sampleimage;
+                      }}
                     />
-                  </button>
-                  
-                  {discountPercentage > 0 && (
-                    <div className="absolute top-2 left-2">
-                      <span className="bg-[#E94E30] text-white text-xs font-bold px-1.5 py-0.5 rounded">
-                        -{discountPercentage}%
-                      </span>
-                    </div>
-                  )}
-                </div>
-                
-                <CardContent className="p-3">
-                  <h3 className="font-semibold text-sm mb-1 line-clamp-1">{product.name}</h3>
-                  
-                  <div className="flex items-center gap-0.5 mb-1">
-                    {[...Array(5)].map((_, index) => (
-                      <Star
-                        key={index}
-                        className={`h-3 w-3 ${
-                          index < Math.floor(product.rating || 0)
-                            ? "fill-yellow-400 text-yellow-400"
-                            : "text-gray-300"
+
+                    <button
+                      onClick={(e) => toggleFavorite(product._id, e)}
+                      className="absolute top-2 right-2 p-1 rounded-full bg-white/80"
+                    >
+                      <Heart
+                        className={`h-4 w-4 ${
+                          favorites.has(product._id)
+                            ? "stroke-[#E94E30] fill-[#E94E30]"
+                            : "stroke-gray-600"
                         }`}
                       />
-                    ))}
-                  </div>
-                  
-                  <div className="flex items-center justify-between mt-2">
-                    <div className="flex flex-col">
-                      <span className="font-bold text-sm">
-                        ₦{discountedPrice || originalPrice}
-                      </span>
-                      {discountedPrice && (
-                        <span className="text-xs text-gray-500 line-through">
-                          ₦{originalPrice}
+                    </button>
+
+                    {discountPercentage > 0 && (
+                      <div className="absolute top-2 left-2">
+                        <span className="bg-[#E94E30] text-white text-xs font-bold px-1.5 py-0.5 rounded">
+                          -{discountPercentage}%
                         </span>
-                      )}
-                    </div>
-                    
-                    <Button 
-                      onClick={(e) => handleAddToCart(product, e)}
-                      size="sm"
-                      className="h-8 w-8 p-0 bg-[#E94E30] hover:bg-[#d93e20]"
-                      disabled={pendingId === product._id}
-                    >
-                      {pendingId === product._id ? "..." : "+"}
-                    </Button>
+                      </div>
+                    )}
                   </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+
+                  <CardContent className="p-3">
+                    <h3 className="font-semibold text-sm mb-1 line-clamp-1">
+                      {product.name}
+                    </h3>
+
+                    <div className="flex items-center gap-0.5 mb-1">
+                      {[...Array(5)].map((_, index) => (
+                        <Star
+                          key={index}
+                          className={`h-3 w-3 ${
+                            index < Math.floor(product.rating || 0)
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "text-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm">
+                          ₦{discountedPrice || originalPrice}
+                        </span>
+                        {discountedPrice && (
+                          <span className="text-xs text-gray-500 line-through">
+                            ₦{originalPrice}
+                          </span>
+                        )}
+                      </div>
+
+                      <Button
+                        onClick={(e) => handleAddToCart(product, e)}
+                        size="sm"
+                        className="h-8 w-8 p-0 bg-[#E94E30] hover:bg-[#d93e20]"
+                        disabled={pendingId === product._id}
+                      >
+                        {pendingId === product._id ? "..." : "+"}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
         </div>
 
         {!isPending && products.length > 0 && (

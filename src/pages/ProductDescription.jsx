@@ -59,7 +59,7 @@ const ProductDescription = () => {
 
   const { currentUser } = useAuthStore();
 
-  const userId = currentUser?.userId || "";
+  const userId = currentUser?._id || "";
   console.log(userId, "idd");
 
   const { mutate: addToCart, isPending: isAddingToCart } = useAddToCart();
@@ -145,10 +145,10 @@ const ProductDescription = () => {
     product.images?.map((img) => img.secureUrl || img.url) || fallbackImages;
 
   const handleAddToCart = () => {
-    // if (!userId) {
-    //   toast.error("Please login to add items to cart");
-    //   return;
-    // }
+    if (!userId) {
+      toast.error("Please login to add items to cart");
+      return;
+    }
 
     const cartItem = {
       userId,
