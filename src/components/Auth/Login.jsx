@@ -124,27 +124,27 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper pt-2 pb-8 flex items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="login-container flex flex-col items-center bg-white shadow-md p-6 rounded-lg">
+    <div className="login-wrapper pt-2 pb-12 lg:pb-8 flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      <div className="login-container flex flex-col items-center bg-white shadow-md p-6 lg:rounded-3xl">
         {/* Logo */}
         <div className="login-logo mb-6">
-          <img src={LoginLogo} alt="Purseau Logo" className="h-16 w-16" />
+          <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
         </div>
 
         {/* Title */}
         <div className="flex items-center">
-          <h1 className="welcome-back text-gray-900 mb-2 text-center items-center">
+          <h1 className="welcome-back text-gray-900 mb-2 text-xl lg:text-[32px] text-center items-center">
             Welcome back👋
           </h1>
           {/* <img src={HandWave} alt="" /> */}
         </div>
-        <p className="login-back-text text-center">
+        <p className="login-back-text w-[470px] mb-10 lg:mb-16 lg:pt-2 text-center">
           Login back into your Purseau account.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Email Input with Edit Option */}
-          <div className="w-full mb-4">
+          <div className="w-[300px] lg:w-[512px] mb-6">
             {errors.email && (
               <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
                 {errors.email?.message}
@@ -157,9 +157,8 @@ export default function Login() {
                 id="email"
                 type="email"
                 placeholder="Enter email address"
-                // disabled={!isEditing}
-                // onChange={(e) => setEmail(e.target.value)}
-                className="w-full mt-1 focus:ring bg-gray-300 py-6 input-text-email"
+                disabled={!isEditing}
+                className={`w-full mt-1 focus:ring bg-gray-300 py-6 input-text-email ${!isEditing ? "opacity-60 cursor-not-allowed" : ""}`}
               />
               {isEditing ? (
                 <Button
@@ -181,7 +180,7 @@ export default function Login() {
           </div>
 
           {/* Password Input */}
-          <div className="w-full mb-4">
+          <div className="w-full mb-10 lg:mb-16 lg:w-[512px]">
             {errors.password && (
               <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
                 {errors.password?.message}

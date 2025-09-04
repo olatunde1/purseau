@@ -243,15 +243,16 @@ export default function ProductDisplay() {
             })}
         </div>
 
-        <div className="text-center mt-8">
+        <div className="text-center mt-16 mb-10">
           <Button
             onClick={() => navigate(`/shop?category=${selectedCategory}`)}
-            className="view-more bg-[#E94E30] hover:bg-[#d93e20]"
+            className=" bg-[#E94E30] px-28 py-7 hover:bg-[#d93e20]"
           >
             View More
           </Button>
         </div>
       </div>
+
 
       {/* Mobile View */}
       <div className=" mx-auto px-4 py-8 block lg:hidden ">
@@ -409,12 +410,12 @@ export default function ProductDisplay() {
         </div>
 
         {!isPending && products.length > 0 && (
-          <div className="text-center">
+          <div className="text-center mt-16 mb-2">
             <Button
               onClick={() => navigate(`/shop?category=${selectedCategory}`)}
               size="sm"
               variant="outline"
-              className="rounded-full bg-white border-[#E94E30] text-[#E94E30] hover:bg-[#E94E30] hover:text-white"
+              className="rounded-lg bg-white border-[#E94E30] text-[#E94E30] hover:bg-[#E94E30] px-28 py-7 hover:text-white"
             >
               View More {selectedCategory}
             </Button>
