@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignUp } from "@/hooks/api/mutation/auth/useSignUp";
 import { toast } from "sonner";
 import { validateAndFormatInput } from "@/utils";
@@ -71,12 +71,16 @@ export default function SignUp() {
 
   return (
     <div className="sign-up-wrapper pt-2 pb-8">
-      <div className="signup-container flex flex-col items-center justify-center bg-gray-50 px-4 sign-up ">
+      <div className="signup-container lg:w-[700px] flex flex-col items-center justify-center bg-gray-50 px-4 sign-up ">
         {/* Logo */}
-        <div className="signup-logo mb-6">
-          <img src={LoginLogo} alt="Purseau Logo" className="h-16 w-16" />
-        </div>
-
+        <Link
+        to="/"
+        >
+          <div className="signup-logo mb-6">
+            <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
+          </div>
+        </Link>
+       
         {/* Welcome message */}
         <h1 className="signup-title text-2xl font-bold text-gray-900 mb-2 text-center">
           Welcome to Purseau
@@ -102,7 +106,7 @@ export default function SignUp() {
               value={emailOrPhone}
               onChange={handleInputChange}
               placeholder="Enter your email address"
-              className="signup-input w-full mt-1  focus:ring mb-4 bg-gray-200"
+              className="signup-input w-full mt-1 py-6  focus:ring mb-4 bg-gray-200"
               // onInvalid={(e) =>
               //   e.target.setCustomValidity(
               //     "Please enter a valid email or phone number."
@@ -117,7 +121,7 @@ export default function SignUp() {
           {/* Continue button */}
           <Button
             type="submit"
-            className="signup-button w-full transition-all duration-200"
+            className="signup-button w-full transition-all py-6 duration-200"
           >
             {isPending ? "Please wait..." : "Continue"}
           </Button>

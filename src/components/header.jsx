@@ -45,6 +45,10 @@ const Header = () => {
   return (
     <>
       <div className="header-wrap">
+          {/* Logo Section
+          <Link to={"/"}>
+            <img src={Logo} alt="Logo" className="LogoImage cursor-pointer ml-6 lg:hidden" />
+          </Link> */}
         <div className="container">
           {/* Logo Section */}
           <Link to={"/"}>
@@ -52,7 +56,7 @@ const Header = () => {
           </Link>
 
           {/* Search Bar Section */}
-          <div className="searchBarForm">
+          <div className="hidden lg:block searchBarForm">
             <CiSearch className="searchIcon" />
             <Input
               className="search"
@@ -161,6 +165,41 @@ const Header = () => {
               </Popover>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="header-wrap lg:hidden">
+          {/* Logo Section
+          <Link to={"/"}>
+            <img src={Logo} alt="Logo" className="LogoImage cursor-pointer ml-6 lg:hidden" />
+          </Link> */}
+        <div className="container">
+
+          {/* Search Bar Section */}
+          <div className=" searchBarForm2">
+            <CiSearch className="searchIcon" />
+            <Input
+              className="search"
+              type="text"
+              placeholder="Search products, brands and categories..."
+            />
+
+            {/* Clickable Image to Trigger Dialog */}
+            <CiImageOn
+              className="imageSearch cursor-pointer"
+              onClick={() => setOpen(true)}
+            />
+
+            <img
+              src={Stroke}
+              alt="Open Image Search"
+              className="stroke cursor-pointer"
+            />
+            <Link to="/search-result">
+              <Button className="searchButton2">Search</Button>
+            </Link>
+          </div>
+
         </div>
       </div>
 

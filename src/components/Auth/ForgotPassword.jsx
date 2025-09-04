@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import LoginLogo from "../../assets/images/login-logo.png";
 import { GrRefresh } from "react-icons/gr";
-import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import {
   useResendPasswordOtp,
   useVerifyForgotPassword,
@@ -82,15 +82,6 @@ export default function ForgotPassword() {
       toast.error("An unexpected error occurred. Please try again.");
     }
 
-    // if (enteredOtp === generatedOtp) {
-    //   setMessage("Email verified successfully!");
-    //   // Redirect to Create Password page after 2 seconds
-    //   setTimeout(() => {
-    //     navigate("/CreateNewPassword"); // Navigate to Create Password page
-    //   }, 2000);
-    // } else {
-    //   setMessage("Invalid OTP. Please try again.");
-    // }
   };
 
   // Countdown timer logic
@@ -124,12 +115,17 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="email-verification-wrapper pt-2 pb-8">
+    <div className="email-verification-wrapper pt-2 pb-6">
       <div className="email-verification-container flex flex-col items-center justify-center bg-gray-50 px-4">
         {/* Logo */}
-        <div className="signup-logo mb-6">
-          <img src={LoginLogo} alt="Purseau Logo" className="h-16 w-16" />
+        <Link
+           to="/"
+        >
+            <div className="signup-logo mb-6">
+          <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
         </div>
+        </Link>
+      
 
         {/* Title */}
         <h1 className="email-verification-title  mb-2 text-center">
@@ -171,7 +167,7 @@ export default function ForgotPassword() {
         {/* Submit Button */}
         <Button
           onClick={verifyOtp}
-          className="verify-otp-button w-full max-w-md transition-all duration-200 py-8"
+          className="verify-otp-button w-full max-w-md transition-all duration-200 py-6"
         >
           {isPending ? "Please wait..." : "Submit"}
         </Button>
@@ -191,7 +187,7 @@ export default function ForgotPassword() {
 
         {/* Resend Email */}
         <p
-          className="signup-subtitle text-center mb-6 px-2 sm:px-0 pb-[30px] flex items-center justify-center gap-2 cursor-pointer"
+          className="signup-subtitle text-center mb-2 px-2 sm:px-0 pb-[2px] flex items-center justify-center gap-2 cursor-pointer"
           onClick={handleResendOtp}
         >
           <GrRefresh className="text-[#E94E30]" /> {/* Resend email icon */}

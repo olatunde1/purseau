@@ -192,6 +192,8 @@ const Navbar = () => {
           </NavigationMenu>
         </div>
 
+
+
         {/* Mobile Menu Toggler */}
         <Button
           variant="ghost"

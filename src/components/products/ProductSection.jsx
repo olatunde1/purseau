@@ -24,7 +24,7 @@ const ProductSection = ({ ProductData }) => {
         </div>
 
         {/* ✅ Mobile Filter Button (top, optional) */}
-        <div className="md:invisible mb-4 flex justify-end">
+        {/* <div className="md:invisible mb-4 flex justify-end">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
@@ -41,7 +41,7 @@ const ProductSection = ({ ProductData }) => {
               </div>
             </SheetContent>
           </Sheet>
-        </div>
+        </div> */}
 
         {/* ✅ Product List */}
         <div className="w-full md:w-3/4">

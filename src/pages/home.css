@@ -1088,10 +1088,10 @@ input:focus{
 
 .signup-container {
   background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 32px;
+  border-radius: 24px;
   padding: 40px;
-  max-width: 700px;
-  width: 100%;
+  /* max-width: 700px;
+  width: 100%; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -1130,7 +1130,7 @@ input:focus{
 
 .signup-input {
   width: 100%;
-  padding: 12px;
+  /* padding: 12px; */
   border: 1px solid #ddd;
   border-radius: 8px;
   margin-top: 8px;
@@ -1141,7 +1141,7 @@ input:focus{
   width: 100%;
   background-color: #d84327;
   color: white;
-  padding: 12px;
+  /* padding: 12px; */
   border-radius: 8px;
   font-weight: 500;
   transition: background-color 0.3s ease;
