@@ -89,7 +89,10 @@ const Header = () => {
                   )}
                 </div>
               </Link>
-              <BsHeart className="heart" />
+              <Link
+                to="/wishlist">
+                        <BsHeart className="heart" />
+              </Link>
               <img src={Stroke} alt="" className="stroke2" />
               <TiUserOutline className="user" />
 
@@ -112,20 +115,33 @@ const Header = () => {
                         <TiUserOutline className="mr-2" /> My Account
                       </Button>
                     </Link>
-                    <Button
+
+                    <Link
+                      to="/my-order"
+                    >
+                      <Button
                       variant="ghost"
                       className="w-full justify-start"
                       onClick={() => setIsPopoverOpen(false)}
                     >
                       <TbBorderAll className="mr-2" /> Orders
                     </Button>
-                    <Button
+                    </Link>
+                  
+                    <Link
+                    
+                      to="/wishlist"
+                      onClick={() => setIsPopoverOpen(false)}
+                    >
+                      <Button
                       variant="ghost"
                       className="w-full justify-start"
                       onClick={() => setIsPopoverOpen(false)}
                     >
                       <BsHeart className="mr-2" /> Wishlist
                     </Button>
+                    </Link>
+                    
 
                     {/* Breakline before Login button */}
                     <hr className="my-2" />

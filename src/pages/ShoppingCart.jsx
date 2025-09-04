@@ -312,7 +312,7 @@ const ShoppingCart = () => {
                 // href="/empty-cart"
                 href="/shop"
                 onClick={() => setActiveButton("continue")}
-                className={`text-center w-full hover:text-white hover:bg-[#E94E30] py-[18.5px] rounded-md border shadow-md transition duration-300 ${
+                className={`text-center w-full hover:text-white hover:bg-[#cd3c0d] py-[18.5px] rounded-md border shadow-md transition duration-300 ${
                   activeButton === "continue"
                     ? "bg-[#E94E30] text-white border-[#E94E30]"
                     : "text-[#E94E30] border-[#E94E30] bg-white"
@@ -326,7 +326,7 @@ const ShoppingCart = () => {
                   setActiveButton("checkout");
                   setCheckoutModalOpen(true);
                 }}
-                className={`w-full hover:text-white hover:bg-[#E94E30] rounded-md py-[18.5px] border shadow-md transition duration-300 ${
+                className={`w-full hover:text-white hover:bg-[#cd3c0d] rounded-md py-[18.5px] border shadow-md transition duration-300 ${
                   activeButton === "checkout"
                     ? "bg-[#E94E30] text-white border-[#E94E30]"
                     : "text-white bg-[#E94E30]"
