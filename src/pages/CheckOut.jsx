@@ -71,7 +71,8 @@ const Checkout = ({
 
     const payload = {
       deliveryType: deliveryOption === "pickup" ? "Pickup" : "Express",
-      deliveryFee: deliveryOption === "pickup" ? 0 : 2000,
+      deliveryFee: deliveryOption === "pickup" ? 0 : deliveryFee,
+      tax: tax,
       deliveryInfo: {
         name: formData.name,
         address: formData.address,
