@@ -127,9 +127,14 @@ export default function Login() {
     <div className="login-wrapper pt-2 pb-12 lg:pb-8 flex items-center justify-center min-h-screen bg-gray-50 px-4">
       <div className="login-container flex flex-col items-center bg-white shadow-md p-6 lg:rounded-3xl">
         {/* Logo */}
-        <div className="login-logo mb-6">
-          <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
-        </div>
+        <Link
+           to="/"
+        >
+          <div className="login-logo mb-6">
+            <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
+          </div>
+        </Link>
+      
 
         {/* Title */}
         <div className="flex items-center">

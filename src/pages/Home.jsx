@@ -58,8 +58,7 @@ const Home = () => {
             Unleash Your Feminine <br /> Style with Purseau.
           </h1>
           <p className="discover">
-            Discover trendy fashion items and accessories, exclusively designed{" "}
-            <br /> for women.
+            Discover trendy fashion items and accessories, exclusively designed for women.
           </p>
           <div onClick={() => navigate("/shop")}>
             <Button className="explore transform transition-transform duration-300 hover:scale-105 ">
