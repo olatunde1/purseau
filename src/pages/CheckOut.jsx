@@ -21,10 +21,10 @@ const Checkout = ({
   deliveryMethod,
   //   closeModal\\,
 }) => {
-  // const [deliveryOption, setDeliveryOption] = useState("address");
-  const [deliveryOption, setDeliveryOption] = useState(
-    deliveryMethod === "express" ? "express" : "address"
-  );
+  const [deliveryOption, setDeliveryOption] = useState("address");
+  // const [deliveryOption, setDeliveryOption] = useState(
+  //   deliveryMethod === "express" ? "express" : "address"
+  // );
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [formData, setFormData] = useState({
     name: "",
@@ -70,8 +70,11 @@ const Checkout = ({
     }
 
     const payload = {
-      deliveryType: deliveryOption === "pickup" ? "Pickup" : "Express",
-      deliveryFee: deliveryOption === "pickup" ? 0 : 2000,
+      // deliveryType: deliveryOption === "pickup" ? "Standard" : "Express",
+      deliveryType: deliveryMethod === "express" ? "Express" : "Standard",
+      // deliveryFee: deliveryOption === "pickup" ? 0 : deliveryFee,
+      deliveryFee: deliveryFee,
+      tax: tax,
       deliveryInfo: {
         name: formData.name,
         address: formData.address,
