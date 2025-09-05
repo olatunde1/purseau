@@ -76,6 +76,7 @@ export default function ProductDisplay() {
 
   const calculateDiscountPrice = (price, discount) => {
     if (!discount) return null;
+    // return (price - (price * discount) / 100).toFixed(2);
     return (price - (price * discount) / 100).toFixed(2);
   };
 

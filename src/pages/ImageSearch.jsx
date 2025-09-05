@@ -86,7 +86,7 @@ export default function ImageSearchModal({ setOpen }) {
   };
 
   return (
-    <DialogContent className="dialog-content">
+    <DialogContent className="dialog-content max-w-sm md:max-w-lg"> 
       <DialogHeader className="dialog-header">
         <DialogTitle className="dialog-title">
           Search any item by image

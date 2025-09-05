@@ -15,9 +15,6 @@ import sampleimage from "@/assets/images/sampleimage.jpg";
 import { MdArrowForwardIos } from "react-icons/md";
 import useGetRecentlyViewedProduct from "@/hooks/api/queries/product/useGetRecentlyViewedProduct";
 import { calculateReviewStats } from "@/utils";
-
-// const recentlyViewedItems = [
-//   {
 //     id: 1,
 //     image: Recent1,
 //     title: "Product 1",
@@ -82,17 +79,17 @@ const RecentlyViewed = () => {
   return (
     <>
       {recentlyViewedProductData && recentlyViewedProductData?.length > 0 && (
-        <div className="flex flex-col items-center p-16 recently-view ">
+        <div className="flex flex-col items-center px-8 lg:p-16 recently-view py-8 ">
           {/* Header Section */}
-          <div className="w-[1200px] flex justify-between items-center mb-2 ">
-            <h2 className="text-lg font-semibold">Recently Viewed</h2>
+          <div className="w-full lg:w-[1200px] flex justify-between items-center mb-2 ">
+            <h2 className="text-xl lg:text-lg font-semibold">Recently Viewed</h2>
             <Button variant="link" className="text-[#E94E30] flex items-center">
               See All <MdArrowForwardIos />
             </Button>
           </div>
 
           {/* Cards Section - Responsive Grid */}
-          <div className="gap-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full recently-viewed-card ">
+          <div className="gap-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full recently-viewed-card ">
             {recentlyViewedProductData.map((item) => (
               <Card
                 key={item._id}
