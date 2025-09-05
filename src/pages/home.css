@@ -1819,7 +1819,7 @@ font-custom2
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .dialog-content {
-    width: 95%;
+    /* width: 50%; */
     padding: 1rem;
   }
 
