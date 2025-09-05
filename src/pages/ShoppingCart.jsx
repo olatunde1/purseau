@@ -266,7 +266,8 @@ const ShoppingCart = () => {
                     : "bg-white text-[#5B5B5B]"
                 }`}
               >
-                Express (₦{total})
+                Express
+                {/* (₦{total}) */}
               </button>
             </div>
 
@@ -355,12 +356,14 @@ const ShoppingCart = () => {
             >
               &times;
             </button>
-            <Checkout cartItems={cartItems}
-                      subtotal={subtotal}
-                      deliveryFee={deliveryFee}
-                      tax={tax}
-                      total={total}
-                      deliveryMethod={deliveryMethod} />
+            <Checkout
+              cartItems={cartItems}
+              subtotal={subtotal}
+              deliveryFee={deliveryFee}
+              tax={tax}
+              total={total}
+              deliveryMethod={deliveryMethod}
+            />
           </div>
         </div>
       )}
