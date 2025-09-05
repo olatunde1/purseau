@@ -216,13 +216,14 @@ export default function ProductDisplay() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="text-lg font-semibold text-black">
-                          ₦{discountedPrice || originalPrice}
+                          {/* ₦{discountedPrice || originalPrice} */}
+                          ₦{originalPrice}
                         </span>
-                        {discountedPrice && (
+                        {/* {discountedPrice && (
                           <span className="text-sm text-gray-500 line-through">
                             ₦{originalPrice}
                           </span>
-                        )}
+                        )} */}
                       </div>
 
                       <Button
