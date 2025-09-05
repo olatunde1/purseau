@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
 
-import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import { FiEye, FiEyeOff, FiEdit } from "react-icons/fi";
 import {
   useForgotPassword,
