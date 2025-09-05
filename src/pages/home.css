@@ -2333,7 +2333,16 @@ font-custom2
 
  
 
-
+@media (max-width: 1024px) {
+    .copyright{
+    display: grid;
+    margin-top: 40px;
+    border-radius: 32px;
+    background-color: #fff4f0;
+    color: #f2542d;
+    max-width: 100%;
+  }
+}
 
 
 

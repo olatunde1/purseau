@@ -56,7 +56,7 @@ const Header = () => {
           </Link>
 
           {/* Search Bar Section */}
-          <div className="hidden lg:block searchBarForm">
+          <div className="hidden lg:block searchBarForm ">
             <CiSearch className="searchIcon" />
             <Input
               className="search"

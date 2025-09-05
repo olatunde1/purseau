@@ -47,7 +47,7 @@ const UserBlogPage = () => {
             >
               <div className="p-6 w-full md:w-[270px] lg:w-[270px] mx-auto flex flex-col items-start">
                 <img
-                  className="w-full md:w-[270px] md:h-[270px] object-cover"
+                  className="w-full md:w-[270px] md:h-[270px] object-contain"
                   src={post.image}
                   alt={post.title}
                 />
