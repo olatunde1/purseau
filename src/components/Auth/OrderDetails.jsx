@@ -49,7 +49,7 @@ const OrderDetails = () => {
 
     return (
         <div className="flex justify-center font-custom">
-            <main className="ml-8 w-[878px] pb-10">
+            <main className="lg:ml-8 w-[878px] pb-10">
                 <Card
                     className="border rounded-lg shadow-lg bg-white p-6"
                     style={{
@@ -63,17 +63,18 @@ const OrderDetails = () => {
                     }}
                 >
                     <CardHeader>
-                        <CardTitle className="text-2xl font-semibold mb-6 flex items-center space-x-3 px-2 py-2">
-                            <Link to="/my-order" className="text-black hover:text-[#c8371d]">
+                        <CardTitle className="text-2xl font-semibold mb-6 flex items-center space-x-3 py-2">
+                            <Link to="/my-order" className="text-black flex items-center ">
                                 <IoIosArrowBack size={24} />
+                                 <span>Order Details</span>
                             </Link>
-                            <span>Order Details</span>
+                           
                         </CardTitle>
                     </CardHeader>
 
-                    <CardContent className="space-y-6 mx-10 my-6">
+                    <CardContent className="space-y-6 mx-2 lg:mx-10 my-6">
                         {/* Order Summary */}
-                        <div className="flex justify-between px-pb-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-between  border-b pb-6">
                             <div>
                                 <p className="text-lg font-semibold">Order ID: {order.id}</p>
                                 <p
@@ -100,7 +101,7 @@ const OrderDetails = () => {
                             <Link to={`/order-status/${order.id}`} state={{ order }}>
                                 <Button
                                     variant="outline"
-                                    className="text-[#E94E30] font-bold border-[#E94E30] py-6 hover:bg-[#E94E30] hover:text-white"
+                                    className="bg-[#E94E30] mt-6 lg:mt-0 text-white lg:text-[#E94E30] lg:bg-white font-bold lg:border-[#E94E30] py-6 hover:bg-[#E94E30] hover:text-white"
                                 >
                                     See Order Status
                                 </Button>
@@ -144,7 +145,7 @@ const OrderDetails = () => {
                                                 </div>
                                                  <Button
                                                     variant="outline"
-                                                    className="text-white bg-[#E94E30] shadow-lg font-bold border-[#E94E30] px-6 py-5 hover:bg-[#E94E30] hover:text-white rounded-lg "
+                                                    className="text-white mt-6 lg:mt-0 bg-[#E94E30] shadow-lg font-bold border-[#E94E30] px-6 py-6 hover:bg-[#E94E30] hover:text-white rounded-lg "
                                                 >
                                                     Buy Again
                                                 </Button>
@@ -168,7 +169,7 @@ const OrderDetails = () => {
                                     <strong className="text-black w-[180px]">
                                         Delivery Method:
                                     </strong>
-                                    <span className="text-right">
+                                    <span className="text-left ">
                     {order.deliveryInfo.method || "Nil"}
                   </span>
                                 </div>
@@ -176,7 +177,7 @@ const OrderDetails = () => {
                                     <strong className="text-black w-[180px]">
                                         Shipping Address:
                                     </strong>
-                                    <span className="text-right">
+                                    <span className="text-left">
                     {order.deliveryInfo.address || "Nil"}
                   </span>
                                 </div>
@@ -189,11 +190,11 @@ const OrderDetails = () => {
                             <div className="  border-gray-200 space-y-4">
                                 <div className="flex justify-normal text-[#5B5B5B]">
                                     <strong className="text-black w-[180px]">Payment Method :</strong>
-                                    <span className="text-right">{order.paymentInfo.method || "Nil"}</span>
+                                    <span className="text-left">{order.paymentInfo.method || "Nil"}</span>
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
                                     <strong className="text-black w-[180px]">Items Total :</strong>
-                                    <span className="text-right">
+                                    <span className="text-left">
                     ₦{" "}
                                         {order.paymentInfo.itemsTotal
                                             ? order.paymentInfo.itemsTotal.toLocaleString()
@@ -202,7 +203,7 @@ const OrderDetails = () => {
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
                                     <strong className="text-black w-[180px]">Delivery Fees :</strong>
-                                    <span className="text-right">
+                                    <span className="text-left">
                     ₦{" "}
                                         {order.paymentInfo.DeliveryFees
                                             ? order.paymentInfo.DeliveryFees.toLocaleString()
@@ -211,7 +212,7 @@ const OrderDetails = () => {
                                 </div>
                                 <div className="flex justify-normal text-[#5B5B5B]">
                                     <strong className="text-black w-[180px]">Total :</strong>
-                                    <span className="text-right">
+                                    <span className="text-left">
                     ₦{" "}
                                         {order.paymentInfo.Total
                                             ? order.paymentInfo.Total.toLocaleString()

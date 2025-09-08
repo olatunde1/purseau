@@ -152,7 +152,7 @@ const ProfileDetails = () => {
                             <Button
                                 type="submit"
                                 disabled={isPending}
-                                className="bg-[#E94E30] text-white px-10 py-4 rounded-xl hover:bg-[#c8371d]"
+                                className="bg-[#E94E30] text-white px-10 py-6 rounded-xl hover:bg-[#c8371d]"
                             >
                                 {updatePend ? "Saving..." : "Save Changes"}
                             </Button>

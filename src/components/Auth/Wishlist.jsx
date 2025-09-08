@@ -25,7 +25,7 @@ const Wishlist = () => {
   );
 
   return (
-    <div className="p-4 w-[878px]">
+    <div className="p-0 lg:p-4 w-[388px] lg:w-[878px]">
       <h2 className="text-xl font-semibold mb-6">My Wishlist</h2>
       {wishLoad ? (
         <p>Loading...</p>
@@ -79,17 +79,18 @@ const Wishlist = () => {
             return (
               <div
                 key={item._id}
-                className={`flex flex-col md:flex-row w-[798px] bg-[#F2F2F7] mx-8 justify-between items-start md:items-center gap-4 p-4 border rounded-xl shadow-sm ${
+                className={`flex flex-col md:flex-row w-[380px] lg:w-[798px] bg-[#F2F2F7] lg:mx-8 justify-between items-start md:items-center gap-4 p-4 border rounded-xl shadow-sm ${
                   !inStock ? "opacity-60" : ""
                 }`}
               >
-                {/* Image */}
-                <div className="w-full md:w-28 h-28 bg-gray-200 rounded-md flex-shrink-0 overflow-hidden">
+                <div className="flex items-center gap-6">
+                     {/* Image */}
+                <div className="w-[130px] h-[130px] md:w-28  bg-gray-200 rounded-md flex-shrink-0 overflow-hidden">
                   {item.images?.[0]?.url ? (
                     <img
                       src={item.images[0].url}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="w-[130px] h-[130px] object-contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-300" />
@@ -124,9 +125,51 @@ const Wishlist = () => {
                     )}
                   </div>
                 </div>
+                </div>
+                {/* Image */}
+                <div className="hidden w-[130px] h-[130px] md:w-28  bg-gray-200 rounded-md flex-shrink-0 overflow-hidden">
+                  {item.images?.[0]?.url ? (
+                    <img
+                      src={item.images[0].url}
+                      alt={item.name}
+                      className="w-[130px] h-[130px] object-contain"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-300" />
+                  )}
+                </div>
+
+                {/* Details */}
+                <div className="hidden flex-1">
+                  <h3 className="font-medium text-gray-800 mb-1">
+                    {item.name}
+                  </h3>
+                  <p
+                    className={`text-sm mt-3 font-medium ${
+                      inStock ? "text-green-600" : "text-red-500"
+                    }`}
+                  >
+                    {inStock ? "In Stock" : "Out of Stock"}
+                  </p>
+                  {item.size && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Size: {item.size}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="font-semibold text-lg text-gray-900">
+                      ₦{price.toLocaleString()}
+                    </span>
+                    {discount && (
+                      <span className="text-red-500 text-sm font-medium">
+                        {discount}
+                      </span>
+                    )}
+                  </div>
+                </div>
 
                 {/* Actions */}
-                <div className="flex flex-col items-start md:items-center gap-2">
+                <div className="flex flex-col  lg:items-start md:items-center gap-2">
                   {!cartProductIds.has(item._id) && (
                     <Button
                       disabled={!inStock || isPending}

@@ -16,7 +16,7 @@ const UserAccount = () => {
       {/* Sidebar */}
 
       {/* Main Content */}
-      <main className="ml-10 main-content">
+      <main className="lg:ml-10 main-content">
         <div className="grid grid-cols-1 gap-6">
           <h1 className="text-2xl font-medium">Account Overview</h1>
 
@@ -50,7 +50,6 @@ const UserAccount = () => {
               <p className="text-gray-400 mb-8"> {currentAddress[0]?.city}, {currentAddress[0]?.region}</p>{" "}
               {/* Inactive country */}
               <Link to="/address-book">
-              {/*<Link to="/edit-user-address">*/}
                 <Button className="absolute top-4 right-4 flex items-center gap-2 text-[#E94E30] bg-transparent hover:bg-transparent">
                   <FaEdit /> Edit
                 </Button>

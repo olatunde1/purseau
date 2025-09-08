@@ -11,13 +11,13 @@ export default function AddressBook() {
 
     return (
         <div
-            className="w-[878px] mx-auto ml-10 p-6"
+            className=" w-[388px] lg:w-[878px] lg:ml-10 mt-6 mb-20 p-4 rounded-lg"
             style={{
                 boxShadow:
                     '0px 14px 30px 0px #7575751A, 0px 55px 55px 0px #75757517, 0px 124px 74px 0px #7575750D, 0px 220px 88px 0px #75757503, 0px 344px 96px 0px #75757500',
             }}
         >
-            <div className="flex justify-between mx-5">
+            <div className="lg:flex justify-between lg:mx-5">
                 <h2 className="text-2xl font-semibold mb-6">Address Book</h2>
                 <Link to="/add-new-address">
                     <button className="mb-6 px-4 py-2 bg-[#F2542D] text-white rounded-[10px] hover:bg-[#F2542D]">
@@ -26,11 +26,11 @@ export default function AddressBook() {
                 </Link>
             </div>
 
-            <div className="space-y-6 w-[400px] ml-10 pb-[293px]">
+            <div className="space-y-6 w-[350px] lg:w-[400px] lg:ml-10 pb-[293px]">
                 { isPending ? <p>Loading...</p> : data?.data?.map((item) => (
                     <div
                         key={item._id}
-                        className="border p-4 rounded shadow-sm bg-[#FFF4F0]"
+                        className="border p-4 lg:rounded shadow-sm bg-[#FFF4F0]"
                     >
                         <h3 className="text-lg font-semibold mb-6">
                             {item.firstName} {item.lastName}
