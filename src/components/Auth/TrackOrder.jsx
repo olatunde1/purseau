@@ -25,23 +25,23 @@ export default function TrackOrder() {
     };
 
     return (
-        <div className="w-[878px] mx-10 pb-[593px]"
+        <div className="w-[388px] lg:w-[878px] lg:mx-10 pb-40 lg:pb-[593px]"
              style={{
                  boxShadow:
                      '0px 14px 30px 0px #7575751A, 0px 55px 55px 0px #75757517, 0px 124px 74px 0px #7575750D, 0px 220px 88px 0px #75757503, 0px 344px 96px 0px #75757500',
              }}
         >
-            <div className="">
+            {/* <div className="">
                 <h2 className="text-xl font-bold mb-6">Track Order</h2>
-            </div>
-            <div className="px-10">
+            </div> */}
+            <div className="px-4 lg:px-10 py-8">
                 <h1 className="text-xl font-medium mb-4 ">Track your Order</h1>
                 <p className="text-gray-700 mb-8">
                     To track your order, please enter the Order ID in the box below and press the “Track Order” button.
                     This was given to you in your receipt and in the confirmation email that was sent to you.
                 </p>
 
-                <form onSubmit={handleTrack} className="space-y-5">
+                <form onSubmit={handleTrack} className="space-y-2">
                     <div>
                         <input
                             type="text"
@@ -56,7 +56,7 @@ export default function TrackOrder() {
                     <button
                         type="submit"
                         disabled={isPending}
-                        className={`bg-[#F2542D] text-white py-2 px-[107.5px] rounded-xl transition hover:bg-[#d84325] ${
+                        className={`bg-[#F2542D] text-white py-5 lg:py-5 px-[107.5px] rounded-xl transition hover:bg-[#d84325] ${
                             isPending ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
                     >

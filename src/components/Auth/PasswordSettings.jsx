@@ -86,7 +86,7 @@ export default function PasswordSettings() {
     const renderRequirements = (password) => {
         const validation = validatePassword(password);
         return (
-            <ul className="flex flex-col gap-1 text-[12px] mt-2">
+            <ul className="flex  gap-1 text-[12px] mt-2">
                 <li className="flex items-center gap-1">
                     {validation.length ? (
                         <CheckCircle className="text-green-500" size={16} />
@@ -146,9 +146,9 @@ export default function PasswordSettings() {
     );
 
     return (
-        <div className="w-[512px] mx-auto p-6 ml-10 bg-white rounded">
-            <h2 className="text-xl font-semibold mb-4">Password Settings</h2>
-            <form onSubmit={handleSubmit} className="space-y-6 ml-10">
+        <div className="w-[370px] lg:w-[512px] p-6 lg:ml-10 bg-white rounded">
+            <h2 className="text-xl font-semibold mb-10">Password Settings</h2>
+            <form onSubmit={handleSubmit} className="space-y-6 lg:ml-10">
                 {renderInput(
                     "Current Password*",
                     "currentPassword",
@@ -174,7 +174,7 @@ export default function PasswordSettings() {
                 <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full bg-[#E94E30] text-white py-[18px] rounded-xl hover:bg-[#d04328] disabled:opacity-50"
+                    className="w-full bg-[#E94E30] text-white py-5 rounded-xl hover:bg-[#d04328] disabled:opacity-50"
                 >
                     {isPending ? "Updating..." : "Update Password"}
                 </button>

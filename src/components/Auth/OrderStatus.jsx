@@ -42,48 +42,6 @@ const OrderStatus = () => {
 
   return (
     <div className=" flex flex-col lg:flex-row justify-center font-custom bg-gray-50 min-h-screen p-2">
-      {/* Sidebar */}
-      {/* <aside
-        className="w-full lg:w-[382px] p-4 h-auto lg:h-[648px] border-r personal-information-sidebar mb-6 lg:mb-0"
-        style={{
-          boxShadow: `
-            0px 14px 30px 0px #7575751A,
-            0px 55px 55px 0px #75757517,
-            0px 124px 74px 0px #7575750D,
-            0px 220px 88px 0px #75757503,
-            0px 344px 96px 0px #75757500
-          `,
-        }}
-      >
-        <nav className="space-y-0">
-          <Link to="/user-account">
-            <button className="block flex sidebar-link-first items-center w-full">
-              <TiUserOutline className="mr-4 w-[20px] h-[20px]" /> My Personal Information
-            </button>
-          </Link>
-          <Link to="/my-order" className="block sidebar-link flex text-base items-center">
-            <TbBorderAll className="mr-4 w-[20px] h-[20px]" /> My Orders
-          </Link>
-          <Link to="#" className="block sidebar-link flex text-base items-center">
-            <BsHeart className="mr-4 w-[20px] h-[20px]" /> Wishlist
-          </Link>
-          <button className="flex items-center w-full text-left sidebar-link">
-            <TbSettings2 className="mr-4 w-[20px] h-[20px]" /> Account Management{" "}
-            <span className="ml-auto">
-              <IoIosArrowDown />
-            </span>
-          </button>
-          <Link to="#" className="block sidebar-link flex items-center">
-            <GoHome className="mr-4 w-[20px] h-[20px]" /> Address Management
-          </Link>
-          <Link to="#" className="block sidebar-link flex items-center">
-            <img src={Tracker} alt="" height={16} width={16} className="mr-4" /> Track Order
-          </Link>
-          <Button className="w-full bg-[#FFF4F0] text-[#E94E30] hover:bg-[#E94E30] hover:text-white py-8 track-order">
-            Logout
-          </Button>
-        </nav>
-      </aside> */}
 
       {/* Main Content */}
       <main className="w-full lg:w-[878px] lg:ml-8 lg:pt-0">
@@ -100,7 +58,7 @@ const OrderStatus = () => {
           }}
         >
           <CardHeader className="flex justify-between">
-            <CardTitle className="text-2xl font-medium flex items-center mb-2">
+            <CardTitle className="text-xl font-medium flex items-center mb-2">
               <Link to="/my-order">
                 <IoIosArrowBack className="mr-4 text-xl" />
               </Link>
@@ -135,46 +93,66 @@ const OrderStatus = () => {
                              timeline={updates}/>
 
             {/* Delivery and Payment Info */}
-            {!isHiddenSection && (
-              <>
-                <div className="pb-10 pt-[60px]">
-                  <p className="text-base font-semibold mb-6">Delivery Information</p>
-                  <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Delivery Method:</strong>
-                      <span className="text-right">{deliveryInfo.method}</span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Shipping Address:</strong>
-                      <span className="text-right">{deliveryInfo.address}</span>
-                    </div>
-                  </div>
-                </div>
+          {!isHiddenSection && (
+  <>
+    {/* Delivery Info */}
+    <div className="pb-10 pt-[60px]">
+      <p className="text-base font-semibold mb-6">Delivery Information</p>
+      <div className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Delivery Method:
+          </strong>
+          <span className="text-left">{deliveryInfo.method}</span>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Shipping Address:
+          </strong>
+          <span className="text-left">{deliveryInfo.address}</span>
+        </div>
+      </div>
+    </div>
 
-                {/* Payment Info */}
-                <div className="pb-[60px]">
-                  <p className="text-lg font-semibold mb-6">Payment Information</p>
-                  <div className="p-6 rounded-md border border-gray-200 space-y-4">
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Payment Method:</strong>
-                      <span className="text-right">{paymentInfo.method}</span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Items Total:</strong>
-                      <span className="text-right">₦ {paymentInfo.itemsTotal.toLocaleString()}</span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Delivery Fees:</strong>
-                      <span className="text-right">₦ {paymentInfo.DeliveryFees.toLocaleString()}</span>
-                    </div>
-                    <div className="flex flex-col sm:flex-row justify-normal text-[#5B5B5B]">
-                      <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">Total:</strong>
-                      <span className="text-right">₦ {paymentInfo.Total.toLocaleString()}</span>
-                    </div>
-                  </div>
-                </div>
-              </>
-            )}
+    {/* Payment Info */}
+    <div className="pb-[60px]">
+      <p className="text-lg font-semibold mb-6">Payment Information</p>
+      <div className="p-6 rounded-md border border-gray-200 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Payment Method:
+          </strong>
+          <span className="text-left">{paymentInfo.method}</span>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Items Total:
+          </strong>
+          <span className="text-left">
+            ₦ {paymentInfo.itemsTotal.toLocaleString()}
+          </span>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Delivery Fees:
+          </strong>
+          <span className="text-left">
+            ₦ {paymentInfo.DeliveryFees.toLocaleString()}
+          </span>
+        </div>
+        <div className="flex flex-col sm:flex-row sm:items-start text-[#5B5B5B]">
+          <strong className="text-black w-full sm:w-[180px] mb-1 sm:mb-0">
+            Total:
+          </strong>
+          <span className="text-left">
+            ₦ {paymentInfo.Total.toLocaleString()}
+          </span>
+        </div>
+      </div>
+    </div>
+  </>
+)}
+
           </CardContent>
         </Card>
       </main>
