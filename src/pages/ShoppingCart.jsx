@@ -154,8 +154,8 @@ const ShoppingCart = () => {
 
         <div className="flex flex-col lg:flex-row gap-10 mt-20">
           {/* Cart Section */}
-          <div className="lg:w-[700px] h-full space-y-6 shadow-md bg-white pb-6">
-            <div className="flex justify-between">
+          <div className="w-[388px] lg:w-[700px] h-full space-y-6 shadow-md bg-white pb-6">
+            <div className="flex justify-between p-4">
               <h2 className="text-2xl font-bold mb-4 font-custom2">Cart</h2>
               <p className="font-semibold mt-1 text-[#5B5B5B]">
                 {cartItems.length} items
@@ -165,7 +165,7 @@ const ShoppingCart = () => {
             {cartItems.map((item) => (
               <div
                 key={item._id}
-                className="flex flex-col sm:flex-row items-center justify-between bg-[#F2F2F7] gap-4 border p-4 rounded-md shadow-md mx-8"
+                className="flex flex-col sm:flex-row items-center justify-between bg-[#F2F2F7] gap-4 border p-4 rounded-md shadow-md mx-2 lg:mx-8"
               >
                 <img
                   src={item.productId?.images[0]?.url || sampleimage}
@@ -232,7 +232,7 @@ const ShoppingCart = () => {
                     </div>
                     <button
                       onClick={() => removeItem(item?.productId?._id)}
-                      className="text-[#E94E30] flex gap-2"
+                      className="text-[#E94E30] flex gap-1 items-center font-semibold ml-4 lg:ml-0"
                     >
                       <img src={Trash} alt="" className="w-5 h-5" />
                       Remove

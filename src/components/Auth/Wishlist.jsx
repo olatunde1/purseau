@@ -79,7 +79,7 @@ const Wishlist = () => {
             return (
               <div
                 key={item._id}
-                className={`flex flex-col md:flex-row w-[380px] lg:w-[798px] bg-[#F2F2F7] lg:mx-8 justify-between items-start md:items-center gap-4 p-4 border rounded-xl shadow-sm ${
+                className={`flex flex-col md:flex-row w-[370px] lg:w-[798px] bg-[#F2F2F7] lg:mx-8 justify-between items-start md:items-center gap-4 p-4 border rounded-xl shadow-sm ${
                   !inStock ? "opacity-60" : ""
                 }`}
               >

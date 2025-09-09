@@ -50,7 +50,7 @@ const ProfileDetails = () => {
 
     return (
         <>
-            <div className="p-4 md:px-8 w-[878px] max-w-full mx-auto font-custom">
+            <div className="p-4 md:px-8 w-[388px] lg:w-[878px] max-w-full mx-auto font-custom">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-semibold">Profile Details</h2>
                 </div>
@@ -60,19 +60,12 @@ const ProfileDetails = () => {
                 }
                 <div
                     className="pt-5 pb-[164px]"
-                    style={{
-                        boxShadow: `
-              0px 14px 30px 0px #7575751A,
-              0px 55px 55px 0px #75757517,
-              0px 124px 74px 0px #7575750D,
-              0px 220px 88px 0px #75757503,
-              0px 344px 96px 0px #75757500`,
-                    }}
+                   
                 >
                     {/* FORM */}
                     <form
                         onSubmit={handleSubmit}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 mx-10"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6 p-2 lg:p-6 lg:mx-10"
                     >
                         <div>
                             <label className="block text-base font-bold text-black mb-4">
@@ -148,11 +141,11 @@ const ProfileDetails = () => {
                             </div>
                         </div>
 
-                        <div className="md:col-span-2 flex justify-end mt-6">
+                        <div className="md:col-span-2 flex justify-start lg:justify-end mt-6">
                             <Button
                                 type="submit"
                                 disabled={isPending}
-                                className="bg-[#E94E30] text-white px-10 py-6 rounded-xl hover:bg-[#c8371d]"
+                                className="bg-[#E94E30] text-white w-full lg:w-2/6 px-10 py-6 rounded-xl hover:bg-[#c8371d]"
                             >
                                 {updatePend ? "Saving..." : "Save Changes"}
                             </Button>
@@ -160,13 +153,13 @@ const ProfileDetails = () => {
                     </form>
 
                     {/* delete account button */}
-                    <div className="mt-16 mx-10">
+                    <div className="mt-4 lg:mt-16 lg:mx-10 flex justify-center lg:justify-start">
                         <Button
                             variant="destructive"
                             onClick={() => setShowModal(true)}
                             className="bg-transparent border rounded-xl border-[#E94E30]
                          text-[#E94E30] hover:text-white hover:bg-[#E94E30]
-                         px-[95px] py-[28px]"
+                         px-[95px] py-6 lg:px-20 lg:py-6"
                         >
                             <FaTrash className="mr-2" />
                             Delete Account
