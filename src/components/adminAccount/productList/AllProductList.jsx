@@ -98,7 +98,7 @@ export default function AllProductList() {
           {/* Filter */}
           <div className="relative">
             <button
-              className="flex items-center gap-2 border px-4 py-1.5 rounded bg-[#F2F2F7] hover:bg-gray-200 text-sm"
+              className="flex items-center gap-2 border px-4 py-2 rounded bg-[#F2F2F7] hover:bg-gray-200 text-sm"
               onClick={() => setShowFilter(!showFilter)}
             >
               <Filter size={16} /> Filter

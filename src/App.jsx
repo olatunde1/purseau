@@ -50,6 +50,7 @@ import SettingPageComponent from "./components/adminAccount/settings/SettingPage
 import AdminBlogComponent from "./components/adminAccount/adminBlog/AdminBlogComponent";
 import BlogPostComponent from "./components/adminAccount/blogPost/BlogPostComponent";
 import UserBlogPage from "./components/UserBlogPage";
+import OverviewComponent from "./components/adminAccount/overview/OverviewComponent";
 
 
 
@@ -110,6 +111,7 @@ function App() {
           <Route path="settings" element={<SettingPageComponent />} />
            <Route path="blog-admin" element={<AdminBlogComponent />} />
            <Route path="blog-post" element={<BlogPostComponent />} />
+           <Route path="overview" element={<OverviewComponent />} />
 
         </Route>
       </Routes>
