@@ -232,7 +232,7 @@ const Navbar = () => {
             </button>
             
             <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileShopOpen ? 'max-h-96' : 'max-h-0'}`}>
-              <div className="pl-6 py-2 grid grid-cols-2 gap-2">
+              <div className="py-2 grid grid-cols-1 gap-2">
                 <Link
                   to="/shop?category=cloth"
                   className="flex items-center p-2 text-gray-600 hover:bg-gray-50 rounded-md text-sm transition-colors duration-200"

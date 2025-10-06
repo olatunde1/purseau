@@ -1,10 +1,12 @@
-import Download from '../../../assets/images/admin-create-product-upload.png'; // Adjust the path as necessary
+import Download from '../../../assets/images/admin-create-product-upload.png';
 import { useState } from 'react';
-import { X } from "react-feather"; // or any icon lib you like
+import { X } from "react-feather";
 
 function CreateProduct() {
   const [form, setForm] = useState({});
-
+  const [images, setImages] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
 
   const categories = ["Shoes", "Clothing", "Bags", "Accessories"];
   const discounts = ["0%", "5%", "10%", "15%", "20%"];
@@ -14,30 +16,18 @@ function CreateProduct() {
     setForm({ ...form, [name]: value });
   };
 
-
-
-  // const handleRemoveImages = () => {
-  //   setImages([]);
-  // };
-
   const handleSubmit = () => {
-    const payload = {
-      ...form,
-      images, // In real app, handle file upload separately
-    };
+    const payload = { ...form, images };
     console.log("Product to submit:", payload);
     alert("Product submitted. Check console for payload.");
   };
-
- const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
 
   const handleColorChange = (e) => {
     const value = e.target.value;
     if (value && !selectedColors.includes(value)) {
       setSelectedColors([...selectedColors, value]);
     }
-    e.target.value = ""; // reset dropdown
+    e.target.value = "";
   };
 
   const handleSizeChange = (e) => {
@@ -45,302 +35,338 @@ function CreateProduct() {
     if (value && !selectedSizes.includes(value)) {
       setSelectedSizes([...selectedSizes, value]);
     }
-    e.target.value = ""; // reset dropdown
+    e.target.value = "";
   };
 
-  const removeColor = (color) => {
+  const removeColor = (color) =>
     setSelectedColors(selectedColors.filter((c) => c !== color));
-  };
 
-  const removeSize = (size) => {
+  const removeSize = (size) =>
     setSelectedSizes(selectedSizes.filter((s) => s !== size));
-  };
-
-  const [images, setImages] = useState([]);
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    setImages((prev) => {
-      const newImages = [...prev, ...files];
-      return newImages.slice(0, 4); // limit to 4
-    });
+    setImages((prev) => [...prev, ...files].slice(0, 4)); // limit to 4
   };
 
-  const handleRemoveImage = (index) => {
+  const handleRemoveImage = (index) =>
     setImages((prev) => prev.filter((_, i) => i !== index));
-  };
 
-return (
-    <div className="bg-white shadow-md rounded-xl p-6">
-        <div className="px-10 flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-semibold">Create Product</h1>
-            <div className="left">
-                <div className="flex space-x-4">
-                    <button className="border border-[#878787] text-black px-6 py-2 rounded-xl">Archive Product</button>
-                    <button onClick={handleSubmit} className="bg-[#E94E30] text-white px-6 py-2 rounded-xl">Add Product</button>
-                </div>
-                    </div>
-            </div>
-            <div className="px-4 mx-10 py-6  space-y-8  rounded-xl">
-         
-        <h1 className="text-xl font-semibold">Product Information</h1>
+  return (
+    <>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
+        <h1 className="text-xl sm:text-2xl font-semibold">Create Product</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
-            <div>
-                <label className="font-semibold">Product ID</label>
-                <input disabled value="DS-FG72TSOQ" className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Product Name</label>
-                <input name="productName" placeholder="Enter the product name" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Category</label>
-                <select name="category" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3">
-                    <option value="">Select category</option>
-                    {categories.map((cat, idx) => (
-                        <option key={idx} value={cat}>{cat}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div>
-                <label className="font-semibold">Brand</label>
-                <input name="brand" placeholder="Enter the product brand" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Material</label>
-                <input name="material" placeholder="Enter the product material" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Quantity</label>
-                <input type="number" name="quantity" placeholder="Enter the quantity" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Price $</label>
-                <input type="number" name="price" placeholder="Enter the product price" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-
-            <div>
-                <label className="font-semibold">Discount %</label>
-                <select name="discount" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3">
-                    <option value="">Select Discount</option>
-                    {discounts.map((disc, idx) => (
-                        <option key={idx} value={disc}>{disc}</option>
-                    ))}
-                </select>
-            </div>
-
-            <div>
-                <label className="font-semibold">Weight, kg</label>
-                <input type="number" name="weight" placeholder="Enter the product weight" onChange={handleChange} className="w-full px-6 py-3 border rounded-xl mt-3" />
-            </div>
-            {/* Checkbox inserted here */}
-            <div className="flex items-center mt-3">
-                <input
-                    type="checkbox"
-                    name="featured"
-                    id="featured"
-                    onChange={e => setForm({ ...form, featured: e.target.checked })}
-                    className="mr-2"
-                />
-                <label htmlFor="featured" className="font-semibold">Add price variants for wholesale</label>
-            </div>
-        </div>
-                    
-        <div className="grid grid-cols-1 gap-6 md:pb-6">
-        <div className="flex w-[250px] rounded-xl overflow-hidden border h-12">
-            <label className="w-[96px] font-semibold flex items-center justify-center bg-[#F2F2F7]">
-            3-12 pc
-            </label>
-            <input
-            name="price3to12"
-            placeholder="Enter the price"
-            onChange={handleChange}
-            className="flex-1 px-3 outline-none w-[154px]"
-            />
-        </div>
-
-        <div className="flex w-[250px] rounded-xl overflow-hidden border h-12">
-            <label className="w-[96px] font-semibold flex items-center justify-start px-5 bg-[#F2F2F7]">
-            13+
-            </label>
-            <input
-            name="price13plus"
-            placeholder="Enter the price"
-            onChange={handleChange}
-            className="flex-1 px-3 outline-none w-[154px]"
-            />
-        </div>
-        </div>
-
-
-            </div>
-
-            {/* Variants Section */}
-
-            <div className="flex gap-6 py-10 mt-6 mx-10 rounded-xl">
-                    <div className="w-[850px] md:grid-cols-1 gap-6 px-5">
-                        <div className="space-y-4 pb-8 ">
-                            <div className="flex justify-between">
-                                <h2 className="text-xl font-semibold">Variants</h2>
-                                <p className="text-[#E94E30] font-semibold">Add new variant</p>
-                            </div>
-                        </div>
-                    <div>
-                 <div>
-      {/* Color */}
-      <label className="font-semibold">Color</label>
-      <select
-        name="color"
-        onChange={handleColorChange}
-        className="w-full p-3 md:p-5 border rounded-xl mt-2 mb-3"
-      >
-        <option value="">Select color</option>
-        <option>White</option>
-        <option>Black</option>
-        <option>Gold</option>
-        <option>Purple</option>
-        <option>Blue</option>
-        <option>Yellow</option>
-      </select>
-
-      {/* Selected colors */}
-      <div className="flex flex-wrap gap-2 mb-5">
-        {selectedColors.map((color) => (
-          <span
-            key={color}
-            className="flex items-center gap-1 px-3 py-1 bg-gray-200 rounded-full text-sm"
+        <div className="flex flex-wrap gap-3">
+          <button className="border border-[#878787] text-black px-5 py-2 rounded-xl hover:bg-gray-50 transition">
+            Archive Product
+          </button>
+          <button
+            onClick={handleSubmit}
+            className="bg-[#E94E30] text-white px-6 py-2 rounded-xl hover:bg-[#d74327] transition"
           >
-            {color}
-            <button
-              type="button"
-              onClick={() => removeColor(color)}
-              className="text-red-500 hover:text-red-700"
-            >
-              <X size={14} />
-            </button>
-          </span>
-        ))}
+            Add Product
+          </button>
+        </div>
       </div>
+      <div className="bg-white shadow-md rounded-xl p-4 sm:p-6 md:p-3">
+      {/* Header */}
+    
 
-      {/* Size */}
-      <label className="font-semibold">Size</label>
-      <select
-        name="size"
-        onChange={handleSizeChange}
-        className="w-full p-3 md:p-5 border rounded-xl mt-2 mb-3"
-      >
-        <option value="">Select size</option>
-        <option>EU 35</option>
-        <option>EU 35-36</option>
-        <option>EU 36</option>
-        <option>EU 38</option>
-        <option>EU 42</option>
-        <option>EU 42-43</option>
-      </select>
+      {/* Product Info */}
+      <div className="px-2 sm:px-4 md:px-3 py-4 space-y-6">
+        <h1 className="text-lg sm:text-xl font-semibold">Product Information</h1>
 
-      {/* Selected sizes */}
-      <div className="flex flex-wrap gap-2">
-        {selectedSizes.map((size) => (
-          <span
-            key={size}
-            className="flex items-center gap-1 px-3 py-1 bg-gray-200 rounded-full text-sm"
-          >
-            {size}
-            <button
-              type="button"
-              onClick={() => removeSize(size)}
-              className="text-red-500 hover:text-red-700"
-            >
-              <X size={14} />
-            </button>
-          </span>
-        ))}
-      </div>
-    </div>
-                    </div>
-          
-                    </div>
-
-                    <div className="w-full gap-6 px-5">
-
-                        <div>
-                            <label className="font-semibold">Product Summary</label>
-                            <textarea name="summary" placeholder="Add short description for product" onChange={handleChange} className="w-full p-20 border rounded-xl mt-4 mb-4" />
-                        </div>
-                        <div>
-                            <label className="font-semibold">Product Description</label>
-                            <textarea name="description" placeholder="Add product full description" onChange={handleChange} className="w-full p-20 border rounded-xl mt-4" />
-                        </div>
-                    </div>
-            </div>
-
-   <div className="grid gap-6 py-10 mt-6 mx-10 rounded-xl" >
-      <h2 className="text-xl font-semibold mb-2">Product Images</h2>
-      <div className="flex gap-4">
-        
-        {/* Upload box - hide if already 4 images */}
-        {images.length < 4 && (
-          <label
-            htmlFor="fileUpload"
-            className="w-24 md:w-[194px] h-24 md:h-[194px] items-center justify-center border-2 
-            border-dashed rounded cursor-pointer pt-10 px-4 text-[#5B5B5B] font-semibold text-[14px] text-center"
-          >
-            <img className='mx-auto mb-6' src={Download} alt="" height="24px" width="24px" />
-            Drag and drop here or <span className=' underline text-[#E94E30] font-semibold'>Choose a file</span> to upload 
-            
-            <p className='text-[#AEAEB2] pt-6 font-semibold'>Max 10MB size</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div>
+            <label className="font-semibold text-sm md:text-base">Product ID</label>
             <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageChange}
-              hidden
-              id="fileUpload"
+              disabled
+              value="DS-FG72TSOQ"
+              className="w-full px-4 py-3 border rounded-xl mt-2"
             />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Product Name</label>
+            <input
+              name="productName"
+              placeholder="Enter the product name"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Category</label>
+            <select
+              name="category"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            >
+              <option value="">Select category</option>
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Brand</label>
+            <input
+              name="brand"
+              placeholder="Enter brand"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Material</label>
+            <input
+              name="material"
+              placeholder="Enter material"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Quantity</label>
+            <input
+              type="number"
+              name="quantity"
+              placeholder="Enter quantity"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Price $</label>
+            <input
+              type="number"
+              name="price"
+              placeholder="Enter price"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Discount %</label>
+            <select
+              name="discount"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            >
+              <option value="">Select discount</option>
+              {discounts.map((disc, idx) => (
+                <option key={idx} value={disc}>{disc}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="font-semibold text-sm md:text-base">Weight (kg)</label>
+            <input
+              type="number"
+              name="weight"
+              placeholder="Enter weight"
+              onChange={handleChange}
+              className="w-full px-4 py-3 border rounded-xl mt-2"
+            />
+          </div>
+        </div>
+
+        {/* Checkbox + Price Variants */}
+        <div className="mt-3 flex flex-col gap-4">
+          <label className="flex items-center gap-2 text-sm md:text-base">
+            <input
+              type="checkbox"
+              name="featured"
+              onChange={e => setForm({ ...form, featured: e.target.checked })}
+            />
+            Add price variants for wholesale
           </label>
-        )}
 
-        {/* Image previews */}
-        {images.map((img, idx) => (
-  <div
-    key={idx}
-    className="relative w-24 h-24 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
-  >
-    <img
-      src={URL.createObjectURL(img)}
-      alt={`preview-${idx}`}
-      className="w-full h-full object-cover"
-    />
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex w-full sm:w-[250px] rounded-xl overflow-hidden border h-12">
+              <label className="w-[96px] flex items-center justify-center bg-[#F2F2F7] font-semibold">
+                3–12 pc
+              </label>
+              <input
+                name="price3to12"
+                placeholder="Enter price"
+                onChange={handleChange}
+                className="flex-1 px-3 outline-none"
+              />
+            </div>
 
-    {/* Hover overlay with Remove button */}
-    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-      <button
-        type="button"
-        onClick={() => handleRemoveImage(idx)}
-        className="bg-[#E94E30] text-white px-4 py-2 rounded-lg font-semibold"
-      >
-        Remove
-      </button>
-    </div>
-  </div>
-))}
-
+            <div className="flex w-full sm:w-[250px] rounded-xl overflow-hidden border h-12">
+              <label className="w-[96px] flex items-center justify-center bg-[#F2F2F7] font-semibold">
+                13+
+              </label>
+              <input
+                name="price13plus"
+                placeholder="Enter price"
+                onChange={handleChange}
+                className="flex-1 px-3 outline-none"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-        
-            
-    </div>
-    
-    
-);
+      {/* Variants Section */}
+      <div className="flex flex-col md:flex-row gap-8 py-8 mt-6 border-t">
+        {/* Left */}
+        <div className="flex-1 space-y-4">
+          <div className="flex justify-between">
+            <h2 className="text-lg sm:text-xl font-semibold">Variants</h2>
+            <p className="text-[#E94E30] font-semibold">+ Add new variant</p>
+          </div>
+
+          {/* Color */}
+          <div>
+            <label className="font-semibold text-sm md:text-base">Color</label>
+            <select
+              onChange={handleColorChange}
+              className="w-full p-3 border rounded-xl mt-2 mb-3"
+            >
+              <option value="">Select color</option>
+              {["White", "Black", "Gold", "Purple", "Blue", "Yellow"].map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>
+
+            <div className="flex flex-wrap gap-2 mb-5">
+              {selectedColors.map((color) => (
+                <span
+                  key={color}
+                  className="flex items-center gap-1 px-3 py-1 bg-gray-200 rounded-full text-sm"
+                >
+                  {color}
+                  <button
+                    type="button"
+                    onClick={() => removeColor(color)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <X size={14} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Size */}
+          <div>
+            <label className="font-semibold text-sm md:text-base">Size</label>
+            <select
+              onChange={handleSizeChange}
+              className="w-full p-3 border rounded-xl mt-2 mb-3"
+            >
+              <option value="">Select size</option>
+              {["EU 35", "EU 36", "EU 38", "EU 42", "EU 43"].map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </select>
+
+            <div className="flex flex-wrap gap-2">
+              {selectedSizes.map((size) => (
+                <span
+                  key={size}
+                  className="flex items-center gap-1 px-3 py-1 bg-gray-200 rounded-full text-sm"
+                >
+                  {size}
+                  <button
+                    type="button"
+                    onClick={() => removeSize(size)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    <X size={14} />
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right - Summary & Description */}
+        <div className="flex-1 space-y-4">
+          <div>
+            <label className="font-semibold text-sm md:text-base">Product Summary</label>
+            <textarea
+              name="summary"
+              placeholder="Add short description"
+              onChange={handleChange}
+              className="w-full p-4 border rounded-xl mt-2 h-28"
+            />
+          </div>
+          <div>
+            <label className="font-semibold text-sm md:text-base">Product Description</label>
+            <textarea
+              name="description"
+              placeholder="Add full description"
+              onChange={handleChange}
+              className="w-full p-4 border rounded-xl mt-2 h-40"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Product Images */}
+      <div className="grid gap-6 py-10 mt-6 border-t">
+        <h2 className="text-lg sm:text-xl font-semibold">Product Images</h2>
+        <div className="flex flex-wrap gap-4">
+          {images.length < 4 && (
+            <label
+              htmlFor="fileUpload"
+              className="flex flex-col justify-center items-center w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border-2 border-dashed rounded-lg cursor-pointer text-center p-3 hover:bg-gray-50"
+            >
+              <img src={Download} alt="" className="w-6 h-6 sm:w-8 sm:h-8 mb-2" />
+              <p className="text-xs sm:text-sm text-gray-600">
+                Drag & drop or <span className="underline text-[#E94E30]">choose file</span>
+              </p>
+              <p className="text-[10px] sm:text-xs text-gray-400">Max 10MB</p>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                hidden
+                id="fileUpload"
+                onChange={handleImageChange}
+              />
+            </label>
+          )}
+
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
+            >
+              <img
+                src={URL.createObjectURL(img)}
+                alt={`preview-${idx}`}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(idx)}
+                  className="bg-[#E94E30] text-white px-3 py-1 rounded-md text-xs sm:text-sm"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      </div>
+ 
+    </>
+   );
 }
 
 export default CreateProduct;
