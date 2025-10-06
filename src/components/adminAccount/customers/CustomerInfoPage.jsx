@@ -136,7 +136,7 @@ const CustomerInfoPage = () => {
       </div>
 
       {/* Order History Section */}
-      <div className="bg-white shadow rounded-xl p-1 sm:px-6 overflow-x-auto">
+      <div className="bg-white shadow rounded-xl p-1 sm:px-2 overflow-x-auto">
           <OrderHistory showCreateButton={false} />   
       </div>
     </div>
