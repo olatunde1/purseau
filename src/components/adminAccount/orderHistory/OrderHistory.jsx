@@ -26,7 +26,7 @@ const statusColor = {
 
 const statusList = ['All', 'Delivered', 'Ongoing', 'Pickup', 'Returned', 'Cancelled'];
 
-export default function OrderHistory() {
+export default function OrderHistory({ showCreateButton = true }) {
   const [originalOrders] = useState(initialOrders);
   const [orders, setOrders] = useState(initialOrders);
   const [selectedStatus, setSelectedStatus] = useState('All');
@@ -91,14 +91,17 @@ export default function OrderHistory() {
 
   const [modalOrder, setModalOrder] = useState(null);
 
+
   return (
     <div className="w-full px-4 sm:px-2 md:px-0 lg:px-0 py-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
         <h1 className="text-xl sm:text-2xl font-bold">Orders History</h1>
-        <button className="bg-[#E94E30] text-white px-4 py-2 rounded-md text-sm sm:text-base">
-          Create Order
-        </button>
+      {showCreateButton && (
+          <button className="bg-[#E94E30]  text-white px-4 py-2 rounded-md hover:bg-[#cd3213] transition">
+            Create Order
+          </button>
+        )}
       </div>
 
       {/* Search + Filter + Sort */}
@@ -121,7 +124,7 @@ export default function OrderHistory() {
           {/* Filter */}
           <div className="relative">
             <button
-              className="flex items-center gap-2 border px-4 py-1.5 rounded bg-[#F2F2F7] text-sm"
+              className="flex items-center gap-2 border px-4 py-2 rounded bg-[#F2F2F7] text-sm"
               onClick={() => setShowFilter(!showFilter)}
             >
               <Filter size={16} /> Filter
