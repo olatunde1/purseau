@@ -138,9 +138,10 @@ const OverviewPage = () => {
       return {
         id: item.orderId,
         customer: item.deliveryInfo?.name || "N/A",
-        product: "N/A", 
+        product:
+          item?.cartDetails?.items?.map((i) => i?.productId?.name) || "N/A",
         date: format(new Date(item.createdAt), "MMM dd, yyyy"),
-        items: 1, 
+        items: item?.cartDetails?.items?.length || 0,
         status: latestStatus,
         amount: `₦${Number(item.totalOrderAmount || 0).toLocaleString()}`,
       };
@@ -316,7 +317,7 @@ const OverviewPage = () => {
                 <td className="py-3 px-2">{order.customer}</td>
                 <td className="py-3 px-2">{order.product}</td>
                 <td className="py-3 px-2">{order.date}</td>
-                <td className="py-3 px-2">{order.items} Items</td>
+                <td className="py-3 px-2">{order.items} Item(s)</td>
                 <td className="py-3 px-2">
                   <span
                     className={`px-3 py-1 rounded-md text-xs font-medium ${getStatusColor(
