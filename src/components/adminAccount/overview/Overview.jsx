@@ -303,7 +303,7 @@ const OverviewPage = () => {
               <th className="text-left py-3 px-2">Items</th>
               <th className="text-left py-3 px-2">Status</th>
               <th className="text-left py-3 px-2">Amount</th>
-              <th className="text-center py-3 px-2">...</th>
+              {/* <th className="text-center py-3 px-2">...</th> */}
             </tr>
           </thead>
           <tbody>
@@ -327,11 +327,11 @@ const OverviewPage = () => {
                   </span>
                 </td>
                 <td className="py-3 px-2">{order.amount}</td>
-                <td className="py-3 px-2 text-center">
+                {/* <td className="py-3 px-2 text-center">
                   <button className="p-1 rounded hover:bg-gray-100">
                     <MoreHorizontal size={18} className="text-gray-600" />
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
