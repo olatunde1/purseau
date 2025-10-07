@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { ArrowUpRight, ArrowDownRight, Plus, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowDownRight,
+  Plus,
+  MoreHorizontal,
+} from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -10,25 +15,56 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import useGetAdminOverview from "@/hooks/api/queries/admin/useGetAdminOverview";
 
 const OverviewPage = () => {
-  const data = useMemo(
-    () => [
-      { month: "Jan", Orders: 60, Revenue: 70, Customers: 50 },
-      { month: "Feb", Orders: 40, Revenue: 50, Customers: 40 },
-      { month: "Mar", Orders: 80, Revenue: 90, Customers: 70 },
-      { month: "Apr", Orders: 70, Revenue: 60, Customers: 50 },
-      { month: "May", Orders: 50, Revenue: 40, Customers: 60 },
-      { month: "Jun", Orders: 90, Revenue: 100, Customers: 80 },
-      { month: "Jul", Orders: 80, Revenue: 85, Customers: 70 },
-      { month: "Aug", Orders: 75, Revenue: 70, Customers: 65 },
-      { month: "Sep", Orders: 60, Revenue: 55, Customers: 50 },
-      { month: "Oct", Orders: 95, Revenue: 90, Customers: 85 },
-      { month: "Nov", Orders: 70, Revenue: 60, Customers: 55 },
-      { month: "Dec", Orders: 85, Revenue: 95, Customers: 75 },
-    ],
-    []
-  );
+  const { data: overview, isPending } = useGetAdminOverview();
+
+  const overviewData = overview?.data || {};
+
+  // const data = useMemo(
+  //   () => [
+  //     { month: "Jan", Orders: 60, Revenue: 70, Customers: 50 },
+  //     { month: "Feb", Orders: 40, Revenue: 50, Customers: 40 },
+  //     { month: "Mar", Orders: 80, Revenue: 90, Customers: 70 },
+  //     { month: "Apr", Orders: 70, Revenue: 60, Customers: 50 },
+  //     { month: "May", Orders: 50, Revenue: 40, Customers: 60 },
+  //     { month: "Jun", Orders: 90, Revenue: 100, Customers: 80 },
+  //     { month: "Jul", Orders: 80, Revenue: 85, Customers: 70 },
+  //     { month: "Aug", Orders: 75, Revenue: 70, Customers: 65 },
+  //     { month: "Sep", Orders: 60, Revenue: 55, Customers: 50 },
+  //     { month: "Oct", Orders: 95, Revenue: 90, Customers: 85 },
+  //     { month: "Nov", Orders: 70, Revenue: 60, Customers: 55 },
+  //     { month: "Dec", Orders: 85, Revenue: 95, Customers: 75 },
+  //   ],
+  //   []
+  // );
+
+  const data = useMemo(() => {
+    if (!overviewData?.monthlyPerformance) return [];
+
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    return overviewData.monthlyPerformance.map((item) => ({
+      month: monthNames[item.month - 1] || `M${item.month}`,
+      Orders: Number(item.totalOrders) || 0,
+      Revenue: Number(item.totalRevenue) || 0,
+      Customers: Number(item.totalUsers) || 0,
+    }));
+  }, [overviewData]);
 
   const orders = [
     {
@@ -118,33 +154,39 @@ const OverviewPage = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-        <div className="bg-white p-6 rounded-xl shadow-sm">
+        <div className="bg-white p-2 rounded-xl shadow-sm">
           <p className="text-gray-500 text-sm">Total Orders</p>
-          <h2 className="text-3xl font-bold mt-2">5,837</h2>
-          <div className="flex items-center gap-2 mt-1 text-green-600 text-sm font-medium">
+          <h2 className="text-2xl font-bold mt-2">
+            {overviewData?.totalOrders || 0}
+          </h2>
+          {/* <div className="flex items-center gap-2 mt-1 text-green-600 text-sm font-medium">
             <ArrowUpRight size={16} /> +25% since last month
-          </div>
+          </div> */}
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm">
+        <div className="bg-white p-2 rounded-xl shadow-sm">
           <p className="text-gray-500 text-sm">Total Revenue</p>
-          <h2 className="text-3xl font-bold mt-2">₦300,000,000.56</h2>
-          <div className="flex items-center gap-2 mt-1 text-green-600 text-sm font-medium">
+          <h2 className="text-2xl font-bold mt-2">
+            ₦{overviewData?.totalRevenue?.toLocaleString() || 0}
+          </h2>
+          {/* <div className="flex items-center gap-2 mt-1 text-green-600 text-sm font-medium">
             <ArrowUpRight size={16} /> +25% since last month
-          </div>
+          </div> */}
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm">
+        <div className="bg-white p-2 rounded-xl shadow-sm">
           <p className="text-gray-500 text-sm">Total Customers</p>
-          <h2 className="text-3xl font-bold mt-2">832</h2>
-          <div className="flex items-center gap-2 mt-1 text-red-600 text-sm font-medium">
+          <h2 className="text-2xl font-bold mt-2">
+            {overviewData?.totalUsers || 0}
+          </h2>
+          {/* <div className="flex items-center gap-2 mt-1 text-red-600 text-sm font-medium">
             <ArrowDownRight size={16} /> -13% since last month
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Chart */}
-      <div className="bg-white p-6 rounded-xl shadow-sm mb-10">
+      <div className="bg-white p-3 rounded-xl shadow-sm mb-10">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-gray-700">
             Performance Summary
@@ -153,29 +195,73 @@ const OverviewPage = () => {
         </div>
 
         <ResponsiveContainer width="100%" height={320}>
-          <BarChart data={data}>
+          <BarChart
+            data={data}
+            margin={{ top: 20, right: 40, left: 40, bottom: 5 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
-            <YAxis />
+
+            {/* Left axis (Orders + Customers) */}
+            <YAxis
+              yAxisId="left"
+              label={{
+                value: "Orders / Customers",
+                angle: -90,
+                position: "right",
+                style: { textAnchor: "middle", fill: "#555", fontSize: 12 },
+              }}
+            />
+
+            {/* Right axis (Revenue) */}
+            <YAxis
+              yAxisId="right"
+              orientation="right"
+              label={{
+                value: "Revenue (₦)",
+                angle: 90,
+                position: "left",
+                style: { textAnchor: "middle", fill: "#555", fontSize: 12 },
+              }}
+            />
+
             <Tooltip />
             <Legend />
-            <Bar dataKey="Orders" fill="#E94E30" barSize={5} radius={[6, 6, 0, 0]} />
-            <Bar dataKey="Revenue" fill="#00A878" barSize={5} radius={[6, 6, 0, 0]} />
-            <Bar dataKey="Customers" fill="#C7A17A" barSize={5} radius={[6, 6, 0, 0]} />
+
+            {/* Bars */}
+            <Bar
+              yAxisId="left"
+              dataKey="Orders"
+              fill="#E94E30"
+              radius={[6, 6, 0, 0]}
+              barSize={15}
+            />
+            <Bar
+              yAxisId="left"
+              dataKey="Customers"
+              fill="#C7A17A"
+              radius={[6, 6, 0, 0]}
+              barSize={15}
+            />
+            <Bar
+              yAxisId="right"
+              dataKey="Revenue"
+              fill="#00A878"
+              radius={[6, 6, 0, 0]}
+              barSize={15}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
 
       {/* Order History */}
-       <div className="flex justify-between items-center pt-8 mb-8">
-          <h2 className="text-lg font-semibold text-gray-700">Order History</h2>
-          <button className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit">
-            View More
-          </button>
-        </div>
+      <div className="flex justify-between items-center pt-8 mb-8">
+        <h2 className="text-lg font-semibold text-gray-700">Order History</h2>
+        <button className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit">
+          View More
+        </button>
+      </div>
       <div className="bg-white rounded-xl shadow-sm  pb-4 sm:p-0 overflow-x-auto">
-       
-
         <table className="min-w-full text-sm">
           <thead>
             <tr className="border-b text-gray-600">
@@ -191,7 +277,10 @@ const OverviewPage = () => {
           </thead>
           <tbody>
             {orders.map((order) => (
-              <tr key={order.id} className="border-b hover:bg-gray-50 transition">
+              <tr
+                key={order.id}
+                className="border-b hover:bg-gray-50 transition"
+              >
                 <td className="py-3 px-2">{order.id}</td>
                 <td className="py-3 px-2">{order.customer}</td>
                 <td className="py-3 px-2">{order.product}</td>

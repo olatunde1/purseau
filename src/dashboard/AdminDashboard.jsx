@@ -19,12 +19,19 @@ import Settings from "../assets/images/settings.png";
 import LogOut from "../assets/images/logout.png";
 import { useAdminAuthStore } from "@/store/adminAuthStore";
 import { toast } from "sonner";
+import useGetAdminProfile from "@/hooks/api/queries/admin/useGetAdminProfile";
+import GeneralLoader from "@/components/general/GeneralLoader";
 
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Overview");
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  const { data: profile, isPending } = useGetAdminProfile();
+
+  const profileData = profile?.data?.adminDetail || {};
+  console.log(profileData, "profile");
 
   const { logout } = useAdminAuthStore();
 
@@ -55,6 +62,10 @@ export default function Admin() {
     { name: "Settings", iconSrc: Settings, route: "/admin/settings" },
     { name: "Sign Out", iconSrc: LogOut, route: "/logout" },
   ];
+
+  if (isPending) {
+    return <GeneralLoader />;
+  }
 
   return (
     <div className="flex h-screen bg-[#FAFAFA] overflow-hidden">
@@ -194,18 +205,16 @@ export default function Admin() {
                 className="w-[300px] lg:w-[450px] pl-10 pr-4 py-2 border rounded-2xl bg-[#E5E5EA]"
               />
             </div>
-
             {/* Bell Icon */}
             <Bell
               className="bg-[#E5E5EA] p-2 rounded-full cursor-pointer"
               width="40"
               height="40"
             />
-
             {/* Profile */}
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="font-semibold text-sm">Fuad Noah</p>
+                <p className="font-semibold text-sm">{profileData?.email}</p>
                 <span className="text-xs italic text-gray-600">Admin</span>
               </div>
               <img
