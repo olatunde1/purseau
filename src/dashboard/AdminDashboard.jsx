@@ -17,12 +17,22 @@ import Box from "../assets/images/product.png";
 import Users from "../assets/images/customers.png";
 import Settings from "../assets/images/settings.png";
 import LogOut from "../assets/images/logout.png";
+import { useAdminAuthStore } from "@/store/adminAuthStore";
+import { toast } from "sonner";
 
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Overview");
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  const { logout } = useAdminAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/admin/login");
+    toast.success("Logged out Admin successfully");
+  };
 
   const menuItems = [
     { name: "Overview", iconSrc: LayoutDashboard, route: "/admin/overview" },
@@ -74,6 +84,8 @@ export default function Admin() {
                   if (item.name === "Products") {
                     setProductsMenuOpen(!productsMenuOpen);
                     setActiveMenu(item.name);
+                  } else if (item.name === "Sign Out") {
+                    handleLogout();
                   } else {
                     setActiveMenu(item.name);
                     navigate(item.route);
@@ -158,9 +170,12 @@ export default function Admin() {
               <Menu size={22} />
             </button>
             <div>
-              <h1 className="text-lg sm:text-xl font-semibold">Welcome Admin</h1>
+              <h1 className="text-lg sm:text-xl font-semibold">
+                Welcome Admin
+              </h1>
               <span className="text-sm text-gray-600">
-                You have <span className="text-[#E94E30]">3 new notifications</span>
+                You have{" "}
+                <span className="text-[#E94E30]">3 new notifications</span>
               </span>
             </div>
           </div>
@@ -169,7 +184,10 @@ export default function Admin() {
           <div className="flex items-center space-x-4">
             {/* Search (hidden on mobile) */}
             <div className="relative hidden md:block">
-              <Search className="absolute left-4 top-3 text-gray-400" size={18} />
+              <Search
+                className="absolute left-4 top-3 text-gray-400"
+                size={18}
+              />
               <input
                 type="text"
                 placeholder="Search"
