@@ -16,9 +16,15 @@ import {
   Legend,
 } from "recharts";
 import useGetAdminOverview from "@/hooks/api/queries/admin/useGetAdminOverview";
+import useGetAdminOrders from "@/hooks/api/queries/admin/useGetAdminOrders";
+import GeneralLoader from "@/components/general/GeneralLoader";
+import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 const OverviewPage = () => {
+  const navigate = useNavigate();
   const { data: overview, isPending } = useGetAdminOverview();
+  const { data: order, isPending: orderIsPending } = useGetAdminOrders();
 
   const overviewData = overview?.data || {};
 
@@ -66,68 +72,86 @@ const OverviewPage = () => {
     }));
   }, [overviewData]);
 
-  const orders = [
-    {
-      id: "PUR-15627927",
-      customer: "Ralph Edwards",
-      product: "Prada Mini Bag",
-      date: "Oct 28, 2020",
-      items: 4,
-      status: "Ongoing",
-      amount: "$8.99",
-    },
-    {
-      id: "PUR-15627928",
-      customer: "Eleanor Pena",
-      product: "Gucci, 1995 Horsebit",
-      date: "Oct 23, 2020",
-      items: 24,
-      status: "Ongoing",
-      amount: "$17.84",
-    },
-    {
-      id: "PUR-15627929",
-      customer: "Bessie Cooper",
-      product: "Chanel, Boy Flap",
-      date: "Oct 30, 2020",
-      items: 13,
-      status: "Delivered",
-      amount: "$11.70",
-    },
-    {
-      id: "PUR-15627930",
-      customer: "Wade Warren",
-      product: "Hermès Birkin 25",
-      date: "Nov 01, 2020",
-      items: 7,
-      status: "Cancelled",
-      amount: "$5.22",
-    },
-    {
-      id: "PUR-15627931",
-      customer: "Darrell Steward",
-      product: "Gucci Mules",
-      date: "Oct 16, 2020",
-      items: 12,
-      status: "Returned",
-      amount: "$14.81",
-    },
-    {
-      id: "PUR-15627932",
-      customer: "Cameron Williamson",
-      product: "Jimmy Choo Pumps",
-      date: "Oct 27, 2020",
-      items: 2,
-      status: "Delivered",
-      amount: "$14.81",
-    },
-  ];
+  // const orders = [
+  //   {
+  //     id: "PUR-15627927",
+  //     customer: "Ralph Edwards",
+  //     product: "Prada Mini Bag",
+  //     date: "Oct 28, 2020",
+  //     items: 4,
+  //     status: "Ongoing",
+  //     amount: "$8.99",
+  //   },
+  //   {
+  //     id: "PUR-15627928",
+  //     customer: "Eleanor Pena",
+  //     product: "Gucci, 1995 Horsebit",
+  //     date: "Oct 23, 2020",
+  //     items: 24,
+  //     status: "Ongoing",
+  //     amount: "$17.84",
+  //   },
+  //   {
+  //     id: "PUR-15627929",
+  //     customer: "Bessie Cooper",
+  //     product: "Chanel, Boy Flap",
+  //     date: "Oct 30, 2020",
+  //     items: 13,
+  //     status: "Delivered",
+  //     amount: "$11.70",
+  //   },
+  //   {
+  //     id: "PUR-15627930",
+  //     customer: "Wade Warren",
+  //     product: "Hermès Birkin 25",
+  //     date: "Nov 01, 2020",
+  //     items: 7,
+  //     status: "Cancelled",
+  //     amount: "$5.22",
+  //   },
+  //   {
+  //     id: "PUR-15627931",
+  //     customer: "Darrell Steward",
+  //     product: "Gucci Mules",
+  //     date: "Oct 16, 2020",
+  //     items: 12,
+  //     status: "Returned",
+  //     amount: "$14.81",
+  //   },
+  //   {
+  //     id: "PUR-15627932",
+  //     customer: "Cameron Williamson",
+  //     product: "Jimmy Choo Pumps",
+  //     date: "Oct 27, 2020",
+  //     items: 2,
+  //     status: "Delivered",
+  //     amount: "$14.81",
+  //   },
+  // ];
+
+  const orders = useMemo(() => {
+    const items = order?.data?.orders?.items || [];
+    return items.map((item) => {
+      const latestStatus =
+        item.statusUpdates?.[item.statusUpdates.length - 1]?.status ||
+        "Pending";
+      return {
+        id: item.orderId,
+        customer: item.deliveryInfo?.name || "N/A",
+        product: "N/A", 
+        date: format(new Date(item.createdAt), "MMM dd, yyyy"),
+        items: 1, 
+        status: latestStatus,
+        amount: `₦${Number(item.totalOrderAmount || 0).toLocaleString()}`,
+      };
+    });
+  }, [order]);
 
   const getStatusColor = (status) => {
     switch (status) {
       case "Delivered":
         return "text-green-700 bg-green-100";
-      case "Ongoing":
+      case "Placed":
         return "text-yellow-700 bg-yellow-100";
       case "Cancelled":
         return "text-red-700 bg-red-100";
@@ -139,6 +163,10 @@ const OverviewPage = () => {
         return "text-gray-700 bg-gray-100";
     }
   };
+
+  if (isPending || orderIsPending) {
+    return <GeneralLoader />;
+  }
 
   return (
     <div className="w-full min-h-screen bg-gray-50 p-6">
@@ -257,7 +285,10 @@ const OverviewPage = () => {
       {/* Order History */}
       <div className="flex justify-between items-center pt-8 mb-8">
         <h2 className="text-lg font-semibold text-gray-700">Order History</h2>
-        <button className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit">
+        <button
+          onClick={() => navigate("/admin/orders-history")}
+          className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit"
+        >
           View More
         </button>
       </div>
