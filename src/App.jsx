@@ -1,6 +1,6 @@
 import "./App.css";
 import Layout from "./components/layout";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
@@ -137,6 +137,7 @@ function App() {
             <Route path="settings" element={<SettingPageComponent />} />
             <Route path="blog-admin" element={<AdminBlogComponent />} />
             <Route path="blog-post" element={<BlogPostComponent />} />
+            <Route index element={<Navigate to="overview" replace />} />
             <Route path="overview" element={<OverviewComponent />} />
           </Route>
         </Route>
