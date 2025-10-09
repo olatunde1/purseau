@@ -17,12 +17,29 @@ import Box from "../assets/images/product.png";
 import Users from "../assets/images/customers.png";
 import Settings from "../assets/images/settings.png";
 import LogOut from "../assets/images/logout.png";
+import { useAdminAuthStore } from "@/store/adminAuthStore";
+import { toast } from "sonner";
+import useGetAdminProfile from "@/hooks/api/queries/admin/useGetAdminProfile";
+import GeneralLoader from "@/components/general/GeneralLoader";
 
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Overview");
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  const { data: profile, isPending } = useGetAdminProfile();
+
+  const profileData = profile?.data?.adminDetail || {};
+  console.log(profileData, "profile");
+
+  const { logout } = useAdminAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/admin/login");
+    toast.success("Logged out Admin successfully");
+  };
 
   const menuItems = [
     { name: "Overview", iconSrc: LayoutDashboard, route: "/admin/overview" },
@@ -45,6 +62,10 @@ export default function Admin() {
     { name: "Settings", iconSrc: Settings, route: "/admin/settings" },
     { name: "Sign Out", iconSrc: LogOut, route: "/logout" },
   ];
+
+  if (isPending) {
+    return <GeneralLoader />;
+  }
 
   return (
     <div className="flex h-screen bg-[#FAFAFA] overflow-hidden">
@@ -74,6 +95,8 @@ export default function Admin() {
                   if (item.name === "Products") {
                     setProductsMenuOpen(!productsMenuOpen);
                     setActiveMenu(item.name);
+                  } else if (item.name === "Sign Out") {
+                    handleLogout();
                   } else {
                     setActiveMenu(item.name);
                     navigate(item.route);
@@ -158,9 +181,12 @@ export default function Admin() {
               <Menu size={22} />
             </button>
             <div>
-              <h1 className="text-lg sm:text-xl font-semibold">Welcome Admin</h1>
+              <h1 className="text-lg sm:text-xl font-semibold">
+                Welcome Admin
+              </h1>
               <span className="text-sm text-gray-600">
-                You have <span className="text-[#E94E30]">3 new notifications</span>
+                You have{" "}
+                <span className="text-[#E94E30]">3 new notifications</span>
               </span>
             </div>
           </div>
@@ -169,25 +195,26 @@ export default function Admin() {
           <div className="flex items-center space-x-4">
             {/* Search (hidden on mobile) */}
             <div className="relative hidden md:block">
-              <Search className="absolute left-4 top-3 text-gray-400" size={18} />
+              <Search
+                className="absolute left-4 top-3 text-gray-400"
+                size={18}
+              />
               <input
                 type="text"
                 placeholder="Search"
                 className="w-[300px] lg:w-[450px] pl-10 pr-4 py-2 border rounded-2xl bg-[#E5E5EA]"
               />
             </div>
-
             {/* Bell Icon */}
             <Bell
               className="bg-[#E5E5EA] p-2 rounded-full cursor-pointer"
               width="40"
               height="40"
             />
-
             {/* Profile */}
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="font-semibold text-sm">Fuad Noah</p>
+                <p className="font-semibold text-sm">{profileData?.email}</p>
                 <span className="text-xs italic text-gray-600">Admin</span>
               </div>
               <img

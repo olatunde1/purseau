@@ -1,7 +1,15 @@
 import { Trash2, Ban, ArrowLeft } from "lucide-react";
 import OrderHistory from "../orderHistory/OrderHistory";
+import useGetSingleUser from "@/hooks/api/queries/admin/useGetSingleUser";
+import { useLocation } from "react-router-dom";
 
 const CustomerInfoPage = () => {
+  const location = useLocation();
+  const { user } = location.state || {};
+  const id = user?._id;
+  const { data: singleUser, isPending: singlePend } = useGetSingleUser(id);
+
+  const singleUserData = singleUser?.data?.user || {};
   return (
     <div className=" sm:p-6 lg:p-0 max-w-7xl mx-auto">
       {/* Header */}
@@ -38,13 +46,17 @@ const CustomerInfoPage = () => {
             <label className="block text-[16px] font-semibold text-[#1B121B] mb-1">
               First Name
             </label>
-            <p className="text-sm font-medium text-[#5B5B5B]">Noah</p>
+            <p className="text-sm font-medium text-[#5B5B5B]">
+              {singleUserData?.user?.firstName}
+            </p>
           </div>
           <div>
             <label className="block text-[16px] font-semibold text-[#1B121B] mb-1">
               Last Name
             </label>
-            <p className="text-sm font-medium text-[#5B5B5B]">Fuad</p>
+            <p className="text-sm font-medium text-[#5B5B5B]">
+              {singleUserData?.user?.lastName}
+            </p>
           </div>
         </div>
 
@@ -55,7 +67,7 @@ const CustomerInfoPage = () => {
               Email
             </label>
             <p className="text-sm font-medium text-[#5B5B5B] break-all">
-              dolores.chambers@example.com
+              {singleUserData?.user?.email}
             </p>
           </div>
           <div>
@@ -63,14 +75,16 @@ const CustomerInfoPage = () => {
               Phone Number
             </label>
             <p className="text-sm font-medium text-[#5B5B5B]">
-              +234 814 892 3767
+              {singleUserData?.user?.phoneNumber}
             </p>
           </div>
           <div>
             <label className="block text-[16px] font-semibold text-[#1B121B] mb-1">
               Additional Phone Number
             </label>
-            <p className="text-sm font-medium text-[#5B5B5B]">(207) 555-0119</p>
+            <p className="text-sm font-medium text-[#5B5B5B]">
+              {singleUserData?.userAddress?.phoneNumber || "—"}
+            </p>
           </div>
         </div>
 
@@ -81,26 +95,30 @@ const CustomerInfoPage = () => {
               Delivery Address
             </label>
             <p className="text-sm font-medium text-[#5B5B5B]">
-              4517 Washington Ave. Manchester, Kentucky 39495
+              {singleUserData?.userAddress?.delivery || "-"}
             </p>
           </div>
           <div>
             <label className="block text-[16px] font-semibold text-[#1B121B] mb-1">
               Region
             </label>
-            <p className="text-sm font-medium text-[#5B5B5B]">South Africa</p>
+            <p className="text-sm font-medium text-[#5B5B5B]">
+              {singleUserData?.userAddress?.region || "-"}
+            </p>
           </div>
           <div>
             <label className="block text-[16px] font-semibold text-[#1B121B] mb-1">
               City
             </label>
-            <p className="text-sm font-medium text-[#5B5B5B]">Cape Town</p>
+            <p className="text-sm font-medium text-[#5B5B5B]">
+              {singleUserData?.userAddress?.city || "-"}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Orders Information */}
-      <div className="bg-white shadow rounded-xl p-4 sm:p-6 mb-8">
+      {/* <div className="bg-white shadow rounded-xl p-4 sm:p-6 mb-8">
         <h2 className="text-lg font-semibold mb-4">Orders Information</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -133,12 +151,12 @@ const CustomerInfoPage = () => {
             <p className="text-sm font-semibold text-[#5B5B5B]">$753.78</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Order History Section */}
-      <div className="bg-white shadow rounded-xl p-1 sm:px-2 overflow-x-auto">
-          <OrderHistory showCreateButton={false} />   
-      </div>
+      {/* <div className="bg-white shadow rounded-xl p-1 sm:px-2 overflow-x-auto">
+        <OrderHistory showCreateButton={false} />
+      </div> */}
     </div>
   );
 };

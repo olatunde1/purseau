@@ -20,8 +20,6 @@ export const calculateReviewStats = (reviews) => {
   return { averageRating, totalReviews, ratingCounts };
 };
 
-
-
 // utils/inputValidation.js
 
 /**
@@ -35,7 +33,7 @@ export const validateAndFormatInput = (input) => {
     type: null,
     formatted: null,
     original: input,
-    error: null
+    error: null,
   };
 
   if (!input) {
@@ -45,10 +43,10 @@ export const validateAndFormatInput = (input) => {
 
   // Trim input
   const trimmedInput = input.trim();
-  
+
   // Email regex pattern
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
   // Phone number regex pattern
   const phonePattern = /^(\+\d{1,3}[-\s]?)?\d{10,14}$/;
 
@@ -59,10 +57,10 @@ export const validateAndFormatInput = (input) => {
   } else if (phonePattern.test(trimmedInput)) {
     result.isValid = true;
     result.type = "phone";
-    
+
     // Format phone number to international format
     let formattedPhone = trimmedInput;
-    
+
     if (formattedPhone.startsWith("+234")) {
       formattedPhone = formattedPhone.slice(1); // Remove the + from +234
     } else if (formattedPhone.startsWith("0")) {
@@ -74,10 +72,10 @@ export const validateAndFormatInput = (input) => {
         formattedPhone = "234" + formattedPhone;
       }
     }
-    
+
     // Remove any non-digit characters
     formattedPhone = formattedPhone.replace(/\D/g, "");
-    
+
     result.formatted = formattedPhone;
   } else {
     result.error = "Please enter a valid email address or phone number";
@@ -86,6 +84,12 @@ export const validateAndFormatInput = (input) => {
   return result;
 };
 
+export const OrderStatus = Object.freeze({
+  Initiated: "Initiated",
+  Placed: "Placed",
+  Shipped: "Shipped",
+  Delivered: "Delivered",
+});
 
 // usage belwo fo rvalidation
 
