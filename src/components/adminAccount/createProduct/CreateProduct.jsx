@@ -180,18 +180,20 @@ function CreateProduct() {
         </div>
 
         {/* Checkbox + Price Variants */}
-        <div className="mt-3 flex flex-col gap-4">
-          <label className="flex items-center gap-2 text-sm md:text-base">
-            <input
-              type="checkbox"
-              name="featured"
-              onChange={e => setForm({ ...form, featured: e.target.checked })}
-            />
-            Add price variants for wholesale
-          </label>
+      <div className="mt-3 flex flex-col gap-4">
+        <label className="flex items-center gap-2 text-sm md:text-base">
+          <input
+            type="checkbox"
+            checked={form.showVariants || false}
+            onChange={(e) => setForm({ ...form, showVariants: e.target.checked })}
+          />
+          Add price variants for wholesale
+        </label>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="flex w-full sm:w-[250px] rounded-xl overflow-hidden border h-12">
+        {/* Conditionally Render Price Variant Section */}
+        {form.showVariants && (
+          <div className="flex flex-col sm:flex-row gap-3 animate-fadeIn">
+            <div className="flex w-full sm:w-[280px] rounded-xl overflow-hidden border h-12">
               <label className="w-[96px] flex items-center justify-center bg-[#F2F2F7] font-semibold">
                 3–12 pc
               </label>
@@ -215,7 +217,9 @@ function CreateProduct() {
               />
             </div>
           </div>
-        </div>
+        )}
+      </div>
+
       </div>
 
       {/* Variants Section */}

@@ -260,7 +260,7 @@ export default function OrderHistory({ showCreateButton = true }) {
                 key={order.id}
                 className={`transition duration-200 ${
                   index % 2 === 0 ? "bg-white" : "bg-[#F9F9FB]"
-                } hover:bg-[#FFEFEA]`}
+                } hover:bg-[#ffffff]`}
               >
                 <td className="py-3 px-4">{order.id}</td>
                 <td className="py-3 px-4">{order.customer}</td>

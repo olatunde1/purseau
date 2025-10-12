@@ -4,10 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import LoginLogo from "../../assets/images/login-logo.png";
 
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
-import { FiEye, FiEyeOff, FiEdit } from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useForgotPassword } from "@/hooks/api/mutation/auth/useLogin";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -27,6 +26,7 @@ const Loginschema = yup.object().shape({
 export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -40,35 +40,24 @@ export default function AdminLogin() {
     mode: "onChange",
   });
 
-  const { setAccessToken, setCurrentUser } = useAdminAuthStore();
+  const { setAccessToken } = useAdminAuthStore();
   const { mutateAsync, isPending } = useAdminLogin();
-
-  const { mutate: forgotPassword, isPending: forgotPending } =
-    useForgotPassword();
+  const { mutate: forgotPassword, isPending: forgotPending } = useForgotPassword();
 
   const onSubmit = async (data) => {
-    const loginData = {
-      email: data?.email,
-      password: data?.password,
-    };
+    const loginData = { email: data?.email, password: data?.password };
     try {
       const formData = new FormData();
       Object.keys(loginData).forEach((key) => {
-        if (loginData[key] !== undefined && loginData[key] !== null) {
-          formData.append(key, loginData[key].toString());
-        }
+        if (loginData[key]) formData.append(key, loginData[key].toString());
       });
 
       await mutateAsync(formData, {
         onSuccess: (response) => {
           const token = response?.data?.data?.token;
-          if (token) {
-            setAccessToken(token);
-          }
-
+          if (token) setAccessToken(token);
           toast.success(response?.data?.message || "Admin Login successful");
           navigate("/admin/overview");
-          console.log(response, "responsebydex");
         },
         onError: (error) => {
           toast.error(error?.response?.data?.message);
@@ -98,76 +87,63 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="login-wrapper pt-2 pb-12 lg:pb-8 flex items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="login-container flex flex-col items-center bg-white shadow-md p-6 lg:rounded-3xl">
+    <div className="login-wrapper flex items-center justify-center min-h-screen bg-gray-50 px-4 py-1">
+      <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-md xl:max-w-sm bg-white shadow-lg rounded-2xl px-6 sm:px-8 py-10 sm:py-12 flex flex-col items-center">
         {/* Logo */}
-        <Link to="/">
-          <div className="login-logo mb-6">
-            <img
-              src={LoginLogo}
-              alt="Purseau Logo"
-              className="h-10 w-full lg:h-16 lg:w-16"
-            />
-          </div>
+        <Link to="/" className="mb-6 sm:mb-8">
+          <img
+            src={LoginLogo}
+            alt="Purseau Logo"
+            className="h-12 sm:h-16 w-auto mx-auto"
+          />
         </Link>
 
         {/* Title */}
-        <div className="flex items-center">
-          <h1 className="welcome-back text-gray-900 mb-2 text-xl lg:text-[32px] text-center items-center">
-            Yo Admin👋
-          </h1>
-          {/* <img src={HandWave} alt="" /> */}
-        </div>
-        <p className="login-back-text w-[470px] mb-10 lg:mb-16 lg:pt-2 text-center">
+        <h1 className="text-2xl sm:text-[28px] font-semibold text-gray-900 mb-2 text-center">
+          Yo Admin 👋
+        </h1>
+        <p className="text-gray-600 text-sm sm:text-base text-center mb-8 sm:mb-10">
           Login into your Admin Dashboard.
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* Email Input with Edit Option */}
-          <div className="w-[300px] lg:w-[512px] mb-6">
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-6">
+          {/* Email Field */}
+          <div>
             {errors.email && (
-              <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
+              <div className="border border-dashed border-red-500 rounded-md px-4 py-2 mb-2 text-sm font-medium text-red-600 bg-red-50">
                 {errors.email?.message}
               </div>
             )}
-            <div className="flex items-center gap-2">
-              <Input
-                {...register("email")}
-                name="email"
-                id="email"
-                type="email"
-                placeholder="Enter email address"
-                className={`w-full mt-1 focus:ring bg-gray-300 py-6 input-text-email`}
-              />
-            </div>
+            <Input
+              {...register("email")}
+              type="email"
+              placeholder="Enter email address"
+              className="w-full bg-gray-100 border border-gray-300 focus:ring-2 focus:ring-[#d84327]/60 focus:border-[#d84327] py-5 rounded-lg"
+            />
           </div>
 
-          {/* Password Input */}
-          <div className="w-full mb-10 lg:mb-16 lg:w-[512px]">
+          {/* Password Field */}
+          <div>
             {errors.password && (
-              <div className="w-full border border-dashed border-red-500 px-4 py-1  my-4 text-black text-sm font-semibold">
+              <div className="border border-dashed border-red-500 rounded-md px-4 py-2 mb-2 text-sm font-medium text-red-600 bg-red-50">
                 {errors.password?.message}
               </div>
             )}
-            <Label htmlFor="password" className=" login-password-text">
-              Password*
+            <Label htmlFor="password" className="text-gray-700 font-medium mb-1 block">
+              Password
             </Label>
-
             <div className="relative">
               <Input
                 {...register("password")}
-                name="password"
-                id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
-                className="w-full mt-1 focus:ring bg-gray-300 py-6 mb-4 input-text-caption"
+                className="w-full bg-gray-100 border border-gray-300 focus:ring-2 focus:ring-[#d84327]/60 focus:border-[#d84327] py-5 rounded-lg pr-10"
               />
               <button
                 type="button"
-                className="absolute right-3 top-4 text-gray-500"
                 onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
               </button>
@@ -175,19 +151,22 @@ export default function AdminLogin() {
           </div>
 
           {/* Login Button */}
-          <Button className="w-full bg-[#d84327] text-white py-6 rounded-lg login-continue-button">
-            {isPending ? "loading..." : "Continue"}
+          <Button
+            className="w-full bg-[#d84327] hover:bg-[#c73d23] transition-all duration-200 text-white py-5 rounded-lg text-base font-semibold shadow-md"
+            type="submit"
+          >
+            {isPending ? "Loading..." : "Continue"}
           </Button>
         </form>
 
         {/* Forgot Password */}
-        <p className="text-sm text-gray-500 text-center pt-8">
-          <p
+        <p className="text-sm text-center text-gray-600 mt-6">
+          <span
             onClick={ForgotPasswordSubmit}
-            className="text-[#E94E30] hover:underline font-[Lato] text-[16px] text-500 cursor-pointer"
+            className="text-[#E94E30] hover:underline cursor-pointer font-medium"
           >
-            {forgotPending ? "loading..." : "Forgot your Password?"}
-          </p>
+            {forgotPending ? "Loading..." : "Forgot your password?"}
+          </span>
         </p>
       </div>
     </div>

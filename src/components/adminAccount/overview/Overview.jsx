@@ -19,7 +19,7 @@ import useGetAdminOverview from "@/hooks/api/queries/admin/useGetAdminOverview";
 import useGetAdminOrders from "@/hooks/api/queries/admin/useGetAdminOrders";
 import GeneralLoader from "@/components/general/GeneralLoader";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OverviewPage = () => {
   const navigate = useNavigate();
@@ -176,9 +176,12 @@ const OverviewPage = () => {
         <h1 className="text-2xl font-semibold text-gray-800 mb-4 md:mb-0">
           Overview
         </h1>
-        <button className="flex items-center gap-2 bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit">
-          <Plus size={18} /> Create New Product
-        </button>
+        <Link to="/admin/create-product">
+            <button className="flex items-center gap-2 bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit">
+            <Plus size={18} /> Create New Product
+            </button>
+        </Link>
+      
       </div>
 
       {/* Stats */}
@@ -288,7 +291,7 @@ const OverviewPage = () => {
         <h2 className="text-lg font-semibold text-gray-700">Order History</h2>
         <button
           onClick={() => navigate("/admin/orders-history")}
-          className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit"
+          className="bg-[#E5E5EA] text-black px-5 py-2 rounded-lg hover:bg-[#bf290b] hover:text-white transition w-fit"
         >
           View More
         </button>

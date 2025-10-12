@@ -47,9 +47,10 @@ export default function OrderDetails() {
 
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Panel */}
-        <div className="flex-1 bg-white shadow-md rounded-xl p-4">
-          {/* Order Info */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+        <div className="flex-1 rounded-xl p-4">
+          <div className="bg-white shadow-md p-4 rounded">
+                 {/* Order Info */}
+          <div className="flex  flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
             <div className="text-sm">
               <strong>Order ID:</strong> {order?.orderId || "N/A"}
             </div>
@@ -59,7 +60,7 @@ export default function OrderDetails() {
           </div>
 
           {/* Product Table */}
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto p-2">
             <table className="w-full text-sm border rounded-md overflow-hidden">
               <thead className="bg-[#FFF4F0] text-left">
                 <tr>
@@ -98,11 +99,13 @@ export default function OrderDetails() {
               </tbody>
             </table>
           </div>
+          </div>
+       
 
           {/* Delivery & Payment Info */}
           <div className="mt-6 grid gap-6">
             {/* Delivery Info */}
-            <div className="p-4 rounded">
+            <div className=" bg-white shadow-md p-4 rounded">
               <h4 className="font-semibold text-xl mb-4">
                 Delivery Information
               </h4>
@@ -137,7 +140,7 @@ export default function OrderDetails() {
             </div>
 
             {/* Payment Details */}
-            <div className="p-4 rounded">
+            <div className="p-4 rounded bg-white shadow-md">
               <h4 className="font-semibold text-xl mb-4">Payment Details</h4>
               <div className="space-y-4 text-[#5B5B5B]">
                 <div className="flex justify-normal">
@@ -162,10 +165,10 @@ export default function OrderDetails() {
         </div>
 
         {/* Right Panel */}
-        <div className="w-full lg:w-[421px] bg-white shadow-md rounded-xl p-4">
-          <div className="bg-gray-100 p-4 rounded mb-6">
+        <div className="w-full lg:w-[421px] rounded-xl p-6">
+          <div className=" bg-white shadow-md p-4 rounded mb-6">
             <h4 className="font-semibold text-xl mb-2">Order Summary</h4>
-            <div className="space-y-2 text-[#5B5B5B]">
+            <div className="space-y-4 text-[#5B5B5B]">
               <div className="flex border-b justify-between py-3">
                 Subtotal: <span>${order?.orderAmount ?? "N/A"}</span>
               </div>
@@ -181,9 +184,9 @@ export default function OrderDetails() {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-4 rounded">
+          <div className=" p-4 rounded bg-white shadow-md">
             <h4 className="font-semibold text-xl mb-3">Track Order</h4>
-            <div className="text-sm text-[#5B5B5B] space-y-3">
+            <div className="text-sm text-[#5B5B5B] space-y-6">
               <div>
                 <span className="font-semibold">Tracking ID:</span>{" "}
                 {order?.trackingId || "N/A"}
@@ -213,7 +216,7 @@ export default function OrderDetails() {
                   return (
                     <div
                       key={step.label}
-                      className="flex items-center gap-2 mb-2"
+                      className="flex items-center gap-2 mb-6 last:mb-0"
                     >
                       {isActive ? (
                         <FaDotCircle className="text-[#E94E30] w-4 h-4" />
