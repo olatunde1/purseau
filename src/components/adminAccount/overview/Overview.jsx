@@ -291,7 +291,7 @@ const OverviewPage = () => {
         <h2 className="text-lg font-semibold text-gray-700">Order History</h2>
         <button
           onClick={() => navigate("/admin/orders-history")}
-          className="bg-[#E94E30] text-white px-5 py-2 rounded-lg hover:bg-[#bf290b] transition w-fit"
+          className="bg-[#E5E5EA] text-black px-5 py-2 rounded-lg hover:bg-[#bf290b] hover:text-white transition w-fit"
         >
           View More
         </button>
