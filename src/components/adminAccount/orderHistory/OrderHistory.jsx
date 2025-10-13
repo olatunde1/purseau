@@ -143,11 +143,11 @@ export default function OrderHistory({ showCreateButton = true }) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
         <h1 className="text-xl sm:text-2xl font-bold">Orders History</h1>
-        {showCreateButton && (
+        {/* {showCreateButton && (
           <button className="bg-[#E94E30] text-white px-4 py-2 rounded-md hover:bg-[#cd3213] transition">
             Create Order
           </button>
-        )}
+        )} */}
       </div>
 
       {/* Search + Filter + Sort */}

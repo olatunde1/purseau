@@ -79,7 +79,7 @@ export default function ArchivedProduct() {
         <div className="flex flex-wrap gap-3 relative">
           <div className="relative">
             <button
-              className="flex items-center gap-2 border px-4 py-1.5 rounded bg-[#F2F2F7] text-sm"
+              className="flex items-center gap-2 border px-4 py-2 rounded bg-[#F2F2F7] text-sm"
               onClick={() => setShowFilter(!showFilter)}
             >
               <Filter size={16} /> Filter
