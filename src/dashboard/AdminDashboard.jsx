@@ -21,6 +21,7 @@ import { useAdminAuthStore } from "@/store/adminAuthStore";
 import { toast } from "sonner";
 import useGetAdminProfile from "@/hooks/api/queries/admin/useGetAdminProfile";
 import GeneralLoader from "@/components/general/GeneralLoader";
+import useGetAdminOrders from "@/hooks/api/queries/admin/useGetAdminOrders";
 
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,8 +31,10 @@ export default function Admin() {
 
   const { data: profile, isPending } = useGetAdminProfile();
 
+  const { data: orderData, isPending: orderIsPending } = useGetAdminOrders();
+
   const profileData = profile?.data?.adminDetail || {};
-  console.log(profileData, "profile");
+  // console.log(profileData, "profile");
 
   const { logout } = useAdminAuthStore();
 
@@ -46,7 +49,7 @@ export default function Admin() {
     {
       name: "Orders",
       icon: <Package size={18} />,
-      badge: 48,
+      badge: orderData?.data?.orders?.items?.length ?? "-",
       route: "/admin/orders-history",
     },
     {
@@ -63,7 +66,7 @@ export default function Admin() {
     { name: "Sign Out", iconSrc: LogOut, route: "/logout" },
   ];
 
-  if (isPending) {
+  if (isPending || orderIsPending) {
     return <GeneralLoader />;
   }
 

@@ -51,6 +51,7 @@ export default function AllProductList() {
         selectedStatus === "All" || order.status === selectedStatus;
       const matchesSearch =
         order.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        order.name.toLowerCase().includes(searchTerm.toLowerCase());
         order.id.toLowerCase().includes(searchTerm.toLowerCase());
       return matchesStatus && matchesSearch;
     });
