@@ -126,7 +126,7 @@ function App() {
               element={<ArchivedProductComponent />}
             />
             <Route
-              path="archived-product-details"
+              path="product-details"
               element={<ArchivedProductDetailsComponent />}
             />
             <Route
