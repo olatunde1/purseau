@@ -3,6 +3,7 @@ import Download from "../../../assets/images/admin-create-product-upload.png";
 import { useState } from "react";
 import { X } from "react-feather";
 import { toast } from "sonner";
+import { Navigate } from "react-router-dom";
 
 function CreateProduct() {
   const [form, setForm] = useState({});
@@ -116,7 +117,6 @@ function CreateProduct() {
       }
     });
 
-
     formData.append(
       "pricing[perQuantity][onePiece]",
       pricing.perQuantity.onePiece.toString()
@@ -157,6 +157,7 @@ function CreateProduct() {
     mutate(formData, {
       onSuccess: () => {
         toast.success("✅ Product created successfully!");
+        Navigate("/admin/archived-product");
       },
       onError: (error) => {
         console.error("Error creating product:", error);
