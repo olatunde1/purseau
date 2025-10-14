@@ -42,6 +42,7 @@ import OrderHistoryComponent from "./components/adminAccount/orderHistory/OrderH
 import AdminOrderDetailsComponent from "./components/adminAccount/orderDetails/OrderDetailsComponent";
 import AllProductListComponent from "./components/adminAccount/productList/AllProductListComponent";
 import CreateProductComponent from "./components/adminAccount/createProduct/CreateProductComponent";
+import EditCreateProductComponent from "./components/adminAccount/createProduct/EditCreateProductComponent";
 import ArchivedProductComponent from "./components/adminAccount/archivedProduct/ArchivedProductComponent";
 import ArchivedProductDetailsComponent from "./components/adminAccount/archivedProduct/ArchivedProductDetailsComponent";
 import CustomerInfoPageComponent from "./components/adminAccount/customers/CustomerInfoPageComponent";
@@ -121,6 +122,7 @@ function App() {
             />
             <Route path="product-list" element={<AllProductListComponent />} />
             <Route path="create-product" element={<CreateProductComponent />} />
+            <Route path="edit-create-product" element={<EditCreateProductComponent />} />
             <Route
               path="archived-product"
               element={<ArchivedProductComponent />}

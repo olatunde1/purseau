@@ -1,11 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Search, Filter, ArrowUpDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import useGetAdminProducts from "@/hooks/api/queries/admin/useGetAdminProducts";
-import { useRef, useEffect } from "react";
 import usePublishProduct from "@/hooks/api/mutation/admin/usePublishProduct";
-import { toast } from "sonner";
 import useRemoveProducts from "@/hooks/api/mutation/admin/useRemoveProducts";
+import { toast } from "sonner";
 
 const statusList = ["All", "Archived"];
 
@@ -17,34 +16,16 @@ export default function ArchivedProduct() {
   const [showFilter, setShowFilter] = useState(false);
   const [modalOrder, setModalOrder] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
-
   const [publishModal, setPublishModal] = useState(null);
   const [removeModal, setRemoveModal] = useState(null);
+  const itemsPerPage = 3;
 
-  const { data, isPending, refetch } = useGetAdminProducts({
-    published: false,
-  });
-
-  const { mutate: publishProduct, isPending: publishPend } =
-    usePublishProduct();
-
+  const { data, isPending, refetch } = useGetAdminProducts({ published: false });
+  const { mutate: publishProduct, isPending: publishPend } = usePublishProduct();
   const { mutate: removeProducts, isPending: removePend } = useRemoveProducts();
 
-  // ✅ Handle Sort Option
-  const handleSort = (value) => {
-    setSortOption(value);
-  };
-
-  // ✅ View Product Details
-  const handleViewProduct = (order) => {
-    navigate("/admin/product-details", { state: { order } });
-  };
-
-  // ✅ Extract backend data safely
   const products = data?.data?.result?.items || [];
 
-  // ✅ Transform backend data for table UI
   const transformedOrders = useMemo(() => {
     return products.map((p) => ({
       id: p.productId,
@@ -61,7 +42,6 @@ export default function ArchivedProduct() {
     }));
   }, [products]);
 
-  // ✅ Search + Filter
   const filteredOrders = useMemo(() => {
     return transformedOrders.filter((order) => {
       const matchesSearch =
@@ -73,7 +53,6 @@ export default function ArchivedProduct() {
     });
   }, [transformedOrders, searchTerm, selectedStatus]);
 
-  // ✅ Sorting logic
   const sortedOrders = useMemo(() => {
     const sorted = [...filteredOrders];
     if (sortOption === "date-asc")
@@ -99,7 +78,6 @@ export default function ArchivedProduct() {
     return sorted;
   }, [filteredOrders, sortOption]);
 
-  // ✅ Pagination
   const totalPages = Math.ceil(sortedOrders.length / itemsPerPage);
   const paginatedOrders = useMemo(() => {
     const start = (currentPage - 1) * itemsPerPage;
@@ -107,8 +85,6 @@ export default function ArchivedProduct() {
   }, [sortedOrders, currentPage]);
 
   const modalRef = useRef(null);
-
-  // ✅ Close popover on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -119,22 +95,21 @@ export default function ArchivedProduct() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleViewProduct = (order) =>
+    navigate("/admin/product-details", { state: { order } });
+
   const handleSubmit = () => {
     if (!publishModal) return;
-
     publishProduct(
       { id: publishModal._id },
       {
-        onSuccess: (response) => {
-          toast.success(response?.data?.message || "Product Published!");
+        onSuccess: (res) => {
+          toast.success(res?.data?.message || "Product Published!");
           setPublishModal(null);
           navigate("/admin/product-list");
         },
-        onError: (error) => {
-          toast.error(
-            error?.response?.data?.message || "Error publishing product"
-          );
-          setPublishModal(null);
+        onError: (err) => {
+          toast.error(err?.response?.data?.message || "Error publishing product");
         },
       }
     );
@@ -142,60 +117,49 @@ export default function ArchivedProduct() {
 
   const handleRemove = () => {
     if (!removeModal) return;
-
     removeProducts(
       { id: removeModal._id },
       {
-        onSuccess: (response) => {
-          toast.success(
-            response?.data?.message || "Product removed successfully!"
-          );
+        onSuccess: (res) => {
+          toast.success(res?.data?.message || "Product removed successfully!");
           setRemoveModal(null);
           refetch();
         },
-        onError: (error) => {
-          toast.error(
-            error?.response?.data?.message || "Error removing product"
-          );
-          setRemoveModal(null);
+        onError: (err) => {
+          toast.error(err?.response?.data?.message || "Error removing product");
         },
       }
     );
   };
 
-  if (isPending) {
-    return (
-      <div className="p-10 text-center text-gray-500">Loading products...</div>
-    );
-  }
+  if (isPending)
+    return <div className="p-10 text-center text-gray-500">Loading products...</div>;
 
-  if (!products.length) {
+  if (!products.length)
     return (
       <div className="p-10 text-center text-gray-500">
         No archived products found.
       </div>
     );
-  }
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-10">
+    <div className="w-full max-w-7xl mx-auto px-4 lg:px-0 py-0">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-6 sm:mb-[53.94px] gap-4">
-        <h1 className="text-xl sm:text-2xl font-bold">Archived Products</h1>
-        <button className="bg-[#E94E30] text-white px-4 py-2 rounded-xl w-full sm:w-auto">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-8 gap-4">
+        <h1 className="text-2xl font-bold text-gray-800">Archived Products</h1>
+        <button className="bg-[#E94E30] hover:bg-[#d13d23] text-white px-5 py-2 rounded-xl font-medium shadow-sm transition w-full sm:w-auto">
           Create New Product
         </button>
       </div>
 
       {/* Search & Filter */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        {/* Search Input */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div className="relative w-full sm:w-1/3">
-          <Search className="absolute top-3 left-2 text-gray-400" size={18} />
+          <Search className="absolute top-3 left-3 text-gray-400" size={18} />
           <input
             type="text"
-            placeholder="Search for product by brand or ID"
-            className="pl-8 pr-4 py-2 border-2 border-[#878787] rounded-2xl w-full text-sm"
+            placeholder="Search by brand or ID"
+            className="pl-9 pr-4 py-2 border border-gray-300 rounded-xl w-full text-sm focus:ring-2 focus:ring-[#E94E30] outline-none"
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -204,18 +168,18 @@ export default function ArchivedProduct() {
           />
         </div>
 
-        {/* Filter + Sort */}
         <div className="flex flex-wrap gap-3 relative">
+          {/* Filter */}
           <div className="relative">
             <button
-              className="flex items-center gap-2 border px-4 py-2 rounded bg-[#F2F2F7] text-sm"
+              className="flex items-center gap-2 border px-4 py-2 rounded-xl bg-[#F8F8FA] text-sm hover:bg-gray-100"
               onClick={() => setShowFilter(!showFilter)}
             >
               <Filter size={16} /> Filter
             </button>
             {showFilter && (
-              <div className="absolute top-12 right-0 bg-white border p-4 rounded shadow z-10 w-40 sm:w-56">
-                <label className="block mb-2 font-semibold text-sm text-gray-700">
+              <div className="absolute top-12 right-0 bg-white border p-4 rounded-xl shadow-md z-10 w-48">
+                <label className="block mb-2 font-medium text-sm text-gray-700">
                   Filter by Status
                 </label>
                 <select
@@ -228,47 +192,42 @@ export default function ArchivedProduct() {
                   }}
                 >
                   {statusList.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
+                    <option key={status}>{status}</option>
                   ))}
                 </select>
               </div>
             )}
           </div>
 
+          {/* Sort */}
           <div className="relative">
             <select
-              className="appearance-none pl-8 py-2 border rounded text-sm w-[107px]
-              text-gray-700 bg-[#F2F2F7] focus:outline-none"
+              className="appearance-none pl-8 py-2 pr-3 border rounded-xl text-sm w-[120px] bg-[#F8F8FA] focus:ring-2 focus:ring-[#E94E30] outline-none"
               value={sortOption}
-              onChange={(e) => handleSort(e.target.value)}
+              onChange={(e) => setSortOption(e.target.value)}
             >
               <option value="">Sort by</option>
-              <option value="date-asc">Date (Oldest First)</option>
-              <option value="date-desc">Date (Newest First)</option>
-              <option value="amount-asc">Amount (Low to High)</option>
-              <option value="amount-desc">Amount (High to Low)</option>
+              <option value="date-asc">Oldest</option>
+              <option value="date-desc">Newest</option>
+              <option value="amount-asc">Price ↑</option>
+              <option value="amount-desc">Price ↓</option>
             </select>
-            <ArrowUpDown
-              className="absolute left-2 top-3 text-gray-500"
-              size={16}
-            />
+            <ArrowUpDown className="absolute left-2 top-3 text-gray-500" size={16} />
           </div>
         </div>
       </div>
 
-      {/* Desktop Table */}
-      <div className="hidden sm:block overflow-x-auto">
-        <table className="w-full text-sm border border-gray-200 rounded-lg overflow-x-hidden overflow-y-scroll min-h-[150px]">
-          <thead className="bg-[#F2F2F7] text-gray-600 text-left">
+      {/* Table */}
+      <div className="hidden sm:block overflow-x-auto border border-gray-200 rounded-xl">
+        <table className="w-full text-sm">
+          <thead className="bg-gray-50 text-gray-600">
             <tr>
-              <th className="py-3 px-4">Product ID</th>
-              <th className="py-3 px-4">Brand</th>
-              <th className="py-3 px-4">Category</th>
-              <th className="py-3 px-4">Stock</th>
-              <th className="py-3 px-4">Size</th>
-              <th className="py-3 px-4">Price</th>
+              <th className="py-3 px-4 text-left">Product ID</th>
+              <th className="py-3 px-4 text-left">Brand</th>
+              <th className="py-3 px-4 text-left">Category</th>
+              <th className="py-3 px-4 text-left">Stock</th>
+              <th className="py-3 px-4 text-left">Size</th>
+              <th className="py-3 px-4 text-left">Price</th>
               <th className="py-3 px-4 text-right">Actions</th>
             </tr>
           </thead>
@@ -276,7 +235,7 @@ export default function ArchivedProduct() {
             {paginatedOrders.map((order) => (
               <tr
                 key={order.id}
-                className="border-t hover:bg-gray-50 cursor-pointer relative"
+                className="border-t hover:bg-gray-50 transition cursor-pointer"
               >
                 <td className="py-3 px-4">{order.id}</td>
                 <td className="py-3 px-4">{order.customer}</td>
@@ -284,25 +243,24 @@ export default function ArchivedProduct() {
                 <td className="py-3 px-4">{order.items}</td>
                 <td className="py-3 px-4">{order.size}</td>
                 <td className="py-3 px-4">{order.amount}</td>
-                <td className="py-3 px-4 text-right relative">
+                <td className="py-3 px-4 text-right">
                   <span
-                    className="font-extrabold cursor-pointer"
+                    className="font-bold cursor-pointer text-lg"
                     onClick={() =>
                       setModalOrder((prev) =>
-                        prev && prev.id === order.id ? null : order
+                        prev?.id === order.id ? null : order
                       )
                     }
                   >
                     ...
                   </span>
-
-                  {modalOrder && modalOrder.id === order.id && (
+                  {modalOrder?.id === order.id && (
                     <div
                       ref={modalRef}
-                      className="absolute right-6 mt-2 z-20 bg-white border rounded shadow p-2 min-w-[150px]"
+                      className="absolute right-6 mt-2 z-20 bg-white border rounded-xl shadow p-2 w-40"
                     >
                       <button
-                        className="w-full text-center px-1 py-2 rounded hover:text-[#E94E30] font-semibold"
+                        className="w-full text-left px-3 py-2 hover:text-[#E94E30]"
                         onClick={() => {
                           setModalOrder(null);
                           handleViewProduct(order.full);
@@ -311,16 +269,16 @@ export default function ArchivedProduct() {
                         View
                       </button>
                       <button
-                        className="w-full font-medium text-center px-3 py-2 bg-green-500/50 text-white hover:bg-green-500/80 hover:text-white rounded"
+                        className="w-full text-left px-3 py-2 text-green-600 hover:bg-green-50 rounded"
                         onClick={() => {
                           setModalOrder(null);
                           setPublishModal(order.full);
                         }}
                       >
                         Publish
-                      </button>{" "}
+                      </button>
                       <button
-                        className="w-full font-medium text-center px-3 py-2 bg-[#FEE2E2] text-[#DC2626] hover:bg-[#DC2626] hover:text-white rounded mt-1"
+                        className="w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded"
                         onClick={() => {
                           setModalOrder(null);
                           setRemoveModal(order.full);
@@ -338,77 +296,67 @@ export default function ArchivedProduct() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center sm:justify-end items-center gap-2 mt-6 flex-wrap">
+      <div className="flex justify-center sm:justify-end items-center gap-3 mt-6 flex-wrap text-sm">
         <button
           onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
           disabled={currentPage === 1}
-          className="px-3 py-1 border rounded text-sm disabled:opacity-50"
+          className="px-3 py-1 border rounded-lg disabled:opacity-50"
         >
           Prev
         </button>
-        <span className="text-sm">
+        <span>
           Page {currentPage} of {totalPages}
         </span>
         <button
           onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 border rounded text-sm disabled:opacity-50"
+          className="px-3 py-1 border rounded-lg disabled:opacity-50"
         >
           Next
         </button>
       </div>
 
-      {publishModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-xl shadow-lg w-[90%] sm:w-[400px]">
-            <h2 className="text-lg font-bold mb-2">Confirm Publish</h2>
+      {/* Modals */}
+      {(publishModal || removeModal) && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
+          <div className="bg-white p-10 rounded-xl shadow-xl w-full max-w-md">
+            <h2 className="text-lg font-bold mb-3">
+              {publishModal ? "Confirm Publish" : "Confirm Removal"}
+            </h2>
             <p className="text-sm text-gray-600 mb-6">
-              Are you sure you want to publish{" "}
+              Are you sure you want to{" "}
+              {publishModal ? "publish" : "remove"}{" "}
               <span className="font-semibold">
-                {publishModal?.brand?.join(", ") || "this product"}
+                {(publishModal || removeModal)?.brand?.join(", ") ||
+                  "this product"}
               </span>
               ?
             </p>
             <div className="flex justify-end gap-3">
               <button
-                onClick={() => setPublishModal(null)}
+                onClick={() => {
+                  setPublishModal(null);
+                  setRemoveModal(null);
+                }}
                 className="px-4 py-2 rounded-lg border text-gray-700 hover:bg-gray-100"
               >
                 Cancel
               </button>
               <button
-                onClick={handleSubmit}
-                className="px-4 py-2 rounded-lg bg-[#E94E30] text-white hover:bg-[#d34429]"
+                onClick={publishModal ? handleSubmit : handleRemove}
+                className={`px-4 py-2 rounded-lg text-white ${
+                  publishModal
+                    ? "bg-[#E94E30] hover:bg-[#d13d23]"
+                    : "bg-red-600 hover:bg-red-700"
+                }`}
               >
-                {publishPend ? "confirming..." : "Confirm"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      {removeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white p-4 rounded-xl shadow-lg w-[90%] sm:w-[400px]">
-            <h2 className="text-lg font-bold mb-2">Confirm Removal</h2>
-            <p className="text-sm text-gray-600 mb-6">
-              Are you sure you want to remove{" "}
-              <span className="font-semibold">
-                {removeModal?.brand?.join(", ") || "this product"}
-              </span>
-              ?
-            </p>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setRemoveModal(null)}
-                className="px-4 py-2 rounded-lg border text-gray-700 hover:bg-gray-100"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleRemove}
-                className="px-4 py-2 rounded-lg bg-[#DC2626] text-white hover:bg-[#b91c1c]"
-              >
-                {removePend ? "Removing..." : "Confirm"}
+                {publishModal
+                  ? publishPend
+                    ? "Confirming..."
+                    : "Confirm"
+                  : removePend
+                  ? "Removing..."
+                  : "Confirm"}
               </button>
             </div>
           </div>

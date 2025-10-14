@@ -1,6 +1,6 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Star } from "lucide-react";
+import { Edit, Star } from "lucide-react";
 
 const ProductDetails = () => {
   const location = useLocation();
@@ -132,9 +132,12 @@ const ProductDetails = () => {
             <h2 className="text-lg sm:text-2xl font-semibold">
               {product.name}
             </h2>
-            {/* <button className="flex items-center justify-center gap-2 bg-[#F2F2F7] text-[#1B121B] px-4 py-2 rounded-lg shadow text-sm sm:text-base w-full sm:w-auto">
-              <Edit size={16} /> Edit
-            </button> */}
+            <Link to="/admin/edit-create-product" state={{ order: product }}>
+                <button className="flex items-center justify-center gap-2 bg-[#F2F2F7] text-[#1B121B] px-4 py-2 rounded-lg shadow text-sm sm:text-base w-full sm:w-auto">
+                  <Edit size={16} /> Edit
+                </button>
+            </Link>
+          
           </div>
 
           <p className="text-sm text-gray-500 mb-4">
