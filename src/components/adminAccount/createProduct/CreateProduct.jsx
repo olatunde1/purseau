@@ -161,7 +161,7 @@ function CreateProduct() {
       },
       onError: (error) => {
         console.error("Error creating product:", error);
-        toast.error("❌ Failed to create product. Check console for details.");
+        toast.error("❌ Failed to create product. ");
       },
     });
   };
