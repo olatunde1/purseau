@@ -3,13 +3,14 @@ import Download from "../../../assets/images/admin-create-product-upload.png";
 import { useState } from "react";
 import { X } from "react-feather";
 import { toast } from "sonner";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
   const [form, setForm] = useState({});
   const [images, setImages] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const navigate = useNavigate();
 
   const { mutate, isPending } = useCreateProducts();
 
@@ -156,12 +157,14 @@ function CreateProduct() {
 
     mutate(formData, {
       onSuccess: () => {
-        toast.success("✅ Product created successfully!");
-        Navigate("/admin/archived-product");
+        toast.success("Product created successfully!");
+        navigate("/admin/archived-product");
       },
       onError: (error) => {
-        console.error("Error creating product:", error);
-        toast.error("❌ Failed to create product. Check console for details.");
+        // console.error("Error creating product:", error);
+        toast.error(
+          error?.response?.data?.message || "Failed to create product. "
+        );
       },
     });
   };
