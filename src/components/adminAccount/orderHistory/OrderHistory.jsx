@@ -139,7 +139,7 @@ export default function OrderHistory({ showCreateButton = true }) {
   }
 
   return (
-    <div className="w-full px-4 py-6">
+    <div className="w-full py-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
         <h1 className="text-xl sm:text-2xl font-bold">Orders History</h1>

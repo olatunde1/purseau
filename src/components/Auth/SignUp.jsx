@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,9 +11,25 @@ import { validateAndFormatInput } from "@/utils";
 export default function SignUp() {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [error, setError] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
   const { mutate, isPending } = useSignUp();
+
+  // 🌙 Load theme from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") === "dark";
+    setDarkMode(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme);
+  }, []);
+
+  // 🌙 Toggle theme
+  const toggleTheme = () => {
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    document.documentElement.classList.toggle("dark", newTheme);
+    localStorage.setItem("theme", newTheme ? "dark" : "light");
+  };
 
   const handleInputChange = (e) => {
     setEmailOrPhone(e.target.value);
@@ -23,8 +39,6 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validate input first
-
     const result = validateAndFormatInput(emailOrPhone);
     if (!result.isValid) {
       setError("Please enter a valid email address or phone number");
@@ -33,29 +47,30 @@ export default function SignUp() {
 
     const formattedInput = result.formatted;
     mutate(
-      // { emailOrPhone },
       { emailOrPhone: formattedInput },
       {
         onSuccess: (response) => {
-          console.log(response, "response");
           toast.success(
             response?.data?.message || "Verification code sent successfully!"
           );
+
           if (response?.data?.data?.firstTimeUser) {
-            navigate("/VerifyEmail", { state: { emailOrPhone } });
+            navigate("/VerifyEmail", { state: { emailOrPhone: formattedInput } });
           }
           if (response?.data?.data?.firstTimeUserVerificationPassed) {
-            navigate("/CreatePassword", { state: { emailOrPhone } });
+            navigate("/CreatePassword", {
+              state: { emailOrPhone: formattedInput },
+            });
           }
 
           const { stepTwoCompleted, isVerified, completedPersonalDetails } =
             response?.data?.data || {};
           if (stepTwoCompleted && isVerified && completedPersonalDetails) {
-            navigate("/Login", { state: { emailOrPhone } });
+            navigate("/Login", { state: { emailOrPhone: formattedInput } });
           }
         },
+
         onError: (error) => {
-          console.error("Error:", error);
           toast.error(
             error?.response?.data?.message ||
               "Something went wrong. Please try again."
@@ -70,86 +85,66 @@ export default function SignUp() {
   };
 
   return (
-    <div className="sign-up-wrapper pt-2 pb-8">
-      <div className="signup-container lg:w-[700px] flex flex-col items-center justify-center bg-gray-50 px-4 sign-up ">
+    <div className="sign-up-wrapper min-h-screen flex justify-center items-center py-10 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      {/* Theme Toggle */}
+      <button
+        onClick={toggleTheme}
+        className="absolute top-6 right-6 text-sm px-3 py-1 rounded-full border dark:border-gray-500 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+      >
+        {darkMode ? "☀ Light" : "🌙 Dark"}
+      </button>
+
+      <div className="signup-container w-full max-w-[550px] bg-white dark:bg-gray-800 shadow-lg rounded-xl px-6 py-10 lg:py-14 transition-colors">
         {/* Logo */}
-        <Link
-        to="/"
-        >
-          <div className="signup-logo mb-6">
-            <img src={LoginLogo} alt="Purseau Logo" className="h-10 w-full lg:h-16 lg:w-16" />
-          </div>
+        <Link to="/" className="flex justify-center mb-10">
+          <img
+            src={LoginLogo}
+            alt="Purseau Logo"
+            className="h-16 w-auto dark:opacity-90"
+          />
         </Link>
-       
+
         {/* Welcome message */}
-        <h1 className="signup-title text-2xl font-bold text-gray-900 mb-2 text-center">
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 text-center mb-3">
           Welcome to Purseau
         </h1>
-        <p className="signup-subtitle text-gray-600 text-center mb-6 px-2 sm:px-0 pb-[30px] pt-[16px]">
-          Please! Kindly enter your e-mail to log in or <br />{" "}
-          create your Purseau account.
+        <p className="text-gray-600 dark:text-gray-300 text-center mb-8">
+          Please enter your email or phone number to continue.
         </p>
 
-        {/* Form Container */}
-        <form
-          onSubmit={handleSubmit}
-          className="signup-form w-full max-w-md space-y-5  rounded-lg p-6 sm:p-8"
-        >
-          {/* Email or phone number input */}
-          <div className="signup-input-group ">
-            <Label htmlFor="emailOrPhone" className="text-gray-700 font-medium">
-              Email *
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <Label className="text-gray-700 dark:text-gray-200 font-medium">
+              Email or Phone *
             </Label>
             <Input
-              id="emailOrPhone"
               type="text"
               value={emailOrPhone}
               onChange={handleInputChange}
               placeholder="Enter your email address"
-              className="signup-input w-full mt-1 py-6  focus:ring mb-4 bg-gray-200"
-              // onInvalid={(e) =>
-              //   e.target.setCustomValidity(
-              //     "Please enter a valid email or phone number."
-              //   )
-              // }
-              // onInput={(e) => e.target.setCustomValidity("")}
+              className={`w-full mt-1 h-14 text-base bg-gray-100 dark:bg-gray-700 border ${
+                error ? "border-red-500" : "border-gray-300 dark:border-gray-600"
+              } focus:border-[#d84327] focus:ring-2 focus:ring-[#d84327]/30 rounded-lg transition-all`}
               required
             />
-            {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-xs mt-1">{error}</p>
+            )}
           </div>
 
-          {/* Continue button */}
           <Button
             type="submit"
-            className="signup-button w-full transition-all py-6 duration-200"
+            disabled={isPending}
+            className="w-full h-14 text-base font-semibold rounded-lg hover:opacity-90 transition-all bg-[#d84327] text-white"
           >
             {isPending ? "Please wait..." : "Continue"}
           </Button>
 
-          {/* Terms and conditions */}
-          <p className="signup-terms text-xs text-gray-500 text-center pb-[40px]">
+          <p className="text-xs text-center text-gray-500 dark:text-gray-400 leading-relaxed">
             By clicking continue, you agree to the{" "}
-            <a href="#" className="text-[#d84327] hover:underline">
-              Terms and Conditions
-            </a>{" "}
-            of <br /> Purseau.
+            <span className="text-[#d84327] cursor-pointer">Terms & Conditions</span>{" "}
+            of Purseau.
           </p>
-
-          {/* Divider
-          <div className="signup-divider flex items-center my-4">
-            <div className="flex-grow border-t border-gray-300"></div>
-            <span className="mx-4 text-gray-500 text-sm">or</span>
-            <div className="flex-grow border-t border-gray-300"></div>
-          </div> */}
-
-          {/* Login with Google button */}
-          {/* <Button
-            variant="outline"
-            className="signup-google-btn w-full flex items-center justify-center gap-2 border-gray-300  transition-all duration-200 mb-[178.18px]"
-          >
-            <FcGoogle />
-            Login with Google
-          </Button> */}
         </form>
       </div>
     </div>
