@@ -110,7 +110,7 @@ const Home = () => {
 
       <div className="container">
         <div className="arrival">
-          <div className="newArrivalWrap">
+          <div className="newArrivalWrap pt-4">
             <img src={newArrival} alt="New Arrival" className="newArrival" />
             <div className="overlay">
               <h2 className="overlay-title">New Arrivals</h2>
@@ -125,7 +125,7 @@ const Home = () => {
             </div>
           </div>
           <div className="trendBestSells">
-            <div className="trendingClothWrap">
+            <div className="trendingClothWrap pt-1">
               <img
                 src={trending}
                 alt="Trending Cloth"
@@ -144,7 +144,7 @@ const Home = () => {
                 </Button>
               </div>
             </div>
-            <div className="bestSellingWrap">
+            <div className="bestSellingWrap pt-1">
               <img
                 src={bestSeller}
                 alt="Best Selling Cloths"
