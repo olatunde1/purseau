@@ -18,7 +18,7 @@ const AccountLayout = ({ children }) => {
 
   return (
     <div>
-      <section className="w-[90%] mx-auto py-10">
+      <section className="w-[90%] lg:w-[100%] mx-auto py-10">
         {/* Desktop layout */}
         <div className="hidden lg:flex w-full">
           <div className="w-[23%]">

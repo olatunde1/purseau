@@ -189,19 +189,25 @@ export default function PersonalDetails() {
               </label>
               <div className="relative">
                 <DatePicker
-                  selected={dob}
-                  onChange={(date) => setDob(date)}
-                  dateFormat="dd/MM/yyyy"
-                  placeholderText="dd/mm/yy"
-                  customInput={<CustomDateInput />}
-                  required
-                />
+              selected={dob}
+              onChange={(date) => setDob(date)}
+              dateFormat="dd/MM/yyyy"
+              placeholderText="dd/mm/yyyy"
+              customInput={<CustomDateInput />}
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
+              scrollableYearDropdown
+              yearDropdownItemNumber={100}
+              maxDate={new Date()}
+              required
+            />
               </div>
             </div>
 
             <Button
               onClick={handleSubmit}
-              className="w-full transition-all duration-200"
+              className="w-full transition-all py-6 duration-200"
             >
               {isPending ? "please wait..." : "Continue"}
             </Button>
