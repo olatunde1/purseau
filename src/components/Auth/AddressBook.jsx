@@ -11,11 +11,8 @@ export default function AddressBook() {
 
     return (
         <div
-            className=" w-[388px] lg:w-[878px] lg:ml-10 mt-6 mb-20 p-4 rounded-lg"
-            style={{
-                boxShadow:
-                    '0px 14px 30px 0px #7575751A, 0px 55px 55px 0px #75757517, 0px 124px 74px 0px #7575750D, 0px 220px 88px 0px #75757503, 0px 344px 96px 0px #75757500',
-            }}
+            className=" w-[388px] lg:w-[878px] mt-6 mb-20 p-4 rounded-lg"
+            
         >
             <div className="lg:flex justify-between lg:mx-5">
                 <h2 className="text-2xl font-semibold mb-6">Address Book</h2>
