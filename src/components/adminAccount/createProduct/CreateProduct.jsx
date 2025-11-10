@@ -1,12 +1,15 @@
 import Download from '../../../assets/images/admin-create-product-upload.png';
 import { useState } from 'react';
 import { X } from "react-feather";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 function CreateProduct() {
   const [form, setForm] = useState({});
   const [images, setImages] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const navigate = useNavigate();
 
   const categories = ["Shoes", "Clothing", "Bags", "Accessories"];
   const discounts = ["0%", "5%", "10%", "15%", "20%"];
@@ -17,9 +20,112 @@ function CreateProduct() {
   };
 
   const handleSubmit = () => {
-    const payload = { ...form, images };
-    console.log("Product to submit:", payload);
-    alert("Product submitted. Check console for payload.");
+    // build the nested pricing object
+    const pricing = {
+      perQuantity: {
+        onePiece: Number(form.price) || 0,
+        twoToFive: Number(form.price3to12) || 0,
+        fiveToTen: Number(form.price13plus) || 0,
+      },
+      discountAmount: form.discountAmount ? Number(form.discountAmount) : 0,
+      percentageDiscount: form.discount
+        ? Number(form.discount.replace("%", ""))
+        : 0,
+      priceRange: {
+        minPrice: form.minPrice ? Number(form.minPrice) : 0,
+        maxPrice: form.maxPrice ? Number(form.maxPrice) : 0,
+      },
+    };
+
+    // combine everything into the final backend shape
+    const payload = {
+      name: form.productName,
+      availableQuantity: Number(form.quantity) || 0,
+      availableColors: selectedColors,
+      description: form.description || form.summary || "",
+      weight: Number(form.weight) || 0,
+      color: selectedColors || "",
+      size: selectedSizes.length ? selectedSizes : [],
+      // images,
+      material: form.material || "",
+      // pricing,
+      category: form.category?.toLowerCase() || "",
+      brand: form.brand ? form.brand.split(",").map((b) => b.trim()) : [],
+      subCategory: form.subCategory || "formal shoes",
+    };
+
+    const formData = new FormData();
+
+    // Object.keys(payload).forEach((key) => {
+    //   const value = payload[key];
+    //   if (value !== undefined && value !== null) {
+    //     formData.append(key, value.toString());
+    //   }
+    // });
+
+    Object.keys(payload).forEach((key) => {
+      const value = payload[key];
+
+      if (value !== undefined && value !== null) {
+        if (Array.isArray(value) || typeof value === "object") {
+          // Convert arrays/objects to JSON string
+          formData.append(key, JSON.stringify(value));
+        } else {
+          // Leave primitives as-is
+          formData.append(key, value.toString());
+        }
+      }
+    });
+
+    formData.append(
+      "pricing[perQuantity][onePiece]",
+      pricing.perQuantity.onePiece.toString()
+    );
+    formData.append(
+      "pricing[perQuantity][twoToFive]",
+      pricing.perQuantity.twoToFive.toString()
+    );
+    formData.append(
+      "pricing[perQuantity][fiveToTen]",
+      pricing.perQuantity.fiveToTen.toString()
+    );
+    formData.append(
+      "pricing[discountAmount]",
+      pricing.discountAmount.toString()
+    );
+    formData.append(
+      "pricing[percentageDiscount]",
+      pricing.percentageDiscount.toString()
+    );
+    formData.append(
+      "pricing[priceRange][minPrice]",
+      pricing.priceRange.minPrice.toString()
+    );
+    formData.append(
+      "pricing[priceRange][maxPrice]",
+      pricing.priceRange.maxPrice.toString()
+    );
+
+    Object.values(images).forEach((file) => {
+      if (file instanceof File) {
+        formData.append("images", file);
+      }
+    });
+
+    console.log("Submitting product payload:", payload);
+
+    mutate(formData, {
+      onSuccess: () => {
+        toast.success("Product created successfully!");
+        navigate("/admin/archived-product");
+      },
+      onError: (error) => {
+        // console.error("Error creating product:", error);
+        toast.error(
+          error?.response?.data?.message || "Failed to create product. "
+        );
+      },
+    });
   };
 
   const handleColorChange = (e) => {
