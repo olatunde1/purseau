@@ -161,7 +161,6 @@ function CreateProduct() {
         navigate("/admin/archived-product");
       },
       onError: (error) => {
-        // console.error("Error creating product:", error);
         toast.error(
           error?.response?.data?.message || "Failed to create product. "
         );
