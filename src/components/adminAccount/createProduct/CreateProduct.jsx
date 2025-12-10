@@ -202,10 +202,10 @@ function CreateProduct() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
         <h1 className="text-xl sm:text-2xl font-semibold">Create Product</h1>
 
-        <div className="flex flex-wrap gap-3">
-          <button className="border border-[#878787] text-black px-5 py-2 rounded-xl hover:bg-gray-50 transition">
+        <div className="flex w-full gap-3 justify-end">
+          {/* <button className="border border-[#878787] text-black px-5 py-2 rounded-xl hover:bg-gray-50 transition">
             Archive Product
-          </button>
+          </button> */}
           <button
             onClick={handleSubmit}
             disabled={isPending}
@@ -225,7 +225,7 @@ function CreateProduct() {
           </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            <div>
+            {/* <div>
               <label className="font-semibold text-sm md:text-base">
                 Product ID
               </label>
@@ -234,7 +234,7 @@ function CreateProduct() {
                 value="DS-FG72TSOQ"
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               />
-            </div>
+            </div> */}
 
             <div>
               <label className="font-semibold text-sm md:text-base">
