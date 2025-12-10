@@ -218,7 +218,7 @@ export default function ArchivedProduct() {
       </div>
 
       {/* Table */}
-      <div className="hidden sm:block overflow-x-auto border border-gray-200 rounded-xl">
+      <div className="block overflow-x-auto border border-gray-200 rounded-xl">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 text-gray-600">
             <tr>
