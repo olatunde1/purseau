@@ -202,7 +202,7 @@ function CreateProduct() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 md:gap-0">
         <h1 className="text-xl sm:text-2xl font-semibold">Create Product</h1>
 
-        <div className="flex w-full gap-3 justify-end">
+        <div className="flex w-full sm:w-auto gap-3 justify-end">
           {/* <button className="border border-[#878787] text-black px-5 py-2 rounded-xl hover:bg-gray-50 transition">
             Archive Product
           </button> */}
