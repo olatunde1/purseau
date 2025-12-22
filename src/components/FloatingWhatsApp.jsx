@@ -12,7 +12,7 @@ const FloatingWhatsApp = () => {
 
   return (
     <a
-      href="https://wa.me/" // Placeholder for now
+      href="https://wa.me/2348105462886?text=Hello%20there"
       target="_blank"
       rel="noopener noreferrer"
       style={{
