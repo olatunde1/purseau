@@ -22,6 +22,7 @@ import { StayLoop } from "@/components/StayLoop";
 import Explore from "../components/ExploreCategories";
 import "./home.css";
 import { useNavigate } from "react-router-dom";
+import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -58,7 +59,8 @@ const Home = () => {
             Unleash Your Feminine <br /> Style with Purseau.
           </h1>
           <p className="discover">
-            Discover trendy fashion items and accessories, exclusively designed for women.
+            Discover trendy fashion items and accessories, exclusively designed
+            for women.
           </p>
           <div onClick={() => navigate("/shop")}>
             <Button className="explore transform transition-transform duration-300 hover:scale-105 ">
@@ -73,40 +75,36 @@ const Home = () => {
         <p className="pt-1">We provide you with the best customer experience</p>
       </div>
 
-       <div className="notification-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center lg:pt-20">
-          {notifications.map((notification, index) => (
-            <Card
-              key={index}
-              className="
+      <div className="notification-list grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center lg:pt-20">
+        {notifications.map((notification, index) => (
+          <Card
+            key={index}
+            className="
                 rounded-xl cursor-pointer p-10 lg:p-4 text-black transition-all mb-5
                 bg-white shadow-md border
                 md:bg-transparent md:shadow-sm md:border-white/10
                 hover:shadow-md
               "
-            >
-              <CardHeader className="flex items-center gap-4">
-                <img
-                  src={notification.image}
-                  alt={notification.title}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <h3 className="text-lg font-semibold">{notification.title}</h3>
-              </CardHeader>
+          >
+            <CardHeader className="flex items-center gap-4">
+              <img
+                src={notification.image}
+                alt={notification.title}
+                className="w-12 h-12 rounded-full object-cover"
+              />
+              <h3 className="text-lg font-semibold">{notification.title}</h3>
+            </CardHeader>
 
-              <CardContent>
-                <p className="text-sm text-[#5B5B5B] pt-3">
-                  {notification.description}
-                </p>
-              </CardContent>
+            <CardContent>
+              <p className="text-sm text-[#5B5B5B] pt-3">
+                {notification.description}
+              </p>
+            </CardContent>
 
-              <CardFooter>
-                {/* Optional timestamp or CTA */}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-
-
+            <CardFooter>{/* Optional timestamp or CTA */}</CardFooter>
+          </Card>
+        ))}
+      </div>
 
       <div className="container">
         <div className="arrival">
@@ -115,11 +113,14 @@ const Home = () => {
             <div className="overlay">
               <h2 className="overlay-title">New Arrivals</h2>
               <p className="overlay-text">
-                Your Wardrobe Deserves Something New - Shop now to grab
-                our latest arrivals
+                Your Wardrobe Deserves Something New - Shop now to grab our
+                latest arrivals
               </p>
-              
-              <Button onClick={() => navigate("/shop")} className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white active:bg-[#d84327] text-white overlay-button">
+
+              <Button
+                onClick={() => navigate("/shop")}
+                className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white active:bg-[#d84327] text-white overlay-button"
+              >
                 Shop Now <SlArrowRight className="mt-1" />
               </Button>
             </div>
@@ -139,7 +140,7 @@ const Home = () => {
                   Discover the latest trending picks that define chic &
                   confidence
                 </p>
-              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
+                <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
                   Explore <SlArrowRight className="mt-1" />
                 </Button>
               </div>
@@ -155,10 +156,10 @@ const Home = () => {
                   Best Sellers
                 </h2>
                 <p className="overlay-text">
-                  Tried, Tested & Loved – Our Top Picks Fashion Hits 
-                  You’ll Love Forever
+                  Tried, Tested & Loved – Our Top Picks Fashion Hits You’ll Love
+                  Forever
                 </p>
-              <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
+                <Button className="bg-transparent shadow-none border border-white hover:bg-white hover:text-white text-white overlay-button">
                   Discover <SlArrowRight className="mt-1" />
                 </Button>
               </div>
@@ -174,7 +175,9 @@ const Home = () => {
       <section>
         <div className="container">
           <div className="explore-by-categories">
-            <h1 className="explore-text lg:text-4xl text-3xl lg:pt-20 pt-16">Our Top Selling Products</h1>
+            <h1 className="explore-text lg:text-4xl text-3xl lg:pt-20 pt-16">
+              Our Top Selling Products
+            </h1>
             <p className="browse-favorites lg:pb-16 pb-6  lg:w-[436px] mx-auto justify-center pt-2">
               In a laoreet purus. Integer turpis quam, laoreet id orci nec,
               ultrices lacinia nunc. Aliquam erat vo
@@ -206,6 +209,7 @@ const Home = () => {
       <div className="footer-details">
         <Footer />
       </div>
+      <FloatingWhatsApp />
     </>
   );
 };

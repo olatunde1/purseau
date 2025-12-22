@@ -1,17 +1,62 @@
 import useCreateProducts from "@/hooks/api/mutation/admin/useCreateProducts";
 import Download from "../../../assets/images/admin-create-product-upload.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "react-feather";
 import { toast } from "sonner";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUpdateProduct } from "@/hooks/api/mutation/admin/useUpdateProduct";
 
-function CreateProduct() {
+function EditProduct() {
   const [form, setForm] = useState({});
   const [images, setImages] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const location = useLocation();
+  const product = location.state?.order;
 
-  const { mutate, isPending } = useCreateProducts();
+  const [existingImages, setExistingImages] = useState([]);
+  const [removedImageUrls, setRemovedImageUrls] = useState([]);
+
+  const navigate = useNavigate();
+
+  console.log("product", product);
+
+  if (!product) {
+    return <p>No product data found</p>;
+  }
+
+  useEffect(() => {
+    if (!product) return;
+
+    setForm({
+      productName: product.name,
+      category: product.category,
+      subCategory: product.subCategory,
+      brand: product.brand?.join(", "),
+      material: product.material,
+      quantity: product.availableQuantity,
+      weight: product.weight,
+      price: product.pricing?.perQuantity?.onePiece,
+      price3to12: product.pricing?.perQuantity?.twoToFive,
+      price13plus: product.pricing?.perQuantity?.fiveToTen,
+      discount: `${product.pricing?.percentageDiscount || 0}%`,
+      summary: product.description,
+      description: product.description,
+      // showVariants: !!product.pricing?.perQuantity?.twoToFive,
+      showVariants:
+        Number(product.pricing?.perQuantity?.twoToFive) > 0 ||
+        Number(product.pricing?.perQuantity?.fiveToTen) > 0,
+    });
+
+    setSelectedColors(product.availableColors || []);
+
+    setSelectedSizes(product.size ? JSON.parse(product.size) : []);
+
+    setExistingImages(product.images?.map((img) => img.secureUrl) || []);
+  }, [product]);
+
+  const { mutate: updateProduct, isPending } = useUpdateProduct();
 
   // const categories = ["Shoes", "Clothing", "Bags", "Accessories"];
   const categoryOptions = [
@@ -58,6 +103,13 @@ function CreateProduct() {
   //   console.log("Product to submit:", payload);
   //   alert("Product submitted. Check console for payload.");
   // };
+
+  // Handle removing existing images
+  const handleRemoveExistingImage = (index) => {
+    const imageUrl = existingImages[index];
+    setRemovedImageUrls((prev) => [...prev, imageUrl]);
+    setExistingImages((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const handleSubmit = () => {
     // build the nested pricing object
@@ -152,18 +204,33 @@ function CreateProduct() {
       }
     });
 
+    // Add removed image URLs so backend can delete them
+    if (removedImageUrls.length > 0) {
+      formData.append("removedImages", JSON.stringify(removedImageUrls));
+    }
+
+    // Keep existing images that weren't removed
+    if (existingImages.length > 0) {
+      formData.append("existingImages", JSON.stringify(existingImages));
+    }
+
     console.log("Submitting product payload:", payload);
 
-    mutate(formData, {
-      onSuccess: () => {
-        toast.success("✅ Product created successfully!");
-        Navigate("/admin/archived-product");
+    updateProduct(
+      {
+        id: product._id,
+        data: formData,
       },
-      onError: (error) => {
-        console.error("Error creating product:", error);
-        toast.error("❌ Failed to create product. Check console for details.");
-      },
-    });
+      {
+        onSuccess: () => {
+          toast.success("Product updated successfully!");
+          navigate("/admin/archived-product");
+        },
+        onError: () => {
+          toast.error("Failed to update product");
+        },
+      }
+    );
   };
 
   const handleColorChange = (e) => {
@@ -229,7 +296,7 @@ function CreateProduct() {
               </label>
               <input
                 disabled
-                value="DS-FG72TSOQ"
+                value={product?._id || ""}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               />
             </div>
@@ -240,6 +307,7 @@ function CreateProduct() {
               </label>
               <input
                 name="productName"
+                value={form.productName || ""}
                 placeholder="Enter the product name"
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
@@ -315,6 +383,7 @@ function CreateProduct() {
               </label>
               <input
                 name="brand"
+                value={form.brand || ""}
                 placeholder="Enter brand"
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
@@ -327,7 +396,7 @@ function CreateProduct() {
               </label>
               <input
                 name="material"
-                placeholder="Enter material"
+                value={form.material || ""}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               />
@@ -340,7 +409,7 @@ function CreateProduct() {
               <input
                 type="number"
                 name="quantity"
-                placeholder="Enter quantity"
+                value={form.quantity || ""}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               />
@@ -353,7 +422,7 @@ function CreateProduct() {
               <input
                 type="number"
                 name="price"
-                placeholder="Enter price"
+                value={form.price || ""}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               />
@@ -365,6 +434,7 @@ function CreateProduct() {
               </label>
               <select
                 name="discount"
+                value={form.discount || ""}
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
               >
@@ -384,6 +454,7 @@ function CreateProduct() {
               <input
                 type="number"
                 name="weight"
+                value={form.weight || ""}
                 placeholder="Enter weight"
                 onChange={handleChange}
                 className="w-full px-4 py-3 border rounded-xl mt-2"
@@ -414,6 +485,7 @@ function CreateProduct() {
                   <input
                     name="price3to12"
                     placeholder="Enter price"
+                    value={form.price3to12 || ""}
                     onChange={handleChange}
                     className="flex-1 px-3 outline-none"
                   />
@@ -522,6 +594,7 @@ function CreateProduct() {
               <textarea
                 name="summary"
                 placeholder="Add short description"
+                value={form.summary || ""}
                 onChange={handleChange}
                 className="w-full p-4 border rounded-xl mt-2 h-28"
               />
@@ -533,6 +606,7 @@ function CreateProduct() {
               <textarea
                 name="description"
                 placeholder="Add full description"
+                value={form.description || ""}
                 onChange={handleChange}
                 className="w-full p-4 border rounded-xl mt-2 h-40"
               />
@@ -543,8 +617,59 @@ function CreateProduct() {
         {/* Product Images */}
         <div className="grid gap-6 py-10 mt-6 border-t">
           <h2 className="text-lg sm:text-xl font-semibold">Product Images</h2>
+
           <div className="flex flex-wrap gap-4">
-            {images.length < 4 && (
+            {/* EXISTING IMAGES (from backend) - NOW WITH REMOVE BUTTON */}
+            {existingImages.map((img, idx) => (
+              <div
+                key={`existing-${idx}`}
+                className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
+              >
+                <img
+                  src={img}
+                  alt={`existing-${idx}`}
+                  className="w-full h-full object-cover"
+                />
+
+                {/* Hover overlay with remove button */}
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveExistingImage(idx)}
+                    className="bg-[#E94E30] text-white px-3 py-1 rounded-md text-xs sm:text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* NEWLY UPLOADED IMAGES */}
+            {images.map((file, idx) => (
+              <div
+                key={`new-${idx}`}
+                className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
+              >
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={`preview-${idx}`}
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveImage(idx)}
+                    className="bg-[#E94E30] text-white px-3 py-1 rounded-md text-xs sm:text-sm"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* UPLOAD BOX */}
+            {existingImages.length + images.length < 4 && (
               <label
                 htmlFor="fileUpload"
                 className="flex flex-col justify-center items-center w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border-2 border-dashed rounded-lg cursor-pointer text-center p-3 hover:bg-gray-50"
@@ -559,6 +684,7 @@ function CreateProduct() {
                   <span className="underline text-[#E94E30]">choose file</span>
                 </p>
                 <p className="text-[10px] sm:text-xs text-gray-400">Max 10MB</p>
+
                 <input
                   type="file"
                   accept="image/*"
@@ -569,28 +695,6 @@ function CreateProduct() {
                 />
               </label>
             )}
-
-            {images.map((img, idx) => (
-              <div
-                key={idx}
-                className="relative w-28 h-28 sm:w-40 sm:h-40 md:w-[194px] md:h-[194px] border rounded overflow-hidden group"
-              >
-                <img
-                  src={URL.createObjectURL(img)}
-                  alt={`preview-${idx}`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveImage(idx)}
-                    className="bg-[#E94E30] text-white px-3 py-1 rounded-md text-xs sm:text-sm"
-                  >
-                    Remove
-                  </button>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
@@ -598,4 +702,4 @@ function CreateProduct() {
   );
 }
 
-export default CreateProduct;
+export default EditProduct;
