@@ -10,11 +10,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Star, Heart } from "lucide-react";
 
-
 import sampleimage from "@/assets/images/sampleimage.jpg";
 import { MdArrowForwardIos } from "react-icons/md";
 import useGetRecentlyViewedProduct from "@/hooks/api/queries/product/useGetRecentlyViewedProduct";
 import { calculateReviewStats } from "@/utils";
+import { useAddToCart } from "@/hooks/api/mutation/carts/cartOperations";
+import { useAuthStore } from "@/store/authStore";
+import { toast } from "sonner";
 //     id: 1,
 //     image: Recent1,
 //     title: "Product 1",
@@ -60,6 +62,12 @@ const RecentlyViewed = () => {
 
   const recentlyViewedProductData = recentlyViewedProduct?.data?.result ?? [];
 
+  const { currentUser } = useAuthStore();
+
+  const userId = currentUser?._id || "";
+
+  const { mutate: addToCart } = useAddToCart();
+
   const toggleFavorite = (id) => {
     setFavorites((prev) => {
       const newFavorites = new Set(prev);
@@ -69,6 +77,31 @@ const RecentlyViewed = () => {
         newFavorites.add(id);
       }
       return newFavorites;
+    });
+  };
+
+  const [pendingId, setPendingId] = useState(null);
+
+  const handleAddToCart = (product, e) => {
+    e.stopPropagation();
+    setPendingId(product._id);
+    const cartItem = {
+      userId,
+      productId: product?._id,
+      quantity: 1,
+      selectedColor: product.availableColors?.[0] || "",
+      selectedSize: product.size || "L",
+    };
+
+    addToCart(cartItem, {
+      onSuccess: () => {
+        toast.success("Added to cart successfully!");
+        setPendingId(null);
+      },
+      onError: (error) => {
+        toast.error(error?.response?.data?.message || "Error adding to cart");
+        setPendingId(null);
+      },
     });
   };
 
@@ -82,7 +115,9 @@ const RecentlyViewed = () => {
         <div className="flex flex-col items-center px-8 lg:p-16 recently-view py-8 ">
           {/* Header Section */}
           <div className="w-full lg:w-[1200px] flex justify-between items-center mb-2 ">
-            <h2 className="text-xl lg:text-lg font-semibold">Recently Viewed</h2>
+            <h2 className="text-xl lg:text-lg font-semibold">
+              Recently Viewed
+            </h2>
             <Button variant="link" className="text-[#E94E30] flex items-center">
               See All <MdArrowForwardIos />
             </Button>
@@ -93,7 +128,7 @@ const RecentlyViewed = () => {
             {recentlyViewedProductData.map((item) => (
               <Card
                 key={item._id}
-                className="hover:shadow-xl transition-shadow rounded-lg overflow-hidden all-product-card relative"
+                className=" group hover:shadow-xl transition-shadow rounded-lg overflow-hidden all-product-card relative"
               >
                 <CardHeader>
                   <div className="h-[280px] w-full">
@@ -150,6 +185,17 @@ const RecentlyViewed = () => {
                   <span className="text-lg font-semibold">
                     ₦{item?.pricing?.perQuantity?.onePiece}
                   </span>
+                  <Button
+                    onClick={(e) => handleAddToCart(item, e)}
+                    disabled={pendingId === item._id}
+                    className="hidden md:block md:invisible md:group-hover:visible mb-[4px] bg-[#E94E30] text-[12px] hover:shadow-md"
+                  >
+                    {pendingId === item._id ? (
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    ) : (
+                      "Add to Cart"
+                    )}
+                  </Button>
                   <span className="text-sm text-red-600">
                     {item.pricing?.percentageDiscount}% off
                   </span>

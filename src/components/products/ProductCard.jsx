@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
 
   const userId = currentUser?._id || "";
 
-  console.log(userId, "id")
+  // console.log(userId, "id")
 
   const [favorites, setFavorites] = useState(new Set());
 
